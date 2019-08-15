@@ -3,6 +3,24 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 require("OperatorJack.MagickaExpanded-LoreFriendlyPack.effects.banishDaedraEffect")
 require("OperatorJack.MagickaExpanded-LoreFriendlyPack.effects.basicBoundWeaponEffects")
 require("OperatorJack.MagickaExpanded-LoreFriendlyPack.effects.basicBoundArmorEffects")
+require("OperatorJack.MagickaExpanded-LoreFriendlyPack.effects.darknessEffect")
+
+local spellIds = {
+  banishDaedra = "",
+  veilOfDarkness = "",
+  boundGreaves = "",
+  boundPauldrons = "",
+  boundClaymore = "",
+  boundClub = "",
+  boundDaiKatana = "",
+  boundKatana = "",
+  boundShortSword = "",
+  boundStaff = "",
+  boundTanto = "",
+  boundWakizashi = "",
+  boundWarAxe = "",
+  boundWarhammer = ""
+}
 
 local function registerSpells()
 	framework.spells.createBasicSpell({
@@ -12,6 +30,13 @@ local function registerSpells()
     range = tes3.effectRange.touch,
     min = 30,
     max = 50
+  })
+	framework.spells.createBasicSpell({
+    id = "OJ_ME_DarknessSpell",
+    name = "Veil of Darkness",
+    effect = tes3.effect.darkness,
+    range = tes3.effectRange.target,
+    duration = 10
   })
   framework.spells.createBasicSpell({
     id = "OJ_ME_BoundGreavesSpell",

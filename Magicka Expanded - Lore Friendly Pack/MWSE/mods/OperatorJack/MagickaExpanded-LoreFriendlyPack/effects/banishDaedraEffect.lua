@@ -15,7 +15,11 @@ local function onBanishDaedraTick(e)
 		return
 	end
 
-	if (e.effectInstance.target.object.level <= e.effectInstance.magnitude) then
+	local magnitude = e.sourceInstance:getMagnitudeForIndex(e.effectIndex)
+
+	framework.debug("Banishing with magnitude " .. magnitude)
+
+	if (e.effectInstance.target.object.level <= magnitude) then
 		tes3.setEnabled({ reference = e.effectInstance.target, enabled = false })
 		tes3.messageBox("%s has been banished!", e.effectInstance.target.baseObject)
 	end

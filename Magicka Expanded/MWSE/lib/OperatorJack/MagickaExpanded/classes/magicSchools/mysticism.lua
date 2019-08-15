@@ -73,6 +73,7 @@ this.createBasicTeleportationEffect = function(params)
 		nonRecastable = true,
 
 		-- Graphics/sounds.
+		icon = params.icon or "RFD\\RFD_teleport.dds",
 		lighting = { 0.99, 0.95, 0.67 },
 
 		-- Required callbacks.

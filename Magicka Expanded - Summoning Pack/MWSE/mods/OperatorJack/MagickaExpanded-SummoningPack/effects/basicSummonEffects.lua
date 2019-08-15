@@ -81,6 +81,7 @@ local function addSummoningEffects()
 		description = getDescription("Draugr"),
 		baseCost = 45,
 		creatureId = "OJ_ME_Draugr2",
+		icon = "RFD\\RFD_un_draugr.dds"
 	})
 	framework.effects.conjuration.createBasicSummoningEffect({
 		id = tes3.effect.summonLich,
@@ -88,6 +89,7 @@ local function addSummoningEffects()
 		description = getDescription("Lich"),
 		baseCost = 47,
 		creatureId = "OJ_ME_Lich",
+		icon = "RFD\\RFD_un_lich.dds"
 	})
 	framework.effects.conjuration.createBasicSummoningEffect({
 		id = tes3.effect.summonOgrim,
@@ -95,6 +97,7 @@ local function addSummoningEffects()
 		description = getDescription("Ogrim"),
 		baseCost = 15,
 		creatureId = "OJ_ME_Ogrim",
+		icon = "RFD\\RFD_sm_ogrim.dds"
 	})
 	framework.effects.conjuration.createBasicSummoningEffect({
 		id = tes3.effect.summonWarDurzog,
@@ -110,6 +113,7 @@ local function addSummoningEffects()
 		description = getDescription("Spriggan"),
 		baseCost = 30,
 		creatureId = "OJ_ME_Spriggan",
+		icon = "RFD\\RFD_sm_spriggan.dds"
 	})
 	framework.effects.conjuration.createBasicSummoningEffect({
 		id = tes3.effect.summonCenturionSteam,

@@ -1,5 +1,6 @@
 local this = {}
 
+
 this.getEffectFromEffectOnCollisionEvent = function (event, effectId)
 	for i=1,8 do
 		local effect = event.sourceInstance.source.effects[i]

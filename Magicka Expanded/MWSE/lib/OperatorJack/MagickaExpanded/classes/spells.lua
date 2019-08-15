@@ -34,7 +34,6 @@ local function getEffectCost(effect)
 end
 
 this.getSpellCost = function(spell)
-    common.debug("Getting Spell Cost for Spell" .. spell.name)
     local spellCost = 0
 	for i=1, spell:getActiveEffectCount() do
 		local effect = spell.effects[i]
@@ -42,7 +41,7 @@ this.getSpellCost = function(spell)
             spellCost = spellCost + getEffectCost(effect)
 		end
     end
-    common.debug("Spell Cost for " .. spell.name .. " is " .. spellCost)
+    
 	return spellCost
 end
 

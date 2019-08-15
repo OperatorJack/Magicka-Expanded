@@ -20,6 +20,10 @@ this.spells = require("OperatorJack.MagickaExpanded.classes.spells")
 
 this.effects =  require("OperatorJack.MagickaExpanded.classes.effects")
 
+this.tomes = require("OperatorJack.MagickaExpanded.classes.tomes")
+
+this.grimoires = require("OperatorJack.MagickaExpanded.classes.grimoires")
+
 this.functions =  require("OperatorJack.MagickaExpanded.classes.functions")
 
 local function onLoaded()

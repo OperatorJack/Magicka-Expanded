@@ -33,4 +33,11 @@ this.addTestSpellsToPlayer = function()
 	this.debug("Added Test Spells to Player.")
 end
 
+this.hasSpell = function(reference, spellId)
+    if (reference.spells:contains(spellId)) then
+        return true
+    end
+    return false
+end
+
 return this
