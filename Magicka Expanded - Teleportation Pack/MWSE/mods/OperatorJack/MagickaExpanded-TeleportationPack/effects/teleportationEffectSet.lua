@@ -27,7 +27,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { 106925, 117169, 264},
-			orientation = { 0, 0, 34},
+			orientation = { x=0, y=0, z=34},
 			cell = "Tel Mora"
 		}
 	})
@@ -38,7 +38,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { 56217, -50650, 52},
-			orientation = { 0, 0, 178},
+			orientation = { x=0, y=0, z=178},
 			cell = "Suran"
 		}
 	})
@@ -49,7 +49,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { 1008, -56746, 1360},
-			orientation = { 0, 0, 86},
+			orientation = { x=0, y=0, z=86},
 			cell = "Pelagiad"
 		}
 	})
@@ -60,7 +60,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { 106763, -61839, 780},
-			orientation = { 0, 0, 92},
+			orientation = { x=0, y=0, z=92},
 			cell = "Molag Mar"
 		}
 	})
@@ -71,7 +71,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { -22118, 102242, 1979},
-			orientation = { 0, 0, 34},
+			orientation = { x=0, y=0, z=34},
 			cell = "Maar Gan"
 		}
 	})
@@ -82,7 +82,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { -86430, 91415, 1035},
-			orientation = { 0, 0, 34},
+			orientation = { x=0, y=0, z=34},
 			cell = "Gnisis"
 		}
 	})
@@ -93,7 +93,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { -10373, 17241, 1284},
-			orientation = { 0, 0, 4},
+			orientation = { x=0, y=0, z=4},
 			cell = "Caldera"
 		}
 	})
@@ -104,7 +104,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { 29906, -76553, 790},
-			orientation = { 0, 0, 178},
+			orientation = { x=0, y=0, z=178},
 			cell = "Vivec"
 		}
 	})
@@ -115,7 +115,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { 18122, -101919, 337},
-			orientation = { 0, 0, 268},
+			orientation = { x=0, y=0, z=268},
 			cell = "Ebonheart"
 		}
 	})
@@ -126,7 +126,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { -22707, -17639, 403},
-			orientation = { 0, 0, 0},
+			orientation = { x=0, y=0, z=0},
 			cell = "Balmora"
 		}
 	})
@@ -137,7 +137,7 @@ local function addTeleportationEffects()
 		baseCost = 150,
 		positionCell = {
 			position = { -16328, 52678, 1841},
-			orientation = { 0, 0, 92},
+			orientation = { x=0, y=0, z=92},
 			cell = "Ald-Ruhn"
 		}
 	})

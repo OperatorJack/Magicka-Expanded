@@ -1,7 +1,14 @@
 local this = {}
 
+--[[
+	Description: For a given magic effect event @event, returns the first 
+		effect that has the same ID as @effectId.
 
-this.getEffectFromEffectOnCollisionEvent = function (event, effectId)
+	@event: A magic effect event created through tes3.addMagickEffect, such as 
+		onTick or onCollision.
+	@effectId: A magic effect ID found in tes3.effect.
+]]
+this.getEffectFromEffectOnEffectEvent = function (event, effectId)
 	for i=1,8 do
 		local effect = event.sourceInstance.source.effects[i]
 		if (effect ~= nil) then
@@ -13,6 +20,12 @@ this.getEffectFromEffectOnCollisionEvent = function (event, effectId)
 	return nil
 end
 
+--[[
+	Description: Calculates and returns a random magnitude based on a given effect.
+
+	TES3MagicEffect @effect: The magic effect to calculate a random magnitude for.
+		Type: TES3MagicEffect.
+]]
 this.getCalculatedMagnitudeFromEffect = function(effect)
 	local minMagnitude = math.floor(effect.min)
 	local maxMagnitude = math.floor(effect.max)
@@ -20,10 +33,30 @@ this.getCalculatedMagnitudeFromEffect = function(effect)
 	return magnitude
 end
 
+--[[
+	Description: Performs linear interpolation between 2 sets of points and returns
+		a point that is @percent percentage between them.
+
+	@x1: The X value of point A.
+	@y1: The Y value of point A.
+
+	@x2: The X value of point B.
+	@y2: The Y value of point B.
+
+	@percent: The decimal percentage used to calculate a point between point A
+		and point B.
+]]
 this.linearInterpolation = function(x1, y1, x2, y2, percent)
 	return (x1 + ((x2 - x1) * percent)), (y1 + ((y2 - y1) * percent))
 end
 
+--[[
+	Description: Performs a ternary operation.
+
+	@condition: The condition the evaluate in the ternary.
+	@T: The value to return if @condition is true.
+	@F: The value to return if @condition is false.
+]]
 this.ternary = function(condition, T, F)
 	if condition then return T else return F end
 end

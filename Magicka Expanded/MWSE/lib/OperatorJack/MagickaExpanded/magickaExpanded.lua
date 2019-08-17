@@ -1,4 +1,12 @@
+--[[
+	Magicka Expanded
+	By OperatorJack
+]]
+
 local common = require("OperatorJack.MagickaExpanded.common")
+
+-- Initialize any script overrides that are set within the framework.
+require("OperatorJack.MagickaExpanded.classes.scriptOverrides")
 
 local this = {}
 
@@ -26,10 +34,17 @@ this.grimoires = require("OperatorJack.MagickaExpanded.classes.grimoires")
 
 this.functions =  require("OperatorJack.MagickaExpanded.classes.functions")
 
+--[[
+	Description: Registers all magic effects, spells, tomes, and grimoires that
+	are created through the Magicka Expanded framework.
+]]
 local function onLoaded()
-    event.trigger("MagickaExpanded:Register")
+	event.trigger("MagickaExpanded:Register")
+	
+	this.tomes.registerEvent()
+	this.grimoires.registerEvent()
+
 	this.info("Magicka Expanded Framework Initialized")
-	common.addTestSpellsToPlayer()
 end
 
 event.register("loaded", onLoaded)

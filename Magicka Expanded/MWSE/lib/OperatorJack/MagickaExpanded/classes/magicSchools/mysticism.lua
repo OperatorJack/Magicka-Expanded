@@ -1,5 +1,10 @@
 local common = require("OperatorJack.MagickaExpanded.common")
 
+--[[
+	Description: Wrapper for tes3.addMagicEffect that has default values
+		that are common for spells of this school. Uses the same parameter
+		table as tes3.addMagicEffect(). 
+]]
 local this = {}
 this.createBasicEffect = function(params)
 	local effect = tes3.addMagicEffect({
@@ -55,6 +60,25 @@ this.createBasicEffect = function(params)
 	return effect
 end
 
+--[[
+	Description: Wrapper for this.createBasicMagicEffect that presets parameters
+		common for teleportation effects.
+
+	@params: A table of parameters. Must be formatted as:
+		example = {
+			id = tes3.effect.exampleTeleport,
+			name = "Teleport To Example",
+			description = "Teleports the caster to Example.",
+			baseCost = 150,
+			positionCell = {
+				position = { 106925, 117169, 264},
+				orientation = { x=0, y=0, z=34},
+				cell = "Example"
+			}
+		}
+
+		Other parameters will be automatically set by the function.
+]]
 this.createBasicTeleportationEffect = function(params)
 	local effect = this.createBasicEffect({
 		-- Base information.
@@ -83,11 +107,16 @@ this.createBasicTeleportationEffect = function(params)
 				return
 			end
 
+			local orientationRad = {}
+			orientationRad[1] = math.rad(params.positionCell.orientation.x)
+			orientationRad[2] = math.rad(params.positionCell.orientation.y)
+			orientationRad[3] = math.rad(params.positionCell.orientation.z)
+
 			-- Teleport the caster.
 			local teleportParams = {
 				reference = e.sourceInstance.caster,
 				position = params.positionCell.position,
-				orientation = params.positionCell.orientation,
+				orientation = orientationRad,
 				cell = params.positionCell.cell
 			}
 			tes3.positionCell(teleportParams)

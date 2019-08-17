@@ -1,4 +1,10 @@
 local this = {}
+
+--[[
+	Description: Wrapper for tes3.addMagicEffect that has default values
+		that are common for spells of this school. Uses the same parameter
+		table as tes3.addMagicEffect(). 
+]]
 this.createBasicEffect = function(params)
 	local effect = tes3.addMagicEffect({
 		-- Base information.
@@ -53,6 +59,23 @@ this.createBasicEffect = function(params)
 	return effect
 end
 
+
+--[[
+	Description: Wrapper for this.createBasicMagicEffect that presets parameters
+		common for bound armor effects.
+
+	@params: A table of parameters. Must be formatted as:
+		example = {
+			id = tes3.effect.exampleArmor,
+			name = "Bound Example Armor",
+			description = "Gives the caster bound example armor.",
+			baseCost = 2,
+			armorId = "BoundExampleArmorConstructionSetId",
+			icon = "Example\\PathToMyIcon.dds" | nil
+		}
+
+		Other parameters will be automatically set by the function.
+]]
 this.createBasicBoundArmorEffect = function(params)
 	local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.
@@ -86,6 +109,22 @@ this.createBasicBoundArmorEffect = function(params)
 	return effect
 end
 
+--[[
+	Description: Wrapper for this.createBasicMagicEffect that presets parameters
+		common for bound weapon effects.
+
+	@params: A table of parameters. Must be formatted as:
+		example = {
+			id = tes3.effect.exampleWeapon,
+			name = "Bound Example Weapon",
+			description = "Gives the caster bound example Weapon.",
+			baseCost = 2,
+			weaponId = "BoundExampleWeaponConstructionSetId",
+			icon = "Example\\PathToMyIcon.dds" | nil
+		}
+
+		Other parameters will be automatically set by the function.
+]]
 this.createBasicBoundWeaponEffect = function(params)
 	local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.
@@ -119,6 +158,22 @@ this.createBasicBoundWeaponEffect = function(params)
 	return effect
 end
 
+--[[
+	Description: Wrapper for this.createBasicMagicEffect that presets parameters
+		common for summoning effects.
+
+	@params: A table of parameters. Must be formatted as:
+		example = {
+			id = tes3.effect.exampleSummon,
+			name = "Summon Example",
+			description = "Summons an example creature infront of the caster.",
+			baseCost = 2,
+			creatureId = "CreatureConstructionSetId",
+			icon = "Example\\PathToMyIcon.dds" | nil
+		}
+
+		Other parameters will be automatically set by the function.
+]]
 this.createBasicSummoningEffect = function(params)
 	local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.

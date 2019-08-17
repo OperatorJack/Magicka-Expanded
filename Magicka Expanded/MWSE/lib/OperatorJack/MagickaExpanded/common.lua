@@ -34,7 +34,7 @@ this.addTestSpellsToPlayer = function()
 end
 
 this.hasSpell = function(reference, spellId)
-    if (reference.spells:contains(spellId)) then
+    if (reference.object.spells:contains(spellId)) then
         return true
     end
     return false

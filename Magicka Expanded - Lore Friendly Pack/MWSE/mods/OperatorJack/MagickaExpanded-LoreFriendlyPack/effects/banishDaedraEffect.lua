@@ -15,13 +15,22 @@ local function onBanishDaedraTick(e)
 		return
 	end
 
-	local magnitude = e.sourceInstance:getMagnitudeForIndex(e.effectIndex)
-
-	framework.debug("Banishing with magnitude " .. magnitude)
+	local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.banishDaedra)
+	local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(effect)
 
 	if (e.effectInstance.target.object.level <= magnitude) then
-		tes3.setEnabled({ reference = e.effectInstance.target, enabled = false })
+		--@type tes3reference
+		e.effectInstance.target:disable()
+
+		timer.delayOneFrame({
+			callback = function()
+				e.effectInstance.target.deleted = true
+			end
+		})
+
 		tes3.messageBox("%s has been banished!", e.effectInstance.target.baseObject)
+	else
+		tes3.messageBox("%s was too powerful to be banished!", e.effectInstance.target.baseObject)
 	end
 
 	e.effectInstance.state = tes3.spellState.retired
@@ -36,7 +45,7 @@ local function addBanishDaedraEffect()
 		description = "Banishes a daedric creature back to its originating plane. The effect's magnitude is the level of daedra that it can banish.",
 
 		-- Basic dials.
-		baseCost = 50.0,
+		baseCost = 20.0,
 
 		-- Various flags.
 		allowEnchanting = true,
