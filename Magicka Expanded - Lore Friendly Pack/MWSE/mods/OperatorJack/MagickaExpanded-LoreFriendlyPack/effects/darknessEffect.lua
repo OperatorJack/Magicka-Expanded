@@ -2,12 +2,11 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("darkness", 263)
 
-local function getActorsNearMist(cell, position)
+local function getActorsNearMist(cell, mistPosition, distanceLimit)
     local actors = {}
-    for ref in cell:iterateReferences(tes3.objectType.mobileActor) do
-        framework.debug('Reference: ' .. ref.id)
-        if (math.abs(position:distance(ref.position)) <= 150) then
-            framework.debug('Found Proximity Reference: ' .. ref.id)
+    for ref in cell:iterateReferences(tes3.objectType.npc) do
+        local distance = math.abs(mistPosition:distance(ref.position))
+        if (distance <= distanceLimit) then
             table.insert(actors, ref)
         end
     end
@@ -21,7 +20,7 @@ local function onDarknessCollision(e)
 
         local caster = e.sourceInstance.caster
         local effectDuration = effect.duration
-        local distanceLimit = 150
+        local distanceLimit = 250
         local mistPosition = e.collision.point:copy()
 
         local mistReference = tes3.createReference({
@@ -30,12 +29,10 @@ local function onDarknessCollision(e)
             cell = caster.cell
         })
 
-        framework.debug('Starting timers.')
         timer.start({ 
             duration = 1,
             callback = function()
-                framework.debug('Callback!')
-                local actors = getActorsNearMist(caster.cell, mistReference.position)
+                local actors = getActorsNearMist(caster.cell, mistPosition, distanceLimit)
         
                 for _, actor in pairs(actors) do
                     tes3.removeEffects({
@@ -70,14 +67,15 @@ local function addDarknessEffect()
 		-- Base information.
 		id = tes3.effect.darkness,
 		name = "Darkness",
-		description = "Create a sphere of darkness around the target.",
+		description = "Create a sphere of darkness around the target, negating any light effects within.",
 
 		-- Basic dials.
 		baseCost = 3.0,
 
 		-- Various flags.
 		allowEnchanting = true,
-		allowSpellmaking = true,
+        allowSpellmaking = true,
+        hasNoMagnitude = true,
 		canCastTarget = true,
         canCastTouch = true,
         unreflectable = true,

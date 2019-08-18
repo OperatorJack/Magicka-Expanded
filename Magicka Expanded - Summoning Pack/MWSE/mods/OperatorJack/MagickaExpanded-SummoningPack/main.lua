@@ -192,7 +192,7 @@ local function registerSpells()
     duration = 30
   })
   framework.spells.createBasicSpell({
-    id = spellIds.ashZombie,
+    id = spellIds.ashSlave,
     name = "Summon Ash Slave",
     effect = tes3.effect.summonAshSlave,
     range = tes3.effectRange.self,

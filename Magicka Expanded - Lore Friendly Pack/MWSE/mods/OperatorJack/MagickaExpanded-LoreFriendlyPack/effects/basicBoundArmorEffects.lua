@@ -33,7 +33,7 @@ local function addBoundArmorEffects()
         description = getSingleDescription("Daedric Left Pauldron"),
         baseCost = 2,
         armorId = "OJ_ME_BoundPauldronLeft",
-		icon = "RFD\\RFD_lf_pauldrons.dds"
+		icon = "RFD\\RFD_lf_pauldron_L.dds"
     })
     framework.effects.conjuration.createBasicBoundArmorEffect({
         id = tes3.effect.boundRightPauldron,
@@ -41,7 +41,7 @@ local function addBoundArmorEffects()
         description = getSingleDescription("Daedric Right Pauldron"),
         baseCost = 2,
         armorId = "OJ_ME_BoundPauldronRight",
-		icon = "RFD\\RFD_lf_pauldrons.dds"
+		icon = "RFD\\RFD_lf_pauldron_R.dds"
     })
 end
 

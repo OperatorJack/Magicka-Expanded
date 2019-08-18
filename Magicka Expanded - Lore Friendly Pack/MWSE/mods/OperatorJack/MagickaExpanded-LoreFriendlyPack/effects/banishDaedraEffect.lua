@@ -28,9 +28,9 @@ local function onBanishDaedraTick(e)
 			end
 		})
 
-		tes3.messageBox("%s has been banished!", e.effectInstance.target.baseObject)
+		tes3.messageBox("%s has been banished!", e.effectInstance.target.baseObject.name)
 	else
-		tes3.messageBox("%s was too powerful to be banished!", e.effectInstance.target.baseObject)
+		tes3.messageBox("%s was too powerful to be banished!", e.effectInstance.target.baseObject.name)
 	end
 
 	e.effectInstance.state = tes3.spellState.retired
@@ -45,7 +45,7 @@ local function addBanishDaedraEffect()
 		description = "Banishes a daedric creature back to its originating plane. The effect's magnitude is the level of daedra that it can banish.",
 
 		-- Basic dials.
-		baseCost = 20.0,
+		baseCost = 25.0,
 
 		-- Various flags.
 		allowEnchanting = true,
