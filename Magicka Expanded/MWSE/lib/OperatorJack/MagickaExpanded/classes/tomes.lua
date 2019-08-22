@@ -75,8 +75,46 @@ local function onBookGetText(e)
 	if (common.hasSpell(tes3.player, tome.spellId)) then
 		tes3.messageBox("You attempt to read the tome but can learn nothing more.")
 	else			
-		mwscript.addSpell({reference = tes3.player, spell = tome.spellId})
-		tes3.messageBox("As you open the tome, you feel a new spell enter your mind.")
+		local intelligence = tes3.mobilePlayer.intelligence.current
+
+		local timeRequired = 10 - (intelligence / 10)
+		if (timeRequired < .5) then
+			timeRequired = .5
+		end
+
+		tes3.fadeOut(2)
+
+		timer.start({
+			duration = 2,
+			callback = function ()
+				timer.start({
+					duratiion = timeRequired,
+					callback = function ()
+						local hasMagicka = false
+						local learningCost = tes3.getObject(tome.spellId).magickaCost * 2
+						local newMagicka = tes3.mobilePlayer.magicka.current - learningCost
+						if (newMagicka >= 0) then
+							hasMagicka = true
+						end
+
+						if (hasMagicka) then
+							tes3.modStatistic({
+								reference = tes3.mobilePlayer,
+								name = "magicka",
+								base = newMagicka
+							})
+							mwscript.addSpell({reference = tes3.player, spell = tome.spellId})
+							tes3.messageBox("As you study the tome and practice the spell described within, you feel a new spell enter your mind.")
+						else
+							tes3.messageBox("As you study the tome, you find that you do not have enough magicka to practice the spell described within and learn it.")
+						end
+		
+						tes3.fadeIn(2)
+					end
+				})
+			end
+		})
+
 	end
 end
 
