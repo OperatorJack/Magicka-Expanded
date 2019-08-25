@@ -4,10 +4,16 @@ tes3.claimSpellEffectId("darkness", 263)
 
 local function getActorsNearMist(cell, mistPosition, distanceLimit)
     local actors = {}
-    for ref in cell:iterateReferences(tes3.objectType.npc) do
-        local distance = math.abs(mistPosition:distance(ref.position))
-        if (distance <= distanceLimit) then
-            table.insert(actors, ref)
+    -- Iterate through the references in the caster's cell.
+    for ref in cell:iterateReferences() do
+        -- Check that the reference is a creature or NPC.
+        if (ref.object.objectType == tes3.objectType.npc or
+            ref.object.objectType == tes3.objectType.creature) then
+            -- Check that the distance between the reference and the darkness point is within the distance limit. If so, save the reference.
+            local distance = mistPosition:distance(ref.position)
+            if (distance <= distanceLimit) then
+                table.insert(actors, ref)
+            end
         end
     end
     return actors
@@ -29,11 +35,13 @@ local function onDarknessCollision(e)
             cell = caster.cell
         })
 
+        -- Add a mechanic to the darkness mesh.
         timer.start({ 
             duration = 1,
             callback = function()
                 local actors = getActorsNearMist(caster.cell, mistPosition, distanceLimit)
         
+                -- For any actors near the darkness, remove the light effect if it exists.
                 for _, actor in pairs(actors) do
                     tes3.removeEffects({
                         reference = actor,

@@ -73,6 +73,44 @@ local function FindGrimoire(bookId)
 	return nil
 end
 
+
+local function tryLearningSpells(grimoire)
+	tes3.fadeOut(2)
+
+    local hasMagicka = false
+    
+    local learningCost = 0
+    for _, spellId in ipairs(grimoire.spellIds) do      
+        learningCost = learningCost + tes3.getObject(spellId).magickaCost * 2
+    end
+
+	local newMagicka = tes3.mobilePlayer.magicka.current - learningCost
+	if (newMagicka >= 0) then
+		hasMagicka = true
+	end
+
+	if (hasMagicka) then
+		tes3.modStatistic({
+			reference = tes3.mobilePlayer,
+			name = "magicka",
+			current = learningCost * -1
+		})
+        for _, spellId in ipairs(grimoire.spellIds) do      
+            mwscript.addSpell({reference = tes3.player, spell = spellId})
+        end
+		tes3.messageBox("As you study the tome and practice the spells described within, you feel new spells enter your mind.")
+	else
+		tes3.modStatistic({
+			reference = tes3.mobilePlayer,
+			name = "magicka",
+			current = tes3.mobilePlayer.magicka.current * -1
+		})
+		tes3.messageBox("As you study the tome, you find that you do not have enough magicka to practice the spells described within and learn them.")
+	end
+
+	tes3.fadeIn(2)
+end
+
 local function onBookGetText(e)
 	local grimoire = FindGrimoire(e.book.id)
 
@@ -82,13 +120,12 @@ local function onBookGetText(e)
     
     local newSpell = false
     for _, spellId in ipairs(grimoire.spellIds) do      
-        if (common.hasSpell(tes3.player, spellId) == false) then			
-            mwscript.addSpell({reference = tes3.player, spell = spellId})
+        if (common.hasSpell(tes3.player, spellId) == false) then		
             newSpell = true
         end
     end
     if (newSpell) then
-        tes3.messageBox("As you open the grimoire, you feel new spells enter your mind.")
+        tryLearningSpells(grimoire)
     else
         tes3.messageBox("You attempt to read the grimoire but can learn nothing more.")
     end

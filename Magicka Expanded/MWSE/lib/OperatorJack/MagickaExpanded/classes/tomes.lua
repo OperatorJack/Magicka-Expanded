@@ -66,6 +66,8 @@ local function FindTome(bookId)
 end
 
 local function tryLearningSpell(tome)
+	tes3.fadeOut(2)
+
 	local hasMagicka = false
 	local learningCost = tes3.getObject(tome.spellId).magickaCost * 2
 	local newMagicka = tes3.mobilePlayer.magicka.current - learningCost
@@ -77,31 +79,20 @@ local function tryLearningSpell(tome)
 		tes3.modStatistic({
 			reference = tes3.mobilePlayer,
 			name = "magicka",
-			base = newMagicka
+			current = learningCost * -1
 		})
 		mwscript.addSpell({reference = tes3.player, spell = tome.spellId})
 		tes3.messageBox("As you study the tome and practice the spell described within, you feel a new spell enter your mind.")
 	else
+		tes3.modStatistic({
+			reference = tes3.mobilePlayer,
+			name = "magicka",
+			current = tes3.mobilePlayer.magicka.current * -1
+		})
 		tes3.messageBox("As you study the tome, you find that you do not have enough magicka to practice the spell described within and learn it.")
 	end
 
 	tes3.fadeIn(2)
-end
-
-local function waitForLearningSpell(timeRequired, tome)
-	timer.start({
-		duratiion = timeRequired,
-		callback = tryLearningSpell(tome)
-	})
-end
-
-local function beginLearningSpell(timeRequired, tome)
-	tes3.fadeOut(2)
-
-	timer.start({
-		duration = 2,
-		callback = waitForLearningSpell(timeRequired, tome)
-	})
 end
 
 local function onBookGetText(e)
@@ -113,15 +104,8 @@ local function onBookGetText(e)
 
 	if (common.hasSpell(tes3.player, tome.spellId)) then
 		tes3.messageBox("You attempt to read the tome but can learn nothing more.")
-	else			
-		local intelligence = tes3.mobilePlayer.intelligence.current
-
-		local timeRequired = 10 - (intelligence / 10)
-		if (timeRequired < .5) then
-			timeRequired = .5
-		end
-
-		beginLearningSpell(timeRequired, tome)
+	else	
+		tryLearningSpell(tome)
 	end
 end
 
