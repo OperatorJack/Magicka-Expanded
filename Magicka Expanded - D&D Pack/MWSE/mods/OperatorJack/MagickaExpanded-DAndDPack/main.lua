@@ -7,7 +7,7 @@ local spellIds = {
 }
 
 local tomes = {
-  [1] = {
+  {
     id = "OJ_ME_TomeBlink",
     spellId = spellIds.blink
   },

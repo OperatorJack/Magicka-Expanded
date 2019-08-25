@@ -8,11 +8,11 @@ local spellIds = {
 }
 
 local tomes = {
-  [1] = {
+  {
     id = "OJ_ME_TomeStendarrsAura",
     spellId = spellIds.stendarrsAura
   },
-  [2] = {
+  {
     id = "OJ_ME_TomeStendarrsTouch",
     spellId = spellIds.stendarrsTouch
   }
