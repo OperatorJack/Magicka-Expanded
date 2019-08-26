@@ -19,7 +19,8 @@ local spellIds = {
   spriggran = "OJ_ME_SummSprigganSpell",
   centurionSteam = "OJ_ME_SummCenturionSteamSpell",
   centurionArcher = "OJ_ME_SummCenturionArcherSpell",
-  centurionSpider = "OJ_ME_SummCenturionSpiderSpell"
+  centurionSpider = "OJ_ME_SummCenturionSpiderSpell",
+  centurionSphere = "OJ_ME_SummCenturionSphereSpell"
 }
 
 local grimoires = {
@@ -51,7 +52,9 @@ local grimoires = {
     id = "OJ_ME_GrimoireSummCenturion",
     spellIds = {
       spellIds.centurionArcher,
-      spellIds.centurionSpider
+      spellIds.centurionSpider,
+      spellIds.centurionSteam,
+      spellIds.centurionSphere
     }
   }
 }
@@ -244,6 +247,13 @@ local function registerSpells()
     id = spellIds.centurionSpider,
     name = "Summon Centurion Spider",
     effect = tes3.effect.summonCenturionSpider,
+    range = tes3.effectRange.self,
+    duration = 30
+  })
+  framework.spells.createBasicSpell({
+    id = spellIds.centurionSphere,
+    name = "Summon Centurion Sphere",
+    effect = tes3.effect.summonCenturionSphere,
     range = tes3.effectRange.self,
     duration = 30
   })
