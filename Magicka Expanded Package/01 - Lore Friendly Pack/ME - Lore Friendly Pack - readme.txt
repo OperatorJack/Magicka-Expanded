@@ -2,16 +2,6 @@ Magicka Expanded - Lore Friendly Pack
 
 By: OperatorJack & RedFurryDemon
 
-====Contents====
-
-1. Requirements
-2. Description
-3. Permissions
-4. Conflicts
-5. Installation
-6. Removal
-7. Credits
-
 ====Requirements====
 
 - Morrowind
@@ -43,24 +33,38 @@ This mod adds these new magic effects:
 
 All of these spells can be learned through spell tomes and spell grimoires. You can find the common spells at your local book seller. Rare grimoires and advanced spells are hand placed. Please refer to the document "BookLocations" for additional information, if needed.
 
+====Conflicts====
 This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
 
-====Permissions====
-This mod may be utilized for any purpose for Morrowind, as long as you credit me as the original author, except as described below. It may not be used for other games. To use or redistribute any graphic files (meshes, textures, icons) within this mod, you must contact the author of those graphics files first.
-
-====Conflicts====
 Creating new magic effects requires creating entries in a MWSE table. These entries are permanent. This mod will conflict with any mod that uses the same spell effect IDs. Other authors should check the magic effect ID list before choosing an ID to prevent conflicts.
 
-====Installation====
-1) Use a mod management tool to install this mod after the Magicka Expanded framework.
-2) Use a list merging tool such as Wrye Mash to merge leveled lists.
+====Installation & Removal====
+Installation:
+1) Use a mod management tool to install this mod using the provided BAIN installer. Or just install it manually, if that's your thing.
+2) Enable the .esp files for the framework and spell packs.
+2) Use a list merging tool such as Wrye Mash to merge levelled lists.
 
-NOTE: Creating new magic effects requires creating entries in a MWSE table. These entries are permanent.
+NOTE: Creating new magic effects requires creating entries in a MWSE table. These entries are permanent. 
 
-====Removal====
-1) Uninstall this mod using your mod management tool.
-3) Reinstall MWSE to reset your magic effects table.
+Removal:
+1) Uninstall this framework and any Spell Packs using your mod management tool.
+2) Reinstall MWSE to reset your magic effects table. This is only needed if you are using another mod that claims the same spell effect IDs as this one. 
+
+====Permissions====
+Scripting/writing
+This mod may be utilised for any purpose for Morrowind, as long as you credit OJ as the original author, except as described below. It may not be used for other games.
+
+Graphic assets
+The meshes, textures, and book illustrations are modders' resources free to use in your mods, provided that you include a link to RFD's Nexus profile in your mod's credits. The meshes can only be used for Morrowind modding, as they are based on original MW assets; textures and illustrations were created from scratch.
+Please do not edit the .dds files (because of compression). Contact RFD for the source files instead.
+You may not include this mod in a compilation without RFD's permission.
 
 ====Credits====
-- RedFurryDemon for all graphic and icons.
-- NullCascade, Greatness7 and Merlord for their on-going help and development of MWSE.
+OperatorJack: scripting
+RedFurryDemon: graphics
+
+- NullCascade, Greatness7 and Merlord - on-going help and development of MWSE.
+- Reizeron/R-Zero - blank magic effct icon, a particular expression used in an illustration, some troubleshooting
+- The header image for this mod was found here.
+- Pixel Sagas - font based on Skyrim mage script
+- Stripes - some troubleshooting
