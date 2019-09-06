@@ -73,9 +73,17 @@ At this time, there are 43 new spell effects available in the following spell pa
 This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
 
 
-====Conflicts====
-This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
+====Permissions====
+Scripting/writing
+This mod may be utilised for any purpose for Morrowind, as long as you credit OJ as the original author, except as described below. It may not be used for other games.
 
+Graphic assets
+The meshes, textures, and book illustrations are modders' resources free to use in your mods, provided that you include a link to RFD's Nexus profile in your mod's credits. The meshes can only be used for Morrowind modding, as they are based on original MW assets; textures and illustrations were created from scratch.
+Please do not edit the .dds files (because of compression). Contact RFD for the source files instead.
+
+You may not include this mod in a compilation without RFD's permission.
+
+====Conflicts====
 Creating new magic effects requires creating entries in a MWSE table. These entries are permanent. This mod will conflict with any mod that uses the same spell effect IDs. Other authors should check the magic effect ID list before choosing an ID to prevent conflicts.
 
 ====Installation & Removal====
@@ -90,21 +98,12 @@ Removal:
 1) Uninstall this framework and any Spell Packs using your mod management tool.
 2) Reinstall MWSE to reset your magic effects table. This is only needed if you are using another mod that claims the same spell effect IDs as this one. 
 
-====Permissions====
-Scripting/writing
-This mod may be utilised for any purpose for Morrowind, as long as you credit OJ as the original author, except as described below. It may not be used for other games.
-
-Graphic assets
-The meshes, textures, and book illustrations are modders' resources free to use in your mods, provided that you include a link to RFD's Nexus profile in your mod's credits. The meshes can only be used for Morrowind modding, as they are based on original MW assets; textures and illustrations were created from scratch.
-Please do not edit the .dds files (because of compression). Contact RFD for the source files instead.
-You may not include this mod in a compilation without RFD's permission.
-
 ====Credits====
 OperatorJack: scripting
 RedFurryDemon: graphics
 
 - NullCascade, Greatness7 and Merlord - on-going help and development of MWSE.
 - Reizeron/R-Zero - blank magic effct icon, a particular expression used in an illustration, some troubleshooting
-- The header image for this mod was found here.
+- coupleoflooks - header image
 - Pixel Sagas - font based on Skyrim mage script
 - Stripes - some troubleshooting

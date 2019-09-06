@@ -15,11 +15,25 @@ tes3.claimSpellEffectId("teleportToPelagiad", 249)
 tes3.claimSpellEffectId("teleportToSuran", 250)
 tes3.claimSpellEffectId("teleportToTelMora", 251)
 
+-- Other
+tes3.claimSpellEffectId("teleportToMournhold", 310)
+
 
 local function getDescription(location)
     return "This effect teleports subject to ".. location .."."
 end
 local function addTeleportationEffects()
+	framework.effects.mysticism.createBasicTeleportationEffect({
+		id = tes3.effect.teleportToMournhold,
+		name = "Teleport To Mournhold",
+		description = getDescription("Mournhold"),
+		baseCost = 150,
+		positionCell = {
+			position = { -4, 3170, 199},
+			orientation = { x=0, y=0, z=0},
+			cell = "Mournhold, Plaza Brindisi Dorom"
+		}
+	})
 	framework.effects.mysticism.createBasicTeleportationEffect({
 		id = tes3.effect.teleportToTelMora,
 		name = "Teleport To Tel Mora",

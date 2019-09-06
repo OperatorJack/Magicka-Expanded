@@ -2,6 +2,8 @@ Below are the locations of placed spell tomes and grimoires for this spell pack.
 The table below is in this format:
 Spell : Effect : Location
 
+Items marked with * are only available at this location.
+
 Banish Daedra : Banish Daedra : Tower of Tel Fyr, Hall of Fyr
-Veil of Darkness : Darkness : Tower of Tel Fyr, Hall of Fyr
+*Veil of Darkness : Darkness : Tower of Tel Fyr, Hall of Fyr
 

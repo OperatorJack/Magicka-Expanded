@@ -1,4 +1,4 @@
-Magicka Expanded - Lore Friendly Pack
+Magicka Expanded - Tamriel Rebuilt Pack
 
 By: OperatorJack & RedFurryDemon
 
@@ -7,7 +7,7 @@ By: OperatorJack & RedFurryDemon
 - Morrowind
 - Tribunal
 - Bloodmoon
-- MGE XE 0.10.1
+- MGE XE 0.10.1+
 - MWSE 2.1+
 - Magicka Expanded Framework
 
@@ -16,25 +16,11 @@ This mod requires the most recently nightly build of MWSE. Please be sure to run
 ====Description====
 This mod adds these new magic effects:
 
-- Banish Daedra
-- Darkness
-- Bound Greaves
-- Bound Pauldrons
-- Bound Claymore
-- Bound Club
-- Bound Dai-Katana
-- Bound Katana
-- Bound Shortsword
-- Bound Staff
-- Bound Tanto
-- Bound Wakizashi
-- Bound Waraxe
-- Bound Warhammer
 
-All of these spells can be learned through spell tomes and spell grimoires. You can find the common spells at your local book seller. Rare grimoires and advanced spells are hand placed. Please refer to the document "BookLocations" for additional information, if needed.
+
+All of these spells can be learned through spell tomes and spell grimoires. You can find the common spells at your local book seller, or in the wild.
 
 This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
-
 
 ====Permissions====
 Scripting/writing

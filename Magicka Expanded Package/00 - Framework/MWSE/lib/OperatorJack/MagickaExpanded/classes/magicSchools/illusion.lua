@@ -11,7 +11,7 @@ this.createBasicEffect = function(params)
 		id = params.id,
 		name = params.name,
 		description = params.description,
-		school = tes3.magicSchool.conjuration,
+		school = tes3.magicSchool.illusion,
 
 		-- Basic dials.
 		baseCost = params.baseCost,

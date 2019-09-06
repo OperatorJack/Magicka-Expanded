@@ -14,7 +14,9 @@ local spellIds = {
   molagmar = "OJ_ME_TeleportToMolagMar",
   pelagiad = "OJ_ME_TeleportToPelagiad",
   suran = "OJ_ME_TeleportToSuran",
-  telmora = "OJ_ME_TeleportToTelMora"
+  telmora = "OJ_ME_TeleportToTelMora",
+
+  mournhold = "OJ_ME_TeleportToMournhold"
 }
 
 local tomes = {
@@ -62,9 +64,21 @@ local tomes = {
     id = "OJ_ME_TomeTeleTelMora",
     spellId = spellIds.telmora
   },
+
+  {
+    id = "OJ_ME_TomeTeleMournhold",
+    spellId = spellIds.mournhold
+  },
 }
 
 local function registerSpells()
+  framework.spells.createBasicSpell({
+    id = spellIds.mournhold,
+    name = "Teleport to Mournhold",
+    effect = tes3.effect.teleportToMournhold,
+    range = tes3.effectRange.self
+  })
+
   framework.spells.createBasicSpell({
     id = spellIds.aldruhn,
     name = "Teleport to Ald-Ruhn",

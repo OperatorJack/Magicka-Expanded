@@ -2,11 +2,13 @@ Below are the locations of placed spell tomes and grimoires for this spell pack.
 The table below is in this format:
 Book: Effect : Location
 
-Tome: Summon Ascended Sleeper: Summon Ascended Sleeper : Dagoth Ur, Lower Facility
-Grimoire: Summon 6th House: Multiple : Dagoth Ur, Lower Facility
-Grimoire: Summon Centurion : Multiple : Nchuleft
-Grimoire: Summon Goblin : Multiple : Mournhold, Pawnbroker
-Grimoire: Summon Undead : Multiple : Tureynulal, Bladder of Clovis
-Tome: Summon Hulking Fabricant : Sotha Sil, Dome of the Imperfect
-Tome: Summon Imperfect : Sotha Sil, Dome of the Imperfect
+Items marked with * are only available at this location.
+
+*Tome: Summon Ascended Sleeper: Summon Ascended Sleeper : Dagoth Ur, Lower Facility
+*Grimoire: Summon 6th House: Multiple : Dagoth Ur, Lower Facility
+*Grimoire: Summon Centurion : Multiple : Nchuleft
+*Grimoire: Summon Goblin : Multiple : Mournhold, Pawnbroker
+*Grimoire: Summon Undead : Multiple : Tureynulal, Bladder of Clovis
+*Tome: Summon Hulking Fabricant : Sotha Sil, Dome of the Imperfect
+*Tome: Summon Imperfect : Sotha Sil, Dome of the Imperfect
 
