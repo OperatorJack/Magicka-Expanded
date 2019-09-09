@@ -94,6 +94,7 @@ this.createBasicBoundArmorEffect = function(params)
         appliesOnce = true,
         canCastSelf = true,
         hasNoMagnitude = true,
+		nonRecastable = true,
 
 		-- Graphics/sounds.
 		icon = params.icon or "RFD\\RFD_ms_conjuration.tga",
@@ -142,7 +143,8 @@ this.createBasicBoundWeaponEffect = function(params)
         allowSpellmaking = true,
         appliesOnce = true,
         canCastSelf = true,
-        hasNoMagnitude = true,
+		hasNoMagnitude = true,
+		nonRecastable = true,
 
 		-- Graphics/sounds.
 		icon = params.icon or "RFD\\RFD_ms_conjuration.tga",
@@ -150,8 +152,8 @@ this.createBasicBoundWeaponEffect = function(params)
         lighting = { 0.99, 0.95, 0.67 },
 
 		-- Required callbacks.
-		onTick = function(e)
-			e:triggerBoundWeapon(params.weaponId)
+		onTick = function(e)	
+			e:triggerBoundWeapon(params.weaponId)			
 		end,
 	})
 
