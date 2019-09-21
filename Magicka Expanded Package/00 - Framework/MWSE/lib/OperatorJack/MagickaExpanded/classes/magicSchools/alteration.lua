@@ -59,4 +59,42 @@ this.createBasicEffect = function(params)
 	return effect
 end
 
+this.createBasicWeatherEffect = function(params)
+	local effect = this.createBasicEffect({
+		-- Base information.
+		id = params.id,
+		name = params.name,
+		description = params.description,
+
+		-- Basic dials.
+		baseCost = params.baseCost,
+		speed = .25,
+
+		-- Various flags.
+		appliesOnce = true,
+		canCastSelf = true,
+		hasNoDuration = true,
+		hasNoMagnitude = true,
+		nonRecastable = true,
+
+		-- Graphics/sounds.
+		lighting = { 0.99, 0.95, 0.67 },
+
+		-- Required callbacks.
+		onTick = function(e)
+			-- Trigger into the spell system.
+			if (not e:trigger()) then
+				return
+			end
+
+			tes3.worldController.weatherController:switchImmediate(params.weather)
+			tes3.worldController.weatherController:updateVisuals()
+
+			e.effectInstance.state = tes3.spellState.retired
+		end,
+	}) 
+
+	return effect
+end
+
 return this
