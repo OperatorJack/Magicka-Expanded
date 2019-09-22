@@ -1,5 +1,27 @@
 local this = {}
 
+
+this.getActorsNearTargetPosition = function(cell, targetPosition, distanceLimit)
+    local actors = {}
+    -- Iterate through the references in the cell.
+    for ref in cell:iterateReferences() do
+        -- Check that the reference is a creature or NPC.
+        if (ref.object.objectType == tes3.objectType.npc or
+			ref.object.objectType == tes3.objectType.creature) then
+			if (distanceLimit == nil) then
+				-- Check that the distance between the reference and the target point is within the distance limit. If so, save the reference.
+				local distance = targetPosition:distance(ref.position)
+				if (distance <= distanceLimit) then
+					table.insert(actors, ref)
+				end
+			else
+				table.insert(actors, ref)
+			end
+        end
+    end
+    return actors
+end
+
 --[[
 	Description: For a given magic effect event @event, returns the first 
 		effect that has the same ID as @effectId.

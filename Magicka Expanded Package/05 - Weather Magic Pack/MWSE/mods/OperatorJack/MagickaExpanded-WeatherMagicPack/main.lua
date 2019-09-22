@@ -12,7 +12,13 @@ local weatherSpellIds = {
   weatherCloudy = "OJ_ME_WeatherCloudy",
   weatherFoggy = "OJ_ME_WeatherFoggy",
   weatherOvercast = "OJ_ME_WeatherOvercast",
-  weatherRain = "OJ_ME_WeatherRain"
+  weatherRain = "OJ_ME_WeatherRain",
+
+  thunderboltEffect = "OJ_ME_ThunderboltEffect",
+  thunderbolt = "OJ_ME_Thunderbolt",
+
+  iceBarrageEffect = "OJ_ME_IceBarrageEffect",
+  iceBarrage = "OJ_ME_IceBarrage",
 }
 
 local weatherTomes = {
@@ -59,6 +65,59 @@ local weatherTomes = {
 }
 
 local function registerSpells()
+  framework.spells.createBasicSpell({
+    id = weatherSpellIds.iceBarrage,
+    name = "Ice Barrage",
+    effect = tes3.effect.iceBarrage,
+    range = tes3.effectRange.target
+  })
+  framework.spells.createComplexSpell({
+    id = weatherSpellIds.iceBarrageEffect,
+    name = "Ice Barrage",
+    effects =
+      {
+        [1] = {
+          id =tes3.effect.frostDamage,
+          range = tes3.effectRange.self,
+          min = 25,
+          max = 50
+          duration = 5
+        },
+        [2] = {
+          id =tes3.effect.paralyze,
+          range = tes3.effectRange.self,
+          duration = 5
+        }
+      }
+  })
+
+  framework.spells.createBasicSpell({
+    id = weatherSpellIds.thunderbolt,
+    name = "Thunderbolt",
+    effect = tes3.effect.thunderbolt,
+    range = tes3.effectRange.target
+  })
+  framework.spells.createComplexSpell({
+    id = weatherSpellIds.thunderboltEffect,
+    name = "Thunderbolt",
+    effects =
+      {
+        [1] = {
+          id =tes3.effect.shockDamage,
+          range = tes3.effectRange.self,
+          min = 25,
+          max = 50
+          duration = 5
+        },
+        [2] = {
+          id =tes3.effect.paralyze,
+          range = tes3.effectRange.self,
+          duration = 5
+        }
+      }
+  })
+
+
   framework.spells.createBasicSpell({
     id = weatherSpellIds.weatherBlizzard,
     name = "Winter's Embrace",

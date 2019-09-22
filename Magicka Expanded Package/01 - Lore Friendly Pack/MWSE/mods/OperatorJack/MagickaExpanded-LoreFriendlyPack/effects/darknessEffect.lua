@@ -2,23 +2,6 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("darkness", 263)
 
-local function getActorsNearMist(cell, mistPosition, distanceLimit)
-    local actors = {}
-    -- Iterate through the references in the caster's cell.
-    for ref in cell:iterateReferences() do
-        -- Check that the reference is a creature or NPC.
-        if (ref.object.objectType == tes3.objectType.npc or
-            ref.object.objectType == tes3.objectType.creature) then
-            -- Check that the distance between the reference and the darkness point is within the distance limit. If so, save the reference.
-            local distance = mistPosition:distance(ref.position)
-            if (distance <= distanceLimit) then
-                table.insert(actors, ref)
-            end
-        end
-    end
-    return actors
-end
-
 local function onDarknessCollision(e)
     if e.collision then
         ---@type tes3magicEffect
@@ -39,7 +22,7 @@ local function onDarknessCollision(e)
         timer.start({ 
             duration = 1,
             callback = function()
-                local actors = getActorsNearMist(caster.cell, mistPosition, distanceLimit)
+                local actors = framework.functions.getActorsNearTargetPosition(caster.cell, mistPosition, distanceLimit)
         
                 -- For any actors near the darkness, remove the light effect if it exists.
                 for _, actor in pairs(actors) do
