@@ -9,16 +9,69 @@ By: OperatorJack & RedFurryDemon
 - Bloodmoon
 - MGE XE 0.10.1+
 - MWSE 2.1+
+- Tamriel Data 
+- Tamriel Rebuilt
 - Magicka Expanded Framework
 
 This mod requires the most recently nightly build of MWSE. Please be sure to run the mwse-update.exe before playing this mod.
 
 ====Description====
-This mod adds these new magic effects:
+This mod expands Magicka Expanded to use Tamriel Rebuilt leveled lists and adds new magic effects.
+
+This mod adds these new teleportation magic effects:
+
+Major Locations:
+- Teleport to Akamora
+- Teleport to Firewatch
+- Teleport to Helnim
+- Teleport to Necrom
+- Teleport to Old Ebonheart
+- Teleport to Port Telvannis
+
+Minor Locations:
+- Teleport to Alt Bosara
+- Teleport to Bal Orya
+- Teleport to Gah Sadrith
+- Teleport to Gorne
+- Teleport to Llothanis
+- Teleport to Marog
+- Teleport to Meralag
+- Teleport to Tel Aranyon
+- Teleport to Tel Mothriva
+- Teleprot to Tel Muthada
+- Teleport to Tel Ouada
+
+This mod also adds these new summoning magic effects:
+- Call Sabre Cat
+- Call Wereboar
+- Summon Alfiq
+- Summon Armor Centurion Champion
+- Summon Armor Centurion
+- Summon Draugr Housecarl
+- Summon Draugr Lord
+- Summon Dridrea
+- Summon Dridrea Monarch
+- Summon Frost Lich
+- Summon Giant
+- Summon Goblin Shaman
+- Summon Greater Lich
+- Summon Lamia
+- Summon Mammoth
+- Summon Minotaur
+- Summon Mud Golem
+- Summon Parastylus
+- Summon Plain Strider
+- Summon Raki
+- Summon Silt Strider
+- Summon Sload
+- Summon Swamp Troll
+- Summon Welkynd Spirit
+- Summon Velk
+- Summon Vermai
+- Summon Trebataur
 
 
-
-All of these spells can be learned through spell tomes and spell grimoires. You can find the common spells at your local book seller, or in the wild.
+All of these spells can be learned through spell tomes You can find the common spells at your local book seller, or in the wild.
 
 This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
 

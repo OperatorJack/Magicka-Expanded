@@ -33,6 +33,7 @@ This mod adds these new magic effects:
 - Summon Ash Zombie
 - Summon Ash Slave
 - Summon Ascended Sleeper
+- Call Werewolf (Note: Due to some mesh issues, the werewolf will not fight. This may be resolved in the future. For now, it is for roleplay purposes.)
 
 
 All of these spells can be learned through spell tomes and spell grimoires. You can find the common spells at your local book seller. Rare grimoires and advanced spells are hand placed. Please refer to the document "BookLocations" for additional information, if needed.

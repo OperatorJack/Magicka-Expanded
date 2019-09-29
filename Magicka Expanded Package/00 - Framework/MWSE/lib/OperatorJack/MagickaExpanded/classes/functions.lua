@@ -8,7 +8,7 @@ this.getActorsNearTargetPosition = function(cell, targetPosition, distanceLimit)
         -- Check that the reference is a creature or NPC.
         if (ref.object.objectType == tes3.objectType.npc or
 			ref.object.objectType == tes3.objectType.creature) then
-			if (distanceLimit == nil) then
+			if (distanceLimit ~= nil) then
 				-- Check that the distance between the reference and the target point is within the distance limit. If so, save the reference.
 				local distance = targetPosition:distance(ref.position)
 				if (distance <= distanceLimit) then

@@ -19,6 +19,14 @@ tes3.claimSpellEffectId("summonCenturionSpider", 260)
 tes3.claimSpellEffectId("summonImperfect", 261)
 tes3.claimSpellEffectId("summonGoblinWarchief", 262)
 
+tes3.claimSpellEffectId("callWerewolf", 326)
+
+local function getCallDescription(creatureName)
+	return "This effect calls a " .. creatureName .. " from nature."..
+    " It appears six feet in front of the caster and attacks any entity that attacks the caster until"..
+    " the effect ends or the summoning is killed. At death, or when the effect ends, the summoning"..
+    " disappears, returning to nature."
+end
 
 local function getDescription(creatureName)
     return "This effect summons a ".. creatureName .." from Oblivion."..
@@ -26,7 +34,16 @@ local function getDescription(creatureName)
     " the effect ends or the summoning is killed. At death, or when the effect ends, the summoning"..
     " disappears, returning to Oblivion. If summoned in town, the guards will attack you and the summoning on sight."
 end
+
 local function addSummoningEffects()
+	framework.effects.conjuration.createBasicSummoningEffect({
+		id = tes3.effect.callWerewolf,
+		name = "Call Werewolf",
+		description = getCallDescription("Werewolf"),
+		baseCost = 30,
+		creatureId = "OJ_ME_Werewolf",
+		icon = "RFD\\RFD_sm_wwolf.dds"
+	})
 	framework.effects.conjuration.createBasicSummoningEffect({
 		id = tes3.effect.summonGoblinGrunt,
 		name = "Summon Goblin",

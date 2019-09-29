@@ -1,4 +1,4 @@
-Magicka Expanded - Tamriel Rebuilt Pack
+Magicka Expanded - Weather Magic Pack
 
 By: OperatorJack & RedFurryDemon
 
@@ -7,20 +7,33 @@ By: OperatorJack & RedFurryDemon
 - Morrowind
 - Tribunal
 - Bloodmoon
-- MGE XE 0.10.1+
+- MGE XE 0.10.1
 - MWSE 2.1+
 - Magicka Expanded Framework
 
 This mod requires the most recently nightly build of MWSE. Please be sure to run the mwse-update.exe before playing this mod.
 
 ====Description====
-This mod adds these new magic effects:
+This mod adds these new weather magic effects:
+
+- Weather: Blizzard
+- Weather: Snow
+- Weather: Thunderstorm
+- Weather: Ashstorm
+- Weather: Blightstorm
+- Weather: Clear
+- Weather: Cloudy
+- Weather: Foggy
+- Weather: Overcast
+- Weather: Rain
+
+These effects will transform the weather. These effects will only work outdoors, and they cannot transform the Blight into another weather type.
 
 
-
-All of these spells can be learned through spell tomes and spell grimoires. You can find the common spells at your local book seller, or in the wild.
+All of these spells can be learned through spell tomes. These spell tomes are only available through leveled lists in the wild, or by taking them from powerful NPCs as described in the "Book Locations" file.
 
 This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
+
 
 ====Permissions====
 Scripting/writing

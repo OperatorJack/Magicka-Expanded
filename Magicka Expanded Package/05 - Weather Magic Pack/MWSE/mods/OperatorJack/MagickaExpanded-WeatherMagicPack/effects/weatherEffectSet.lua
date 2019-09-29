@@ -20,71 +20,81 @@ local function addWeatherEffects()
 		id = tes3.effect.weatherBlizzard,
 		name = "Weather: Blizzard",
 		description = getDescription("a Blizzard"),
-		baseCost = 150,
-		weather = tes3.weather.blizzard
+		baseCost = 1500,
+		weather = tes3.weather.blizzard,
+		icon = "RFD\\RFD_wth_blizz.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherSnow,
 		name = "Weather: Snow",
 		description = getDescription("Snow"),
-		baseCost = 150,
-		weather = tes3.weather.snow
+		baseCost = 1500,
+		weather = tes3.weather.snow,
+		icon = "RFD\\RFD_wth_snow.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherThunderstorm,
 		name = "Weather: Thunderstorm",
 		description = getDescription("Thunderstorms"),
-		baseCost = 150,
-		weather = tes3.weather.thunder
+		baseCost = 1500,
+		weather = tes3.weather.thunder,
+		icon = "RFD\\RFD_wth_storm.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherAsh,
 		name = "Weather: Ashstorm",
 		description = getDescription("an Ash storm"),
-		baseCost = 150,
-		weather = tes3.weather.ash
+		baseCost = 1600,
+		weather = tes3.weather.ash,
+		icon = "RFD\\RFD_wth_ash.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherBlight,
 		name = "Weather: Blightstorm",
 		description = getDescription("a Blight storm"),
-		baseCost = 150,
-		weather = tes3.weather.blight
+		baseCost = 1700,
+		weather = tes3.weather.blight,
+		icon = "RFD\\RFD_wth_blight.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherClear,
 		name = "Weather: Clear",
 		description = getDescription("a clear sky"),
-		baseCost = 150,
-		weather = tes3.weather.clear
+		baseCost = 1500,
+		weather = tes3.weather.clear,
+		icon = "RFD\\RFD_wth_clear.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherCloudy,
 		name = "Weather: Cloudy",
 		description = getDescription("a cloudy sky"),
-		baseCost = 150,
-		weather = tes3.weather.cloudy
+		baseCost = 1500,
+		weather = tes3.weather.cloudy,
+		icon = "RFD\\RFD_wth_cloud.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherFoggy,
 		name = "Weather: Foggy",
 		description = getDescription("a foggy sky"),
-		baseCost = 150,
-		weather = tes3.weather.foggy
+		baseCost = 1500,
+		weather = tes3.weather.foggy,
+		icon = "RFD\\RFD_wth_fog.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherOvercast,
 		name = "Weather: Overcast",
 		description = getDescription("an overcast sky"),
-		baseCost = 150,
-		weather = tes3.weather.overcast
+		baseCost = 1500,
+		weather = tes3.weather.overcast,
+		icon = "RFD\\RFD_wth_over.dds"
 	})
 	framework.effects.alteration.createBasicWeatherEffect({
 		id = tes3.effect.weatherRain,
 		name = "Weather: Rain",
 		description = getDescription("a moderate rain"),
-		baseCost = 150,
-		weather = tes3.weather.rain
+		baseCost = 1500,
+		weather = tes3.weather.rain,
+		icon = "RFD\\RFD_wth_rain.dds"
 	})
 end
 

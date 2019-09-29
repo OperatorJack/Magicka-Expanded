@@ -28,6 +28,8 @@ This mod adds these new magic effects:
 - Teleport to Pelagiad
 - Teleport to Suran
 - Teleport to Tel Mora
+- Teleport to Mournhold
+- Blink: Teleport on target
 
 All of these spells can be learned through spell tomes and spell grimoires. You can find the common spells at your local book seller.
 

@@ -1,8 +1,12 @@
 local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 
 require("OperatorJack.MagickaExpanded-TeleportationPack.effects.teleportationEffectSet")
+require("OperatorJack.MagickaExpanded-TeleportationPack.effects.blinkEffect")
 
 local spellIds = {
+  blink = "OJ_ME_BlinkSpell",
+
+
   aldruhn = "OJ_ME_TeleportToAldRuhn",
   balmora = "OJ_ME_TeleportToBalmora",
   ebonheart = "OJ_ME_TeleportToEbonheart",
@@ -20,6 +24,12 @@ local spellIds = {
 }
 
 local tomes = {
+  {
+    id = "OJ_ME_TomeBlink",
+    spellId = spellIds.blink
+  },
+
+
   {
     id = "OJ_ME_TomeTeleAldRuhn",
     spellId = spellIds.aldruhn
@@ -72,6 +82,14 @@ local tomes = {
 }
 
 local function registerSpells()
+  framework.spells.createBasicSpell({
+    id = spellIds.blink,
+    name = "Blink",
+    effect = tes3.effect.blink,
+    range = tes3.effectRange.target
+  })
+
+  
   framework.spells.createBasicSpell({
     id = spellIds.mournhold,
     name = "Teleport to Mournhold",

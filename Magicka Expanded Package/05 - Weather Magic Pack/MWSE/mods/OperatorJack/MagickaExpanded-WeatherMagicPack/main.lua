@@ -1,6 +1,8 @@
 local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 
 require("OperatorJack.MagickaExpanded-WeatherMagicPack.effects.weatherEffectSet")
+require("OperatorJack.MagickaExpanded-WeatherMagicPack.effects.thunderboltEffect")
+require("OperatorJack.MagickaExpanded-WeatherMagicPack.effects.iceBarrageEffect")
 
 local weatherSpellIds = {
   weatherBlizzard = "OJ_ME_WeatherBlizzard",
@@ -22,6 +24,14 @@ local weatherSpellIds = {
 }
 
 local weatherTomes = {
+  {
+    id = "OJ_ME_TomeIceBarrage",
+    spellId = weatherSpellIds.iceBarrage
+  },
+  {
+    id = "OJ_ME_TomeThunderbolt",
+    spellId = weatherSpellIds.thunderbolt
+  },
   {
     id = "OJ_ME_TomeWeatherBlizzard",
     spellId = weatherSpellIds.weatherBlizzard
@@ -78,15 +88,17 @@ local function registerSpells()
       {
         [1] = {
           id =tes3.effect.frostDamage,
-          range = tes3.effectRange.self,
+          range = tes3.effectRange.touch,
           min = 25,
-          max = 50
-          duration = 5
+          max = 50,
+          duration = 2,
+          radius = 5
         },
         [2] = {
           id =tes3.effect.paralyze,
-          range = tes3.effectRange.self,
-          duration = 5
+          range = tes3.effectRange.touch,
+          duration = 1,
+          radius = 5
         }
       }
   })
@@ -104,15 +116,17 @@ local function registerSpells()
       {
         [1] = {
           id =tes3.effect.shockDamage,
-          range = tes3.effectRange.self,
+          range = tes3.effectRange.touch,
           min = 25,
-          max = 50
-          duration = 5
+          max = 50,
+          duration = 2,
+          radius = 5
         },
         [2] = {
           id =tes3.effect.paralyze,
-          range = tes3.effectRange.self,
-          duration = 5
+          range = tes3.effectRange.touch,
+          duration = 1,
+          radius = 5
         }
       }
   })
@@ -132,31 +146,31 @@ local function registerSpells()
   })
   framework.spells.createBasicSpell({
     id = weatherSpellIds.weatherThunder,
-    name = "Kyne's Wraith",
+    name = "Kyne's Wrath",
     effect = tes3.effect.weatherThunderstorm,
     range = tes3.effectRange.self
   })
   framework.spells.createBasicSpell({
     id = weatherSpellIds.weatherAsh,
-    name = "Ash Storm",
+    name = "Ashen Wind",
     effect = tes3.effect.weatherAsh,
     range = tes3.effectRange.self
   })
   framework.spells.createBasicSpell({
     id = weatherSpellIds.weatherBlight,
-    name = "Blight's Scourge",
+    name = "Dagoth's Domain",
     effect = tes3.effect.weatherBlight,
     range = tes3.effectRange.self
   })
   framework.spells.createBasicSpell({
     id = weatherSpellIds.weatherClear,
-    name = "Calming Caress",
+    name = "Bright Sky",
     effect = tes3.effect.weatherClear,
     range = tes3.effectRange.self
   })
   framework.spells.createBasicSpell({
     id = weatherSpellIds.weatherCloudy,
-    name = "Clouding Sensation",
+    name = "Kyne's Shadow",
     effect = tes3.effect.weatherCloudy,
     range = tes3.effectRange.self
   })
@@ -183,3 +197,48 @@ local function registerSpells()
 end
 
 event.register("MagickaExpanded:Register", registerSpells)
+
+local function onLoaded()
+  local globalDoOnceId = "OJ_ME_WeatherMagicDoOnce"
+  local doOnce = tes3.getGlobal(globalDoOnceId)
+
+  if (doOnce == 0) then
+    tes3.addItem({
+      reference = "dagoth endus",
+      item = "OJ_ME_TomeWeatherBlight",
+      count = 1
+    })
+
+    tes3.addItem({
+      reference = "berapli ashumallit",
+      item = "OJ_ME_TomeWeatherAsh",
+      count = 1
+    })
+    tes3.addItem({
+      reference = "pilu shilansour",
+      item = "OJ_ME_TomeWeatherAsh",
+      count = 1
+    })
+
+    mwscript.addSpell({
+      reference = "fevyn ralen",
+      spell = weatherSpellIds.weatherOvercast
+    })
+
+    tes3.addItem({
+      reference = "lloros sarano",
+      item = "OJ_ME_TomeWeatherRain",
+      count = 1
+    })
+    tes3.addItem({
+      reference = "salen ravel",
+      item = "OJ_ME_TomeWeatherRain",
+      count = 1
+    })
+
+
+    tes3.setGlobal(globalDoOnceId, 1)
+  end
+end
+
+event.register("loaded", onLoaded)

@@ -78,12 +78,30 @@ this.createBasicWeatherEffect = function(params)
 		nonRecastable = true,
 
 		-- Graphics/sounds.
+		icon = params.icon or "RFD\\RFD_ms_alteration.tga",
 		lighting = { 0.99, 0.95, 0.67 },
 
 		-- Required callbacks.
-		onTick = function(e)
+		onTick = function(e)	
 			-- Trigger into the spell system.
 			if (not e:trigger()) then
+				return
+			end
+			
+			local caster = e.sourceInstance.caster
+			if (caster.cell.isInterior == true) then
+				if (caster == tes3.player) then
+					tes3.messageBox("The spell succeeds, but there is no effect indoors.")
+				end
+				e.effectInstance.state = tes3.spellState.retired
+				return
+			end
+
+			if (tes3.worldController.weatherController.currentWeather.index == tes3.weather.blight) then
+				if (caster == tes3.player) then
+					tes3.messageBox("The spell completes, but it is unable to dispel the current Blight.")
+				end
+				e.effectInstance.state = tes3.spellState.retired
 				return
 			end
 

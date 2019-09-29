@@ -25,6 +25,7 @@ local teleportSpellIds = {
 }
 
 local summonSpellIds = {
+  alfiq = "OJ_ME_SummAlfiq",
   armorCenturion = "OJ_ME_SummArmorCent",
   armorCenturionChampion = "OJ_ME_SummArmorCentChamp",
   draugrHousecarl = "OJ_ME_SummDraugrHsCrl",
@@ -125,6 +126,10 @@ local teleportTomes = {
 }
 
 local summonTomes = {
+  {
+    id = "OJ_ME_TomeSummAlfiq",
+    spellId = summonSpellIds.alfiq
+  },
   {
     id = "OJ_ME_TomeSummArmorCent",
     spellId = summonSpellIds.armorCenturion
@@ -492,8 +497,8 @@ local function registerSpells()
   })
   framework.spells.createBasicSpell({
     id = summonSpellIds.wereboar,
-    name = "Summon Wereboar",
-    effect = tes3.effect.summonWereboar,
+    name = "Call Wereboar",
+    effect = tes3.effect.callWereboar,
     range = tes3.effectRange.self,
     duration = 30
   })
@@ -515,6 +520,13 @@ local function registerSpells()
     id = summonSpellIds.trebataur,
     name = "Summon Trebataur",
     effect = tes3.effect.summonTrebataur,
+    range = tes3.effectRange.self,
+    duration = 30
+  })
+  framework.spells.createBasicSpell({
+    id = summonSpellIds.alfiq,
+    name = "Summon Alfiq",
+    effect = tes3.effect.summonAlfiq,
     range = tes3.effectRange.self,
     duration = 30
   })

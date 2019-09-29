@@ -7,19 +7,22 @@ local function onThunderboltCollision(e)
         -- Verify effect conditions are met.
         local caster = e.sourceInstance.caster
         if (caster.cell.isInterior == true) then
+            if (caster == tes3.player) then
+                tes3.messageBox("The spell succeeds, but there is no effect indoors.")
+            end
             return
         end
 
-        if (tes3.worldController.weatherController:getWeather() == tes3weather.thunderstorm) then
+        if (tes3.worldController.weatherController.currentWeather.index ~= tes3.weather.thunder) then
+            if (caster == tes3.player) then
+                tes3.messageBox("The spell succeeds, but there is no effect when not in a thunderstorm.")
+            end
             return
         end
 
         ---@type tes3magicEffect
-        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.thunderbolt)
-
-        local caster = e.sourceInstance.caster
         local effectDuration = 2
-        local distanceLimit = 350
+        local distanceLimit = 250
         local position = e.collision.point:copy()
 
         local reference = tes3.createReference({
@@ -29,22 +32,49 @@ local function onThunderboltCollision(e)
         })
 
         -- Add a mechanic to the thunderbolt mesh.
-        timer.start({ 
-            duration = 1,
-            callback = function()
-                local actors = framework.functions.getActorsNearTargetPosition(caster.cell, position, distanceLimit)
-                local spell = tes3.getObject("OJ_ME_ThunderBoltEffect")
+        local actors = framework.functions.getActorsNearTargetPosition(caster.cell, position, distanceLimit)
+        local spell = tes3.getObject("OJ_ME_ThunderBoltEffect")
 
-                -- For any actors near the thunderbolt, remove the light effect if it exists.
-                for _, actor in pairs(actors) do
-                    mwscript.explodeSpell({
-                        reference = actor,
-                        spell = spell
+        mwscript.explodeSpell({
+            reference = reference,
+            spell = spell
+        })
+
+        for _, actor in pairs(actors) do
+            local isCasterNewlyHostile = false
+            if (actor.hostileActors == nil) then
+                isCasterNewlyHostile = true
+            else
+                -- !!!! Not finished. Should not report true.
+                local isCasterInHostileActors = false
+                for _, hostileActor in pairs(actor.hostileActors) do
+                    if (caster == hostileActor) then
+                        isCasterInHostileActors = true
+                    end
+                end
+
+                if (isCasterInHostileActors == true) then
+                    isCasterNewlyHostile = false
+                else
+                    isCasterNewlyHostile = true
+                end
+            end
+
+            if (isCasterNewlyHostile == true) then
+                if(caster == tes3.player) then
+                    tes3.triggerCrime({
+                        criminal = caster,
+                        type = tes3.crimeType.attack,
+                        victim = actor
                     })
                 end
-            end, 
-            iterations = (effectDuration - 1) 
-        })
+
+                mwscript.startCombat({
+                    reference = actor,
+                    target = caster
+                })
+            end
+        end
 
         timer.start(
         {
@@ -63,7 +93,7 @@ local function onThunderboltCollision(e)
 	end
 end
 
-local function addthunderboltEffect()
+local function addThunderboltEffect()
 	framework.effects.destruction.createBasicEffect({
 		-- Base information.
 		id = tes3.effect.thunderbolt,
@@ -79,7 +109,6 @@ local function addthunderboltEffect()
         hasNoMagnitude = true,
         hasNoDuration = true,
 		canCastTarget = true,
-        canCastTouch = true,
 
 		-- Graphics/sounds.
 
