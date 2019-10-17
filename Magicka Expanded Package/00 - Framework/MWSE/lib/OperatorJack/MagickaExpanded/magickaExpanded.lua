@@ -38,11 +38,15 @@ this.functions =  require("OperatorJack.MagickaExpanded.classes.functions")
 	Description: Registers all magic effects, spells, tomes, and grimoires that
 	are created through the Magicka Expanded framework.
 ]]
+local registered = false
 local function onLoaded()
 	event.trigger("MagickaExpanded:Register")
 	
-	this.tomes.registerEvent()
-	this.grimoires.registerEvent()
+	if (registered == false) then
+		this.tomes.registerEvent()
+		this.grimoires.registerEvent()
+		registered = true
+	end
 
 	this.info("Magicka Expanded Framework Initialized")
 end
