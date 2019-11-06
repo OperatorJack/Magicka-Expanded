@@ -16,6 +16,7 @@ this.error = function (message)
 end
 
 this.spells = {}
+this.potions = {}
 
 this.addSpellToSpellsList = function(spell)
 	table.insert(this.spells, spell)
@@ -28,6 +29,10 @@ this.addTestSpellsToPlayer = function()
 	end
 
 	this.debug("Added Test Spells to Player.")
+end
+
+this.addPotionToPotionsList = function(potion)
+	table.insert(this.potions, potion)
 end
 
 this.hasSpell = function(reference, spellId)

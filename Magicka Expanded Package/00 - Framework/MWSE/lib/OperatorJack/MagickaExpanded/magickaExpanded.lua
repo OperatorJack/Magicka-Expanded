@@ -24,6 +24,8 @@ this.getActiveSpells = function()
 	return common.spells
 end
 
+this.alchemy = require("OperatorJack.MagickaExpanded.classes.alchemy")
+
 this.spells = require("OperatorJack.MagickaExpanded.classes.spells")
 
 this.effects =  require("OperatorJack.MagickaExpanded.classes.effects")
