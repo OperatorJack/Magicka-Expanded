@@ -51,29 +51,29 @@ end
     @params: A table of parameters used to configure the potion. @params 
         must be in the following format:
 
-    example = {
-        id = "examplePotionId",
-        effects = {
-            [1] = {
-                id = tes3.effect.*,
-                range = tes3.effectRange.* | nil,
-                min = [int] | nil,
-                max = [int] | nil,
-                duration = [int] | nil,
-                radius = [int] | nil
-            },
-            [2] = {
-                id = tes3.effect.*,
-                range = tes3.effectRange.* | nil,
-                min = [int] | nil,
-                max = [int] | nil,
-                duration = [int] | nil,
-                radius = [int] | nil
-            }
-            ...
-            [8] = {}
+example = {
+    id = "examplePotionId",
+    effects = {
+        [1] = {
+            id = tes3.effect.*,
+            range = tes3.effectRange.* | nil,
+            min = [int] | nil,
+            max = [int] | nil,
+            duration = [int] | nil,
+            radius = [int] | nil
+        },
+        [2] = {
+            id = tes3.effect.*,
+            range = tes3.effectRange.* | nil,
+            min = [int] | nil,
+            max = [int] | nil,
+            duration = [int] | nil,
+            radius = [int] | nil
         }
+        ...
+        [8] = {}
     }
+}
 
     Table parameter options marked as | nil are optional. Table parameter options marked 
         with .* must use a value found in the table set. Table parameter options marked

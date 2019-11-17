@@ -107,7 +107,8 @@ local function registerSpells()
     id = weatherSpellIds.thunderbolt,
     name = "Thunderbolt",
     effect = tes3.effect.thunderbolt,
-    range = tes3.effectRange.target
+    range = tes3.effectRange.target,
+    radius = 5
   })
   framework.spells.createComplexSpell({
     id = weatherSpellIds.thunderboltEffect,

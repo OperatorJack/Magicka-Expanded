@@ -110,7 +110,7 @@ local function addThunderboltEffect()
         hasNoDuration = true,
 		canCastTarget = true,
 
-		-- Graphics/sounds.
+        -- Graphics/sounds.
 
 		-- Required callbacks.
 		onCollision = onThunderboltCollision,

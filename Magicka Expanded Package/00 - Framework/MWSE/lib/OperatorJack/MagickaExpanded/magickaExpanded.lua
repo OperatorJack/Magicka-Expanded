@@ -28,6 +28,8 @@ this.alchemy = require("OperatorJack.MagickaExpanded.classes.alchemy")
 
 this.spells = require("OperatorJack.MagickaExpanded.classes.spells")
 
+this.enchantments = require("OperatorJack.MagickaExpanded.classes.enchantments")
+
 this.effects =  require("OperatorJack.MagickaExpanded.classes.effects")
 
 this.tomes = require("OperatorJack.MagickaExpanded.classes.tomes")
