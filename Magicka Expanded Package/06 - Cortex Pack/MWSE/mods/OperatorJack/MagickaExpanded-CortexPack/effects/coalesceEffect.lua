@@ -12,7 +12,7 @@ local function onMobileActivated(e)
 	local isProjectileUsingCoalesce
 	local effect
 	for i = 0, 6 do
-		if (spellInstance.sourceEffects[i].id == tes3.effects.coalesce) then
+		if (spellInstance.sourceEffects[i].id == tes3.effect.coalesce) then
 			isProjectileUsingCoalesce = true
 			effect = spellInstance.sourceEffects[i]
 		end
