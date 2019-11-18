@@ -21,6 +21,9 @@ local weatherSpellIds = {
 
   iceBarrageEffect = "OJ_ME_IceBarrageEffect",
   iceBarrage = "OJ_ME_IceBarrage",
+
+  entombEffect = "OJ_ME_EntombEffect",
+  entomb = "OJ_ME_Entomb"
 }
 
 local weatherTomes = {
@@ -31,6 +34,10 @@ local weatherTomes = {
   {
     id = "OJ_ME_TomeThunderbolt",
     spellId = weatherSpellIds.thunderbolt
+  },
+  {
+    id = "OJ_ME_TomeEntomb",
+    spellid = weatherSpellIds.entomb
   },
   {
     id = "OJ_ME_TomeWeatherBlizzard",
@@ -75,6 +82,35 @@ local weatherTomes = {
 }
 
 local function registerSpells()
+  framework.spells.createBasicSpell({
+    id = weatherSpellIds.entomb,
+    name = "Entomb",
+    effect = tes3.effect.entomb,
+    range = tes3.effectRange.target
+  })
+  framework.spells.createComplexSpell({
+    id = weatherSpellIds.entombEffect,
+    name = "Entomb",
+    effects = {
+      [1] = {
+        id = tes3.effect.damageHealth,
+        range = tes3.effectRange.touch,
+        min = 15,
+        max = 35,
+        duration = 2,
+        radius = 5
+      },
+      [2] = {
+        id = tes3.effect.drainSpeed,
+        range = tes3.effectRange.touch,
+        min = 15,
+        max = 35
+        duration = 1,
+        radius = 5
+      }
+    }
+  })
+
   framework.spells.createBasicSpell({
     id = weatherSpellIds.iceBarrage,
     name = "Ice Barrage",
