@@ -5,13 +5,15 @@ require("OperatorJack.MagickaExpanded-CortexPack.effects.mindScanEffect")
 require("OperatorJack.MagickaExpanded-CortexPack.effects.mindRipEffect")
 require("OperatorJack.MagickaExpanded-CortexPack.effects.soulScryeEffect")
 require("OperatorJack.MagickaExpanded-CortexPack.effects.coalesceEffect")
+require("OperatorJack.MagickaExpanded-CortexPack.effects.summonPermutationEffect")
 
 local spellIds = {
   clone = "OJ_ME_Clone",
   mindScan = "OJ_ME_MindScan",
   mindRip = "OJ_ME_MindRip",
   soulScrye = "OJ_ME_SoulScrye",
-  coalesce = "OJ_ME_Coalesce"
+  coalesce = "OJ_ME_Coalesce",
+  summonPermutation = "OJ_ME_SummPermutation"
 }
 
 local tomes = {
@@ -34,6 +36,10 @@ local tomes = {
   {
     id = "OJ_ME_TomeCoalesce",
     spellId = spellIds.coalesce
+  },
+  {
+    id = "OJ_ME_TomeSummPermutation",
+    spellId = spellIds.summonPermutation
   }
 }
 
@@ -76,6 +82,14 @@ local function registerSpells()
     name = "Coalesce",
     effect = tes3.effect.coalesce,
     range = tes3.effectRange.target
+  })
+
+  framework.spells.createBasicSpell({
+    id = spellIds.summonPermutation,
+    name = "Summon Permutation",
+    effect = tes3.effect.summonPermutation,
+    range = tes3.effectRange.self,
+    duration = 30
   })
   
   framework.tomes.registerTomes(tomes)
