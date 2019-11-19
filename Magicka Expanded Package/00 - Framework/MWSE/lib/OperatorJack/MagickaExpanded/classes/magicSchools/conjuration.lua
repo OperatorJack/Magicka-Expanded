@@ -95,6 +95,7 @@ this.createBasicBoundArmorEffect = function(params)
         canCastSelf = true,
         hasNoMagnitude = true,
 		nonRecastable = true,
+		casterLinked = true,
 
 		-- Graphics/sounds.
 		icon = params.icon or "RFD\\RFD_ms_conjuration.tga",
@@ -145,6 +146,7 @@ this.createBasicBoundWeaponEffect = function(params)
         canCastSelf = true,
 		hasNoMagnitude = true,
 		nonRecastable = true,
+		casterLinked = true,
 
 		-- Graphics/sounds.
 		icon = params.icon or "RFD\\RFD_ms_conjuration.tga",
@@ -194,6 +196,7 @@ this.createBasicSummoningEffect = function(params)
         appliesOnce = true,
         canCastSelf = true,
         hasNoMagnitude = true,
+		casterLinked = true,
 
 		-- Graphics/sounds.
 		icon = params.icon or "RFD\\RFD_ms_conjuration.tga",
