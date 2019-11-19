@@ -83,7 +83,7 @@ this.createBasicSpell = function(params)
     effect.duration = params.duration or 0
     effect.radius = params.radius or 0
 
-    spell.magickaCost = this.getSpellCost(spell)
+    spell.magickaCost = params.magickaCost or this.getSpellCost(spell)
 
     common.addSpellToSpellsList(spell)
 
@@ -141,7 +141,7 @@ this.createComplexSpell = function(params)
         effect.radius = newEffect.radius or 0
     end
 
-    spell.magickaCost = this.getSpellCost(spell)
+    spell.magickaCost = params.magickaCost or this.getSpellCost(spell)
 
     common.addSpellToSpellsList(spell)
 
