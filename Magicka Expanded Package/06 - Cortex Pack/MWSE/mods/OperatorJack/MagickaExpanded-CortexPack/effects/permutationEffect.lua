@@ -4,7 +4,15 @@ tes3.claimSpellEffectId("permutation", 335)
 
 local permutationList = {
     [10] = "scamp",
-    [20] = ""
+    [20] = "",
+    [30] = "",
+    [40] = "",
+    [50] = "",
+    [60] = "",
+    [70] = "",
+    [80] = "",
+    [90] = "",
+    [100] = ""
 }
 
 local function onPermutationTick(e)
