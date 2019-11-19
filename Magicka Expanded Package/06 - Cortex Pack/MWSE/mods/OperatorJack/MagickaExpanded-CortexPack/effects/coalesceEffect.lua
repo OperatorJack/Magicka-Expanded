@@ -36,7 +36,7 @@ local function onMobileActivated(e)
 			duration = duration
 			callback = function()
 				if (mobile) then
-					mobile.position = mobile.position + tes3.getPlayerEyeVector() * 250
+					mobile.position = mobile.position + tes3.getPlayerEyeVector() * 100
 				else
 					projectileTimer:cancel()
 				end
