@@ -11,16 +11,18 @@ if (framework == nil) then
     return
 end
 
+-- Add spells to player. --
+local function loaded()
+    framework.common.addTestSpellsToPlayer()
+    
+    tes3.messageBox("Magicka Expanded: Added all currently loaded spells to player.")
+end
+event.register("loaded", loaded)
+
+
 -- Register Spells --
 local function registerSpells()
-	framework.enchantments.createBasicEnchantment({
-	id = "OJ_ME_T_Enchantment",
-	effect = tes3.effect.mindRip,
-	range = tes3.effectRange.target,
-	chargeCost = 50,
-	maxCharge = 100,
-	castType = tes3.enchantmentType.onUse
-	})
+    return
 end
   
  event.register("MagickaExpanded:Register", registerSpells)
