@@ -2,6 +2,20 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("coalesce", 333)
 
+local function isProjectileUsingCoalesce(spellInstance)
+	local isProjectileUsingCoalesce
+	local effect
+
+	for i = 0, 6 do
+		if (spellInstance.sourceEffects[i].id == tes3.effect.coalesce) then
+			isProjectileUsingCoalesce = true
+			effect = spellInstance.sourceEffects[i]
+		end
+	end
+
+	return isProjectileUsingCoalesce, effect
+end
+
 local function onMobileActivated(e)
     local mobile = e.mobile -- Added cached version here.
     local spellInstance = mobile.spellInstance
@@ -11,12 +25,7 @@ local function onMobileActivated(e)
 	
 	local isProjectileUsingCoalesce
 	local effect
-	for i = 0, 6 do
-		if (spellInstance.sourceEffects[i].id == tes3.effect.coalesce) then
-			isProjectileUsingCoalesce = true
-			effect = spellInstance.sourceEffects[i]
-		end
-	end
+	isProjectileUsingCoalesce, effect = isProjectileUsingCoalesce(spellInstance)
 
 	if (isProjectileUsingCoalesce) then
 		local spellDuration = effect.duration
