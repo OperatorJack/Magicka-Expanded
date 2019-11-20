@@ -95,6 +95,22 @@ local function createSoulScryeUi(reference, tooltip)
     })
     bar.widget.fillColor = tes3ui.getPalette("fatigue_color")
 
+    local linebreak = container:createLabel({text = ""})
+
+    local stats = container:createBlock()
+    stats.flowDirection = "top_to_bottom"
+    stats.childAlignX = 0
+    stats.autoHeight = true
+    stats.autoWidth = true
+
+    local level = stats:createBlock()
+    level.flowDirection = "left_to_right"
+    level.childAlignX = 0
+    level.autoHeight = true
+    level.autoWidth = true
+
+    local levelDescLabel = level:createLabel({text = "Level"})
+    local levelStatLabel = level:createLabel({text = reference.object.level})
 
     return container
 end
