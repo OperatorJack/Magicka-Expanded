@@ -12,17 +12,10 @@ if (framework == nil) then
 end
 
 -- Add spells to player. --
-local function loaded()
-    framework.common.addTestSpellsToPlayer()
-    
+function addTestSpells(e)
+    framework.functions.addSpellsToPlayer()
     tes3.messageBox("Magicka Expanded: Added all currently loaded spells to player.")
 end
-event.register("loaded", loaded)
 
-
--- Register Spells --
-local function registerSpells()
-    return
-end
-  
- event.register("MagickaExpanded:Register", registerSpells)
+-- Filter by the scan code to get Z key presses only.
+event.register("keyDown", addTestSpells, { filter = tes3.scanCode.z } )
