@@ -104,7 +104,7 @@ local function registerSpells()
         id = tes3.effect.drainSpeed,
         range = tes3.effectRange.touch,
         min = 15,
-        max = 35
+        max = 35,
         duration = 1,
         radius = 5
       }

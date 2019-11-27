@@ -18,6 +18,7 @@ local function addSoulScryeEffect()
         hasContinuousVFX = true,
 
 		-- Graphics/sounds.
+		icon = "RFD\\RFD_crt_soulscrye.dds",
         lighting = { 0, 0, 0 },
 
 		-- Required callbacks.
@@ -52,6 +53,10 @@ local function createSoulScryeUi(reference, tooltip)
     })
     label.color = tes3ui.getPalette("header_color")
     label.wrapText = true
+    label.borderTop = 3
+    label.borderLeft = 3
+    label.borderRight = 3
+    label.borderBottom = 6
 
     local conditions = container:createBlock()
     conditions.flowDirection = "top_to_bottom"
@@ -88,6 +93,7 @@ local function createSoulScryeUi(reference, tooltip)
     fatigue.childAlignX = 0
     fatigue.autoHeight = true
     fatigue.autoWidth = true
+    fatigue.borderBottom = 3
     
     local bar = fatigue:createFillBar({
         current = reference.mobile.fatigue.current,
@@ -95,32 +101,16 @@ local function createSoulScryeUi(reference, tooltip)
     })
     bar.widget.fillColor = tes3ui.getPalette("fatigue_color")
 
-    local linebreak = container:createLabel({text = ""})
-
-    local stats = container:createBlock()
-    stats.flowDirection = "top_to_bottom"
-    stats.childAlignX = 0
-    stats.autoHeight = true
-    stats.autoWidth = true
-
-    local level = stats:createBlock()
+    local level = container:createBlock()
     level.flowDirection = "left_to_right"
     level.childAlignX = 0
     level.autoHeight = true
     level.autoWidth = true
+    level.borderAllSides = 3
 
-    local levelDescLabel = level:createLabel({text = "Level"})
-    local levelStatLabel = level:createLabel({text = reference.object.level})
+    level:createLabel({text = "Level: " .. reference.object.level})
 
     return container
-end
-
-local function createSoulScryeForCreature(reference, tooltip)
-    local container = createSoulScryeUi(reference, tooltip)
-end
-
-local function createSoulScryeForNpc(reference, tooltip)
-    local container = createSoulScryeUi(reference, tooltip)
 end
 
 local function onTooltipDrawn(e)
@@ -136,19 +126,18 @@ local function onTooltipDrawn(e)
         -- and target is valid.
         if (ref) then
             framework.debug("Target is valid.")
+            if (ref.mobile) then
             -- and target is not dead.
-            if (ref.mobile.isDead == false) then
-                -- and target is an NPC or creature.
-                if (e.object.objectType == tes3.objectType.npc) then
-                    framework.debug("Target is NPC.")
-                    createSoulScryeForNpc(ref, e.tooltip)
-                elseif (e.object.objectType == tes3.objectType.creature) then
-                    framework.debug("Target is creature.")
-                    createSoulScryeForCreature(ref, e.tooltip)
+                if (ref.mobile.isDead == false) then
+                    -- and target is an NPC or creature.
+                    if (e.object.objectType == tes3.objectType.npc or
+                        e.object.objectType == tes3.objectType.creature) then
+                        createSoulScryeUi(ref, e.tooltip)
+                    end
                 end
             end
         end
     end
 end
 
-event.register("uiObjectTooltip", onTooltipDrawn, {priority=200})
+event.register("uiObjectTooltip", onTooltipDrawn, {priority=201})

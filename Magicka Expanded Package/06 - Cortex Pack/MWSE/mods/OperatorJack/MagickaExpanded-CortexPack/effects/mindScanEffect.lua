@@ -18,6 +18,7 @@ local function addMindScanEffect()
         hasContinuousVFX = true,
 
 		-- Graphics/sounds.
+		icon = "RFD\\RFD_crt_mindscan.dds",
         lighting = { 0, 0, 0 },
 
 		-- Required callbacks.

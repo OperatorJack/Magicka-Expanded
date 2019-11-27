@@ -2,46 +2,58 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("coalesce", 333)
 
-local function isProjectileUsingCoalesce(spellInstance)
-	local isProjectileUsingCoalesce
-	local effect
+local function isProjectileUsingCoalesceFunc(spellInstance)
+	local isProjectileUsingCoalesce = false
 
 	for i = 0, 6 do
-		if (spellInstance.sourceEffects[i].id == tes3.effect.coalesce) then
+		if (spellInstance.source.effects[i] and spellInstance.source.effects[i].id == tes3.effect.coalesce) then
 			isProjectileUsingCoalesce = true
-			effect = spellInstance.sourceEffects[i]
 		end
 	end
 
-	return isProjectileUsingCoalesce, effect
+	return isProjectileUsingCoalesce
 end
 
-local function onMobileActivated(e)
-    local mobile = e.mobile -- Added cached version here.
-    local spellInstance = mobile.spellInstance
-    local firingRef = mobile.firingMobile and mobile.firingMobile.reference
-    local caster = spellInstance and spellInstance.caster
-	mwse.log("Created mobile of '%s' that was fired by '%s' and cast by '%s'", mobile.reference, firingRef, caster)
-	
-	local isProjectileUsingCoalesce
-	local effect
-	isProjectileUsingCoalesce, effect = isProjectileUsingCoalesce(spellInstance)
-
-	if (isProjectileUsingCoalesce) then
-		local spellDuration = effect.duration
-		local duration = .01
-		local interations = spellDuration / duration
-		local projectileTimer = timer.start({
-			iterations = iterations
-			duration = duration
-			callback = function()
-				if (mobile) then
-					mobile.position = mobile.position + tes3.getPlayerEyeVector() * 100
-				else
-					projectileTimer:cancel()
-				end
+local actives = {}
+local function projectileTimerCallback()
+	for reference, _ in pairs(actives) do
+		local mobile = reference.mobile
+		if (mobile) then
+			if (mobile.flags ~= 108) then
+				mobile.position = mobile.position + tes3.getPlayerEyeVector() * 15
 			end
-		})
+		end
+    end
+end
+
+local projectileTimer = nil
+local function onLoaded(e)
+	projectileTimer = timer.start({
+		iterations = -1,
+		duration = .01,
+		callback = projectileTimerCallback
+	})
+end
+event.register("loaded", onLoaded)
+
+local function onObjectInvalidated(e)
+    actives[e.object] = nil
+end
+event.register("objectInvalidated", onObjectInvalidated)
+
+local function onMobileActivated(e)
+	local mobile = e.mobile
+	if (mobile == nil) then
+		return
+	end
+
+	local spellInstance = mobile.spellInstance
+	if (spellInstance == nil) then
+		return
+	end
+
+	if (isProjectileUsingCoalesceFunc(spellInstance) == true) then
+		actives[e.reference] = true
 	end
 end
 event.register("mobileActivated", onMobileActivated)
@@ -60,13 +72,15 @@ local function Coalesce()
         canCastTouch = true,
         canCastTarget = true,
         hasNoMagnitude = true,
-        hasNoDuration = true,
+		hasNoDuration = true,
+		appliesOnce = true,
 
 		-- Graphics/sounds.
+		icon = "RFD\\RFD_crt_coalesce.dds",
         lighting = { 0, 0, 0 },
 
 		-- Required callbacks.
-		onTick = function() e:trigger() end,
+		onTick = function(e) e:trigger() end,
 	})
 end
 

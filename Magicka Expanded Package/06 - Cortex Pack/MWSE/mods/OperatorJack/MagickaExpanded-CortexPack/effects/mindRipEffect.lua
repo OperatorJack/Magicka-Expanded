@@ -232,6 +232,7 @@ local function addMindRipEffect()
         appliedOnce = true,
 
 		-- Graphics/sounds.
+		icon = "RFD\\RFD_crt_mindrip.dds",
         lighting = { 0, 0, 0 },
 
 		-- Required callbacks.

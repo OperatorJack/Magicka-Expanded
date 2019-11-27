@@ -3,37 +3,32 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 tes3.claimSpellEffectId("permutation", 335)
 
 local permutationList = {
-    [10] = "scamp",
-    [20] = "",
-    [30] = "",
-    [40] = "",
-    [50] = "",
-    [60] = "",
-    [70] = "",
-    [80] = "",
-    [90] = "",
-    [100] = ""
+    [0] = "mudcrab",
+    [10] = "mudcrab",
+    [20] = "nix-hound",
+    [30] = "kagouti",
+    [40] = "atronach_flame",
+    [50] = "atronach_frost",
+    [60] = "dremora",
+    [70] = "atronach_storm",
+    [80] = "winged twilight",
+    [90] = "golden saint",
+    [100] = "fabricant_hulking"
 }
 
 local function onPermutationTick(e)
-    if (e.caster ~= tes3.player) then
-        return
-    end
-    
-    local value = (e.caster.mobile.willpower.current * .4) + (e.caster.mobile.conjuration.current * .6)
-    local id
-    for listIndex, listId in pairs(permutationList) do
-        if (id == nil) then
-            id = listId
-        end
+    local caster = e.sourceInstance.caster
+    local value = (caster.mobile.willpower.current * .4) + (caster.mobile.conjuration.current * .6)  
+    framework.debug("Value: " .. value)
 
-        if (listIndex > value) then
-            break
-        else
-            id = listId
-        end
+    local rounded = math.round(value, -1)
+    if (rounded > 100) then 
+        rounded = 100 
     end
+    framework.debug("Rounded Value: " .. rounded)
 
+    local id = permutationList[rounded]
+    framework.debug("ID: " .. id)
     e:triggerSummon(id)
 end
 
@@ -52,11 +47,11 @@ local function addPermutationEffect()
         allowSpellmaking = true,
         canCastSelf = true,
         hasNoMagnitude = true,
-        nonRecastable = true,
         casterLinked = true,
         appliesOnce = true,
 
 		-- Graphics/sounds.
+		icon = "RFD\\RFD_crt_permutation.dds",
         lighting = { 0, 0, 0 },
 
 		-- Required callbacks.

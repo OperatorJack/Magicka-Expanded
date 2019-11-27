@@ -1,5 +1,6 @@
-local this = {}
+local common = require("OperatorJack.MagickaExpanded.common")
 
+local this = {}
 
 this.getActorsNearTargetPosition = function(cell, targetPosition, distanceLimit)
     local actors = {}
@@ -81,6 +82,10 @@ end
 ]]
 this.ternary = function(condition, T, F)
 	if condition then return T else return F end
+end
+
+this.addSpellsToPlayer = function()
+	common.addTestSpellsToPlayer()
 end
 
 return this

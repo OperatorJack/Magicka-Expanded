@@ -8,7 +8,7 @@ local scriptWhitelist = {
 }
 
 local clonePotionId = "OJ_ME_ClonePotion"
-local clonePotionName = "Clone Potion"
+local clonePotionName = "Clone"
 
 local id = "A shady smuggler"
 local function onCloneSourceTick(e)	
@@ -33,6 +33,7 @@ local function addCloneSourceEffect()
         appliesOnce = true,
 
 		-- Graphics/sounds.
+		icon = "RFD\\RFD_crt_clone.dds",
         lighting = { 0, 0, 0 },
 
 		-- Required callbacks.
@@ -43,7 +44,7 @@ end
 local function onCloneTick(e)
     if (e.effectInstance.target.object.script == nil or scriptWhitelist[e.effectInstance.target.object.script]) then
         id = e.effectInstance.target.object.id
-        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.banishDaedra)
+        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.clone)
         local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(effect)
     
         if (e.effectInstance.target.object.level <= magnitude) then
@@ -89,6 +90,7 @@ local function addCloneEffect()
         appliesOnce = true,
 
 		-- Graphics/sounds.
+		icon = "RFD\\RFD_crt_clone.dds",
         lighting = { 0, 0, 0 },
 
 		-- Required callbacks.
