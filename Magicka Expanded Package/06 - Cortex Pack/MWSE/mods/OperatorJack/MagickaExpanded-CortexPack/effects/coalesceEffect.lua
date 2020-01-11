@@ -69,6 +69,8 @@ local function Coalesce()
 		baseCost = 5.0,
 
 		-- Various flags.
+		allowEnchanting = true,
+        allowSpellmaking = true,
         canCastTouch = true,
         canCastTarget = true,
         hasNoMagnitude = true,

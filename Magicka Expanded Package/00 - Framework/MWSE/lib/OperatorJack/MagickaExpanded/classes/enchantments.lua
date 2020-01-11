@@ -25,7 +25,9 @@ local this = {}
         with [int] must be an integer.
 ]]
 this.createBasicEnchantment = function(params)
-    local enchantment = tes3.getObject(params.id)
+    local enchantment = tes3.getObject(params.id) or tes3enchantment.create({id = params.id})
+
+    enchantment.name = params.name 
 
     local effect = enchantment.effects[1]
     effect.id = params.effect
@@ -81,7 +83,9 @@ end
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
 this.createComplexEnchantment = function(params)
-    local enchantment = tes3.getObject(params.id)
+    local enchantment = tes3.getObject(params.id) or tes3enchantment.create({id = params.id})
+
+    enchantment.name = params.name 
 
     for i=1, #params.effects do
         local effect = enchantment.effects[i]

@@ -220,7 +220,7 @@ local function addMindRipEffect()
 		-- Base information.
 		id = tes3.effect.mindRip,
 		name = "Mind Rip",
-		description = "Allows the caster to view the targets spells and steal one, if they are able to.",
+		description = "Allows the caster to view the target's spells and steal one, if they are able to.",
 
 		-- Basic dials.
 		baseCost = 60.0,

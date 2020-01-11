@@ -29,6 +29,8 @@ this.createBasicPotion = function(params)
         id = params.id, 
         name = params.name,
     })
+
+    potion.name = params.name
     
     local effect = potion.effects[1]
     effect.id = params.effect
@@ -84,6 +86,8 @@ this.createComplexPotion = function(params)
         id = params.id, 
         name = params.name,
     })
+
+    potion.name = params.name
 
     for i=1, #params.effects do
         local effect = potion.effects[i]

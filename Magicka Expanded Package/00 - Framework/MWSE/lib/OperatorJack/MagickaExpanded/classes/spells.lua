@@ -75,6 +75,8 @@ end
 this.createBasicSpell = function(params)
     local spell = tes3.getObject(params.id) or tes3spell.create(params.id, params.name)
 
+    spell.name = params.name
+
     local effect = spell.effects[1]
     effect.id = params.effect
     effect.rangeType = params.range or tes3.effectRange.self
@@ -129,6 +131,8 @@ end
 this.createComplexSpell = function(params)
     local spell = tes3.getObject(params.id) or tes3spell.create(params.id, params.name)
 
+    spell.name = params.name
+    
     for i=1, #params.effects do
         local effect = spell.effects[i]
         local newEffect = params.effects[i]

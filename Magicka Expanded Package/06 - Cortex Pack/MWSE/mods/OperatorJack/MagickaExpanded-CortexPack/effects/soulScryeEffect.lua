@@ -13,6 +13,8 @@ local function addSoulScryeEffect()
 		baseCost = 30.0,
 
 		-- Various flags.
+		allowEnchanting = true,
+        allowSpellmaking = true,
         canCastSelf = true,
         hasNoMagnitude = true,
         hasContinuousVFX = true,

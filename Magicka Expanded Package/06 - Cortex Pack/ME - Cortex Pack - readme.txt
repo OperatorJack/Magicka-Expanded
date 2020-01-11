@@ -16,7 +16,8 @@ This mod requires the most recently nightly build of MWSE. Please be sure to run
 ====Description====
 This mod adds these new magic effects:
 
-- CloneClones the target and makes them fight alongside you for the effect duration. The effect's magnitude is the level of actor that can be cloned.
+- Clone
+Clones the target and makes them fight alongside you for the effect duration. The effect's magnitude is the level of actor that can be cloned.
 
 - Coalesce
 When present in a spell, gives the caster control over the spell projectile during projectile flight.
