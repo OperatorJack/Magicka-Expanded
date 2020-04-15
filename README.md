@@ -1,7 +1,7 @@
 # Magicka-Expanded
 Magicka Expanded mod for TES III: Morrowind
 
-For more information, please use the navigation menu to go to the repository wiki, also found [here](https://github.com/OperatorJack/Magicka-Expanded/wiki/home).
+For more information, please use the project documentation, found [here](https://github.com/OperatorJack/Magicka-Expanded-Docs).
 
 ## License
  You cannot copy, distribute, package, or otherwise modify in any way the contents of this repository. This repository represents in-progress, unpublished work by its authors and should only be used as a reference. 
