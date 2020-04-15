@@ -39,6 +39,8 @@ this.createBasicEnchantment = function(params)
     effect.max = params.max or 0
     effect.duration = params.duration or 0
     effect.radius = params.radius or 0
+    effect.skill = params.skill or nil
+    effect.attribute = params.attribute or nil
 
     enchantment.chargeCost = params.chargeCost or 0
     enchantment.maxCharge = params.maxCharge or 0
@@ -103,6 +105,8 @@ this.createComplexEnchantment = function(params)
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0
         effect.radius = newEffect.radius or 0
+        effect.skill = newEffect.skill or nil
+        effect.attribute = newEffect.attribute or nil
     end
 
     enchantment.chargeCost = params.chargeCost or 0

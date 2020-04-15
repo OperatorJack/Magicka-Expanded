@@ -84,6 +84,8 @@ this.createBasicSpell = function(params)
     effect.max = params.max or 0
     effect.duration = params.duration or 0
     effect.radius = params.radius or 0
+    effect.skill = params.skill or nil
+    effect.attribute = params.attribute or nil
 
     spell.magickaCost = params.magickaCost or this.getSpellCost(spell)
 
@@ -143,6 +145,8 @@ this.createComplexSpell = function(params)
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0
         effect.radius = newEffect.radius or 0
+        effect.skill = newEffect.skill or nil
+        effect.attribute = newEffect.attribute or nil
     end
 
     spell.magickaCost = params.magickaCost or this.getSpellCost(spell)
