@@ -19,6 +19,9 @@ this.spells = {}
 this.potions = {}
 this.enchantments = {}
 
+this.boundWeapons = {}
+this.boundArmors = {}
+
 this.addSpellToSpellsList = function(spell)
 	table.insert(this.spells, spell)
 end
@@ -38,6 +41,14 @@ end
 
 this.addEnchantmentToEnchantmentsList = function(enchantment)
 	table.insert(this.enchantments, enchantment)
+end
+
+this.addBoundWeaponToBoundWeaponsList = function(id)
+    table.insert(this.boundWeapons, id)
+end
+
+this.addBoundArmorToBoundArmorsList = function(id)
+    table.insert(this.boundArmors, id)
 end
 
 this.hasSpell = function(reference, spellId)

@@ -1,3 +1,5 @@
+local common = require("OperatorJack.MagickaExpanded.common")
+
 local this = {}
 
 --[[
@@ -77,6 +79,9 @@ end
 		Other parameters will be automatically set by the function.
 ]]
 this.createBasicBoundArmorEffect = function(params)
+	if (params.armorId) then common.addBoundArmorToBoundArmorsList(params.armorId) end
+	if (params.armorId) then common.addBoundArmorToBoundArmorsList(params.armorId2) end
+
 	local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.
         --------------------
@@ -128,6 +133,8 @@ end
 		Other parameters will be automatically set by the function.
 ]]
 this.createBasicBoundWeaponEffect = function(params)
+	if (params.weaponId) then common.addBoundWeaponToBoundWeaponsList(params.weaponId) end
+
 	local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.
         --------------------

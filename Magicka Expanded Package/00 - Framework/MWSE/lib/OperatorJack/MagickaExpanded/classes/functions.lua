@@ -84,6 +84,25 @@ this.ternary = function(condition, T, F)
 	if condition then return T else return F end
 end
 
+this.getBoundWeaponIdList = function()
+	return table.copy(common.boundWeapons)
+end
+
+this.getBoundArmorIdList = function()
+	return table.copy(common.boundArmors)
+end
+
+this.getBoundItemIdList = function()
+	local list = {}
+	for _, value in ipairs(this.getBoundWeaponIdList()) do
+		table.insert(list, value)
+	end
+	for _, value in ipairs(this.getBoundArmorIdList()) do
+		table.insert(list, value)
+	end
+	return list
+end
+
 this.addSpellsToPlayer = function()
 	common.addTestSpellsToPlayer()
 end
