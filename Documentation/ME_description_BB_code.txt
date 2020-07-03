@@ -1,5 +1,5 @@
 ﻿[center]﻿[img]https://raw.githubusercontent.com/OperatorJack/Magicka-Expanded-Docs/master/ME_Header_Images/ME_header_main.png[/img]﻿
-[url=https://github.com/OperatorJack/MWSE-mods]OJ's MWSE Mods on GitHub[/url] || [url="https://www.deviantart.com/redfurrydemon/"]RFD's main artwork gallery[/url][/center]
+[url=https://github.com/OperatorJack/MWSE-mods]OJ's MWSE Mods on GitHub[/url] || RFD's main artwork gallery[/center]
 
 [img]https://raw.githubusercontent.com/OperatorJack/Magicka-Expanded-Docs/master/ME_Header_Images/ME_header_requirements.png[/img]﻿
 
@@ -24,19 +24,24 @@ Please read this entire post for information on how this mod works, and follow t
 This mod provides a framework to add new and fully functional magic effects to Morrowind. These effects behave just like vanilla effects: you can create new spells, enchant items, give them to companions, and treat them how any other effect would be treated.
 
 
-This mod package uses a BAIN installer to provide the base framework, as well as three spell packs. Spells are broken down into spell packs so that the user can choose not to use certain sets of spells if they prefer. You can use all, some, or none of these spell packs. However, if you only install the base framework, there will be nothing new in-game.
+This mod package uses a BAIN installer to provide the base framework, as well as multiple spell packs. Spells are broken down into spell packs so that the user can choose not to use certain sets of spells if they prefer. You can use all, some, or none of these spell packs. However, if you only install the base framework, there will be nothing new in-game. [b]Note: Dependent mods that require Magicka Expanded only require the framework pack, which has no ESP or new spells. [/b]
 
 
 Each of these spell packs are outlined below. All spell packs add new spells & spell effects to the game. At this time, all spell packs do this through a new mechanism: spell tomes & grimoires. A spell tome is a book, similar to Skyrim, that will teach the player a spell. Unlike Skyrim, learning a spell requires having magicka greater than twice the magicka cost of that spell. While learning a spell, your magicka will be drained. Grimoires are spell tomes that teach two or more spells at once. They require having magicka greater than twice the sum of the magicka costs for all spells the grimoire teaches. However, spell tomes aren't destroyed in the process of learning a new spell.
 
 
-Spell tomes & grimoires are added through levelled lists, although some are hand placed in the game world for more powerful spells. For a specific spell, refer to the "booklocations.txt" document in each BAIN sub-package. Some spell tomes and grimoires can be found at your local book seller. 
+This mod allows the distribution of spells through spell tomes and grimoires. Spell tomes teach 1 spell per book. Spell grimoires teach 2+ spells per book. This mod uses leveled lists and booksellers for spell distribution, but Spell Packs may use any mechanism to distribute spells. Please refer to the Spell Pack you are using for instructions for finding the spells within. [b]If using spell tomes and grimoires, they will be dynamically placed through MWSE and do not require cell edits in the Construction Set.[/b]
+
+There is an MCM that contains buttons to help you test the framework. You can use these buttons to add all loaded spells to the player, as well as tomes and grimoires. You can also set your stats instantly. Please note there may be a slight delay when adding spells / items through the MCM, if you are using a lot of ME dependent mods.
 
 
 At this time, there are 103 new spell effects available in the following spell packs:
 
-[b]
-1) Lore Friendly Pack[/b]
+[b]1) Resource Pack
+[/b]
+This pack is required if using any of the spell packs below. If not using any of the spell packs below, do not install. It provides shared resources and a single ESP for all spell packs to use.
+
+[b]2) Lore Friendly Pack[/b]
 
 The Lore Friendly Pack strives to introduce spell effects that are similar to current effects or are present in previous Elder Scrolls games. For example, Banish Daedra was present in TES II, and Darkness was a cut magic effect from TES II. 
 
@@ -44,8 +49,6 @@ The Lore Friendly Pack strives to introduce spell effects that are similar to cu
 [spoiler]The magic effects introduced in this spell pack are as follows:
 
 - Banish Daedra: Sends a Daedra back to Oblivion.
-
-- Darkness: Summons a mist of darkness. Disables the Light magic effect on any actor that enters the mist.
 
 - Bound Greaves
 
@@ -71,7 +74,7 @@ The Lore Friendly Pack strives to introduce spell effects that are similar to cu
 
 - Bound Warhammer[/spoiler]
 
-[b]2) Summoning Pack
+[b]3) Summoning Pack
 
 [/b]The Summoning Pack adds multiple new summoning spells of varying power, including summoning Imperfects, Spriggans, and more.
 
@@ -114,7 +117,7 @@ The Lore Friendly Pack strives to introduce spell effects that are similar to cu
 
 - Call Werewolf (Note: Due to some mesh issues, the werewolf will not fight. This may be resolved in the future. For now, it is for roleplay purposes. [url=https://www.nexusmods.com/morrowind/images/4928]Blame RFD for not making this work 100%.[/url])[/spoiler]
 
-[b]3) Teleportation Pack[/b]
+[b]4) Teleportation Pack[/b]
 
 The Teleportation Pack adds balanced teleportation effects to Morrowind's most popular cities. These teleportation effects will only take you to the entry-way to a town or city, but are generally faster than walking. This was done to maintain balance with other transportation options in the game.
 
@@ -141,11 +144,9 @@ The Teleportation Pack adds balanced teleportation effects to Morrowind's most p
 
 - Teleport to Suran
 
-- Teleport to Tel Mora
+- Teleport to Tel Mora[/spoiler]
 
-- Blink: Teleport on target[/spoiler]
-
-[b]4) Tamriel Rebuilt Pack[/b]
+[b]5) Tamriel Rebuilt Pack[/b]
 
 The Tamriel Rebuilt Pack adds teleportation spells to various locations across the mainland, and summoning spells for various creatures from Cyrodiil, Skyrim, and mainland Morrowind.
 
@@ -248,7 +249,7 @@ Summoning effects:
 
 - Summon Trebataur[/spoiler]
 
-[b]5) Weather Magic Pack[/b]
+[b]6) Weather Magic Pack[/b]
 
 The Weather Magic Pack adds spells for weather manipulation. These effects will only work outdoors. Given the divine origins of the Blight, you can invoke it, but there is no way to dispel it.
 
@@ -275,16 +276,20 @@ The Weather Magic Pack adds spells for weather manipulation. These effects will 
 
 - Weather: Rain[/spoiler]
 
-[b]6) Cortex Pack[/b]
+[b]7) Cortex Pack[/b]
 
 The Cortex Pack adds unique spells that are inspired by Cortex's Scripted Spells and similar mods. These spells are much more complex and take longer to create.
 
 
 [spoiler]The magic effects introduced in this spell pack are as follows:
 
+- Blink: Teleport on target
+
 - Clone: Clones the target and makes them fight alongside you for the effect duration. The effect's magnitude is the level of actor that can be cloned.
 
 - Coalesce: When present in a spell, gives the caster control over the spell projectile during projectile flight.
+
+- Darkness: Summons a mist of darkness. Disables the Light magic effect on any actor that enters the mist.
 
 - Mind Rip: Allows the caster to view the target's spells and steal one, if they are able to.
 
@@ -305,33 +310,26 @@ The Cortex Pack adds unique spells that are inspired by Cortex's Scripted Spells
 
 1) Use a mod management tool to install this mod using the provided BAIN installer. Or just install it manually, if that's your thing.
 
-2) Enable the .esp files for the framework and spell packs.
+2) If using any of the spell packs, enable the Resource Pack ESP.
 
 2) Use a list merging tool such as Wrye Mash to merge levelled lists.
-
-[b]
-
-NOTE: Creating new magic effects requires creating entries in a MWSE table. These entries are permanent. [/b]
 
 
 [b]Removal:[/b]
 
 1) Uninstall this framework and any Spell Packs using your mod management tool.
 
-2) Reinstall MWSE to reset your magic effects table. This is only needed if you are using another mod that claims the same spell effect IDs as this one. 
-
 [img]https://raw.githubusercontent.com/OperatorJack/Magicka-Expanded-Docs/master/ME_Header_Images/ME_header_conflicts.png[/img]﻿
 
 This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
 
-
-Creating new magic effects requires creating entries in a MWSE table. These entries are permanent. This mod will conflict with any mod that uses the same spell effect IDs. Other authors should check the magic effect ID list before choosing an ID to prevent conflicts.
+This mod will conflict with any mod that uses the same spell effect IDs. Other authors should check the magic effect ID list before choosing an ID to prevent conflicts.
 
 [img]https://raw.githubusercontent.com/OperatorJack/Magicka-Expanded-Docs/master/ME_Header_Images/ME_header_permissions.png[/img]﻿
 
 [b]Scripting/writing[/b]
 
-This mod may be utilised for any purpose for Morrowind, as long as you credit OJ as the original author, except as described below. It may not be used for other games.
+This mod may be utilized for any purpose for Morrowind, as long as you credit OJ as the original author, except as described below. It may not be used for other games.
 
 
 [b]Graphic assets[/b]
@@ -346,17 +344,17 @@ On a side note, you may not use any of RFD's assets in mods that have anything t
 
 [img]https://raw.githubusercontent.com/OperatorJack/Magicka-Expanded-Docs/master/ME_Header_Images/ME_header_credits.png[/img]﻿
 
-[url="https://www.nexusmods.com/morrowind/users/61791411?tab=user+files"]OperatorJack[/url]: scripting
+OperatorJack: scripting
 
-[url="https://www.nexusmods.com/morrowind/users/46908543?tab=user+files"]RedFurryDemon[/url]: graphics
+RedFurryDemon: graphics, MCM
 
 
-- [url="https://www.nexusmods.com/morrowind/users/26153919?tab=user+files"]NullCascade[/url], [url="https://www.nexusmods.com/morrowind/users/64030?tab=user+files"]Greatness7[/url] and [url="https://www.nexusmods.com/morrowind/users/3040468?tab=user+files"]Merlord[/url] - on-going help and development of MWSE.
+- NullCascade, Greatness7 and Merlord - on-going help and development of MWSE.
 
-- [url="https://www.nexusmods.com/morrowind/users/3241081?tab=user+files"]Reizeron/R-Zero[/url] - blank magic effct icon, a particular expression used in an illustration, some troubleshooting
+- Reizeron/R-Zero - blank magic effct icon, a particular expression used in an illustration, some troubleshooting
 
-- [url="https://www.deviantart.com/coupleofkooks"]coupleoflooks[/url] - header image
+- coupleoflooks - header image
 
-- Pixel Sagas - [url="https://www.dafont.com/mage-script.font"]font[/url] based on Skyrim mage script
+- Pixel Sagas - font based on Skyrim mage script
 
-- [url="https://www.nexusmods.com/morrowind/users/50837536?tab=user+files"]Stripes[/url] - some troubleshooting
+- Stripes - some troubleshooting
