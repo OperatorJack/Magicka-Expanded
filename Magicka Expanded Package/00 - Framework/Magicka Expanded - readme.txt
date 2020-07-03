@@ -17,58 +17,34 @@ This mod provides a framework to add new and fully functional magic effects to M
 
 It does this by providing a relatively simple API to access MWSE functions, manage objects, and handle calculations and events.
 
-The mod does not introduce anything new into the game. It is a base package for other mods to build on. To maintain modularity, I am releasing new similar spells as spell packs, available separately. 
+This mod consist of multiple BAIN packages:
+00 - Framework
+* The package does not introduce anything new into the game. It is a base package for other mods to build on. This does not require an ESP. If a mod says it requires Magicka Expanded, it likely only requires this package. This is the core framework that lets the spell packs and other dependent mods work.
 
-This mod allows the distribution of spells through spell tomes and grimoires. Spell tomes teach 1 spell per book. Spell grimoires teach 2+ spells per book. This mod uses leveled lists and booksellers for spell distribution, but Spell Packs may use any mechanism to distribute spells. Please refer to the Spell Pack you are using for instructions are finding the spells within.
+01 - Resource Pack
+* Contains an ESP used by other spell packs. Must be installed and enabled if using any of the packages below.
 
-At this time, there are 43 new spell effects available in the following spell packs, with these new magic effects:
-1) Lore Friendly Pack
-- Banish Daedra
-- Darkness
-- Bound Greaves
-- Bound Pauldrons
-- Bound Claymore
-- Bound Club
-- Bound Dai-Katana
-- Bound Katana
-- Bound Shortsword
-- Bound Staff
-- Bound Tanto
-- Bound Wakizashi
-- Bound Waraxe
-- Bound Warhammer
+02 - Lore Friendly Pack
+* Adds new lore friendly magic effects and spells. See package readme for more info.
 
-2) Summoning Pack
-- Summon Goblin Grunt
-- Summon Goblin Officer
-- Summon Goblin Warchief
-- Summon War Durzog
-- Summon Hulking Fabricant
-- Summon Imperfect
-- Summon Draugr
-- Summon Lich
-- Summon Ogrim
-- Summon Spriggan
-- Summon Centurion Spider
-- Summon Centurion Archer
-- Summon Steam Centurion
-- Summon Ash Ghoul
-- Summon Ash Zombie
-- Summon Ash Slave
-- Summon Ascended Sleeper
+03 - Summoning Pack
+* Adds new summoning magic effects and spells. See package readme for more info.
 
-3) Teleportation Pack
-- Teleport to Ald-Ruhn
-- Teleport to Balmora
-- Teleport to Ebonheart
-- Teleport to Vivec
-- Teleport to Caldera
-- Teleport to Gnisis
-- Teleport to Maar Gan
-- Teleport to Molag Mar
-- Teleport to Pelagiad
-- Teleport to Suran
-- Teleport to Tel Mora
+04 - Teleportation Pack
+* Adds new teleportation magic effects and spells. See package readme for more info.
+
+05 - Tamriel Rebuilt Pack
+* Adds new summoning and teleportation magic effects and spells for TR content. See package readme for more info.
+
+06 - Weather Magick Pack
+* Adds new magic effects to manipulate the weather.
+
+07 - Cortex Pack
+* Adds new magic effects inspired by Cortex's Scripted Spells mod.
+
+This mod allows the distribution of spells through spell tomes and grimoires. Spell tomes teach 1 spell per book. Spell grimoires teach 2+ spells per book. This mod uses leveled lists and booksellers for spell distribution, but Spell Packs may use any mechanism to distribute spells. Please refer to the Spell Pack you are using for instructions for finding the spells within. If using spell tomes and grimoires, they will be dynamically placed through MWSE and do not require cell edits in the Construction Set.
+
+As of V3 of Magicka Expanded, there is an MCM that contains buttons to help you test the framework. You can use these buttons to add all loaded spells to the player, as well as tomes and grimoires. You can also set your stats instantly. Please note there may be a slight delay when adding spells / items through the MCM, if you are using a lot of ME dependent mods.
 
 This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
 
@@ -89,20 +65,18 @@ Creating new magic effects requires creating entries in a MWSE table. These entr
 ====Installation & Removal====
 Installation:
 1) Use a mod management tool to install this mod using the provided BAIN installer. Or just install it manually, if that's your thing.
-2) Enable the .esp files for the framework and spell packs.
-2) Use a list merging tool such as Wrye Mash to merge levelled lists.
-
-NOTE: Creating new magic effects requires creating entries in a MWSE table. These entries are permanent. 
+2) Enable the .esp file for Resource pack if using any of the spell packs.
 
 Removal:
+1) Delete any spells added by this mod from the player. This can be done by clicking the spell in the spell menu and pressing [Delete] on the keyboard.
 1) Uninstall this framework and any Spell Packs using your mod management tool.
-2) Reinstall MWSE to reset your magic effects table. This is only needed if you are using another mod that claims the same spell effect IDs as this one. 
 
 ====Credits====
 OperatorJack: scripting
 RedFurryDemon: graphics
 
 - NullCascade, Greatness7 and Merlord - on-going help and development of MWSE.
+- Merlord - Providing the code used to distribute items to merchants without requiring ESPs or cell edits.
 - Reizeron/R-Zero - blank magic effct icon, a particular expression used in an illustration, some troubleshooting
 - coupleoflooks - header image
 - Pixel Sagas - font based on Skyrim mage script

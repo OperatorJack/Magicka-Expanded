@@ -1,5 +1,21 @@
 local this = {}
 
+this.doesIconExist = function(path)
+	return tes3.getFileExists("icons\\" .. path)
+end
+
+this.checkParams = function(params)
+	if (params.icon and this.doesIconExist(params.icon) == false) then
+		this.error("Effect disabled. Icon does not exist for effect, path: " .. params.name .. ", " .. params.icon)
+		return false
+    end
+    if (params.icon and string.len(params.icon) > 32) then
+		this.error("Effect disabled. Icon path longer than 32 characters for effect, path: " .. params.name .. ", " .. params.icon)
+		return false
+    end
+    return true
+end
+
 this.info = function (message)
     local prepend = '[Magicka Expanded: INFO] '
     mwse.log(prepend .. message)

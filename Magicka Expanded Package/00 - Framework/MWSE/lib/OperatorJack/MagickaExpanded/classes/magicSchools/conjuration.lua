@@ -8,6 +8,7 @@ local this = {}
 		table as tes3.addMagicEffect(). 
 ]]
 this.createBasicEffect = function(params)
+	if (common.checkParams(params) == false) then return end
 	local effect = tes3.addMagicEffect({
 		-- Base information.
 		id = params.id,

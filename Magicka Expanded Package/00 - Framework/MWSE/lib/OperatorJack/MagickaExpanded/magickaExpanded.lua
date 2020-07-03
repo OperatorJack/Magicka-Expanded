@@ -1,12 +1,10 @@
---[[
-	Magicka Expanded
-	By OperatorJack
-]]
-
 local common = require("OperatorJack.MagickaExpanded.common")
 
 -- Initialize any script overrides that are set within the framework.
 require("OperatorJack.MagickaExpanded.classes.scriptOverrides")
+event.register("modConfigReady", function()
+    dofile("Data Files\\MWSE\\lib\\OperatorJack\\MagickaExpanded\\mcm.lua")
+end)
 
 local this = {}
 
@@ -42,19 +40,17 @@ this.functions =  require("OperatorJack.MagickaExpanded.classes.functions")
 	Description: Registers all magic effects, spells, tomes, and grimoires that
 	are created through the Magicka Expanded framework.
 ]]
-local registered = false
 local function onLoaded()
 	event.trigger("MagickaExpanded:Register")
-	
-	if (registered == false) then
-		this.tomes.registerEvent()
-		this.grimoires.registerEvent()
-		registered = true
-	end
+	this.info("Magicka Expanded Framework Save Game Initialized")
+end
+event.register("loaded", onLoaded)
 
+local function onInit()
+	this.tomes.registerEvent()
+	this.grimoires.registerEvent()
 	this.info("Magicka Expanded Framework Initialized")
 end
-
-event.register("loaded", onLoaded)
+event.register("initialized", onInit)
 
 return this
