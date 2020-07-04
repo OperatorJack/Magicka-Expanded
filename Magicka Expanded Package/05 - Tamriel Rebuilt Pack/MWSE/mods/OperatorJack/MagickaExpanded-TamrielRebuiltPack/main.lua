@@ -282,8 +282,6 @@ local summonTomes = {
 
 local function addTomesToLists()
   if not tes3.isModActive("Tamriel_Data.esm") then
-    mwse.log("[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
-    tes3.messageBox("[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
     return
   end
 

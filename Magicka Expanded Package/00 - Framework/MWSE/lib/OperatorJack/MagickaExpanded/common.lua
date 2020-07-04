@@ -47,8 +47,6 @@ this.addTestSpellsToPlayer = function()
         local spell = this.spells[i]
 		mwscript.addSpell({reference = tes3.player, spell = spell})
 	end
-
-	this.debug("Added Test Spells to Player.")
 end
 
 this.addPotionToPotionsList = function(potion)

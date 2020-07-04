@@ -44,7 +44,7 @@ This mod consist of multiple BAIN packages:
 
 This mod allows the distribution of spells through spell tomes and grimoires. Spell tomes teach 1 spell per book. Spell grimoires teach 2+ spells per book. This mod uses leveled lists and booksellers for spell distribution, but Spell Packs may use any mechanism to distribute spells. Please refer to the Spell Pack you are using for instructions for finding the spells within. If using spell tomes and grimoires, they will be dynamically placed through MWSE and do not require cell edits in the Construction Set.
 
-As of V3 of Magicka Expanded, there is an MCM that contains buttons to help you test the framework. You can use these buttons to add all loaded spells to the player, as well as tomes and grimoires. You can also set your stats instantly. Please note there may be a slight delay when adding spells / items through the MCM, if you are using a lot of ME dependent mods.
+There is an MCM that contains buttons to help you test the framework. You can use these buttons to add all loaded spells to the player, as well as tomes and grimoires. You can also set your stats instantly. Please note there may be a slight delay when adding spells / items through the MCM, if you are using a lot of ME dependent mods.
 
 This mod IS NOT compatible with OpenMW, at least until support for MWSE mods is added.
 
