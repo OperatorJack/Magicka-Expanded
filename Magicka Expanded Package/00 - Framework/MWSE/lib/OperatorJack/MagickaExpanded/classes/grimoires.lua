@@ -75,7 +75,7 @@ end
 
 
 local function tryLearningSpells(grimoire)
-	tes3.fadeOut(2)
+	tes3.fadeOut({duration = 2})
 
     local hasMagicka = false
     
@@ -108,7 +108,7 @@ local function tryLearningSpells(grimoire)
 		tes3.messageBox("As you study the tome, you find that you do not have enough magicka to practice the spells described within and learn them.")
 	end
 
-	tes3.fadeIn(2)
+	tes3.fadeIn({duration = 2})
 end
 
 local function onBookGetText(e)

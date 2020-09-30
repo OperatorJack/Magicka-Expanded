@@ -65,7 +65,7 @@ local function FindTome(bookId)
 end
 
 local function tryLearningSpell(tome)
-	tes3.fadeOut(2)
+	tes3.fadeOut({duration = 2})
 
 	local hasMagicka = false
 	local learningCost = tes3.getObject(tome.spellId).magickaCost * 2
@@ -91,7 +91,7 @@ local function tryLearningSpell(tome)
 		tes3.messageBox("As you study the tome, you find that you do not have enough magicka to practice the spell described within and learn it.")
 	end
 
-	tes3.fadeIn(2)
+	tes3.fadeIn({duration = 2})
 end
 
 local function onBookGetText(e)
