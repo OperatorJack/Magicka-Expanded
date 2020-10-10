@@ -74,6 +74,7 @@ end
 ]]
 this.createBasicSpell = function(params)
     local spell = tes3.getObject(params.id) or tes3spell.create(params.id, params.name)
+    tes3.setSourceless(spell)
 
     spell.name = params.name
 
@@ -132,6 +133,7 @@ end
 ]]
 this.createComplexSpell = function(params)
     local spell = tes3.getObject(params.id) or tes3spell.create(params.id, params.name)
+    tes3.setSourceless(spell)
 
     spell.name = params.name
     
