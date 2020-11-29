@@ -57,12 +57,12 @@ this.addEnchantmentToEnchantmentsList = function(enchantment)
 	table.insert(this.enchantments, enchantment)
 end
 
-this.addBoundWeaponToBoundWeaponsList = function(id)
-    table.insert(this.boundWeapons, id)
+this.addBoundWeaponToBoundWeaponsList = function(effectId, weaponId)
+    this.boundWeapons[effectId] = weaponId
 end
 
-this.addBoundArmorToBoundArmorsList = function(id)
-    table.insert(this.boundArmors, id)
+this.addBoundArmorToBoundArmorsList = function(effectId, armorId)
+    this.boundArmors[effectId] = armorId
 end
 
 this.hasSpell = function(reference, spellId)
