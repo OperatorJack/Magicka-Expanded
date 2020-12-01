@@ -84,12 +84,43 @@ this.ternary = function(condition, T, F)
 	if condition then return T else return F end
 end
 
-this.getBoundWeaponIdList = function()
+this.getBoundWeaponEffectList = function()
 	return table.copy(common.boundWeapons)
 end
 
-this.getBoundArmorIdList = function()
+this.getBoundArmorEffectList = function()
 	return table.copy(common.boundArmors)
+end
+
+this.getBoundItemEffectList = function()
+	local list = {}
+	for effect, value in pairs(this.getBoundWeaponEffectList()) do
+		list[effect] = value
+	end
+	for effect, value in pairs(this.getBoundArmorEffectList()) do
+		list[effect] = value
+	end
+	return list
+end
+
+this.getBoundWeaponIdList = function()
+	local list = {}
+	for _, value in pairs(this.getBoundWeaponEffectList()) do
+		for _, item in pairs(value) do
+			table.insert(list, item)
+		end
+	end
+	return list
+end
+
+this.getBoundArmorIdList = function()
+	local list = {}
+	for _, value in pairs(this.getBoundArmorEffectList()) do
+		for _, item in pairs(value) do
+			table.insert(list, item)
+		end
+	end
+	return list
 end
 
 this.getBoundItemIdList = function()

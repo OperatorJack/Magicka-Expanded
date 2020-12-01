@@ -80,8 +80,10 @@ end
 		Other parameters will be automatically set by the function.
 ]]
 this.createBasicBoundArmorEffect = function(params)
-	if (params.armorId) then common.addBoundArmorToBoundArmorsList(params.id, params.armorId) end
-	if (params.armorId2) then common.addBoundArmorToBoundArmorsList(params.id, params.armorId2) end
+	local armor = {}
+	if (params.armorId) then table.insert(armor, params.armorId) end
+	if (params.armorId2) then table.insert(armor, params.armorId2) end
+	if (#armor > 0) then common.addBoundArmorToBoundArmorsList(params.id, armor) end
 
 	local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.
@@ -134,7 +136,7 @@ end
 		Other parameters will be automatically set by the function.
 ]]
 this.createBasicBoundWeaponEffect = function(params)
-	if (params.weaponId) then common.addBoundWeaponToBoundWeaponsList(params.Id, params.weaponId) end
+	if (params.weaponId) then common.addBoundWeaponToBoundWeaponsList(params.id, { params.weaponId }) end
 
 	local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.
