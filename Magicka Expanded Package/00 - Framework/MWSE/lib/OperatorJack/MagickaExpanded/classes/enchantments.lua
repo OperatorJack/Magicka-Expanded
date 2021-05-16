@@ -3,11 +3,11 @@ local common = require("OperatorJack.MagickaExpanded.common")
 local this = {}
 
 --[[
-    Description: Updates an Enchantment based on the given @params, 
+    Description: Updates an Enchantment based on the given @params,
         and adds it to the framework's list of managed Enchantments. Accepts one
         magic effect.
 
-    @params: A table of parameters used to configure the Enchantment. @params 
+    @params: A table of parameters used to configure the Enchantment. @params
         must be in the following format:
 
     example = {
@@ -20,7 +20,7 @@ local this = {}
         radius = [int] | nil
     }
 
-    Table parameter options marked as | nil are optional. Table parameter options marked 
+    Table parameter options marked as | nil are optional. Table parameter options marked
         with .* must use a value found in the table set. Table parameter options marked
         with [int] must be an integer.
 ]]
@@ -39,8 +39,8 @@ this.createBasicEnchantment = function(params)
     effect.max = params.max or 0
     effect.duration = params.duration or 0
     effect.radius = params.radius or 0
-    effect.skill = params.skill or nil
-    effect.attribute = params.attribute or nil
+    effect.skill = params.skill or -1
+    effect.attribute = params.attribute or -1
 
     enchantment.chargeCost = params.chargeCost or 0
     enchantment.maxCharge = params.maxCharge or 0
@@ -52,11 +52,11 @@ this.createBasicEnchantment = function(params)
 end
 
 --[[
-    Description: Creates or updates a Enchantment based on the given @params, 
-        and adds it to the framework's list of managed Enchantments. Accepts multiple 
+    Description: Creates or updates a Enchantment based on the given @params,
+        and adds it to the framework's list of managed Enchantments. Accepts multiple
         magic effects.
 
-    @params: A table of parameters used to configure the Enchantment. @params 
+    @params: A table of parameters used to configure the Enchantment. @params
         must be in the following format:
 
     example = {
@@ -83,7 +83,7 @@ end
         }
     }
 
-    Table parameter options marked as | nil are optional. Table parameter options marked 
+    Table parameter options marked as | nil are optional. Table parameter options marked
         with .* must use a value found in the table set. Table parameter options marked
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
@@ -105,8 +105,8 @@ this.createComplexEnchantment = function(params)
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0
         effect.radius = newEffect.radius or 0
-        effect.skill = newEffect.skill or nil
-        effect.attribute = newEffect.attribute or nil
+        effect.skill = newEffect.skill or -1
+        effect.attribute = newEffect.attribute or -1
     end
 
     enchantment.chargeCost = params.chargeCost or 0

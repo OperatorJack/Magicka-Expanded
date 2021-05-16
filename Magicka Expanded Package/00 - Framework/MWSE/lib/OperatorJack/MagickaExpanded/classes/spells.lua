@@ -7,7 +7,7 @@ local function getEffectCost(effect)
     if (minMagnitude == 0) then
         minMagnitude = 1
     end
-    
+
     local maxMagnitude = effect.max or 0
     if (maxMagnitude == 0) then
         maxMagnitude = 1
@@ -46,16 +46,16 @@ this.getSpellCost = function(spell)
             spellCost = spellCost + getEffectCost(effect)
 		end
     end
-    
+
 	return spellCost
 end
 
 --[[
-    Description: Creates or updates a spell based on the given @params, 
+    Description: Creates or updates a spell based on the given @params,
         and adds it to the framework's list of managed spells. Accepts one
         magic effect.
 
-    @params: A table of parameters used to configure the spell. @params 
+    @params: A table of parameters used to configure the spell. @params
         must be in the following format:
 
     example = {
@@ -68,7 +68,7 @@ end
         radius = [int] | nil
     }
 
-    Table parameter options marked as | nil are optional. Table parameter options marked 
+    Table parameter options marked as | nil are optional. Table parameter options marked
         with .* must use a value found in the table set. Table parameter options marked
         with [int] must be an integer.
 ]]
@@ -85,8 +85,8 @@ this.createBasicSpell = function(params)
     effect.max = params.max or 0
     effect.duration = params.duration or 0
     effect.radius = params.radius or 0
-    effect.skill = params.skill or nil
-    effect.attribute = params.attribute or nil
+    effect.skill = params.skill or -1
+    effect.attribute = params.attribute or -1
 
     spell.magickaCost = params.magickaCost or this.getSpellCost(spell)
 
@@ -96,11 +96,11 @@ this.createBasicSpell = function(params)
 end
 
 --[[
-    Description: Creates or updates a spell based on the given @params, 
-        and adds it to the framework's list of managed spells. Accepts multiple 
+    Description: Creates or updates a spell based on the given @params,
+        and adds it to the framework's list of managed spells. Accepts multiple
         magic effects.
 
-    @params: A table of parameters used to configure the spell. @params 
+    @params: A table of parameters used to configure the spell. @params
         must be in the following format:
 
     example = {
@@ -127,7 +127,7 @@ end
         }
     }
 
-    Table parameter options marked as | nil are optional. Table parameter options marked 
+    Table parameter options marked as | nil are optional. Table parameter options marked
         with .* must use a value found in the table set. Table parameter options marked
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
@@ -136,7 +136,7 @@ this.createComplexSpell = function(params)
     tes3.setSourceless(spell)
 
     spell.name = params.name
-    
+
     for i=1, #params.effects do
         local effect = spell.effects[i]
         local newEffect = params.effects[i]
@@ -147,8 +147,8 @@ this.createComplexSpell = function(params)
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0
         effect.radius = newEffect.radius or 0
-        effect.skill = newEffect.skill or nil
-        effect.attribute = newEffect.attribute or nil
+        effect.skill = newEffect.skill or -1
+        effect.attribute = newEffect.attribute or -1
     end
 
     spell.magickaCost = params.magickaCost or this.getSpellCost(spell)
