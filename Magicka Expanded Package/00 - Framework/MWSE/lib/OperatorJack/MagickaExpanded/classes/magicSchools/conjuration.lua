@@ -5,7 +5,7 @@ local this = {}
 --[[
 	Description: Wrapper for tes3.addMagicEffect that has default values
 		that are common for spells of this school. Uses the same parameter
-		table as tes3.addMagicEffect(). 
+		table as tes3.addMagicEffect().
 ]]
 this.createBasicEffect = function(params)
 	if (common.checkParams(params) == false) then return end
@@ -95,7 +95,7 @@ this.createBasicBoundArmorEffect = function(params)
 
 		-- Basic dials.
         baseCost = params.baseCost,
-        
+
         -- Various flags.
         allowEnchanting = true,
         allowSpellmaking = true,
@@ -148,7 +148,7 @@ this.createBasicBoundWeaponEffect = function(params)
 
 		-- Basic dials.
         baseCost = params.baseCost,
-        
+
         -- Various flags.
         allowEnchanting = true,
         allowSpellmaking = true,
@@ -164,8 +164,8 @@ this.createBasicBoundWeaponEffect = function(params)
         lighting = { 0.99, 0.95, 0.67 },
 
 		-- Required callbacks.
-		onTick = function(e)	
-			e:triggerBoundWeapon(params.weaponId)			
+		onTick = function(e)
+			e:triggerBoundWeapon(params.weaponId)
 		end,
 	})
 
@@ -199,7 +199,7 @@ this.createBasicSummoningEffect = function(params)
 
 		-- Basic dials.
         baseCost = params.baseCost,
-        
+
         -- Various flags.
         allowEnchanting = true,
         allowSpellmaking = true,
@@ -216,6 +216,13 @@ this.createBasicSummoningEffect = function(params)
 		-- Required callbacks.
 		onTick = function(e)
             e:triggerSummon(params.creatureId)
+
+			if e.effectInstance.createdData then
+				local summon = e.effectInstance.createdData.object
+				if summon then
+					tes3.setAIFollow{ reference = summon, target = tes3.player }
+				end
+			end
         end,
 	})
 
