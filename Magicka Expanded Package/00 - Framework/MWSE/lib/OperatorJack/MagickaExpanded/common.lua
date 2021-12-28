@@ -35,6 +35,7 @@ this.spells = {}
 this.potions = {}
 this.enchantments = {}
 
+this.boundItemsByObject = {}
 this.boundWeapons = {}
 this.boundArmors = {}
 
@@ -59,10 +60,16 @@ end
 
 this.addBoundWeaponToBoundWeaponsList = function(effectId, weaponId)
     this.boundWeapons[effectId] = weaponId
+    for _, value in ipairs(weaponId) do
+        this.boundItemsByObject[value] = true
+    end
 end
 
 this.addBoundArmorToBoundArmorsList = function(effectId, armorId)
     this.boundArmors[effectId] = armorId
+    for _, value in ipairs(armorId) do
+        this.boundItemsByObject[value] = true
+    end
 end
 
 this.hasSpell = function(reference, spellId)

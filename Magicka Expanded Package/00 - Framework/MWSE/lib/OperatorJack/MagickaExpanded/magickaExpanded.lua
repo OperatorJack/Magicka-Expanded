@@ -53,4 +53,29 @@ local function onInit()
 end
 event.register("initialized", onInit)
 
+--[[
+	Fix being able to drop some bound items.
+]]
+local msgYouCannotDropSummonedItems -- set in initialized()
+
+local function itemDropped(e)
+	if common.boundItemsByObject[e.reference.id] then
+		timer.start({
+			type = timer.real,
+			duration = 0.01,
+			callback = function()
+				tes3.player:activate(e.reference)
+				tes3.messageBox(msgYouCannotDropSummonedItems)
+			end
+		})
+	end
+end
+
+local function onInitBoundItemFix()
+	local sBarterDialog12 = tes3.findGMST(tes3.gmst.sBarterDialog12)
+	msgYouCannotDropSummonedItems = sBarterDialog12.value
+	event.register('itemDropped', itemDropped)
+end
+event.register('initialized', onInitBoundItemFix)
+
 return this
