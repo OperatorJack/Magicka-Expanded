@@ -4,10 +4,10 @@ local sharedContainerId = "OJ_ME_BookContainer"
 local merchants = {
   ["simine fralinie"] = sharedContainerId,
   ["jobasha"] = sharedContainerId,
-  ["TR_m1_Felisel_Gavos"] = sharedContainerId,
-  ["TR_m1_Sevaen_Ondyn"] = sharedContainerId,
-  ["TR_m2_Edheldur"] = sharedContainerId,
-  ["TR_m1_Cornelius_Arjax"] = sharedContainerId,
+  ["tr_m1_felisel_gavos"] = sharedContainerId,
+  ["tr_m1_sevaen_ondyn"] = sharedContainerId,
+  ["tr_m2_edheldur"] = sharedContainerId,
+  ["tr_m1_cornelius_arjax"] = sharedContainerId,
   ["dorisa darvel"] = sharedContainerId,
   ["codus callonus"] = sharedContainerId,
 }
