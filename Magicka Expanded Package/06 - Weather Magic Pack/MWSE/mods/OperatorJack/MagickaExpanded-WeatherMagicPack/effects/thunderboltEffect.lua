@@ -83,11 +83,11 @@ local function onThunderboltCollision(e)
                 --@type tes3reference
                 reference:disable()
 
-                timer.delayOneFrame({
-                    callback = function()
+                timer.delayOneFrame(
+                    function()
                         reference.deleted = true
                     end
-                })
+                )
             end
         })
 	end

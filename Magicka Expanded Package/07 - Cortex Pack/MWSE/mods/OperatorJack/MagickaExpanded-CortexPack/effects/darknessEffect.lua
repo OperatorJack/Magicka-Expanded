@@ -19,11 +19,11 @@ local function onDarknessCollision(e)
         })
 
         -- Add a mechanic to the darkness mesh.
-        timer.start({ 
+        timer.start({
             duration = 1,
             callback = function()
                 local actors = framework.functions.getActorsNearTargetPosition(caster.cell, mistPosition, distanceLimit)
-        
+
                 -- For any actors near the darkness, remove the light effect if it exists.
                 for _, actor in pairs(actors) do
                     tes3.removeEffects({
@@ -31,8 +31,8 @@ local function onDarknessCollision(e)
                         effect = tes3.effect.light
                     })
                 end
-            end, 
-            iterations = (effectDuration - 1) 
+            end,
+            iterations = (effectDuration - 1)
         })
 
         timer.start(
@@ -42,11 +42,11 @@ local function onDarknessCollision(e)
                 --@type tes3reference
                 mistReference:disable()
 
-                timer.delayOneFrame({
-                    callback = function()
+                timer.delayOneFrame(
+                    function()
                         mistReference.deleted = true
                     end
-                })
+                )
             end
         })
 	end
