@@ -286,22 +286,18 @@ local function addTomesToLists()
   end
 
   for _, tome in pairs(teleportTomes) do
-    mwscript.addToLevItem({
-      list = tome.list,
-      item = tome.id,
-      level = 1
-    })
+	local item = tes3.getObject(tome.id)
+	local list = tes3.getObject(tome.list)
+	list:insert(item, 1)
   end
   for _, tome in pairs(summonTomes) do
-    mwscript.addToLevItem({
-      list = tome.list,
-      item = tome.id,
-      level = 1
-    })
+	local item = tes3.getObject(tome.id)
+	local list = tes3.getObject(tome.list)
+	list:insert(item, 1)
   end
 end
 event.register("initialized", addTomesToLists)
- 
+
 
 local function registerSpells()
   if not tes3.isModActive("Tamriel_Data.esm") then
@@ -413,7 +409,7 @@ local function registerSpells()
     range = tes3.effectRange.self
   })
 
-  
+
   framework.spells.createBasicSpell({
     id = summonSpellIds.armorCenturion,
     name = "Summon Armor Centurion",
@@ -603,7 +599,7 @@ local function registerSpells()
     range = tes3.effectRange.self,
     duration = 30
   })
-  
+
   framework.tomes.registerTomes(teleportTomes)
   framework.tomes.registerTomes(summonTomes)
 end
