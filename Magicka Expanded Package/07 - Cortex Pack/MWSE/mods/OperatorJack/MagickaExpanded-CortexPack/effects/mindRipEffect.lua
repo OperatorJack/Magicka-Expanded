@@ -53,7 +53,7 @@ local function showCheckPassedTooltip(e)
         if (effect == nil) then
             return
         end
-        
+
 
         local effectContainer = effectsContainer:createBlock()
         effectContainer.flowDirection = "left_to_right"
@@ -100,10 +100,10 @@ local function onSpellSelected(e)
             current = newMagicka * -1
         })
 
-        mwscript.addSpell({
-            reference = tes3.player,
-            spell = spell
-        })
+		tes3.addSpell({
+			reference = tes3.player,
+			spell = spell
+		})
 
         tes3.messageBox("You successfully learn the spell.")
     else
@@ -115,7 +115,7 @@ local function onSpellSelected(e)
 
         tes3.messageBox("You fail to learn the spell.")
     end
-    
+
     tes3ui.forcePlayerInventoryUpdate()
     tes3ui.leaveMenuMode()
     menu:destroy()
@@ -162,14 +162,14 @@ local function showUi(reference)
         id = GUI_ID.listPane
     })
     for _, spell in pairs(spells) do
-        local parent = listPane:createBlock()     
+        local parent = listPane:createBlock()
         parent.flowDirection = "left_to_right"
         parent.childAlignX = 0
         parent.autoHeight = true
         parent.borderAllSides = 3
         parent.widthProportional = 1.0
         parent:setPropertyObject("OJ_ME_MR:Spell", spell)
- 
+
         if (spell.magickaCost / tes3.mobilePlayer.intelligence.current > 2.0) then
             local label = parent:createLabel({
                 text = string.format("%s", spell.name)
@@ -183,7 +183,7 @@ local function showUi(reference)
                 text = string.format("%s - %spts", spell.name, spell.magickaCost)
             })
             label.wrapText = true
-    
+
             parent:register("mouseClick", onSpellSelected)
             parent:register("help", showCheckPassedTooltip)
         end

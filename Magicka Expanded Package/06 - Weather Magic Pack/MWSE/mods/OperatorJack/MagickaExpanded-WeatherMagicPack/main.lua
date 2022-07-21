@@ -250,7 +250,7 @@ local function registerSpells()
     effect = tes3.effect.weatherRain,
     range = tes3.effectRange.self
   })
-  
+
   framework.tomes.registerTomes(weatherTomes)
 end
 
@@ -278,10 +278,10 @@ local function onLoaded()
       count = 1
     })
 
-    mwscript.addSpell({
-      reference = "fevyn ralen",
-      spell = weatherSpellIds.weatherOvercast
-    })
+	tes3.addSpell({
+		reference = "fevyn ralen",
+		spell = weatherSpellIds.weatherOvercast
+	})
 
     tes3.addItem({
       reference = "lloros sarano",
