@@ -11,7 +11,7 @@ local clonePotionId = "OJ_ME_ClonePotion"
 local clonePotionName = "Clone"
 
 local id = "A shady smuggler"
-local function onCloneSourceTick(e)	
+local function onCloneSourceTick(e)
     e:triggerSummon(id)
 end
 
@@ -46,7 +46,7 @@ local function onCloneTick(e)
         id = e.effectInstance.target.object.id
         local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.clone)
         local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(effect)
-    
+
         if (e.effectInstance.target.object.level <= magnitude) then
             local duration = effect.duration
             local potion = framework.alchemy.createBasicPotion({
@@ -55,12 +55,11 @@ local function onCloneTick(e)
                 effect = tes3.effect.cloneSource,
                 duration = duration
             })
-        
-            mwscript.equip({
-                reference = e.sourceInstance.caster,
+
+            e.sourceInstance.caster.mobile:equip({
                 item = potion
             })
-        
+
         else
             tes3.messageBox("%s was too powerful to be cloned!", e.effectInstance.target.baseObject.name)
         end
