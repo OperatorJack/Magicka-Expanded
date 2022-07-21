@@ -11,7 +11,7 @@ this.addTomesToPlayer = function()
 	for _, tome in ipairs(tomes) do
 		if (tes3.getObject(tome.id)) then
 			tes3.addItem({
-				reference = tes3.getPlayerRef(),
+				reference = tes3.player,
 				item = tome.id
 			})
         else

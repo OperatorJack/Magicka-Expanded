@@ -11,7 +11,7 @@ this.addGrimoiresToPlayer = function ()
     for _, grimoire in ipairs(grimoires) do
         if (tes3.getObject(grimoire.id)) then
             tes3.addItem({
-                reference = tes3.getPlayerRef(),
+                reference = tes3.player,
                 item = grimoire.id
             })
         else
