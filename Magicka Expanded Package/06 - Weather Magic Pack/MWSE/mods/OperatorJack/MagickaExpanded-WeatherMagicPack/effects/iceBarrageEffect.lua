@@ -20,7 +20,6 @@ local function onIceBarrageCollision(e)
             return
         end
 
-        ---@type tes3magicEffect
         local effectDuration = 2
         local distanceLimit = 250
         local position = e.collision.point:copy()
@@ -35,7 +34,8 @@ local function onIceBarrageCollision(e)
         local actors = framework.functions.getActorsNearTargetPosition(caster.cell, position, distanceLimit)
         local spell = tes3.getObject("OJ_ME_IceBarrageEffect")
 
-        mwscript.explodeSpell({
+		tes3.cast({
+            target = reference,
             reference = reference,
             spell = spell
         })
