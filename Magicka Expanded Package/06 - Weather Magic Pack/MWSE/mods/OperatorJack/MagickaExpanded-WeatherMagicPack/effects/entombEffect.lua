@@ -70,10 +70,7 @@ local function onEntombCollision(e)
                     })
                 end
 
-                mwscript.startCombat({
-                    reference = actor,
-                    target = caster
-                })
+                actor.mobile:startCombat(caster.mobile)
             end
         end
 
