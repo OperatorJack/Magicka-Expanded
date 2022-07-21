@@ -25,8 +25,9 @@ local this = {}
         with [int] must be an integer.
 ]]
 this.createBasicEnchantment = function(params)
-    local enchantment = tes3.getObject(params.id) or tes3enchantment.create({
+    local enchantment = tes3.createObject({
         id = params.id,
+		objectType = tes3.objectType.enchantment,
         castType = tes3.enchantmentType.onUse,
         chargeCost = 1,
         maxCharge = 1
@@ -88,8 +89,9 @@ end
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
 this.createComplexEnchantment = function(params)
-    local enchantment = tes3.getObject(params.id) or tes3enchantment.create({
+    local enchantment = tes3.createObject({
         id = params.id,
+		objectType = tes3.objectType.enchantment,
         castType = tes3.enchantmentType.onUse,
         chargeCost = 1,
         maxCharge = 1
