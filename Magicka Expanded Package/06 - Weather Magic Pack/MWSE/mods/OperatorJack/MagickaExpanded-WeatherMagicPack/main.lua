@@ -93,11 +93,9 @@ local weatherTomes = {
 
 local function addTomesToLists()
   for _, tome in pairs(weatherTomes) do
-    mwscript.addToLevItem({
-      list = tome.list,
-      item = tome.id,
-      level = 1
-    })
+	local item = tes3.getObject(tome.id)
+	local list = tes3.getObject(tome.list)
+	list:insert(item, 1)
   end
 end
 event.register("initialized", addTomesToLists)
@@ -250,7 +248,7 @@ local function registerSpells()
     effect = tes3.effect.weatherRain,
     range = tes3.effectRange.self
   })
-  
+
   framework.tomes.registerTomes(weatherTomes)
 end
 
@@ -278,10 +276,10 @@ local function onLoaded()
       count = 1
     })
 
-    mwscript.addSpell({
-      reference = "fevyn ralen",
-      spell = weatherSpellIds.weatherOvercast
-    })
+	tes3.addSpell({
+		reference = "fevyn ralen",
+		spell = weatherSpellIds.weatherOvercast
+	})
 
     tes3.addItem({
       reference = "lloros sarano",

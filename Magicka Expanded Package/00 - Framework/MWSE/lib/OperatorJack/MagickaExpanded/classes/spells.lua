@@ -73,7 +73,7 @@ end
         with [int] must be an integer.
 ]]
 this.createBasicSpell = function(params)
-    local spell = tes3.getObject(params.id) or tes3spell.create(params.id, params.name)
+    local spell = tes3.createObject({ id = params.id, objectType = tes3.objectType.spell })
     tes3.setSourceless(spell)
 
     spell.name = params.name
@@ -132,7 +132,7 @@ end
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
 this.createComplexSpell = function(params)
-    local spell = tes3.getObject(params.id) or tes3spell.create(params.id, params.name)
+    local spell = tes3.createObject({ id = params.id, objectType = tes3.objectType.spell })
     tes3.setSourceless(spell)
 
     spell.name = params.name

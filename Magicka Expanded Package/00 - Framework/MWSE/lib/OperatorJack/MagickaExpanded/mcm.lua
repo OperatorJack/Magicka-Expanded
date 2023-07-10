@@ -43,12 +43,12 @@ local function createGeneralCategory(template)
 			if (tes3.player ~= nil) then
 				tes3.setStatistic({
 					reference = tes3.mobilePlayer,
-					attribute = 1,
+					attribute = tes3.attribute.intelligence,
 					current = 100
 				})
 				tes3.setStatistic({
 					reference = tes3.mobilePlayer,
-					attribute = 2,
+					attribute = tes3.attribute.willpower,
 					current = 100
 				})
 				--fuck me, fuck lua scripting and fuck this particular chunk of code
@@ -59,32 +59,32 @@ local function createGeneralCategory(template)
 				})
 				tes3.setStatistic({
 					reference = tes3.mobilePlayer,
-					skill = 11,
+					skill = tes3.skill.alteration,
 					current = 100
 				})
 				tes3.setStatistic({
 					reference = tes3.mobilePlayer,
-					skill = 10,
+					skill = tes3.skill.destruction,
 					current = 100
 				})
 				tes3.setStatistic({
 					reference = tes3.mobilePlayer,
-					skill = 15,
+					skill = tes3.skill.restoration,
 					current = 100
 				})
 				tes3.setStatistic({
 					reference = tes3.mobilePlayer,
-					skill = 13,
+					skill = tes3.skill.conjuration,
 					current = 100
 				})
 				tes3.setStatistic({
 					reference = tes3.mobilePlayer,
-					skill = 12,
+					skill = tes3.skill.illusion,
 					current = 100
 				})
 				tes3.setStatistic({
 					reference = tes3.mobilePlayer,
-					skill = 14,
+					skill = tes3.skill.mysticism,
 					current = 100
 				})
 				tes3.messageBox("[Magicka Expanded] Increased player's magic attributes and skills.")

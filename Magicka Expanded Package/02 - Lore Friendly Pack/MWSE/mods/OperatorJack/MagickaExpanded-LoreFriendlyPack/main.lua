@@ -24,65 +24,63 @@ local tomes = {
   {
     id = "OJ_ME_TomeBanishDaedra",
     spellId = spellIds.banishDaedra
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundGreaves",
     spellId = spellIds.boundGreaves
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundPauldrons",
     spellId = spellIds.boundPauldrons
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundClaymore",
     spellId = spellIds.boundClaymore
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundClub",
     spellId = spellIds.boundClub
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundDaiKatana",
     spellId = spellIds.boundDaiKatana
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundKatana",
     spellId = spellIds.boundKatana
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundShortsword",
     spellId = spellIds.boundShortSword
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundStaff",
     spellId = spellIds.boundStaff
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundTanto",
     spellId = spellIds.boundTanto
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundWakizashi",
     spellId = spellIds.boundWakizashi
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundWaraxe",
     spellId = spellIds.boundWarAxe
-  }, 
+  },
   {
     id = "OJ_ME_TomeBoundWarhammer",
     spellId = spellIds.boundWarhammer
-  }, 
+  },
 }
 
 local function addTomesToLists()
   local listId = "OJ_ME_LeveledList_Common"
+  local list = tes3.getObject(listId)
   for _, tome in pairs(tomes) do
-    mwscript.addToLevItem({
-      list = listId,
-      item = tome.id,
-      level = 1
-    })
+	local item = tes3.getObject(tome.id)
+	list:insert(item, 1)
   end
 end
 event.register("initialized", addTomesToLists)

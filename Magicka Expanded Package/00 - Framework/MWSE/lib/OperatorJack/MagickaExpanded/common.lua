@@ -46,8 +46,9 @@ end
 this.addTestSpellsToPlayer = function()
     for i = 1,#this.spells do
         local spell = this.spells[i]
-		mwscript.addSpell({reference = tes3.player, spell = spell})
+		tes3.addSpell({reference = tes3.player, spell = spell, updateGUI = false})
 	end
+	tes3.updateMagicGUI({reference = tes3.player})
 end
 
 this.addPotionToPotionsList = function(potion)

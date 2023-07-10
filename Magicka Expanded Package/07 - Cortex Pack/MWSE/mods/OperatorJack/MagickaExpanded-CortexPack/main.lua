@@ -30,7 +30,7 @@ local tomes = {
     id = "OJ_ME_TomeDarkness",
     spellId = spellIds.veilOfDarkness,
     list = "OJ_ME_LeveledList_Rare"
-  }, 
+  },
   {
     id = "OJ_ME_TomeClone",
     spellId = spellIds.clone,
@@ -65,11 +65,9 @@ local tomes = {
 
 local function addTomesToLists()
   for _, tome in pairs(tomes) do
-    mwscript.addToLevItem({
-      list = tome.list,
-      item = tome.id,
-      level = 1
-    })
+	local item = tes3.getObject(tome.id)
+	local list = tes3.getObject(tome.list)
+	list:insert(item, 1)
   end
 end
 event.register("initialized", addTomesToLists)
@@ -137,7 +135,7 @@ local function registerSpells()
     range = tes3.effectRange.self,
     duration = 30
   })
-  
+
   framework.tomes.registerTomes(tomes)
 end
 

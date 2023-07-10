@@ -11,7 +11,7 @@ this.addGrimoiresToPlayer = function ()
     for _, grimoire in ipairs(grimoires) do
         if (tes3.getObject(grimoire.id)) then
             tes3.addItem({
-                reference = tes3.getPlayerRef(), 
+                reference = tes3.player,
                 item = grimoire.id
             })
         else
@@ -32,12 +32,12 @@ end
         }
     }
 ]]
-this.registerGrimoire = function(grimoire)	
+this.registerGrimoire = function(grimoire)
 	table.insert(grimoires, grimoire)
 end
 
 --[[
-    Description: Registers @grimoires as a collection of grimoires to be checked 
+    Description: Registers @grimoires as a collection of grimoires to be checked
         for when a book is opened.
 
     @grimoires: The grimoires to register. Must be in the following format:
@@ -64,8 +64,8 @@ this.registerGrimoires = function(grimoires)
 	end
 end
 
-local function FindGrimoire(bookId)   
-    for _, grimoire in ipairs(grimoires) do 
+local function FindGrimoire(bookId)
+    for _, grimoire in ipairs(grimoires) do
 		if (grimoire.id == bookId) then
 			return grimoire
 		end
@@ -78,9 +78,9 @@ local function tryLearningSpells(grimoire)
 	tes3.fadeOut({duration = 2})
 
     local hasMagicka = false
-    
+
     local learningCost = 0
-    for _, spellId in ipairs(grimoire.spellIds) do      
+    for _, spellId in ipairs(grimoire.spellIds) do
         learningCost = learningCost + tes3.getObject(spellId).magickaCost * 2
     end
 
@@ -95,9 +95,10 @@ local function tryLearningSpells(grimoire)
 			name = "magicka",
 			current = learningCost * -1
 		})
-        for _, spellId in ipairs(grimoire.spellIds) do      
-            mwscript.addSpell({reference = tes3.player, spell = spellId})
+        for _, spellId in ipairs(grimoire.spellIds) do
+            tes3.addSpell({reference = tes3.player, spell = spellId, updateGUI = false})
         end
+		tes3.updateMagicGUI({reference = tes3.player})
 		tes3.messageBox("As you study the tome and practice the spells described within, you feel new spells enter your mind.")
 	else
 		tes3.modStatistic({
@@ -114,13 +115,13 @@ end
 local function onBookGetText(e)
 	local grimoire = FindGrimoire(e.book.id)
 
-	if (grimoire == nil) then  
+	if (grimoire == nil) then
 		return
 	end
-    
+
     local newSpell = false
-    for _, spellId in ipairs(grimoire.spellIds) do      
-        if (common.hasSpell(tes3.player, spellId) == false) then		
+    for _, spellId in ipairs(grimoire.spellIds) do
+        if (common.hasSpell(tes3.player, spellId) == false) then
             newSpell = true
         end
     end
@@ -132,7 +133,7 @@ local function onBookGetText(e)
 end
 
 --[[
-	Description: Registers the grimoire event. On bookGetText, the collection of 
+	Description: Registers the grimoire event. On bookGetText, the collection of
 		registered grimoires will be iterated through. If the book belongs to the
 		collection of registered grimoires, the spells mapped to that grimoire will be
 		added to the player, if the player does not already have them.

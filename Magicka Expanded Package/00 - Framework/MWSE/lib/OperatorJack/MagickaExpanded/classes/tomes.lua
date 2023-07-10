@@ -11,7 +11,7 @@ this.addTomesToPlayer = function()
 	for _, tome in ipairs(tomes) do
 		if (tes3.getObject(tome.id)) then
 			tes3.addItem({
-				reference = tes3.getPlayerRef(), 
+				reference = tes3.player,
 				item = tome.id
 			})
         else
@@ -29,7 +29,7 @@ end
 		spellId = "exampleSpellId"
 	}
 ]]
-this.registerTome = function(tome)	
+this.registerTome = function(tome)
 	table.insert(tomes, tome)
 end
 
@@ -80,7 +80,7 @@ local function tryLearningSpell(tome)
 			name = "magicka",
 			current = learningCost * -1
 		})
-		mwscript.addSpell({reference = tes3.player, spell = tome.spellId})
+		tes3.addSpell({reference = tes3.player, spell = tome.spellId})
 		tes3.messageBox("As you study the tome and practice the spell described within, you feel a new spell enter your mind.")
 	else
 		tes3.modStatistic({
@@ -103,13 +103,13 @@ local function onBookGetText(e)
 
 	if (common.hasSpell(tes3.player, tome.spellId)) then
 		tes3.messageBox("You attempt to read the tome but can learn nothing more.")
-	else	
+	else
 		tryLearningSpell(tome)
 	end
 end
 
 --[[
-	Description: Registers the tome event. On bookGetText, the collection of 
+	Description: Registers the tome event. On bookGetText, the collection of
 		registered tomes will be iterated through. If the book belongs to the
 		collection of registered tomes, the spell mapped to that tome will be
 		added to the player, if the player does not already have it.

@@ -25,8 +25,8 @@ local spellIds = {
 }
 
 local grimoires = {
-  { 
-    id = "OJ_ME_GrimoireSummGoblin", 
+  {
+    id = "OJ_ME_GrimoireSummGoblin",
     spellIds = {
       spellIds.warDurzog,
       spellIds.goblinGrunt,
@@ -159,18 +159,14 @@ local tomes = {
 
 local function addTomesToLists()
   for _, tome in pairs(tomes) do
-    mwscript.addToLevItem({
-      list = tome.list,
-      item = tome.id,
-      level = 1
-    })
+	local item = tes3.getObject(tome.id)
+	local list = tes3.getObject(tome.list)
+	list:insert(item, 1)
   end
   for _, grimoire in pairs(grimoires) do
-    mwscript.addToLevItem({
-      list = grimoire.list,
-      item = grimoire.id,
-      level = 1
-    })
+	local item = tes3.getObject(grimoire.id)
+	local list = tes3.getObject(grimoire.list)
+	list:insert(item, 1)
   end
 end
 event.register("initialized", addTomesToLists)

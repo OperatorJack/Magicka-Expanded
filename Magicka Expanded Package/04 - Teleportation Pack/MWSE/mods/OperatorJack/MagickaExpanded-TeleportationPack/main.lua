@@ -7,7 +7,7 @@ local spellIds = {
   balmora = "OJ_ME_TeleportToBalmora",
   ebonheart = "OJ_ME_TeleportToEbonheart",
   vivec = "OJ_ME_TeleportToVivec",
-  
+
   caldera = "OJ_ME_TeleportToCaldera",
   gnisis = "OJ_ME_TeleportToGnisis",
   maargan = "OJ_ME_TeleportToMaarGan",
@@ -85,11 +85,9 @@ local tomes = {
 
 local function addTomesToLists()
   for _, tome in pairs(tomes) do
-    mwscript.addToLevItem({
-      list = tome.list,
-      item = tome.id,
-      level = 1
-    })
+	local item = tes3.getObject(tome.id)
+	local list = tes3.getObject(tome.list)
+	list:insert(item, 1)
   end
 end
 event.register("initialized", addTomesToLists)
@@ -168,7 +166,7 @@ local function registerSpells()
     effect = tes3.effect.teleportToTelMora,
     range = tes3.effectRange.self
   })
-  
+
   framework.tomes.registerTomes(tomes)
 end
 
