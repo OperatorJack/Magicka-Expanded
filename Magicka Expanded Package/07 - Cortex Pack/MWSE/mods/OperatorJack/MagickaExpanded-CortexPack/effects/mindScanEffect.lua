@@ -3,29 +3,29 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 tes3.claimSpellEffectId("mindScan", 330)
 
 local function addMindScanEffect()
-	framework.effects.mysticism.createBasicEffect({
-		-- Base information.
-		id = tes3.effect.mindScan,
-		name = "Mind Scan",
-		description = "While active, lets the caster see the spells in other actors minds.",
+    framework.effects.mysticism.createBasicEffect({
+        -- Base information.
+        id = tes3.effect.mindScan,
+        name = "Mind Scan",
+        description = "While active, lets the caster see the spells in other actors minds.",
 
-		-- Basic dials.
-		baseCost = 30.0,
+        -- Basic dials.
+        baseCost = 30.0,
 
-		-- Various flags.
-		allowEnchanting = true,
+        -- Various flags.
+        allowEnchanting = true,
         allowSpellmaking = true,
         canCastSelf = true,
         hasNoMagnitude = true,
         hasContinuousVFX = true,
 
-		-- Graphics/sounds.
-		icon = "RFD\\RFD_crt_mindscan.dds",
-        lighting = { 0, 0, 0 },
+        -- Graphics/sounds.
+        icon = "RFD\\RFD_crt_mindscan.dds",
+        lighting = {0, 0, 0},
 
-		-- Required callbacks.
-		onTick = function(e) e:trigger() end,
-	})
+        -- Required callbacks.
+        onTick = function(e) e:trigger() end
+    })
 end
 
 event.register("magicEffectsResolved", addMindScanEffect)
@@ -38,25 +38,19 @@ local function registerUi()
 end
 
 local function createMindScanUi(reference, tooltip)
-    if (GUI_ID == nil) then
-        registerUi()
-    end
-    
+    if (GUI_ID == nil) then registerUi() end
+
     local spells = {}
     for spell in tes3.iterate(reference.object.spells.iterator) do
-        if (spell.castType == tes3.spellType.power or
-            spell.castType == tes3.spellType.spell) then
-            table.insert(spells, spell)
-        end
+        if (spell.castType == tes3.spellType.power or spell.castType ==
+            tes3.spellType.spell) then table.insert(spells, spell) end
     end
 
-    if (#spells == 0) then
-        return
-    end
+    if (#spells == 0) then return end
 
     table.sort(spells, function(a, b) return a.name < b.name end)
 
-    local container = tooltip:createBlock({id = GUI_ID.container} )    
+    local container = tooltip:createBlock({id = GUI_ID.container})
     container.flowDirection = "top_to_bottom"
     container.childAlignX = 0
     container.autoHeight = true
@@ -64,19 +58,17 @@ local function createMindScanUi(reference, tooltip)
 
     local divider = container:createDivider()
 
-    local label = container:createLabel({
-        text = "Mind Scan"
-    })
+    local label = container:createLabel({text = "Mind Scan"})
     label.color = tes3ui.getPalette("header_color")
     label.wrapText = true
 
     for _, spell in pairs(spells) do
-        local parent = container:createBlock()     
+        local parent = container:createBlock()
         parent.flowDirection = "left_to_right"
         parent.childAlignX = 0
         parent.autoHeight = true
         parent.autoWidth = true
- 
+
         local label = parent:createLabel({
             text = string.format("%s - %spts", spell.name, spell.magickaCost)
         })
@@ -100,7 +92,7 @@ local function onTooltipDrawn(e)
             -- and target is an NPC or creature.
             if (e.object.objectType == tes3.objectType.npc or
                 e.object.objectType == tes3.objectType.creature) then
-                    framework.debug("Target is actor.")
+                framework.debug("Target is actor.")
                 -- and target is not dead.
                 if (ref.mobile.isDead == false) then
                     framework.debug("Showing mind scan.")
@@ -111,4 +103,4 @@ local function onTooltipDrawn(e)
     end
 end
 
-event.register("uiObjectTooltip", onTooltipDrawn, {priority=200})
+event.register("uiObjectTooltip", onTooltipDrawn, {priority = 200})

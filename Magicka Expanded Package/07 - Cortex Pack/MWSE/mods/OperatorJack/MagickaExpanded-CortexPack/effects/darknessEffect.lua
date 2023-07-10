@@ -5,7 +5,9 @@ tes3.claimSpellEffectId("darkness", 263)
 local function onDarknessCollision(e)
     if e.collision then
         ---@type tes3magicEffect
-        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.darkness)
+        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e,
+                                                                            tes3.effect
+                                                                                .darkness)
 
         local caster = e.sourceInstance.caster
         local effectDuration = effect.duration
@@ -22,7 +24,8 @@ local function onDarknessCollision(e)
         timer.start({
             duration = 1,
             callback = function()
-                local actors = framework.functions.getActorsNearTargetPosition(caster.cell, mistPosition, distanceLimit)
+                local actors = framework.functions.getActorsNearTargetPosition(
+                                   caster.cell, mistPosition, distanceLimit)
 
                 -- For any actors near the darkness, remove the light effect if it exists.
                 for _, actor in pairs(actors) do
@@ -35,50 +38,47 @@ local function onDarknessCollision(e)
             iterations = (effectDuration - 1)
         })
 
-        timer.start(
-        {
+        timer.start({
             duration = effectDuration,
             callback = function()
-                --@type tes3reference
+                -- @type tes3reference
                 mistReference:disable()
 
-                timer.delayOneFrame(
-                    function()
-                        mistReference.deleted = true
-                    end
-                )
+                timer.delayOneFrame(function()
+                    mistReference.deleted = true
+                end)
             end
         })
-	end
+    end
 end
 
 -- Written by NullCascade.
 local function addDarknessEffect()
-	framework.effects.illusion.createBasicEffect({
-		-- Base information.
-		id = tes3.effect.darkness,
-		name = "Darkness",
-		description = "Create a sphere of darkness around the target, negating any light effects within.",
+    framework.effects.illusion.createBasicEffect({
+        -- Base information.
+        id = tes3.effect.darkness,
+        name = "Darkness",
+        description = "Create a sphere of darkness around the target, negating any light effects within.",
 
-		-- Basic dials.
-		baseCost = 3.0,
+        -- Basic dials.
+        baseCost = 3.0,
 
-		-- Various flags.
-		allowEnchanting = true,
+        -- Various flags.
+        allowEnchanting = true,
         allowSpellmaking = true,
         hasNoMagnitude = true,
-		canCastTarget = true,
+        canCastTarget = true,
         canCastTouch = true,
         unreflectable = true,
         usesNegativeLighting = true,
 
-		-- Graphics/sounds.
-		icon = "RFD\\RFD_lf_darkness.dds",
-		lighting = { 0, 0, 0 },
+        -- Graphics/sounds.
+        icon = "RFD\\RFD_lf_darkness.dds",
+        lighting = {0, 0, 0},
 
-		-- Required callbacks.
-		onCollision = onDarknessCollision,
-	})
+        -- Required callbacks.
+        onCollision = onDarknessCollision
+    })
 end
 
 event.register("magicEffectsResolved", addDarknessEffect)

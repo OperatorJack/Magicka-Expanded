@@ -8,14 +8,17 @@ local function onThunderboltCollision(e)
         local caster = e.sourceInstance.caster
         if (caster.cell.isInterior == true) then
             if (caster == tes3.player) then
-                tes3.messageBox("The spell succeeds, but there is no effect indoors.")
+                tes3.messageBox(
+                    "The spell succeeds, but there is no effect indoors.")
             end
             return
         end
 
-        if (tes3.worldController.weatherController.currentWeather.index ~= tes3.weather.thunder) then
+        if (tes3.worldController.weatherController.currentWeather.index ~=
+            tes3.weather.thunder) then
             if (caster == tes3.player) then
-                tes3.messageBox("The spell succeeds, but there is no effect when not in a thunderstorm.")
+                tes3.messageBox(
+                    "The spell succeeds, but there is no effect when not in a thunderstorm.")
             end
             return
         end
@@ -31,14 +34,11 @@ local function onThunderboltCollision(e)
         })
 
         -- Add a mechanic to the thunderbolt mesh.
-        local actors = framework.functions.getActorsNearTargetPosition(caster.cell, position, distanceLimit)
+        local actors = framework.functions.getActorsNearTargetPosition(
+                           caster.cell, position, distanceLimit)
         local spell = tes3.getObject("OJ_ME_ThunderBoltEffect")
 
-		tes3.cast({
-            target = reference,
-            reference = reference,
-            spell = spell
-        })
+        tes3.cast({target = reference, reference = reference, spell = spell})
 
         for _, actor in pairs(actors) do
             local isCasterNewlyHostile = false
@@ -61,7 +61,7 @@ local function onThunderboltCollision(e)
             end
 
             if (isCasterNewlyHostile == true) then
-                if(caster == tes3.player) then
+                if (caster == tes3.player) then
                     tes3.triggerCrime({
                         criminal = caster,
                         type = tes3.crimeType.attack,
@@ -73,45 +73,42 @@ local function onThunderboltCollision(e)
             end
         end
 
-        timer.start(
-        {
+        timer.start({
             duration = effectDuration,
             callback = function()
-                --@type tes3reference
+                -- @type tes3reference
                 reference:disable()
 
-                timer.delayOneFrame(
-                    function()
-                        reference.deleted = true
-                    end
-                )
+                timer.delayOneFrame(function()
+                    reference.deleted = true
+                end)
             end
         })
-	end
+    end
 end
 
 local function addThunderboltEffect()
-	framework.effects.destruction.createBasicEffect({
-		-- Base information.
-		id = tes3.effect.thunderbolt,
-		name = "Thunderbolt",
-		description = "Cast a thunderbolt down from above. Requires being outside and being in a thunderstorm. Thunderbolts will damage and stun affected targets.",
+    framework.effects.destruction.createBasicEffect({
+        -- Base information.
+        id = tes3.effect.thunderbolt,
+        name = "Thunderbolt",
+        description = "Cast a thunderbolt down from above. Requires being outside and being in a thunderstorm. Thunderbolts will damage and stun affected targets.",
 
-		-- Basic dials.
-		baseCost = 25.0,
+        -- Basic dials.
+        baseCost = 25.0,
 
-		-- Various flags.
-		allowEnchanting = true,
+        -- Various flags.
+        allowEnchanting = true,
         allowSpellmaking = true,
         hasNoMagnitude = true,
         hasNoDuration = true,
-		canCastTarget = true,
+        canCastTarget = true,
 
         -- Graphics/sounds.
 
-		-- Required callbacks.
-		onCollision = onThunderboltCollision,
-	})
+        -- Required callbacks.
+        onCollision = onThunderboltCollision
+    })
 end
 
 event.register("magicEffectsResolved", addThunderboltEffect)

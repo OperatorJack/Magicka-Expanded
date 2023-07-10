@@ -25,7 +25,10 @@ local this = {}
         with [int] must be an integer.
 ]]
 this.createBasicPotion = function(params)
-    local potion = tes3.createObject({ id = params.id, objectType = tes3.objectType.alchemy })
+    local potion = tes3.createObject({
+        id = params.id,
+        objectType = tes3.objectType.alchemy
+    })
 
     potion.name = params.name
 
@@ -81,11 +84,14 @@ example = {
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
 this.createComplexPotion = function(params)
-	local potion = tes3.createObject({ id = params.id, objectType = tes3.objectType.alchemy })
+    local potion = tes3.createObject({
+        id = params.id,
+        objectType = tes3.objectType.alchemy
+    })
 
     potion.name = params.name
 
-    for i=1, #params.effects do
+    for i = 1, #params.effects do
         local effect = potion.effects[i]
         local newEffect = params.effects[i]
 

@@ -8,14 +8,17 @@ local function onIceBarrageCollision(e)
         local caster = e.sourceInstance.caster
         if (caster.cell.isInterior == true) then
             if (caster == tes3.mobilePlayer) then
-                tes3.messageBox("The spell succeeds, but there is no effect indoors.")
+                tes3.messageBox(
+                    "The spell succeeds, but there is no effect indoors.")
             end
             return
         end
 
-        if (tes3.worldController.weatherController.currentWeather.index ~= tes3.weather.blizzard) then
+        if (tes3.worldController.weatherController.currentWeather.index ~=
+            tes3.weather.blizzard) then
             if (caster == tes3.mobilePlayer) then
-                tes3.messageBox("The spell succeeds, but there is no effect when not in a blizzard.")
+                tes3.messageBox(
+                    "The spell succeeds, but there is no effect when not in a blizzard.")
             end
             return
         end
@@ -31,14 +34,11 @@ local function onIceBarrageCollision(e)
         })
 
         -- Add a mechanic to the Ice Barrage mesh.
-        local actors = framework.functions.getActorsNearTargetPosition(caster.cell, position, distanceLimit)
+        local actors = framework.functions.getActorsNearTargetPosition(
+                           caster.cell, position, distanceLimit)
         local spell = tes3.getObject("OJ_ME_IceBarrageEffect")
 
-		tes3.cast({
-            target = reference,
-            reference = reference,
-            spell = spell
-        })
+        tes3.cast({target = reference, reference = reference, spell = spell})
 
         for _, actor in pairs(actors) do
             local isCasterNewlyHostile = false
@@ -61,7 +61,7 @@ local function onIceBarrageCollision(e)
             end
 
             if (isCasterNewlyHostile == true) then
-                if(caster == tes3.player) then
+                if (caster == tes3.player) then
                     tes3.triggerCrime({
                         criminal = caster,
                         type = tes3.crimeType.attack,
@@ -73,45 +73,42 @@ local function onIceBarrageCollision(e)
             end
         end
 
-        timer.start(
-        {
+        timer.start({
             duration = effectDuration,
             callback = function()
-                --@type tes3reference
+                -- @type tes3reference
                 reference:disable()
 
-                timer.delayOneFrame(
-                    function()
-                        reference.deleted = true
-                    end
-                )
+                timer.delayOneFrame(function()
+                    reference.deleted = true
+                end)
             end
         })
-	end
+    end
 end
 
 local function addIceBarrageEffect()
-	framework.effects.destruction.createBasicEffect({
-		-- Base information.
-		id = tes3.effect.iceBarrage,
-		name = "Ice Barrage",
-		description = "Cast a ice down from above. Requires being outside and being in a blizzard. Ice Barrages will damage and freeze affected targets.",
+    framework.effects.destruction.createBasicEffect({
+        -- Base information.
+        id = tes3.effect.iceBarrage,
+        name = "Ice Barrage",
+        description = "Cast a ice down from above. Requires being outside and being in a blizzard. Ice Barrages will damage and freeze affected targets.",
 
-		-- Basic dials.
-		baseCost = 25.0,
+        -- Basic dials.
+        baseCost = 25.0,
 
-		-- Various flags.
-		allowEnchanting = true,
+        -- Various flags.
+        allowEnchanting = true,
         allowSpellmaking = true,
         hasNoMagnitude = true,
         hasNoDuration = true,
-		canCastTarget = true,
+        canCastTarget = true,
 
-		-- Graphics/sounds.
+        -- Graphics/sounds.
 
-		-- Required callbacks.
-		onCollision = onIceBarrageCollision,
-	})
+        -- Required callbacks.
+        onCollision = onIceBarrageCollision
+    })
 end
 
 event.register("magicEffectsResolved", addIceBarrageEffect)

@@ -1,0 +1,44 @@
+# Data Files/MagickaExpanded-metadata.toml
+
+# Holds basic information about the mod
+[package]
+name = "Magicka Expanded"
+description = "A lua-based framework for creating new, fully functional magic effects. Currently adds over 100+ new magic effects. "
+homepage = "https://www.nexusmods.com/morrowind/mods/47111"
+repository = "https://github.com/OperatorJack/Magicka-Expanded"
+authors = ["OperatorJack", "RedFurryDemon"]
+version = "2.10.0"
+
+# MWSE specific information about this mod
+[tools.mwse]
+lua-mod = "OperatorJack.magickaExpanded"
+load-order = 1
+wait-until-initialized = false
+
+# Dependencies are checked on `initialized` and warn the player if any are missing
+[dependencies]
+  # Assets can be directories or loose folders
+  assets = [
+      "Icons\\RFD\\B_RFD_ms_alteration.dds",
+      "Icons\\RFD\\B_RFD_ms_conjuration.dds",
+      "Icons\\RFD\\B_RFD_ms_destruction.dds",
+      "Icons\\RFD\\B_RFD_ms_illusion.dds",
+      "Icons\\RFD\\B_RFD_ms_mysticism.dds",
+      "Icons\\RFD\\B_RFD_ms_restoration.dds",
+      "Icons\\RFD\\B_RFD_teleport.dds",
+      "Icons\\RFD\\RFD_ms_alteration.dds",
+      "Icons\\RFD\\RFD_ms_conjuration.dds",
+      "Icons\\RFD\\RFD_ms_destruction.dds",
+      "Icons\\RFD\\RFD_ms_illusion.dds",
+      "Icons\\RFD\\RFD_ms_mysticism.dds",
+      "Icons\\RFD\\RFD_ms_restoration.dds",
+      "Icons\\RFD\\RFD_teleport.dds",
+  ]
+
+# Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)
+[dependencies.mwse]
+buildnumber = 3273
+
+# Check MGE XE version
+[dependencies.mge-xe]
+version = ">=0.15.0"

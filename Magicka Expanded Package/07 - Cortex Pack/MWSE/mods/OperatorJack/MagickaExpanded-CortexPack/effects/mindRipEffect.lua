@@ -35,9 +35,7 @@ local function showCheckPassedTooltip(e)
     tooltip.autoWidth = true
     tooltip.autoHeight = true
 
-    local label = tooltip:createLabel({
-        text = spell.name
-    })
+    local label = tooltip:createLabel({text = spell.name})
     label.color = tes3ui.getPalette("header_color")
 
     local effectsContainer = tooltip:createBlock()
@@ -47,13 +45,10 @@ local function showCheckPassedTooltip(e)
     effectsContainer.autoHeight = true
     effectsContainer.widthProportional = 1.0
 
-    for i=1, spell:getActiveEffectCount() do
+    for i = 1, spell:getActiveEffectCount() do
         local effect = tes3.getMagicEffect(spell.effects[i].id)
 
-        if (effect == nil) then
-            return
-        end
-
+        if (effect == nil) then return end
 
         local effectContainer = effectsContainer:createBlock()
         effectContainer.flowDirection = "left_to_right"
@@ -63,14 +58,12 @@ local function showCheckPassedTooltip(e)
         effectContainer.borderAllSides = 3
 
         local image = effectContainer:createImage({
-            path=("icons\\" .. effect.icon)
+            path = ("icons\\" .. effect.icon)
         })
         image.wrapText = false
         image.borderLeft = 4
 
-        local label = effectContainer:createLabel({
-            text = effect.name
-        })
+        local label = effectContainer:createLabel({text = effect.name})
         label.wrapText = false
         label.borderLeft = 6
     end
@@ -100,10 +93,7 @@ local function onSpellSelected(e)
             current = newMagicka * -1
         })
 
-		tes3.addSpell({
-			reference = tes3.player,
-			spell = spell
-		})
+        tes3.addSpell({reference = tes3.player, spell = spell})
 
         tes3.messageBox("You successfully learn the spell.")
     else
@@ -122,16 +112,12 @@ local function onSpellSelected(e)
 end
 
 local function showUi(reference)
-    if (GUI_ID == nil) then
-        registerUi()
-    end
+    if (GUI_ID == nil) then registerUi() end
 
     local spells = {}
     for spell in tes3.iterate(reference.object.spells.iterator) do
-        if (spell.castType == tes3.spellType.power or
-            spell.castType == tes3.spellType.spell) then
-            table.insert(spells, spell)
-        end
+        if (spell.castType == tes3.spellType.power or spell.castType ==
+            tes3.spellType.spell) then table.insert(spells, spell) end
     end
 
     if (#spells == 0) then
@@ -141,14 +127,9 @@ local function showUi(reference)
 
     table.sort(spells, function(a, b) return a.name < b.name end)
 
-    if (tes3ui.findMenu(GUI_ID.menu) ~= nil) then
-        return
-    end
+    if (tes3ui.findMenu(GUI_ID.menu) ~= nil) then return end
 
-    menu = tes3ui.createMenu({
-        id = GUI_ID.menu,
-        dragFrame = true
-    })
+    menu = tes3ui.createMenu({id = GUI_ID.menu, dragFrame = true})
     menu.text = "Mind Rip"
     menu.alpha = 0.75
     menu.width = 400
@@ -158,9 +139,7 @@ local function showUi(reference)
     menu.positionX = menu.width / -2
     menu.positionY = menu.height / 2
 
-    local listPane = menu:createVerticalScrollPane({
-        id = GUI_ID.listPane
-    })
+    local listPane = menu:createVerticalScrollPane({id = GUI_ID.listPane})
     for _, spell in pairs(spells) do
         local parent = listPane:createBlock()
         parent.flowDirection = "left_to_right"
@@ -204,11 +183,8 @@ local function showUi(reference)
     tes3ui.enterMenuMode(GUI_ID.menu)
 end
 
-
 local function onMindRipTick(e)
-    if (not e:trigger()) then
-        return
-    end
+    if (not e:trigger()) then return end
 
     showUi(e.effectInstance.target)
 
@@ -216,28 +192,28 @@ local function onMindRipTick(e)
 end
 
 local function addMindRipEffect()
-	framework.effects.mysticism.createBasicEffect({
-		-- Base information.
-		id = tes3.effect.mindRip,
-		name = "Mind Rip",
-		description = "Allows the caster to view the target's spells and steal one, if they are able to.",
+    framework.effects.mysticism.createBasicEffect({
+        -- Base information.
+        id = tes3.effect.mindRip,
+        name = "Mind Rip",
+        description = "Allows the caster to view the target's spells and steal one, if they are able to.",
 
-		-- Basic dials.
-		baseCost = 60.0,
+        -- Basic dials.
+        baseCost = 60.0,
 
-		-- Various flags.
+        -- Various flags.
         canCastTouch = true,
         hasNoMagnitude = true,
         isHarmful = true,
         appliedOnce = true,
 
-		-- Graphics/sounds.
-		icon = "RFD\\RFD_crt_mindrip.dds",
-        lighting = { 0, 0, 0 },
+        -- Graphics/sounds.
+        icon = "RFD\\RFD_crt_mindrip.dds",
+        lighting = {0, 0, 0},
 
-		-- Required callbacks.
-		onTick = onMindRipTick,
-	})
+        -- Required callbacks.
+        onTick = onMindRipTick
+    })
 end
 
 event.register("magicEffectsResolved", addMindRipEffect)

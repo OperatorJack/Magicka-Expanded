@@ -4,19 +4,13 @@ local this = {}
 
 local function getEffectCost(effect)
     local minMagnitude = effect.min or 0
-    if (minMagnitude == 0) then
-        minMagnitude = 1
-    end
+    if (minMagnitude == 0) then minMagnitude = 1 end
 
     local maxMagnitude = effect.max or 0
-    if (maxMagnitude == 0) then
-        maxMagnitude = 1
-    end
+    if (maxMagnitude == 0) then maxMagnitude = 1 end
 
     local duration = effect.duration or 0
-    if (duration == 0) then
-        duration = 1
-    end
+    if (duration == 0) then duration = 1 end
 
     local area = effect.radius or 0
     if (area == 0 and effect.rangeType == tes3.effectRange.self) then
@@ -24,7 +18,9 @@ local function getEffectCost(effect)
     end
     local baseMagickaCost = effect.object.baseMagickaCost
 
-    local effectCost = math.floor(((minMagnitude + maxMagnitude) * (duration + 1) + area) * baseMagickaCost / 40.0)
+    local effectCost = math.floor(((minMagnitude + maxMagnitude) *
+                                      (duration + 1) + area) * baseMagickaCost /
+                                      40.0)
 
     if (effect.rangeType == tes3.effectRange.target) then
         effectCost = effectCost * 1.5
@@ -40,14 +36,14 @@ end
 ]]
 this.getSpellCost = function(spell)
     local spellCost = 0
-	for i=1, spell:getActiveEffectCount() do
-		local effect = spell.effects[i]
+    for i = 1, spell:getActiveEffectCount() do
+        local effect = spell.effects[i]
         if (effect ~= nil) then
             spellCost = spellCost + getEffectCost(effect)
-		end
+        end
     end
 
-	return spellCost
+    return spellCost
 end
 
 --[[
@@ -73,7 +69,10 @@ end
         with [int] must be an integer.
 ]]
 this.createBasicSpell = function(params)
-    local spell = tes3.createObject({ id = params.id, objectType = tes3.objectType.spell })
+    local spell = tes3.createObject({
+        id = params.id,
+        objectType = tes3.objectType.spell
+    })
     tes3.setSourceless(spell)
 
     spell.name = params.name
@@ -132,12 +131,15 @@ end
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
 this.createComplexSpell = function(params)
-    local spell = tes3.createObject({ id = params.id, objectType = tes3.objectType.spell })
+    local spell = tes3.createObject({
+        id = params.id,
+        objectType = tes3.objectType.spell
+    })
     tes3.setSourceless(spell)
 
     spell.name = params.name
 
-    for i=1, #params.effects do
+    for i = 1, #params.effects do
         local effect = spell.effects[i]
         local newEffect = params.effects[i]
 

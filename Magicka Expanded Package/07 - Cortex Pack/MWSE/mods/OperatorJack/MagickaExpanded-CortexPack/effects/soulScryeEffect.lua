@@ -3,29 +3,29 @@ local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
 tes3.claimSpellEffectId("soulScrye", 332)
 
 local function addSoulScryeEffect()
-	framework.effects.mysticism.createBasicEffect({
-		-- Base information.
-		id = tes3.effect.soulScrye,
-		name = "Soul Scrye",
-		description = "While active, lets the caster view the skills and condition of the target.",
+    framework.effects.mysticism.createBasicEffect({
+        -- Base information.
+        id = tes3.effect.soulScrye,
+        name = "Soul Scrye",
+        description = "While active, lets the caster view the skills and condition of the target.",
 
-		-- Basic dials.
-		baseCost = 30.0,
+        -- Basic dials.
+        baseCost = 30.0,
 
-		-- Various flags.
-		allowEnchanting = true,
+        -- Various flags.
+        allowEnchanting = true,
         allowSpellmaking = true,
         canCastSelf = true,
         hasNoMagnitude = true,
         hasContinuousVFX = true,
 
-		-- Graphics/sounds.
-		icon = "RFD\\RFD_crt_soulscrye.dds",
-        lighting = { 0, 0, 0 },
+        -- Graphics/sounds.
+        icon = "RFD\\RFD_crt_soulscrye.dds",
+        lighting = {0, 0, 0},
 
-		-- Required callbacks.
-		onTick = function(e) e:trigger() end,
-	})
+        -- Required callbacks.
+        onTick = function(e) e:trigger() end
+    })
 end
 
 event.register("magicEffectsResolved", addSoulScryeEffect)
@@ -38,11 +38,9 @@ local function registerUi()
 end
 
 local function createSoulScryeUi(reference, tooltip)
-    if (GUI_ID == nil) then
-        registerUi()
-    end
+    if (GUI_ID == nil) then registerUi() end
 
-    local container = tooltip:createBlock({id = GUI_ID.container} )    
+    local container = tooltip:createBlock({id = GUI_ID.container})
     container.flowDirection = "top_to_bottom"
     container.childAlignX = 0
     container.autoHeight = true
@@ -50,9 +48,7 @@ local function createSoulScryeUi(reference, tooltip)
 
     local divider = container:createDivider()
 
-    local label = container:createLabel({
-        text = "Soul Scrye"
-    })
+    local label = container:createLabel({text = "Soul Scrye"})
     label.color = tes3ui.getPalette("header_color")
     label.wrapText = true
     label.borderTop = 3
@@ -66,7 +62,7 @@ local function createSoulScryeUi(reference, tooltip)
     conditions.autoHeight = true
     conditions.autoWidth = true
 
-    local health = conditions:createBlock()  
+    local health = conditions:createBlock()
     health.flowDirection = "left_to_right"
     health.childAlignX = 0
     health.autoHeight = true
@@ -78,25 +74,25 @@ local function createSoulScryeUi(reference, tooltip)
     })
     bar.widget.fillColor = tes3ui.getPalette("health_color")
 
-    local magicka = conditions:createBlock()  
+    local magicka = conditions:createBlock()
     magicka.flowDirection = "left_to_right"
     magicka.childAlignX = 0
     magicka.autoHeight = true
     magicka.autoWidth = true
-    
+
     local bar = magicka:createFillBar({
         current = reference.mobile.magicka.current,
         max = reference.mobile.magicka.base
     })
     bar.widget.fillColor = tes3ui.getPalette("magic_color")
 
-    local fatigue = conditions:createBlock()  
+    local fatigue = conditions:createBlock()
     fatigue.flowDirection = "left_to_right"
     fatigue.childAlignX = 0
     fatigue.autoHeight = true
     fatigue.autoWidth = true
     fatigue.borderBottom = 3
-    
+
     local bar = fatigue:createFillBar({
         current = reference.mobile.fatigue.current,
         max = reference.mobile.fatigue.base
@@ -129,7 +125,7 @@ local function onTooltipDrawn(e)
         if (ref) then
             framework.debug("Target is valid.")
             if (ref.mobile) then
-            -- and target is not dead.
+                -- and target is not dead.
                 if (ref.mobile.isDead == false) then
                     -- and target is an NPC or creature.
                     if (e.object.objectType == tes3.objectType.npc or
@@ -142,4 +138,4 @@ local function onTooltipDrawn(e)
     end
 end
 
-event.register("uiObjectTooltip", onTooltipDrawn, {priority=201})
+event.register("uiObjectTooltip", onTooltipDrawn, {priority = 201})

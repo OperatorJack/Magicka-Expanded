@@ -27,7 +27,7 @@ local this = {}
 this.createBasicEnchantment = function(params)
     local enchantment = tes3.createObject({
         id = params.id,
-		objectType = tes3.objectType.enchantment,
+        objectType = tes3.objectType.enchantment,
         castType = tes3.enchantmentType.onUse,
         chargeCost = 1,
         maxCharge = 1
@@ -91,13 +91,13 @@ end
 this.createComplexEnchantment = function(params)
     local enchantment = tes3.createObject({
         id = params.id,
-		objectType = tes3.objectType.enchantment,
+        objectType = tes3.objectType.enchantment,
         castType = tes3.enchantmentType.onUse,
         chargeCost = 1,
         maxCharge = 1
     })
 
-    for i=1, #params.effects do
+    for i = 1, #params.effects do
         local effect = enchantment.effects[i]
         local newEffect = params.effects[i]
 

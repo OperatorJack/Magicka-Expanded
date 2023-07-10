@@ -18,42 +18,41 @@ local permutationList = {
 
 local function onPermutationTick(e)
     local caster = e.sourceInstance.caster
-    local value = (caster.mobile.willpower.current * .4) + (caster.mobile.conjuration.current * .6)
+    local value = (caster.mobile.willpower.current * .4) +
+                      (caster.mobile.conjuration.current * .6)
 
     local rounded = math.round(value, -1)
-    if (rounded > 100) then 
-        rounded = 100 
-    end
+    if (rounded > 100) then rounded = 100 end
 
     local id = permutationList[rounded]
     e:triggerSummon(id)
 end
 
 local function addPermutationEffect()
-	framework.effects.conjuration.createBasicEffect({
-		-- Base information.
-		id = tes3.effect.permutation,
-		name = "Permutation",
-		description = "Summons a creature from Oblivion that is increasingly more powerful depending on the caster's conjuration and willpower.",
+    framework.effects.conjuration.createBasicEffect({
+        -- Base information.
+        id = tes3.effect.permutation,
+        name = "Permutation",
+        description = "Summons a creature from Oblivion that is increasingly more powerful depending on the caster's conjuration and willpower.",
 
-		-- Basic dials.
-		baseCost = 50.0,
+        -- Basic dials.
+        baseCost = 50.0,
 
-		-- Various flags.
-		allowEnchanting = true,
+        -- Various flags.
+        allowEnchanting = true,
         allowSpellmaking = true,
         canCastSelf = true,
         hasNoMagnitude = true,
         casterLinked = true,
         appliesOnce = true,
 
-		-- Graphics/sounds.
-		icon = "RFD\\RFD_crt_permutation.dds",
-        lighting = { 0, 0, 0 },
+        -- Graphics/sounds.
+        icon = "RFD\\RFD_crt_permutation.dds",
+        lighting = {0, 0, 0},
 
-		-- Required callbacks.
-		onTick = onPermutationTick,
-	})
+        -- Required callbacks.
+        onTick = onPermutationTick
+    })
 end
 
 event.register("magicEffectsResolved", addPermutationEffect)

@@ -1,4 +1,6 @@
 local common = require("OperatorJack.MagickaExpanded.common")
+local logger = require("logging.logger")
+local log = logger.getLogger("Magicka Expanded")
 
 local this = {}
 
@@ -7,17 +9,14 @@ local grimoires = {}
 --[[
 	Description: Adds all grimoires that are currently registered to the player's inventory.
 ]]
-this.addGrimoiresToPlayer = function ()
+this.addGrimoiresToPlayer = function()
     for _, grimoire in ipairs(grimoires) do
         if (tes3.getObject(grimoire.id)) then
-            tes3.addItem({
-                reference = tes3.player,
-                item = grimoire.id
-            })
+            tes3.addItem({reference = tes3.player, item = grimoire.id})
         else
-            common.debug("Unable to find grimoire ID: " .. grimoire.id)
+            log:debug("Unable to find grimoire ID: " .. grimoire.id)
         end
-	end
+    end
 end
 
 --[[
@@ -32,9 +31,7 @@ end
         }
     }
 ]]
-this.registerGrimoire = function(grimoire)
-	table.insert(grimoires, grimoire)
-end
+this.registerGrimoire = function(grimoire) table.insert(grimoires, grimoire) end
 
 --[[
     Description: Registers @grimoires as a collection of grimoires to be checked
@@ -59,23 +56,18 @@ end
     }
 ]]
 this.registerGrimoires = function(grimoires)
-	for _, grimoire in ipairs(grimoires) do
-		this.registerGrimoire(grimoire)
-	end
+    for _, grimoire in ipairs(grimoires) do this.registerGrimoire(grimoire) end
 end
 
 local function FindGrimoire(bookId)
     for _, grimoire in ipairs(grimoires) do
-		if (grimoire.id == bookId) then
-			return grimoire
-		end
-	end
-	return nil
+        if (grimoire.id == bookId) then return grimoire end
+    end
+    return nil
 end
 
-
 local function tryLearningSpells(grimoire)
-	tes3.fadeOut({duration = 2})
+    tes3.fadeOut({duration = 2})
 
     local hasMagicka = false
 
@@ -84,40 +76,42 @@ local function tryLearningSpells(grimoire)
         learningCost = learningCost + tes3.getObject(spellId).magickaCost * 2
     end
 
-	local newMagicka = tes3.mobilePlayer.magicka.current - learningCost
-	if (newMagicka >= 0) then
-		hasMagicka = true
-	end
+    local newMagicka = tes3.mobilePlayer.magicka.current - learningCost
+    if (newMagicka >= 0) then hasMagicka = true end
 
-	if (hasMagicka) then
-		tes3.modStatistic({
-			reference = tes3.mobilePlayer,
-			name = "magicka",
-			current = learningCost * -1
-		})
+    if (hasMagicka) then
+        tes3.modStatistic({
+            reference = tes3.mobilePlayer,
+            name = "magicka",
+            current = learningCost * -1
+        })
         for _, spellId in ipairs(grimoire.spellIds) do
-            tes3.addSpell({reference = tes3.player, spell = spellId, updateGUI = false})
+            tes3.addSpell({
+                reference = tes3.player,
+                spell = spellId,
+                updateGUI = false
+            })
         end
-		tes3.updateMagicGUI({reference = tes3.player})
-		tes3.messageBox("As you study the tome and practice the spells described within, you feel new spells enter your mind.")
-	else
-		tes3.modStatistic({
-			reference = tes3.mobilePlayer,
-			name = "magicka",
-			current = tes3.mobilePlayer.magicka.current * -1
-		})
-		tes3.messageBox("As you study the tome, you find that you do not have enough magicka to practice the spells described within and learn them.")
-	end
+        tes3.updateMagicGUI({reference = tes3.player})
+        tes3.messageBox(
+            "As you study the tome and practice the spells described within, you feel new spells enter your mind.")
+    else
+        tes3.modStatistic({
+            reference = tes3.mobilePlayer,
+            name = "magicka",
+            current = tes3.mobilePlayer.magicka.current * -1
+        })
+        tes3.messageBox(
+            "As you study the tome, you find that you do not have enough magicka to practice the spells described within and learn them.")
+    end
 
-	tes3.fadeIn({duration = 2})
+    tes3.fadeIn({duration = 2})
 end
 
 local function onBookGetText(e)
-	local grimoire = FindGrimoire(e.book.id)
+    local grimoire = FindGrimoire(e.book.id)
 
-	if (grimoire == nil) then
-		return
-	end
+    if (grimoire == nil) then return end
 
     local newSpell = false
     for _, spellId in ipairs(grimoire.spellIds) do
@@ -128,7 +122,8 @@ local function onBookGetText(e)
     if (newSpell) then
         tryLearningSpells(grimoire)
     else
-        tes3.messageBox("You attempt to read the grimoire but can learn nothing more.")
+        tes3.messageBox(
+            "You attempt to read the grimoire but can learn nothing more.")
     end
 end
 
@@ -138,8 +133,6 @@ end
 		collection of registered grimoires, the spells mapped to that grimoire will be
 		added to the player, if the player does not already have them.
 ]]
-this.registerEvent = function ()
-	event.register("bookGetText", onBookGetText)
-end
+this.registerEvent = function() event.register("bookGetText", onBookGetText) end
 
 return this

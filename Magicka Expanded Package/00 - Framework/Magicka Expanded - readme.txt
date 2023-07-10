@@ -81,3 +81,4 @@ RedFurryDemon: graphics
 - coupleoflooks - header image
 - Pixel Sagas - font based on Skyrim mage script
 - Stripes - some troubleshooting
+- C3PA - a large number of improvements to the code to use new MWSE functions and patterns. Thank you for your work!
