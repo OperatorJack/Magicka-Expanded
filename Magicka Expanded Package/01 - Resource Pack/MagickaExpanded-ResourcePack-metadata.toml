@@ -7,7 +7,7 @@ description = "The Resource Pack module for the Magicka Expanded Framework. Part
 homepage = "https://www.nexusmods.com/morrowind/mods/47111"
 repository = "https://github.com/OperatorJack/Magicka-Expanded"
 authors = ["OperatorJack", "RedFurryDemon"]
-version = "1.0.0"
+version = "3.0.0"
 
 # MWSE specific information about this mod
 [tools.mwse]
@@ -64,7 +64,8 @@ version = ">=0.15.0"
 # mwse-module can be a folder or lua file, anywhere in /mods, /lib etc
 [dependencies.mods.MagickaExpanded]
 mwse-module = "OperatorJack.magickaExpanded"
+version = ">=3.0.0"
 
 # Check if a plugin (esp or esm) is active
 [dependencies.mods."OperatorJack.MagickaExpanded-ResourcePack"]
-plugin = "Magicka Expanded - Resource Pack.esm"
+plugin = "Magicka Expanded - Resource Pack.esp"

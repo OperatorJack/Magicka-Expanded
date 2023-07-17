@@ -1,13 +1,19 @@
 local common = require("OperatorJack.MagickaExpanded.common")
-local logger = require("logging.logger")
-local log = logger.getLogger("Magicka Expanded")
+local log = require("OperatorJack.MagickaExpanded.classes.logger")
 
+--- Grimoires module for interacting with grimoire objects.
+---@class MagickaExpanded.Grimoires
 local this = {}
 
+---@class MagickaExpanded.Grimoires.Grimoire
+---@field id string The ID of the Grimoire. This should be the book object ID.
+---@field spellIds string[] The IDs of the spells to learn from the Grimoire.
+
+---@type MagickaExpanded.Grimoires.Grimoire[]
 local grimoires = {}
 
 --[[
-	Description: Adds all grimoires that are currently registered to the player's inventory.
+	Adds all grimoires that are currently registered to the player's inventory.
 ]]
 this.addGrimoiresToPlayer = function()
     for _, grimoire in ipairs(grimoires) do
@@ -20,45 +26,22 @@ this.addGrimoiresToPlayer = function()
 end
 
 --[[
-    Description: Registers the given @grimoire to be checked when a book is opened.
-
-    @grimoire: The grimoire to register. Must be in the following format:
-    example = {
-        id = "exampleGrimoireBookId1",
-        spellIds = {
-            "exampleSpellId1",
-            "exampleSpellId2"
-        }
-    }
+    Registers the given grimoire to be checked when a book is opened.
 ]]
+---@param grimoire MagickaExpanded.Grimoires.Grimoire
 this.registerGrimoire = function(grimoire) table.insert(grimoires, grimoire) end
 
 --[[
-    Description: Registers @grimoires as a collection of grimoires to be checked
+    Registers the given grimoires as a collection of grimoires to be checked
         for when a book is opened.
-
-    @grimoires: The grimoires to register. Must be in the following format:
-    example = {
-        {
-            id = "exampleGrimoireBookId1",
-            spellIds = {
-                "exampleSpellId1",
-                "exampleSpellId2"
-            }
-        },
-        {
-            id = "exampleGrimoireBookId2",
-            spellIds = {
-                "exampleSpellId1",
-                "exampleSpellId2"
-            }
-        }
-    }
 ]]
+---@param grimoires MagickaExpanded.Grimoires.Grimoire[]
 this.registerGrimoires = function(grimoires)
     for _, grimoire in ipairs(grimoires) do this.registerGrimoire(grimoire) end
 end
 
+---@param bookId string
+---@return MagickaExpanded.Grimoires.Grimoire | nil
 local function FindGrimoire(bookId)
     for _, grimoire in ipairs(grimoires) do
         if (grimoire.id == bookId) then return grimoire end
@@ -66,6 +49,14 @@ local function FindGrimoire(bookId)
     return nil
 end
 
+--[[
+    Attempts to teach the player the given Grimoire if they qualify. 
+    The player will learn the Grimoire if their current magicka is greater than the 
+    learning cost of the spell set, which is the sum of each Grimoire's spell magicka cost * 2. 
+    If successful, the player will have that amount drained from their current magicka.
+    Otherwise, they lose all magicka.
+]]
+---@param grimoire MagickaExpanded.Grimoires.Grimoire
 local function tryLearningSpells(grimoire)
     tes3.fadeOut({duration = 2})
 
@@ -108,6 +99,7 @@ local function tryLearningSpells(grimoire)
     tes3.fadeIn({duration = 2})
 end
 
+---@param e bookGetTextEventData
 local function onBookGetText(e)
     local grimoire = FindGrimoire(e.book.id)
 
@@ -128,7 +120,7 @@ local function onBookGetText(e)
 end
 
 --[[
-	Description: Registers the grimoire event. On bookGetText, the collection of
+	Registers the grimoire event. On bookGetText, the collection of
 		registered grimoires will be iterated through. If the book belongs to the
 		collection of registered grimoires, the spells mapped to that grimoire will be
 		added to the player, if the player does not already have them.

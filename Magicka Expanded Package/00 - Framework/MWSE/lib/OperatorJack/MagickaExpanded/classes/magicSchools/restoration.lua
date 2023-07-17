@@ -1,11 +1,15 @@
 local common = require("OperatorJack.MagickaExpanded.common")
+
+---@class MagickaExpanded.Effects.Restoration
 local this = {}
 
 --[[
-	Description: Wrapper for tes3.addMagicEffect that has default values
+	Wrapper for tes3.addMagicEffect that has default values
 		that are common for spells of this school. Uses the same parameter
 		table as tes3.addMagicEffect(). 
 ]]
+---@param params MagickaExpanded.Effects.BasicEffectParams
+---@return tes3magicEffect | nil
 this.createBasicEffect = function(params)
     if (common.checkParams(params) == false) then return end
     local effect = tes3.addMagicEffect({

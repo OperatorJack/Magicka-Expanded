@@ -1,4 +1,6 @@
 local common = require("OperatorJack.MagickaExpanded.common")
+
+---@class MagickaExpanded.Effects.Alteration
 local this = {}
 
 --[[
@@ -6,6 +8,8 @@ local this = {}
 		that are common for spells of this school. Uses the same parameter
 		table as tes3.addMagicEffect(). 
 ]]
+---@param params MagickaExpanded.Effects.BasicEffectParams
+---@return tes3magicEffect | nil
 this.createBasicEffect = function(params)
     if (common.checkParams(params) == false) then return end
     local effect = tes3.addMagicEffect({
@@ -61,6 +65,11 @@ this.createBasicEffect = function(params)
     return effect
 end
 
+---@class MagickaExpanded.Effects.Alteration.WeatherEffectParams: MagickaExpanded.Effects.BasicEffectParams
+---@field weather tes3.weather
+
+---@param params MagickaExpanded.Effects.Alteration.WeatherEffectParams
+---@return tes3magicEffect | nil
 this.createBasicWeatherEffect = function(params)
     local effect = this.createBasicEffect({
         -- Base information.

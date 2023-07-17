@@ -1,7 +1,21 @@
 local common = require("OperatorJack.MagickaExpanded.common")
 
+--- Alchemy module for interacting with potion objects.
+---@class MagickaExpanded.Alchemy
 local this = {}
 
+---@class MagickaExpanded.Alchemy.createBasicPotionParams
+---@field id string Potion ID
+---@field effect tes3.effect Effect ID
+---@field name string Potion Name
+---@field rangeType tes3.effectRange Effect Range
+---@field min number?
+---@field max number?
+---@field duration number?
+---@field radius number?
+---@field skill tes3.skill?
+---@field attribute tes3.attribute?
+---@field magickaCost number?
 --[[
     Description: Creates or updates a potion based on the given @params,
         and adds it to the framework's list of managed potions. Accepts one
@@ -24,17 +38,19 @@ local this = {}
         with .* must use a value found in the table set. Table parameter options marked
         with [int] must be an integer.
 ]]
+---@param params MagickaExpanded.Alchemy.createBasicPotionParams
+---@return tes3alchemy
 this.createBasicPotion = function(params)
     local potion = tes3.createObject({
         id = params.id,
         objectType = tes3.objectType.alchemy
-    })
+    }) --[[@as tes3alchemy]]
 
     potion.name = params.name
 
     local effect = potion.effects[1]
     effect.id = params.effect
-    effect.rangeType = params.range or tes3.effectRange.self
+    effect.rangeType = params.rangeType or params.range or tes3.effectRange.self
     effect.min = params.min or 0
     effect.max = params.max or 0
     effect.duration = params.duration or 0
@@ -47,6 +63,11 @@ this.createBasicPotion = function(params)
     return potion
 end
 
+---@class MagickaExpanded.Alchemy.createComplexPotionParams
+---@field id string Potion ID
+---@field name string
+---@field magickaCost number?
+---@field effects tes3effect[]
 --[[
     Description: Creates or updates a potion based on the given @params,
         and adds it to the framework's list of managed potions. Accepts multiple
@@ -83,11 +104,13 @@ example = {
         with .* must use a value found in the table set. Table parameter options marked
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
+---@param params MagickaExpanded.Alchemy.createComplexPotionParams
+---@return tes3alchemy
 this.createComplexPotion = function(params)
     local potion = tes3.createObject({
         id = params.id,
         objectType = tes3.objectType.alchemy
-    })
+    }) --[[@as tes3alchemy]]
 
     potion.name = params.name
 
@@ -96,7 +119,8 @@ this.createComplexPotion = function(params)
         local newEffect = params.effects[i]
 
         effect.id = newEffect.id
-        effect.rangeType = newEffect.range or tes3.effectRange.target
+        effect.rangeType = newEffect.rangeType or newEffect.range or
+                               tes3.effectRange.self
         effect.min = newEffect.min or 0
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0

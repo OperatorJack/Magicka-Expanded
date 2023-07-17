@@ -1,0 +1,82 @@
+# Data Files/MagickaExpanded-SummoningPack-metadata.toml
+
+# Holds basic information about the mod
+[package]
+name = "Magicka Expanded - Summoning Pack"
+description = "The Summoning Pack module for the Magicka Expanded Framework. Part of the Magicka Expanded BAIN package."
+homepage = "https://www.nexusmods.com/morrowind/mods/47111"
+repository = "https://github.com/OperatorJack/Magicka-Expanded"
+authors = ["OperatorJack", "RedFurryDemon"]
+version = "3.0.0"
+
+# MWSE specific information about this mod
+[tools.mwse]
+lua-mod = "OperatorJack.MagickaExpanded-SummoningPack"
+load-order = 100
+wait-until-initialized = false
+
+# Dependencies are checked on `initialized` and warn the player if any are missing
+[dependencies]
+  # Assets can be directories or loose folders
+  assets = [
+
+      "Icons\\RFD\\B_RFD_6h_ascslp.dds",
+      "Icons\\RFD\\B_RFD_6h_ghoul.dds",
+      "Icons\\RFD\\B_RFD_6h_slave.dds",
+      "Icons\\RFD\\B_RFD_6h_zombie.dds",
+      "Icons\\RFD\\RFD_6h_ascslp.dds",
+      "Icons\\RFD\\RFD_6h_ghoul.dds",
+      "Icons\\RFD\\RFD_6h_slave.dds",
+      "Icons\\RFD\\RFD_6h_zombie.dds",
+      
+      "Icons\\RFD\\B_RFD_cc_hulking.dds",
+      "Icons\\RFD\\B_RFD_cc_imperfect.dds",
+      "Icons\\RFD\\RFD_cc_hulking.dds",
+      "Icons\\RFD\\RFD_cc_imperfect.dds",
+      
+      "Icons\\RFD\\B_RFD_dw_archer.dds",
+      "Icons\\RFD\\B_RFD_dw_spider.dds",
+      "Icons\\RFD\\B_RFD_dw_steam.dds",
+      "Icons\\RFD\\RFD_dw_archer.dds",
+      "Icons\\RFD\\RFD_dw_spider.dds",
+      "Icons\\RFD\\RFD_dw_steam.dds",
+      
+      "Icons\\RFD\\B_RFD_gbl_common.dds",
+      "Icons\\RFD\\B_RFD_gbl_durzog.dds",
+      "Icons\\RFD\\B_RFD_gbl_officer.dds",
+      "Icons\\RFD\\B_RFD_gbl_warchief.dds",
+      "Icons\\RFD\\RFD_gbl_common.dds",
+      "Icons\\RFD\\RFD_gbl_durzog.dds",
+      "Icons\\RFD\\RFD_gbl_officer.dds",
+      "Icons\\RFD\\RFD_gbl_warchief.dds",
+      
+      "Icons\\RFD\\B_RFD_sm_ogrim.dds",
+      "Icons\\RFD\\B_RFD_sm_spriggan.dds",
+      "Icons\\RFD\\B_RFD_sm_wwolf.dds",
+      "Icons\\RFD\\RFD_sm_ogrim.dds",
+      "Icons\\RFD\\RFD_sm_spriggan.dds",
+      "Icons\\RFD\\RFD_sm_wwolf.dds",
+      
+      "Icons\\RFD\\B_RFD_un_lich.dds",
+      "Icons\\RFD\\B_RFD_un_draugr.dds",
+      "Icons\\RFD\\RFD_un_lich.dds",
+      "Icons\\RFD\\RFD_un_draugr.dds",
+
+
+      "Meshes\\RFD\\RFD_unboxedWolf.nif",
+      "Meshes\\RFD\\xRFD_unboxedWolf.kf",
+      "Meshes\\RFD\\xRFD_unboxedWolf.nif",
+  ]
+
+# Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)
+[dependencies.mwse]
+buildnumber = 3273
+
+# Check MGE XE version
+[dependencies.mge-xe]
+version = ">=0.15.0"
+
+# mwse-module can be a folder or lua file, anywhere in /mods, /lib etc
+[dependencies.mods.MagickaExpanded]
+mwse-module = "OperatorJack.magickaExpanded"
+version = ">=3.0.0"

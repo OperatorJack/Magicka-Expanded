@@ -1,11 +1,15 @@
 local common = require("OperatorJack.MagickaExpanded.common")
 
+---@class MagickaExpanded.Effects.Mysticisim
+local this = {}
+
 --[[
 	Description: Wrapper for tes3.addMagicEffect that has default values
 		that are common for spells of this school. Uses the same parameter
 		table as tes3.addMagicEffect(). 
 ]]
-local this = {}
+---@param params MagickaExpanded.Effects.BasicEffectParams
+---@return tes3magicEffect | nil
 this.createBasicEffect = function(params)
     if (common.checkParams(params) == false) then return end
     local effect = tes3.addMagicEffect({
@@ -61,6 +65,14 @@ this.createBasicEffect = function(params)
     return effect
 end
 
+---@class MagickaExpanded.Effects.Mysticisim.PositionCellParams
+---@field cell tes3cell
+---@field orientation tes3vector3
+---@field position tes3vector3
+
+---@class MagickaExpanded.Effects.Mysticisim.TeleportationEffectParams: MagickaExpanded.Effects.BasicEffectParams
+---@field positionCell MagickaExpanded.Effects.Mysticisim.PositionCellParams
+
 --[[
 	Description: Wrapper for this.createBasicMagicEffect that presets parameters
 		common for teleportation effects.
@@ -80,6 +92,8 @@ end
 
 		Other parameters will be automatically set by the function.
 ]]
+---@param params MagickaExpanded.Effects.Mysticisim.TeleportationEffectParams
+---@return tes3magicEffect | nil
 this.createBasicTeleportationEffect = function(params)
     local effect = this.createBasicEffect({
         -- Base information.

@@ -1,8 +1,5 @@
 local common = require("OperatorJack.MagickaExpanded.common")
-
--- Initialize logger.
-local logger = require("logging.logger")
-local log = logger.new {name = "Magicka Expanded", logLevel = "INFO"}
+local log = require("OperatorJack.MagickaExpanded.classes.logger")
 
 -- Initialize any script overrides that are set within the framework.
 require("OperatorJack.MagickaExpanded.classes.scriptOverrides")
@@ -10,6 +7,7 @@ event.register("modConfigReady", function()
     dofile("Data Files\\MWSE\\lib\\OperatorJack\\MagickaExpanded\\mcm.lua")
 end)
 
+---@class MagickaExpanded
 local this = {}
 
 this.info = function(message) log:info(message) end

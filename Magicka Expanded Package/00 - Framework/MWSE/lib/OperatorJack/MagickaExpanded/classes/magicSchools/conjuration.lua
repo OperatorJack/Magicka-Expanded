@@ -1,12 +1,15 @@
 local common = require("OperatorJack.MagickaExpanded.common")
 
+---@class MagickaExpanded.Effects.Conjuration
 local this = {}
 
 --[[
-	Description: Wrapper for tes3.addMagicEffect that has default values
+	Wrapper for tes3.addMagicEffect that has default values
 		that are common for spells of this school. Uses the same parameter
 		table as tes3.addMagicEffect(). 
 ]]
+---@param params MagickaExpanded.Effects.BasicEffectParams
+---@return tes3magicEffect | nil
 this.createBasicEffect = function(params)
     if (common.checkParams(params) == false) then return end
     local effect = tes3.addMagicEffect({
@@ -62,8 +65,12 @@ this.createBasicEffect = function(params)
     return effect
 end
 
+---@class MagickaExpanded.Effects.Conjuration.BoundArmorEffectParams: MagickaExpanded.Effects.BasicEffectParams
+---@field armorId string
+---@field armorId2 string
+
 --[[
-	Description: Wrapper for this.createBasicMagicEffect that presets parameters
+	Wrapper for this.createBasicMagicEffect that presets parameters
 		common for bound armor effects.
 
 	@params: A table of parameters. Must be formatted as:
@@ -78,6 +85,8 @@ end
 
 		Other parameters will be automatically set by the function.
 ]]
+---@param params MagickaExpanded.Effects.Conjuration.BoundArmorEffectParams
+---@return tes3magicEffect | nil
 this.createBasicBoundArmorEffect = function(params)
     local armor = {}
     if (params.armorId) then table.insert(armor, params.armorId) end
@@ -120,6 +129,9 @@ this.createBasicBoundArmorEffect = function(params)
     return effect
 end
 
+---@class MagickaExpanded.Effects.Conjuration.BoundWeaponEffectParams: MagickaExpanded.Effects.BasicEffectParams
+---@field weaponId string
+
 --[[
 	Description: Wrapper for this.createBasicMagicEffect that presets parameters
 		common for bound weapon effects.
@@ -136,6 +148,8 @@ end
 
 		Other parameters will be automatically set by the function.
 ]]
+---@param params MagickaExpanded.Effects.Conjuration.BoundWeaponEffectParams
+---@return tes3magicEffect | nil
 this.createBasicBoundWeaponEffect = function(params)
     if (params.weaponId) then
         common.addBoundWeaponToBoundWeaponsList(params.id, {params.weaponId})
@@ -173,6 +187,9 @@ this.createBasicBoundWeaponEffect = function(params)
     return effect
 end
 
+---@class MagickaExpanded.Effects.Conjuration.SummoningEffectParams: MagickaExpanded.Effects.BasicEffectParams
+---@field creatureId string
+
 --[[
 	Description: Wrapper for this.createBasicMagicEffect that presets parameters
 		common for summoning effects.
@@ -189,6 +206,8 @@ end
 
 		Other parameters will be automatically set by the function.
 ]]
+---@param params MagickaExpanded.Effects.Conjuration.SummoningEffectParams
+---@return tes3magicEffect | nil
 this.createBasicSummoningEffect = function(params)
     local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.

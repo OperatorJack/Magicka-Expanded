@@ -7,7 +7,7 @@ description = "A lua-based framework for creating new, fully functional magic ef
 homepage = "https://www.nexusmods.com/morrowind/mods/47111"
 repository = "https://github.com/OperatorJack/Magicka-Expanded"
 authors = ["OperatorJack", "RedFurryDemon"]
-version = "2.10.0"
+version = "3.0.0"
 
 # MWSE specific information about this mod
 [tools.mwse]

@@ -13,4 +13,4 @@ local function initialized()
     print("[Magicka Expanded: INFO] Registered Script Overrides")
 end
 
-event.register("initialized", initialized)
+event.register(tes3.event.initialized, initialized)

@@ -1,0 +1,91 @@
+# Data Files/MagickaExpanded-TamrielRebuilt-metadata.toml
+
+# Holds basic information about the mod
+[package]
+name = "Magicka Expanded - Tamriel Rebuilt Pack"
+description = "The Tamriel Rebuilt Pack module for the Magicka Expanded Framework. Part of the Magicka Expanded BAIN package."
+homepage = "https://www.nexusmods.com/morrowind/mods/47111"
+repository = "https://github.com/OperatorJack/Magicka-Expanded"
+authors = ["OperatorJack", "RedFurryDemon"]
+version = "3.0.0"
+
+# MWSE specific information about this mod
+[tools.mwse]
+lua-mod = "OperatorJack.MagickaExpanded-TamrielRebuilt"
+load-order = 100
+wait-until-initialized = false
+
+# Dependencies are checked on `initialized` and warn the player if any are missing
+[dependencies]
+  # Assets can be directories or loose folders
+  assets = [
+
+      "Icons\\RFD\\B_RFD_dw_armor.dds",
+      "Icons\\RFD\\B_RFD_dw_armorch.dds",
+      "Icons\\RFD\\B_RFD_gbl_shaman.dds",
+      "Icons\\RFD\\B_RFD_kj_alfiq.dds",
+      "Icons\\RFD\\B_RFD_tr_drid.dds",
+      "Icons\\RFD\\B_RFD_tr_dridmon.dds",
+      "Icons\\RFD\\B_RFD_tr_giant.dds",
+      "Icons\\RFD\\B_RFD_tr_lamia.dds",
+      "Icons\\RFD\\B_RFD_tr_mammoth.dds",
+      "Icons\\RFD\\B_RFD_tr_minot.dds",
+      "Icons\\RFD\\B_RFD_tr_mudg.dds",
+      "Icons\\RFD\\B_RFD_tr_parast.dds",
+      "Icons\\RFD\\B_RFD_tr_plainstr.dds",
+      "Icons\\RFD\\B_RFD_tr_raki.dds",
+      "Icons\\RFD\\B_RFD_tr_sabr.dds",
+      "Icons\\RFD\\B_RFD_tr_silstr.dds",
+      "Icons\\RFD\\B_RFD_tr_sload.dds",
+      "Icons\\RFD\\B_RFD_tr_swptr.dds",
+      "Icons\\RFD\\B_RFD_tr_trebat.dds",
+      "Icons\\RFD\\B_RFD_tr_velk.dds",
+      "Icons\\RFD\\B_RFD_tr_vermai.dds",
+      "Icons\\RFD\\B_RFD_tr_wboar.dds",
+      "Icons\\RFD\\B_RFD_tr_welkynd.dds",
+      "Icons\\RFD\\B_RFD_un_draugrhc.dds",
+      "Icons\\RFD\\B_RFD_un_draugrlrd.dds",
+      "Icons\\RFD\\B_RFD_un_frlich.dds",
+      "Icons\\RFD\\B_RFD_un_grlich.dds",
+      
+      "Icons\\RFD\\RFD_dw_armor.dds",
+      "Icons\\RFD\\RFD_dw_armorch.dds",
+      "Icons\\RFD\\RFD_gbl_shaman.dds",
+      "Icons\\RFD\\RFD_kj_alfiq.dds",
+      "Icons\\RFD\\RFD_tr_drid.dds",
+      "Icons\\RFD\\RFD_tr_dridmon.dds",
+      "Icons\\RFD\\RFD_tr_giant.dds",
+      "Icons\\RFD\\RFD_tr_lamia.dds",
+      "Icons\\RFD\\RFD_tr_mammoth.dds",
+      "Icons\\RFD\\RFD_tr_minot.dds",
+      "Icons\\RFD\\RFD_tr_mudg.dds",
+      "Icons\\RFD\\RFD_tr_parast.dds",
+      "Icons\\RFD\\RFD_tr_plainstr.dds",
+      "Icons\\RFD\\RFD_tr_raki.dds",
+      "Icons\\RFD\\RFD_tr_sabr.dds",
+      "Icons\\RFD\\RFD_tr_silstr.dds",
+      "Icons\\RFD\\RFD_tr_sload.dds",
+      "Icons\\RFD\\RFD_tr_swptr.dds",
+      "Icons\\RFD\\RFD_tr_trebat.dds",
+      "Icons\\RFD\\RFD_tr_velk.dds",
+      "Icons\\RFD\\RFD_tr_vermai.dds",
+      "Icons\\RFD\\RFD_tr_wboar.dds",
+      "Icons\\RFD\\RFD_tr_welkynd.dds",
+      "Icons\\RFD\\RFD_un_draugrhc.dds",
+      "Icons\\RFD\\RFD_un_draugrlrd.dds",
+      "Icons\\RFD\\RFD_un_frlich.dds",
+      "Icons\\RFD\\RFD_un_grlich.dds",
+  ]
+
+# Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)
+[dependencies.mwse]
+buildnumber = 3273
+
+# Check MGE XE version
+[dependencies.mge-xe]
+version = ">=0.15.0"
+
+# mwse-module can be a folder or lua file, anywhere in /mods, /lib etc
+[dependencies.mods.MagickaExpanded]
+mwse-module = "OperatorJack.magickaExpanded"
+version = ">=3.0.0"

@@ -1,6 +1,23 @@
 local common = require("OperatorJack.MagickaExpanded.common")
 
+--- Enchantments module for interacting with enchantment objects.
+---@class MagickaExpanded.Enchantments
 local this = {}
+
+---@class MagickaExpanded.Enchantments.createBasicEnchantmentParams
+---@field id string Enchantment ID
+---@field effect tes3.effect Effect ID
+---@field name string Enchantment Name
+---@field rangeType tes3.effectRange Effect Range
+---@field min number?
+---@field max number?
+---@field duration number?
+---@field radius number?
+---@field skill tes3.skill?
+---@field attribute tes3.attribute?
+---@field chargeCost number?
+---@field maxCharge number?
+---@field castType tes3.enchantmentType
 
 --[[
     Description: Updates an Enchantment based on the given @params,
@@ -24,6 +41,8 @@ local this = {}
         with .* must use a value found in the table set. Table parameter options marked
         with [int] must be an integer.
 ]]
+---@param params MagickaExpanded.Enchantments.createBasicEnchantmentParams
+---@return tes3enchantment
 this.createBasicEnchantment = function(params)
     local enchantment = tes3.createObject({
         id = params.id,
@@ -31,11 +50,11 @@ this.createBasicEnchantment = function(params)
         castType = tes3.enchantmentType.onUse,
         chargeCost = 1,
         maxCharge = 1
-    })
+    }) --[[@as tes3enchantment]]
 
     local effect = enchantment.effects[1]
     effect.id = params.effect
-    effect.rangeType = params.range or tes3.effectRange.self
+    effect.rangeType = params.rangeType or params.range or tes3.effectRange.self
     effect.min = params.min or 0
     effect.max = params.max or 0
     effect.duration = params.duration or 0
@@ -51,6 +70,13 @@ this.createBasicEnchantment = function(params)
 
     return enchantment
 end
+
+---@class MagickaExpanded.Enchantments.createComplexEnchantmentParams
+---@field id string Enchantment ID
+---@field effects tes3effect[]
+---@field chargeCost number?
+---@field maxCharge number?
+---@field castType tes3.enchantmentType
 
 --[[
     Description: Creates or updates a Enchantment based on the given @params,
@@ -88,6 +114,8 @@ end
         with .* must use a value found in the table set. Table parameter options marked
         with [int] must be an integer. @params.effects may only contain up to 8 entries.
 ]]
+---@param params MagickaExpanded.Enchantments.createComplexEnchantmentParams
+---@return tes3enchantment
 this.createComplexEnchantment = function(params)
     local enchantment = tes3.createObject({
         id = params.id,
@@ -95,14 +123,15 @@ this.createComplexEnchantment = function(params)
         castType = tes3.enchantmentType.onUse,
         chargeCost = 1,
         maxCharge = 1
-    })
+    }) --[[@as tes3enchantment]]
 
     for i = 1, #params.effects do
         local effect = enchantment.effects[i]
         local newEffect = params.effects[i]
 
         effect.id = newEffect.id
-        effect.rangeType = newEffect.range or tes3.effectRange.self
+        effect.rangeType = newEffect.rangeType or newEffect.range or
+                               tes3.effectRange.self
         effect.min = newEffect.min or 0
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0

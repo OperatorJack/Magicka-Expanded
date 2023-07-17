@@ -1,7 +1,6 @@
 -- Check Magicka Expanded framework.
 local common = require("OperatorJack.MagickaExpanded.common")
-local logger = require("logging.logger")
-local log = logger.getLogger("Magicka Expanded")
+local log = require("OperatorJack.MagickaExpanded.classes.logger")
 
 local function createGeneralCategory(template)
     local page = template:createPage{label = "General Settings"}

@@ -1,9 +1,18 @@
 local common = require("OperatorJack.MagickaExpanded.common")
 
+--- Common functions module.
+---@class MagickaExpanded.Common
 local this = {}
 
+---Cell-agnostic method to get all actors from a target position and within a certain distance.
+---@param cell tes3cell
+---@param targetPosition tes3vector3
+---@param distanceLimit number
+---@return tes3mobileActor[]
 this.getActorsNearTargetPosition = function(cell, targetPosition, distanceLimit)
+    ---@type tes3mobileActor[]
     local actors = {}
+
     -- Iterate through the references in the cell.
     for ref in cell:iterateReferences() do
         -- Check that the reference is a creature or NPC.
@@ -24,13 +33,12 @@ this.getActorsNearTargetPosition = function(cell, targetPosition, distanceLimit)
 end
 
 --[[
-	Description: For a given magic effect event @event, returns the first 
-		effect that has the same ID as @effectId.
-
-	@event: A magic effect event created through tes3.addMagickEffect, such as 
-		onTick or onCollision.
-	@effectId: A magic effect ID found in tes3.effect.
+	For a given magic effect event, returns the first 
+		effect that has the same ID as effectId.
 ]]
+---@param event tes3magicEffectTickEventData | tes3magicEffectCollisionEventData A magic effect event created through tes3.addMagickEffect, such as onTick or onCollision.
+---@param effectId tes3.effect A magic effect ID found in tes3.effect.
+---@return tes3effect | nil
 this.getEffectFromEffectOnEffectEvent = function(event, effectId)
     for i = 1, 8 do
         local effect = event.sourceInstance.source.effects[i]
@@ -42,11 +50,10 @@ this.getEffectFromEffectOnEffectEvent = function(event, effectId)
 end
 
 --[[
-	Description: Calculates and returns a random magnitude based on a given effect.
-
-	TES3MagicEffect @effect: The magic effect to calculate a random magnitude for.
-		Type: TES3MagicEffect.
+	Description: Calculates and returns a random magnitude based on a given effect min/max.
 ]]
+---@param effect tes3effect The magic effect to calculate a random magnitude for.
+---@return number
 this.getCalculatedMagnitudeFromEffect = function(effect)
     local minMagnitude = math.floor(effect.min)
     local maxMagnitude = math.floor(effect.max)
@@ -55,29 +62,26 @@ this.getCalculatedMagnitudeFromEffect = function(effect)
 end
 
 --[[
-	Description: Performs linear interpolation between 2 sets of points and returns
-		a point that is @percent percentage between them.
-
-	@x1: The X value of point A.
-	@y1: The Y value of point A.
-
-	@x2: The X value of point B.
-	@y2: The Y value of point B.
-
-	@percent: The decimal percentage used to calculate a point between point A
-		and point B.
+	Performs linear interpolation between 2 sets of points, A and B, and returns
+		a point that is `percent` percentage between them.
 ]]
+---@param x1 number The X value of point A.
+---@param y1 number The Y value of point A.
+---@param x2 number The X value of point B.
+---@param y2 number The Y value of point B.
+---@param percent number The decimal percentage used to calculate a point between point A and point B.
+---@return number, number
 this.linearInterpolation = function(x1, y1, x2, y2, percent)
     return (x1 + ((x2 - x1) * percent)), (y1 + ((y2 - y1) * percent))
 end
 
 --[[
-	Description: Performs a ternary operation.
-
-	@condition: The condition the evaluate in the ternary.
-	@T: The value to return if @condition is true.
-	@F: The value to return if @condition is false.
+	Performs a ternary operation.
 ]]
+---@param condition any The condition to evaluate in the ternary. This may be a static value or function call.
+---@param T any The value to return if `condition` is true.
+---@param F any The value to return if `condition` is false.
+---@return any
 this.ternary = function(condition, T, F)
     if condition then
         return T
@@ -86,6 +90,7 @@ this.ternary = function(condition, T, F)
     end
 end
 
+---@return 
 this.getBoundWeaponEffectList = function() return
     table.copy(common.boundWeapons) end
 

@@ -1,4 +1,7 @@
+---@class MagickaExpanded.Effects
 local this = {}
+
+---@class MagickaExpanded.Effects.BasicEffectParams: tes3.addMagicEffect.params
 
 --[[
     Description: Contains all effect methods for the school of Illusion.
