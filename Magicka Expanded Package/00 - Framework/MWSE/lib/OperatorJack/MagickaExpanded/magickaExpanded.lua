@@ -30,8 +30,10 @@ this.grimoires = require("OperatorJack.MagickaExpanded.classes.grimoires")
 
 this.functions = require("OperatorJack.MagickaExpanded.classes.functions")
 
+this.log = log
+
 --[[
-	Description: Registers all magic effects, spells, tomes, and grimoires that
+	Registers all magic effects, spells, tomes, and grimoires that
 	are created through the Magicka Expanded framework.
 ]]
 local function onLoaded()

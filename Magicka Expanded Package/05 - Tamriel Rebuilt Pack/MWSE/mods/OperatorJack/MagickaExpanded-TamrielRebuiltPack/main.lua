@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 require(
     "OperatorJack.MagickaExpanded-TamrielRebuiltPack.effects.summonEffectSet")
@@ -245,12 +245,12 @@ local function addTomesToLists()
 
     for _, tome in pairs(teleportTomes) do
         local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list)
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
         list:insert(item, 1)
     end
     for _, tome in pairs(summonTomes) do
         local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list)
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
         list:insert(item, 1)
     end
 end
@@ -269,292 +269,292 @@ local function registerSpells()
         id = teleportSpellIds.akamora,
         name = "Teleport to Akamora",
         effect = tes3.effect.teleportToAkamora,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.firewatch,
         name = "Teleport to Firewatch",
         effect = tes3.effect.teleportToFirewatch,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.helnim,
         name = "Teleport to Helnim",
         effect = tes3.effect.teleportToHelnim,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.necrom,
         name = "Teleport to Necrom",
         effect = tes3.effect.teleportToNecrom,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.oldEbonheart,
         name = "Teleport to Old Ebonheart",
         effect = tes3.effect.teleportToOldEbonheart,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.portTelvannis,
         name = "Teleport to Port Telvannis",
         effect = tes3.effect.teleportToPortTelvannis,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.altBosara,
         name = "Teleport to Alt Bosara",
         effect = tes3.effect.teleportToAltBosara,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.balOrya,
         name = "Teleport to Bal Orya",
         effect = tes3.effect.teleportToBalOrya,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.gahSadrith,
         name = "Teleport to Gah Sadrith",
         effect = tes3.effect.teleportToGahSadrith,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.gorne,
         name = "Teleport to Gorne",
         effect = tes3.effect.teleportToGorne,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.llothanis,
         name = "Teleport to Llothanis",
         effect = tes3.effect.teleportToLlothanis,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.marog,
         name = "Teleport to Marog",
         effect = tes3.effect.teleportToMarog,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.meralag,
         name = "Teleport to Meralag",
         effect = tes3.effect.teleportToMeralag,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.telAranyon,
         name = "Teleport to Tel Aranyon",
         effect = tes3.effect.teleportToTelAranyon,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.telMothrivra,
         name = "Teleport to Tel Mothrivra",
         effect = tes3.effect.teleportToTelMothrivra,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.telMuthada,
         name = "Teleport to Tel Muthada",
         effect = tes3.effect.teleportToTelMuthada,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = teleportSpellIds.telOuada,
         name = "Teleport to Tel Ouada",
         effect = tes3.effect.teleportToTelOuada,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
 
     framework.spells.createBasicSpell({
         id = summonSpellIds.armorCenturion,
         name = "Summon Armor Centurion",
         effect = tes3.effect.summonArmorCent,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.armorCenturionChampion,
         name = "Summon Armor Centurion Champion",
         effect = tes3.effect.summonArmorCentChamp,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.draugrHousecarl,
         name = "Summon Draugr Housecarl",
         effect = tes3.effect.summonDraugrHsCrl,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.draugrLord,
         name = "Summon Draugr Lord",
         effect = tes3.effect.summonDraugrLord,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.dridrea,
         name = "Summon Dridrea",
         effect = tes3.effect.summonDridrea,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.dridreaMonarch,
         name = "Summon Dridrea Monarch",
         effect = tes3.effect.summonDridreaMonarch,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.frostLich,
         name = "Summon Frost Lich",
         effect = tes3.effect.summonFrostLich,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.giant,
         name = "Summon Giant",
         effect = tes3.effect.summonGiant,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.goblinShaman,
         name = "Summon Goblin Shaman",
         effect = tes3.effect.summonGoblinShaman,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.greaterLich,
         name = "Summon Greater Lich",
         effect = tes3.effect.summonGreaterLich,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.lamia,
         name = "Summon Lamia",
         effect = tes3.effect.summonLamia,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.mammoth,
         name = "Summon Mammoth",
         effect = tes3.effect.summonMammoth,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.minotaur,
         name = "Summon Minotaur",
         effect = tes3.effect.summonMinotaur,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.mudGolem,
         name = "Summon Mud Golem",
         effect = tes3.effect.summonMudGolem,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.parastylus,
         name = "Summon Parastylus",
         effect = tes3.effect.summonParastylus,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.plainStrider,
         name = "Summon Plain Strider",
         effect = tes3.effect.summonPlainStrider,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.raki,
         name = "Summon Raki",
         effect = tes3.effect.summonRaki,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.sabreCat,
         name = "Call Sabre Cat",
         effect = tes3.effect.callSabreCat,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.siltStrider,
         name = "Summon Silt Strider",
         effect = tes3.effect.summonSiltStrider,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.sload,
         name = "Summon Sload",
         effect = tes3.effect.summonSload,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.swampTroll,
         name = "Summon Swamp Troll",
         effect = tes3.effect.summonSwampTroll,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.welkyndSpirit,
         name = "Summon Welkynd Spirit",
         effect = tes3.effect.summonWelkyndSpirit,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.wereboar,
         name = "Call Wereboar",
         effect = tes3.effect.callWereboar,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.velk,
         name = "Summon Velk",
         effect = tes3.effect.summonVelk,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.vermai,
         name = "Summon Vermai",
         effect = tes3.effect.summonVermai,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.trebataur,
         name = "Summon Trebataur",
         effect = tes3.effect.summonTrebataur,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = summonSpellIds.alfiq,
         name = "Summon Alfiq",
         effect = tes3.effect.summonAlfiq,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
 

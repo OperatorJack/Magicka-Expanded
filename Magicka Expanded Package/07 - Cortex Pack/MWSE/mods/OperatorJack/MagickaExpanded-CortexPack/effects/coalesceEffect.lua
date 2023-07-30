@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("coalesce", 333)
 

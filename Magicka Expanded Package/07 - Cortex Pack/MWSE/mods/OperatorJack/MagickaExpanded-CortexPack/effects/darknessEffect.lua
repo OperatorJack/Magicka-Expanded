@@ -1,13 +1,20 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("darkness", 263)
 
+---@param e tes3magicEffectCollisionEventData
 local function onDarknessCollision(e)
     if e.collision then
         ---@type tes3magicEffect
         local effect = framework.functions.getEffectFromEffectOnEffectEvent(e,
                                                                             tes3.effect
                                                                                 .darkness)
+
+        if (effect == nil) then
+            framework.log.error(
+                "Unable to find effect in tick event. Logical error?")
+            return
+        end
 
         local caster = e.sourceInstance.caster
         local effectDuration = effect.duration
@@ -42,11 +49,7 @@ local function onDarknessCollision(e)
             duration = effectDuration,
             callback = function()
                 -- @type tes3reference
-                mistReference:disable()
-
-                timer.delayOneFrame(function()
-                    mistReference.deleted = true
-                end)
+                mistReference:delete()
             end
         })
     end

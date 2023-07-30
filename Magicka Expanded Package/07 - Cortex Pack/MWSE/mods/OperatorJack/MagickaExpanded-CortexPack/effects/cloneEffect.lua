@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("clone", 328)
 tes3.claimSpellEffectId("cloneSource", 329)
@@ -44,6 +44,13 @@ local function onCloneTick(e)
         local effect = framework.functions.getEffectFromEffectOnEffectEvent(e,
                                                                             tes3.effect
                                                                                 .clone)
+
+        if (effect == nil) then
+            framework.log.error(
+                "Unable to find effect in tick event. Logical error?")
+            return
+        end
+
         local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(
                               effect)
 

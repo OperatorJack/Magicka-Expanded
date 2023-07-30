@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("mindScan", 330)
 
@@ -42,6 +42,7 @@ local function createMindScanUi(reference, tooltip)
 
     local spells = {}
     for spell in tes3.iterate(reference.object.spells.iterator) do
+        local spell = spell --[[@as tes3spell]]
         if (spell.castType == tes3.spellType.power or spell.castType ==
             tes3.spellType.spell) then table.insert(spells, spell) end
     end

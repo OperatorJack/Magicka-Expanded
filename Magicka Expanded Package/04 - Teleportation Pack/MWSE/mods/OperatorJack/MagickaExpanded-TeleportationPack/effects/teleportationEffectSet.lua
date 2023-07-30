@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 -- Capitals
 tes3.claimSpellEffectId("teleportToAldRuhn", 241)
@@ -28,8 +28,8 @@ local function addTeleportationEffects()
         description = getDescription("Mournhold"),
         baseCost = 150,
         positionCell = {
-            position = {-4, 3170, 199},
-            orientation = {x = 0, y = 0, z = 0},
+            position = tes3vector3.new(-4, 3170, 199),
+            orientation = tes3vector3.new(0, 0, 0),
             cell = "Mournhold, Plaza Brindisi Dorom"
         }
     })
@@ -39,8 +39,8 @@ local function addTeleportationEffects()
         description = getDescription("Tel Mora"),
         baseCost = 150,
         positionCell = {
-            position = {106925, 117169, 264},
-            orientation = {x = 0, y = 0, z = 34},
+            position = tes3vector3.new(106925, 117169, 264),
+            orientation = tes3vector3.new(0, 0, 34),
             cell = "Tel Mora"
         }
     })
@@ -50,8 +50,8 @@ local function addTeleportationEffects()
         description = getDescription("Suran"),
         baseCost = 150,
         positionCell = {
-            position = {56217, -50650, 52},
-            orientation = {x = 0, y = 0, z = 178},
+            position = tes3vector3.new(56217, -50650, 52),
+            orientation = tes3vector3.new(0, 0, 178),
             cell = "Suran"
         }
     })
@@ -61,8 +61,8 @@ local function addTeleportationEffects()
         description = getDescription("Pelagiad"),
         baseCost = 150,
         positionCell = {
-            position = {1008, -56746, 1360},
-            orientation = {x = 0, y = 0, z = 86},
+            position = tes3vector3.new(1008, -56746, 1360),
+            orientation = tes3vector3.new(0, 0, 86),
             cell = "Pelagiad"
         }
     })
@@ -72,8 +72,8 @@ local function addTeleportationEffects()
         description = getDescription("Molag Mar"),
         baseCost = 150,
         positionCell = {
-            position = {106763, -61839, 780},
-            orientation = {x = 0, y = 0, z = 92},
+            position = tes3vector3.new(106763, -61839, 780),
+            orientation = tes3vector3.new(0, 0, 92),
             cell = "Molag Mar"
         }
     })
@@ -83,8 +83,8 @@ local function addTeleportationEffects()
         description = getDescription("Maar Gan"),
         baseCost = 150,
         positionCell = {
-            position = {-22118, 102242, 1979},
-            orientation = {x = 0, y = 0, z = 34},
+            position = tes3vector3.new(-22118, 102242, 1979),
+            orientation = tes3vector3.new(0, 0, 34),
             cell = "Maar Gan"
         }
     })
@@ -94,8 +94,8 @@ local function addTeleportationEffects()
         description = getDescription("Gnisis"),
         baseCost = 150,
         positionCell = {
-            position = {-86430, 91415, 1035},
-            orientation = {x = 0, y = 0, z = 34},
+            position = tes3vector3.new(-86430, 91415, 1035),
+            orientation = tes3vector3.new(0, 0, 34),
             cell = "Gnisis"
         }
     })
@@ -105,8 +105,8 @@ local function addTeleportationEffects()
         description = getDescription("Caldera"),
         baseCost = 150,
         positionCell = {
-            position = {-10373, 17241, 1284},
-            orientation = {x = 0, y = 0, z = 4},
+            position = tes3vector3.new(-10373, 17241, 1284),
+            orientation = tes3vector3.new(0, 0, 4),
             cell = "Caldera"
         }
     })
@@ -116,8 +116,8 @@ local function addTeleportationEffects()
         description = getDescription("Vivec"),
         baseCost = 150,
         positionCell = {
-            position = {29906, -76553, 790},
-            orientation = {x = 0, y = 0, z = 178},
+            position = tes3vector3.new(29906, -76553, 790),
+            orientation = tes3vector3.new(0, 0, 178),
             cell = "Vivec"
         }
     })
@@ -127,8 +127,8 @@ local function addTeleportationEffects()
         description = getDescription("Ebonheart"),
         baseCost = 150,
         positionCell = {
-            position = {18122, -101919, 337},
-            orientation = {x = 0, y = 0, z = 268},
+            position = tes3vector3.new(18122, -101919, 337),
+            orientation = tes3vector3.new(0, 0, 268),
             cell = "Ebonheart"
         }
     })
@@ -138,8 +138,8 @@ local function addTeleportationEffects()
         description = getDescription("Balmora"),
         baseCost = 150,
         positionCell = {
-            position = {-22707, -17639, 403},
-            orientation = {x = 0, y = 0, z = 0},
+            position = tes3vector3.new(-22707, -17639, 403),
+            orientation = tes3vector3.new(0, 0, 0),
             cell = "Balmora"
         }
     })
@@ -149,8 +149,8 @@ local function addTeleportationEffects()
         description = getDescription("Ald-Ruhn"),
         baseCost = 150,
         positionCell = {
-            position = {-16328, 52678, 1841},
-            orientation = {x = 0, y = 0, z = 92},
+            position = tes3vector3.new(-16328, 52678, 1841),
+            orientation = tes3vector3.new(0, 0, 92),
             cell = "Ald-Ruhn"
         }
     })

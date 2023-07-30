@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 require("OperatorJack.MagickaExpanded-SummoningPack.effects.basicSummonEffects")
 
@@ -129,12 +129,14 @@ local tomes = {
 local function addTomesToLists()
     for _, tome in pairs(tomes) do
         local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list)
+
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
         list:insert(item, 1)
     end
     for _, grimoire in pairs(grimoires) do
         local item = tes3.getObject(grimoire.id)
-        local list = tes3.getObject(grimoire.list)
+
+        local list = tes3.getObject(grimoire.list) --[[@as tes3leveledItem]]
         list:insert(item, 1)
     end
 end
@@ -145,133 +147,133 @@ local function registerSpells()
         id = spellIds.werewolf,
         name = "Call Werewolf",
         effect = tes3.effect.callWerewolf,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.warDurzog,
         name = "Summon War Durzog",
         effect = tes3.effect.summonWarDurzog,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.goblinGrunt,
         name = "Summon Goblin",
         effect = tes3.effect.summonGoblinGrunt,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.goblinOfficer,
         name = "Summon Goblin Officer",
         effect = tes3.effect.summonGoblinOfficer,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.goblinWarchief,
         name = "Summon Goblin Warchief",
         effect = tes3.effect.summonGoblinWarchief,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.hulkingFabricant,
         name = "Summon Hulking Fabricant",
         effect = tes3.effect.summonHulkingFabricant,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.imperfect,
         name = "Summon Imperfect",
         effect = tes3.effect.summonImperfect,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 15
     })
     framework.spells.createBasicSpell({
         id = spellIds.ascendedSleeper,
         name = "Summon Ascended Sleeper",
         effect = tes3.effect.summonAscendedSleeper,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.ashGhoul,
         name = "Summon Ash Ghoul",
         effect = tes3.effect.summonAshGhoul,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.ashZombie,
         name = "Summon Ash Zombie",
         effect = tes3.effect.summonAshZombie,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.ashSlave,
         name = "Summon Ash Slave",
         effect = tes3.effect.summonAshSlave,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.draugr,
         name = "Summon Draugr",
         effect = tes3.effect.summonDraugr,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.lich,
         name = "Summon Lich",
         effect = tes3.effect.summonLich,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.ogrim,
         name = "Summon Ogrim",
         effect = tes3.effect.summonOgrim,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.spriggran,
         name = "Summon Spriggan",
         effect = tes3.effect.summonSpriggan,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.centurionSteam,
         name = "Summon Steam Centurion",
         effect = tes3.effect.summonCenturionSteam,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.centurionArcher,
         name = "Summon Centurion Archer",
         effect = tes3.effect.summonCenturionProjectile,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.centurionSpider,
         name = "Summon Centurion Spider",
         effect = tes3.effect.summonCenturionSpider,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
     framework.spells.createBasicSpell({
         id = spellIds.centurionSphere,
         name = "Summon Centurion Sphere",
         effect = tes3.effect.summonCenturionSphere,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
 

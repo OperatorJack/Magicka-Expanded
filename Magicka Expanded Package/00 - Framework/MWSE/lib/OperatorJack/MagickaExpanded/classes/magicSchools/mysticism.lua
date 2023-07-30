@@ -4,7 +4,7 @@ local common = require("OperatorJack.MagickaExpanded.common")
 local this = {}
 
 --[[
-	Description: Wrapper for tes3.addMagicEffect that has default values
+	Wrapper for tes3.addMagicEffect that has default values
 		that are common for spells of this school. Uses the same parameter
 		table as tes3.addMagicEffect(). 
 ]]
@@ -65,16 +65,27 @@ this.createBasicEffect = function(params)
     return effect
 end
 
+---@class MagickaExpanded.Effects.Mysticisim.PositionCellParams.VectorParams
+---@field x number
+---@field y number
+---@field z number
+
 ---@class MagickaExpanded.Effects.Mysticisim.PositionCellParams
----@field cell tes3cell
----@field orientation tes3vector3
----@field position tes3vector3
+---@field cell tes3cell|string
+--[[
+    Orientation in degrees. Degrees are automatically converted to radians.
+]]
+---@field orientation MagickaExpanded.Effects.Mysticisim.PositionCellParams.VectorParams | tes3vector3
+--[[
+    Position in numbers.
+]]
+---@field position MagickaExpanded.Effects.Mysticisim.PositionCellParams.VectorParams | tes3vector3
 
 ---@class MagickaExpanded.Effects.Mysticisim.TeleportationEffectParams: MagickaExpanded.Effects.BasicEffectParams
 ---@field positionCell MagickaExpanded.Effects.Mysticisim.PositionCellParams
 
 --[[
-	Description: Wrapper for this.createBasicMagicEffect that presets parameters
+	Wrapper for this.createBasicMagicEffect that presets parameters
 		common for teleportation effects.
 
 	@params: A table of parameters. Must be formatted as:
@@ -84,8 +95,8 @@ end
 			description = "Teleports the caster to Example.",
 			baseCost = 150,
 			positionCell = {
-				position = { 106925, 117169, 264},
-				orientation = { x=0, y=0, z=34},
+				position = tes3vector3.new( 106925, 117169, 264),
+				orientation = tes3vector3.new( 0, 0, 34),
 				cell = "Example"
 			}
 		}
@@ -120,16 +131,20 @@ this.createBasicTeleportationEffect = function(params)
             -- Trigger into the spell system.
             if (not e:trigger()) then return end
 
-            local orientationRad = {}
-            orientationRad[1] = math.rad(params.positionCell.orientation.x)
-            orientationRad[2] = math.rad(params.positionCell.orientation.y)
-            orientationRad[3] = math.rad(params.positionCell.orientation.z)
+            local position = tes3vector3.new(params.positionCell.position.x,
+                                             params.positionCell.position.y,
+                                             params.positionCell.position.z)
+
+            local orientation = tes3vector3.new(
+                                    math.rad(params.positionCell.orientation.x),
+                                    math.rad(params.positionCell.orientation.y),
+                                    math.rad(params.positionCell.orientation.z))
 
             -- Teleport the caster.
             local teleportParams = {
                 reference = e.sourceInstance.caster,
-                position = params.positionCell.position,
-                orientation = orientationRad,
+                position = position,
+                orientation = orientation,
                 cell = params.positionCell.cell
             }
             tes3.positionCell(teleportParams)

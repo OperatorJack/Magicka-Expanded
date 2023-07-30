@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 if (framework == nil) then
     local function warning()
         tes3.messageBox(
@@ -11,7 +11,7 @@ if (framework == nil) then
 end
 
 -- Add spells to player. --
-function addTestSpells(e)
+local function addTestSpells(e)
     framework.functions.addSpellsToPlayer()
     tes3.messageBox(
         "Magicka Expanded: Added all currently loaded spells to player.")

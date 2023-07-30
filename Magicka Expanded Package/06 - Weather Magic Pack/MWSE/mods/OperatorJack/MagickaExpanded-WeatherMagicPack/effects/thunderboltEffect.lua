@@ -1,7 +1,8 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("thunderbolt", 323)
 
+---@param e tes3magicEffectCollisionEventData
 local function onThunderboltCollision(e)
     if e.collision then
         -- Verify effect conditions are met.
@@ -77,11 +78,7 @@ local function onThunderboltCollision(e)
             duration = effectDuration,
             callback = function()
                 -- @type tes3reference
-                reference:disable()
-
-                timer.delayOneFrame(function()
-                    reference.deleted = true
-                end)
+                reference:delete()
             end
         })
     end

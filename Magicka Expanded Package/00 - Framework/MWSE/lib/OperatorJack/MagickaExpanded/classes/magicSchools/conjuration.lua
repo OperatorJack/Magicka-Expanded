@@ -67,7 +67,7 @@ end
 
 ---@class MagickaExpanded.Effects.Conjuration.BoundArmorEffectParams: MagickaExpanded.Effects.BasicEffectParams
 ---@field armorId string
----@field armorId2 string
+---@field armorId2 string?
 
 --[[
 	Wrapper for this.createBasicMagicEffect that presets parameters
@@ -133,7 +133,7 @@ end
 ---@field weaponId string
 
 --[[
-	Description: Wrapper for this.createBasicMagicEffect that presets parameters
+	Wrapper for this.createBasicMagicEffect that presets parameters
 		common for bound weapon effects.
 
 	@params: A table of parameters. Must be formatted as:
@@ -191,7 +191,7 @@ end
 ---@field creatureId string
 
 --[[
-	Description: Wrapper for this.createBasicMagicEffect that presets parameters
+	Wrapper for this.createBasicMagicEffect that presets parameters
 		common for summoning effects.
 
 	@params: A table of parameters. Must be formatted as:

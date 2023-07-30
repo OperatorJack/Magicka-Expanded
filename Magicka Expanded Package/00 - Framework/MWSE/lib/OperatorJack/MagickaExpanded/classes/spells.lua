@@ -62,7 +62,7 @@ end
 ---@field magickaCost number?
 
 --[[
-    Description: Creates or updates a spell based on the given @params,
+    Creates or updates a spell based on the given @params,
         and adds it to the framework's list of managed spells. Accepts one
         magic effect.
 
@@ -72,7 +72,7 @@ end
     example = {
         id = "exampleSpellId",
         effect = tes3.effect.*,
-        range = tes3.effectRange.* | nil,
+        rangeType = tes3.effectRange.* | nil,
         min = [int] | nil,
         max = [int] | nil,
         duration = [int] | nil,
@@ -115,10 +115,10 @@ end
 ---@field id string
 ---@field name string
 ---@field magickaCost number?
----@field effects tes3effect[]
+---@field effects MagickaExpanded.Effects.Effect[]
 
 --[[
-    Description: Creates or updates a spell based on the given @params,
+    Creates or updates a spell based on the given @params,
         and adds it to the framework's list of managed spells. Accepts multiple
         magic effects.
 
@@ -130,7 +130,7 @@ end
         effects = {
             [1] = {
                 id = tes3.effect.*,
-                range = tes3.effectRange.* | nil,
+                rangeType = tes3.effectRange.* | nil,
                 min = [int] | nil,
                 max = [int] | nil,
                 duration = [int] | nil,
@@ -138,7 +138,7 @@ end
             },
             [2] = {
                 id = tes3.effect.*,
-                range = tes3.effectRange.* | nil,
+                rangeType = tes3.effectRange.* | nil,
                 min = [int] | nil,
                 max = [int] | nil,
                 duration = [int] | nil,

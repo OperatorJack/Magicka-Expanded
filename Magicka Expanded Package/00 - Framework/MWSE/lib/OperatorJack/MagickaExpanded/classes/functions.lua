@@ -50,7 +50,7 @@ this.getEffectFromEffectOnEffectEvent = function(event, effectId)
 end
 
 --[[
-	Description: Calculates and returns a random magnitude based on a given effect min/max.
+	Calculates and returns a random magnitude based on a given effect min/max.
 ]]
 ---@param effect tes3effect The magic effect to calculate a random magnitude for.
 ---@return number

@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 require("OperatorJack.MagickaExpanded-CortexPack.effects.cloneEffect")
 require("OperatorJack.MagickaExpanded-CortexPack.effects.mindScanEffect")
@@ -59,7 +59,7 @@ local tomes = {
 local function addTomesToLists()
     for _, tome in pairs(tomes) do
         local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list)
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
         list:insert(item, 1)
     end
 end
@@ -70,14 +70,14 @@ local function registerSpells()
         id = spellIds.blink,
         name = "Blink",
         effect = tes3.effect.blink,
-        range = tes3.effectRange.target
+        rangeType = tes3.effectRange.target
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.veilOfDarkness,
         name = "Veil of Darkness",
         effect = tes3.effect.darkness,
-        range = tes3.effectRange.target,
+        rangeType = tes3.effectRange.target,
         duration = 10
     })
 
@@ -85,7 +85,7 @@ local function registerSpells()
         id = spellIds.clone,
         name = "Clone",
         effect = tes3.effect.clone,
-        range = tes3.effectRange.target,
+        rangeType = tes3.effectRange.target,
         duration = 10,
         min = 10,
         max = 30
@@ -95,7 +95,7 @@ local function registerSpells()
         id = spellIds.mindScan,
         name = "Vondakir's Insight",
         effect = tes3.effect.mindScan,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 10
     })
 
@@ -103,14 +103,14 @@ local function registerSpells()
         id = spellIds.mindRip,
         name = "Vondakir's Intrusion",
         effect = tes3.effect.mindRip,
-        range = tes3.effectRange.touch
+        rangeType = tes3.effectRange.touch
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.soulScrye,
         name = "Vondakir's Scrutiny",
         effect = tes3.effect.soulScrye,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 10
     })
 
@@ -118,14 +118,14 @@ local function registerSpells()
         id = spellIds.coalesce,
         name = "Coalesce",
         effect = tes3.effect.coalesce,
-        range = tes3.effectRange.target
+        rangeType = tes3.effectRange.target
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.permutation,
         name = "Permutation",
         effect = tes3.effect.permutation,
-        range = tes3.effectRange.self,
+        rangeType = tes3.effectRange.self,
         duration = 30
     })
 

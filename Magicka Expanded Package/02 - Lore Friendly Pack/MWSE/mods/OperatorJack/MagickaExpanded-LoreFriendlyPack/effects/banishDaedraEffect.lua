@@ -1,8 +1,9 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("banishDaedra", 220)
 
 -- Written by NullCascade.
+---@param e tes3magicEffectTickEventData
 local function onBanishDaedraTick(e)
     -- Trigger into the spell system.
     if (not e:trigger()) then return end
@@ -16,16 +17,19 @@ local function onBanishDaedraTick(e)
     local effect = framework.functions.getEffectFromEffectOnEffectEvent(e,
                                                                         tes3.effect
                                                                             .banishDaedra)
+
+    if (effect == nil) then
+        framework.log.error(
+            "Unable to find effect in tick event. Logical error?")
+        return
+    end
+
     local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(
                           effect)
 
     if (e.effectInstance.target.object.level <= magnitude) then
         ---@type tes3reference
-        e.effectInstance.target:disable()
-
-        timer.delayOneFrame(function()
-            e.effectInstance.target.deleted = true
-        end)
+        e.effectInstance.target:delete()
 
         tes3.messageBox("%s has been banished!",
                         e.effectInstance.target.baseObject.name)

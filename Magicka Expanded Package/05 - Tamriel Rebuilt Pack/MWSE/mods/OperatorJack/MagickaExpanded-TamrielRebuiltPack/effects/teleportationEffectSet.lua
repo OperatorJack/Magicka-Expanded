@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("teleportToAkamora", 293)
 tes3.claimSpellEffectId("teleportToFirewatch", 294)
@@ -29,8 +29,8 @@ local function addTeleportationEffects()
         description = getDescription("Akamora"),
         baseCost = 150,
         positionCell = {
-            position = {249793, -90523, 3039},
-            orientation = {x = 0, y = 0, z = 349},
+            position = tes3vector3.new(249793, -90523, 3039),
+            orientation = tes3vector3.new(0, 0, 349),
             cell = "Akamora"
         }
     })
@@ -40,8 +40,8 @@ local function addTeleportationEffects()
         description = getDescription("Firewatch"),
         baseCost = 150,
         positionCell = {
-            position = {150453, 126079, 510},
-            orientation = {x = 0, y = 0, z = 0},
+            position = tes3vector3.new(150453, 126079, 510),
+            orientation = tes3vector3.new(0, 0, 0),
             cell = "Firewatch"
         }
     })
@@ -51,8 +51,8 @@ local function addTeleportationEffects()
         description = getDescription("Helnim"),
         baseCost = 150,
         positionCell = {
-            position = {215604, 9145, 647},
-            orientation = {x = 0, y = 0, z = 291},
+            position = tes3vector3.new(215604, 9145, 647),
+            orientation = tes3vector3.new(0, 0, 291),
             cell = "Helnim"
         }
     })
@@ -62,8 +62,8 @@ local function addTeleportationEffects()
         description = getDescription("Necrom"),
         baseCost = 150,
         positionCell = {
-            position = {342132, -85025, 1310},
-            orientation = {x = 0, y = 0, z = 92},
+            position = tes3vector3.new(342132, -85025, 1310),
+            orientation = tes3vector3.new(0, 0, 92),
             cell = "Necrom"
         }
     })
@@ -73,8 +73,8 @@ local function addTeleportationEffects()
         description = getDescription("Old Ebonheart"),
         baseCost = 150,
         positionCell = {
-            position = {57948, -155684, 710},
-            orientation = {x = 0, y = 0, z = 0},
+            position = tes3vector3.new(57948, -155684, 710),
+            orientation = tes3vector3.new(0, 0, 0),
             cell = "Old Ebonheart"
         }
     })
@@ -84,8 +84,8 @@ local function addTeleportationEffects()
         description = getDescription("Port Telvannis"),
         baseCost = 150,
         positionCell = {
-            position = {343425, 132953, 257},
-            orientation = {x = 0, y = 0, z = 297},
+            position = tes3vector3.new(343425, 132953, 257),
+            orientation = tes3vector3.new(0, 0, 297),
             cell = "Port Telvannis"
         }
     })
@@ -95,8 +95,8 @@ local function addTeleportationEffects()
         description = getDescription("Alt Bosara"),
         baseCost = 150,
         positionCell = {
-            position = {299317, -33706, 1111},
-            orientation = {x = 0, y = 0, z = 69},
+            position = tes3vector3.new(299317, -33706, 1111),
+            orientation = tes3vector3.new(0, 0, 69),
             cell = "Alt Bosara"
         }
     })
@@ -106,8 +106,8 @@ local function addTeleportationEffects()
         description = getDescription("Bal Orya"),
         baseCost = 150,
         positionCell = {
-            position = {154938, 196334, 302},
-            orientation = {x = 0, y = 0, z = 320},
+            position = tes3vector3.new(154938, 196334, 302),
+            orientation = tes3vector3.new(0, 0, 320),
             cell = "Bal Orya"
         }
     })
@@ -117,8 +117,8 @@ local function addTeleportationEffects()
         description = getDescription("Gah Sadrith"),
         baseCost = 150,
         positionCell = {
-            position = {344677, 112667, 941},
-            orientation = {x = 0, y = 0, z = 92},
+            position = tes3vector3.new(344677, 112667, 941),
+            orientation = tes3vector3.new(0, 0, 92),
             cell = "Gah Sadrith"
         }
     })
@@ -128,8 +128,8 @@ local function addTeleportationEffects()
         description = getDescription("Gorne"),
         baseCost = 150,
         positionCell = {
-            position = {334020, -239395, 444},
-            orientation = {x = 0, y = 0, z = 92},
+            position = tes3vector3.new(334020, -239395, 444),
+            orientation = tes3vector3.new(0, 0, 92),
             cell = "Gorne"
         }
     })
@@ -139,8 +139,8 @@ local function addTeleportationEffects()
         description = getDescription("Llothanis"),
         baseCost = 150,
         positionCell = {
-            position = {263895, 86714, 258},
-            orientation = {x = 0, y = 0, z = 97},
+            position = tes3vector3.new(263895, 86714, 258),
+            orientation = tes3vector3.new(0, 0, 97),
             cell = "Llothanis"
         }
     })
@@ -150,8 +150,8 @@ local function addTeleportationEffects()
         description = getDescription("Morag"),
         baseCost = 150,
         positionCell = {
-            position = {192921, -15703, 1627},
-            orientation = {x = 0, y = 0, z = 303},
+            position = tes3vector3.new(192921, -15703, 1627),
+            orientation = tes3vector3.new(0, 0, 303),
             cell = "Marog"
         }
     })
@@ -161,8 +161,8 @@ local function addTeleportationEffects()
         description = getDescription("Meralag"),
         baseCost = 150,
         positionCell = {
-            position = {211327, -179157, 305},
-            orientation = {x = 0, y = 0, z = 0},
+            position = tes3vector3.new(211327, -179157, 305),
+            orientation = tes3vector3.new(0, 0, 0),
             cell = "Meralag"
         }
     })
@@ -172,8 +172,8 @@ local function addTeleportationEffects()
         description = getDescription("Tel Aranyon"),
         baseCost = 150,
         positionCell = {
-            position = {232546, 102444, 3366},
-            orientation = {x = 0, y = 0, z = 90},
+            position = tes3vector3.new(232546, 102444, 3366),
+            orientation = tes3vector3.new(0, 0, 90),
             cell = "Tel Aranyon"
         }
     })
@@ -183,8 +183,8 @@ local function addTeleportationEffects()
         description = getDescription("Tel Mothrivra"),
         baseCost = 150,
         positionCell = {
-            position = {277984, 22615, 1160},
-            orientation = {x = 0, y = 0, z = 270},
+            position = tes3vector3.new(277984, 22615, 1160),
+            orientation = tes3vector3.new(0, 0, 270),
             cell = "Tel Mothrivra"
         }
     })
@@ -194,8 +194,8 @@ local function addTeleportationEffects()
         description = getDescription("Tel Muthada"),
         baseCost = 150,
         positionCell = {
-            position = {221231, -37731, 2995},
-            orientation = {x = 0, y = 0, z = 46},
+            position = tes3vector3.new(221231, -37731, 2995),
+            orientation = tes3vector3.new(0, 0, 46),
             cell = "Tel Muthada"
         }
     })
@@ -205,8 +205,8 @@ local function addTeleportationEffects()
         description = getDescription("Tel Ouada"),
         baseCost = 150,
         positionCell = {
-            position = {210154, 147991, 246},
-            orientation = {x = 0, y = 0, z = 303},
+            position = tes3vector3.new(210154, 147991, 246),
+            orientation = tes3vector3.new(0, 0, 303),
             cell = "Tel Ouada"
         }
     })

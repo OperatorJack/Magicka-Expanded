@@ -3,38 +3,50 @@ local this = {}
 
 ---@class MagickaExpanded.Effects.BasicEffectParams: tes3.addMagicEffect.params
 
+---@class MagickaExpanded.Effects.Effect
+---@field id tes3.effect
+---@field min number?
+---@field max number?
+---@field rangeType tes3.effectRange?
+---@field duration number?
+---@field radius number?
+---@field attribute tes3.attribute?
+---@field skill tes3.skill?
+---@field cost number?
+---@field object tes3magicEffect?
+
 --[[
-    Description: Contains all effect methods for the school of Illusion.
+    Contains all effect methods for the school of Illusion.
 ]]
 this.illusion = require(
                     "OperatorJack.MagickaExpanded.classes.magicSchools.illusion")
 
 --[[
-    Description: Contains all effect methods for the school of Conjuration.
+    Contains all effect methods for the school of Conjuration.
 ]]
 this.conjuration = require(
                        "OperatorJack.MagickaExpanded.classes.magicSchools.conjuration")
 
 --[[
-    Description: Contains all effect methods for the school of Alteration.
+    Contains all effect methods for the school of Alteration.
 ]]
 this.alteration = require(
                       "OperatorJack.MagickaExpanded.classes.magicSchools.alteration")
 
 --[[
-    Description: Contains all effect methods for the school of Destruction.
+    Contains all effect methods for the school of Destruction.
 ]]
 this.destruction = require(
                        "OperatorJack.MagickaExpanded.classes.magicSchools.destruction")
 
 --[[
-    Description: Contains all effect methods for the school of Mysticisim.
+    Contains all effect methods for the school of Mysticisim.
 ]]
 this.mysticism = require(
                      "OperatorJack.MagickaExpanded.classes.magicSchools.mysticism")
 
 --[[
-    Description: Contains all effect methods for the school of Restoration.
+    Contains all effect methods for the school of Restoration.
 ]]
 this.restoration = require(
                        "OperatorJack.MagickaExpanded.classes.magicSchools.restoration")

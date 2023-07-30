@@ -20,7 +20,7 @@ local this = {}
 ---@field castType tes3.enchantmentType
 
 --[[
-    Description: Updates an Enchantment based on the given @params,
+    Updates an Enchantment based on the given @params,
         and adds it to the framework's list of managed Enchantments. Accepts one
         magic effect.
 
@@ -30,7 +30,7 @@ local this = {}
     example = {
         id = "exampleEnchantmentId",
         effect = tes3.effect.*,
-        range = tes3.effectRange.* | nil,
+        rangeType = tes3.effectRange.* | nil,
         min = [int] | nil,
         max = [int] | nil,
         duration = [int] | nil,
@@ -73,13 +73,13 @@ end
 
 ---@class MagickaExpanded.Enchantments.createComplexEnchantmentParams
 ---@field id string Enchantment ID
----@field effects tes3effect[]
+---@field effects MagickaExpanded.Effects.Effect[]
 ---@field chargeCost number?
 ---@field maxCharge number?
 ---@field castType tes3.enchantmentType
 
 --[[
-    Description: Creates or updates a Enchantment based on the given @params,
+    Creates or updates a Enchantment based on the given @params,
         and adds it to the framework's list of managed Enchantments. Accepts multiple
         magic effects.
 
@@ -91,7 +91,7 @@ end
         effects = {
             [1] = {
                 id = tes3.effect.*,
-                range = tes3.effectRange.* | nil,
+                rangeType = tes3.effectRange.* | nil,
                 min = [int] | nil,
                 max = [int] | nil,
                 duration = [int] | nil,
@@ -99,7 +99,7 @@ end
             },
             [2] = {
                 id = tes3.effect.*,
-                range = tes3.effectRange.* | nil,
+                rangeType = tes3.effectRange.* | nil,
                 min = [int] | nil,
                 max = [int] | nil,
                 duration = [int] | nil,

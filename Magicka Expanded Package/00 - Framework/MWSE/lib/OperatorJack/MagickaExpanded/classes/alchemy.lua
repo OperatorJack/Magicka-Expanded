@@ -17,7 +17,7 @@ local this = {}
 ---@field attribute tes3.attribute?
 ---@field magickaCost number?
 --[[
-    Description: Creates or updates a potion based on the given @params,
+    Creates or updates a potion based on the given @params,
         and adds it to the framework's list of managed potions. Accepts one
         magic effect.
 
@@ -27,7 +27,7 @@ local this = {}
     example = {
         id = "examplePotionId",
         effect = tes3.effect.*,
-        range = tes3.effectRange.* | nil,
+        rangeType = tes3.effectRange.* | nil,
         min = [int] | nil,
         max = [int] | nil,
         duration = [int] | nil,
@@ -67,9 +67,9 @@ end
 ---@field id string Potion ID
 ---@field name string
 ---@field magickaCost number?
----@field effects tes3effect[]
+---@field effects MagickaExpanded.Effects.Effect[]
 --[[
-    Description: Creates or updates a potion based on the given @params,
+    Creates or updates a potion based on the given @params,
         and adds it to the framework's list of managed potions. Accepts multiple
         magic effects.
 
@@ -81,7 +81,7 @@ example = {
     effects = {
         [1] = {
             id = tes3.effect.*,
-            range = tes3.effectRange.* | nil,
+            rangeType = tes3.effectRange.* | nil,
             min = [int] | nil,
             max = [int] | nil,
             duration = [int] | nil,
@@ -89,7 +89,7 @@ example = {
         },
         [2] = {
             id = tes3.effect.*,
-            range = tes3.effectRange.* | nil,
+            rangeType = tes3.effectRange.* | nil,
             min = [int] | nil,
             max = [int] | nil,
             duration = [int] | nil,

@@ -4,7 +4,7 @@ local common = require("OperatorJack.MagickaExpanded.common")
 local this = {}
 
 --[[
-	Description: Wrapper for tes3.addMagicEffect that has default values
+	Wrapper for tes3.addMagicEffect that has default values
 		that are common for spells of this school. Uses the same parameter
 		table as tes3.addMagicEffect(). 
 ]]

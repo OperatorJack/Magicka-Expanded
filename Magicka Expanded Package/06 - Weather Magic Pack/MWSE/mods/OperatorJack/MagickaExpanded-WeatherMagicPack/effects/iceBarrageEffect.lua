@@ -1,7 +1,8 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("iceBarrage", 324)
 
+---@param e tes3magicEffectCollisionEventData
 local function onIceBarrageCollision(e)
     if e.collision then
         -- Verify effect conditions are met.
@@ -36,7 +37,7 @@ local function onIceBarrageCollision(e)
         -- Add a mechanic to the Ice Barrage mesh.
         local actors = framework.functions.getActorsNearTargetPosition(
                            caster.cell, position, distanceLimit)
-        local spell = tes3.getObject("OJ_ME_IceBarrageEffect")
+        local spell = tes3.getObject("OJ_ME_IceBarrageEffect") --[[@as tes3spell]]
 
         tes3.cast({target = reference, reference = reference, spell = spell})
 
@@ -69,19 +70,15 @@ local function onIceBarrageCollision(e)
                     })
                 end
 
-                actor.mobile:startCombat(caster.mobile)
+                actor:startCombat(caster.mobile)
             end
         end
 
         timer.start({
             duration = effectDuration,
             callback = function()
-                -- @type tes3reference
-                reference:disable()
-
-                timer.delayOneFrame(function()
-                    reference.deleted = true
-                end)
+                --- @type tes3reference
+                reference:delete()
             end
         })
     end

@@ -1,4 +1,4 @@
-local framework = include("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 require("OperatorJack.MagickaExpanded-WeatherMagicPack.effects.weatherEffectSet")
 require(
@@ -76,7 +76,7 @@ local weatherTomes = {
 local function addTomesToLists()
     for _, tome in pairs(weatherTomes) do
         local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list)
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
         list:insert(item, 1)
     end
 end
@@ -87,7 +87,7 @@ local function registerSpells()
         id = weatherSpellIds.entomb,
         name = "Entomb",
         effect = tes3.effect.entomb,
-        range = tes3.effectRange.target
+        rangeType = tes3.effectRange.target
     })
     framework.spells.createComplexSpell({
         id = weatherSpellIds.entombEffect,
@@ -95,7 +95,7 @@ local function registerSpells()
         effects = {
             [1] = {
                 id = tes3.effect.damageHealth,
-                range = tes3.effectRange.touch,
+                rangeType = tes3.effectRange.touch,
                 min = 15,
                 max = 35,
                 duration = 2,
@@ -103,7 +103,7 @@ local function registerSpells()
             },
             [2] = {
                 id = tes3.effect.drainSpeed,
-                range = tes3.effectRange.touch,
+                rangeType = tes3.effectRange.touch,
                 min = 15,
                 max = 35,
                 duration = 1,
@@ -116,7 +116,7 @@ local function registerSpells()
         id = weatherSpellIds.iceBarrage,
         name = "Ice Barrage",
         effect = tes3.effect.iceBarrage,
-        range = tes3.effectRange.target
+        rangeType = tes3.effectRange.target
     })
     framework.spells.createComplexSpell({
         id = weatherSpellIds.iceBarrageEffect,
@@ -124,7 +124,7 @@ local function registerSpells()
         effects = {
             [1] = {
                 id = tes3.effect.frostDamage,
-                range = tes3.effectRange.touch,
+                rangeType = tes3.effectRange.touch,
                 min = 25,
                 max = 50,
                 duration = 2,
@@ -132,7 +132,7 @@ local function registerSpells()
             },
             [2] = {
                 id = tes3.effect.paralyze,
-                range = tes3.effectRange.touch,
+                rangeType = tes3.effectRange.touch,
                 duration = 1,
                 radius = 5
             }
@@ -143,7 +143,7 @@ local function registerSpells()
         id = weatherSpellIds.thunderbolt,
         name = "Thunderbolt",
         effect = tes3.effect.thunderbolt,
-        range = tes3.effectRange.target,
+        rangeType = tes3.effectRange.target,
         radius = 5
     })
     framework.spells.createComplexSpell({
@@ -152,7 +152,7 @@ local function registerSpells()
         effects = {
             [1] = {
                 id = tes3.effect.shockDamage,
-                range = tes3.effectRange.touch,
+                rangeType = tes3.effectRange.touch,
                 min = 25,
                 max = 50,
                 duration = 2,
@@ -160,7 +160,7 @@ local function registerSpells()
             },
             [2] = {
                 id = tes3.effect.paralyze,
-                range = tes3.effectRange.touch,
+                rangeType = tes3.effectRange.touch,
                 duration = 1,
                 radius = 5
             }
@@ -171,61 +171,61 @@ local function registerSpells()
         id = weatherSpellIds.weatherBlizzard,
         name = "Winter's Embrace",
         effect = tes3.effect.weatherBlizzard,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherSnow,
         name = "Winter's Touch",
         effect = tes3.effect.weatherSnow,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherThunder,
         name = "Kyne's Wrath",
         effect = tes3.effect.weatherThunderstorm,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherAsh,
         name = "Ashen Wind",
         effect = tes3.effect.weatherAsh,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherBlight,
         name = "Dagoth's Domain",
         effect = tes3.effect.weatherBlight,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherClear,
         name = "Bright Sky",
         effect = tes3.effect.weatherClear,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherCloudy,
         name = "Kyne's Shadow",
         effect = tes3.effect.weatherCloudy,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherFoggy,
         name = "Murky Veil",
         effect = tes3.effect.weatherFoggy,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherOvercast,
         name = "Grey Shroud",
         effect = tes3.effect.weatherOvercast,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
     framework.spells.createBasicSpell({
         id = weatherSpellIds.weatherRain,
         name = "Veloth's Tears",
         effect = tes3.effect.weatherRain,
-        range = tes3.effectRange.self
+        rangeType = tes3.effectRange.self
     })
 
     framework.tomes.registerTomes(weatherTomes)
@@ -256,7 +256,8 @@ local function onLoaded()
         })
 
         tes3.addSpell({
-            reference = "fevyn ralen",
+            actor = "fevyn ralen",
+            reference = nil,
             spell = weatherSpellIds.weatherOvercast
         })
 
