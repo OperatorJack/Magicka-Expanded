@@ -82,3 +82,4 @@ RedFurryDemon: graphics
 - Pixel Sagas - font based on Skyrim mage script
 - Stripes - some troubleshooting
 - C3PA - a large number of improvements to the code to use new MWSE functions and patterns. Thank you for your work!
+- Firemoth Reclaimed team: Their lightning VFX and MWSE code was adapted into this mod for the "Thunderbolt" magic effect.

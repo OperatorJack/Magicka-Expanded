@@ -8,9 +8,9 @@ local this = {}
 ---@param cell tes3cell
 ---@param targetPosition tes3vector3
 ---@param distanceLimit number
----@return tes3mobileActor[]
+---@return tes3reference[]
 this.getActorsNearTargetPosition = function(cell, targetPosition, distanceLimit)
-    ---@type tes3mobileActor[]
+    ---@type tes3reference[]
     local actors = {}
 
     -- Iterate through the references in the cell.

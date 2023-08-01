@@ -2,6 +2,25 @@ local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
 
 tes3.claimSpellEffectId("thunderbolt", 323)
 
+---@param target tes3reference
+---@param distance number
+---@param position tes3vector3|nil
+local function applyDamage(target, distance, position)
+    local damage = math.max(math.max(math.random(10, 80) - (distance / 4), 0),
+                            50)
+    target.mobile:applyDamage({
+        damage = math.random(10, 40),
+        resistAttribute = tes3.effectAttribute.resistShock
+    })
+    tes3.createVisualEffect({
+        position = position or target.position,
+        object = "VFX_LightningArea",
+        lifespan = 1.0
+    })
+end
+
+local effects = {}
+
 ---@param e tes3magicEffectCollisionEventData
 local function onThunderboltCollision(e)
     if e.collision then
@@ -10,7 +29,7 @@ local function onThunderboltCollision(e)
         if (caster.cell.isInterior == true) then
             if (caster == tes3.player) then
                 tes3.messageBox(
-                    "The spell succeeds, but there is no effect indoors.")
+                    "You fail to commune with the spirits when not in a thunderstorm.")
             end
             return
         end
@@ -19,77 +38,56 @@ local function onThunderboltCollision(e)
             tes3.weather.thunder) then
             if (caster == tes3.player) then
                 tes3.messageBox(
-                    "The spell succeeds, but there is no effect when not in a thunderstorm.")
+                    "You fail to commune with the spirits when not in a thunderstorm.")
             end
             return
         end
 
-        local effectDuration = 2
-        local distanceLimit = 250
+        local distanceLimit = 400
         local position = e.collision.point:copy()
 
-        local reference = tes3.createReference({
-            object = "OJ_ME_ThunderboltObject",
-            position = position,
-            cell = caster.cell
-        })
+        local lightning = require(
+                              "OperatorJack.MagickaExpanded-WeatherMagicPack.utils.lightning")
+        local strength = math.random(5, 15) / 10
+        lightning.createLightningStrike(position, strength, true)
+
+        local randomSound = math.random(0, 4)
+        local soundId = string.format("OJ_ME_Thunderclap%s", randomSound)
+        tes3.playSound({reference = tes3.player, sound = soundId})
 
         -- Add a mechanic to the thunderbolt mesh.
         local actors = framework.functions.getActorsNearTargetPosition(
                            caster.cell, position, distanceLimit)
         local spell = tes3.getObject("OJ_ME_ThunderBoltEffect")
 
-        tes3.cast({target = reference, reference = reference, spell = spell})
-
         for _, actor in pairs(actors) do
-            local isCasterNewlyHostile = false
-            if (actor.hostileActors == nil) then
-                isCasterNewlyHostile = true
-            else
-                -- !!!! Not finished. Should not report true.
-                local isCasterInHostileActors = false
-                for _, hostileActor in pairs(actor.hostileActors) do
-                    if (caster == hostileActor) then
-                        isCasterInHostileActors = true
-                    end
-                end
+            applyDamage(actor, caster.position:distance(actor.position))
 
-                if (isCasterInHostileActors == true) then
-                    isCasterNewlyHostile = false
-                else
-                    isCasterNewlyHostile = true
+            actor.mobile:startCombat(caster.mobile)
+
+            if (caster == tes3.player and not effects[e.sourceInstance.id]) then
+                local result = tes3.triggerCrime({
+                    criminal = caster,
+                    type = tes3.crimeType.attack,
+                    victim = actor
+                })
+
+                if (result == true) then
+                    effects[e.sourceInstance.id] = true
                 end
             end
 
-            if (isCasterNewlyHostile == true) then
-                if (caster == tes3.player) then
-                    tes3.triggerCrime({
-                        criminal = caster,
-                        type = tes3.crimeType.attack,
-                        victim = actor
-                    })
-                end
-
-                actor.mobile:startCombat(caster.mobile)
-            end
         end
 
-        timer.start({
-            duration = effectDuration,
-            callback = function()
-                -- @type tes3reference
-                reference:delete()
-            end
-        })
     end
 end
 
 local function addThunderboltEffect()
-    framework.effects.destruction.createBasicEffect({
+    framework.effects.conjuration.createBasicEffect({
         -- Base information.
         id = tes3.effect.thunderbolt,
         name = "Thunderbolt",
-        description = "Cast a thunderbolt down from above. Requires being outside and being in a thunderstorm. Thunderbolts will damage and stun affected targets.",
+        description = "Conjure a large thunderbolt down from above. Requires being outside and being in a thunderstorm. Thunderbolts will damage and stun affected targets.",
 
         -- Basic dials.
         baseCost = 25.0,
@@ -102,6 +100,11 @@ local function addThunderboltEffect()
         canCastTarget = true,
 
         -- Graphics/sounds.
+        hitVFX = "VFX_LightningHit",
+        areaVFX = "VFX_LightningArea",
+        boltVFX = "VFX_DefaultBolt",
+        castVFX = "VFX_LightningCast",
+        particleTexture = "vfx_electric.dds",
 
         -- Required callbacks.
         onCollision = onThunderboltCollision

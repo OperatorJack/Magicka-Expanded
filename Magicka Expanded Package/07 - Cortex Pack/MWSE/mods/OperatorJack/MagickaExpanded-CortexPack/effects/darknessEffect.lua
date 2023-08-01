@@ -5,7 +5,6 @@ tes3.claimSpellEffectId("darkness", 263)
 ---@param e tes3magicEffectCollisionEventData
 local function onDarknessCollision(e)
     if e.collision then
-        ---@type tes3magicEffect
         local effect = framework.functions.getEffectFromEffectOnEffectEvent(e,
                                                                             tes3.effect
                                                                                 .darkness)
@@ -24,6 +23,7 @@ local function onDarknessCollision(e)
         local mistReference = tes3.createReference({
             object = "OJ_ME_DarknessMist",
             position = mistPosition,
+            orientation = caster.orientation,
             cell = caster.cell
         })
 
@@ -37,7 +37,7 @@ local function onDarknessCollision(e)
                 -- For any actors near the darkness, remove the light effect if it exists.
                 for _, actor in pairs(actors) do
                     tes3.removeEffects({
-                        reference = actor,
+                        reference = actor.reference,
                         effect = tes3.effect.light
                     })
                 end

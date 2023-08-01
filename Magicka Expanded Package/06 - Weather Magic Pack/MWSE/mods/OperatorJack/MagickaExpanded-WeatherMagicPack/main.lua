@@ -18,13 +18,13 @@ local weatherSpellIds = {
     weatherRain = "OJ_ME_WeatherRain",
 
     thunderboltEffect = "OJ_ME_ThunderboltEffect",
-    thunderbolt = "OJ_ME_Thunderbolt",
+    thunderbolt = "OJ_ME_ThunderboltSpell",
 
     iceBarrageEffect = "OJ_ME_IceBarrageEffect",
-    iceBarrage = "OJ_ME_IceBarrage",
+    iceBarrage = "OJ_ME_IceBarrageSpell",
 
     entombEffect = "OJ_ME_EntombEffect",
-    entomb = "OJ_ME_Entomb"
+    entomb = "OJ_ME_EntombSpell"
 }
 
 local weatherTomes = {

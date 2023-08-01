@@ -19,6 +19,12 @@ wait-until-initialized = false
 [dependencies]
   # Assets can be directories or loose folders
   assets = [
+      "Sound\\OJ\\ME\\Thunderclap0.wav",
+      "Sound\\OJ\\ME\\Thunderclap1.wav",
+      "Sound\\OJ\\ME\\Thunderclap2.wav",
+      "Sound\\OJ\\ME\\Thunderclap3.wav",
+      "Sound\\OJ\\ME\\Thunderclap4.wav",
+
       "BookArt\\RFD\\RFD_tome_01.dds",
       "BookArt\\RFD\\RFD_tome_02.dds",
 
@@ -35,6 +41,9 @@ wait-until-initialized = false
       "Icons\\RFD\\RFD_tome_ill.dds",
       "Icons\\RFD\\RFD_tome_myst.dds",
       "Icons\\RFD\\RFD_tome_rest.dds",
+
+      "Meshes\\OJ\\ME\\lightn_expl.nif",
+      "Meshes\\OJ\\ME\\strike.nif",
 
       "Meshes\\ME\\RES\\merchantCrate.nif",
 
