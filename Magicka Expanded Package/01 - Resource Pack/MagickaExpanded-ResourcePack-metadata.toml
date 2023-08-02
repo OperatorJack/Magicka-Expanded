@@ -43,7 +43,8 @@ wait-until-initialized = false
       "Icons\\RFD\\RFD_tome_rest.dds",
 
       "Meshes\\OJ\\ME\\lightn_expl.nif",
-      "Meshes\\OJ\\ME\\strike.nif",
+      "Meshes\\OJ\\ME\\lightn_strike.nif",
+      "Meshes\\OJ\\ME\\lightn_bolt.nif",
 
       "Meshes\\ME\\RES\\merchantCrate.nif",
 

@@ -91,6 +91,7 @@ local function addThunderboltEffect()
 
         -- Basic dials.
         baseCost = 25.0,
+        speed = 2,
 
         -- Various flags.
         allowEnchanting = true,
@@ -102,7 +103,7 @@ local function addThunderboltEffect()
         -- Graphics/sounds.
         hitVFX = "VFX_LightningHit",
         areaVFX = "VFX_LightningArea",
-        boltVFX = "VFX_DefaultBolt",
+        boltVFX = "OJ_ME_LightningBoltVFX",
         castVFX = "VFX_LightningCast",
         particleTexture = "vfx_electric.dds",
 
