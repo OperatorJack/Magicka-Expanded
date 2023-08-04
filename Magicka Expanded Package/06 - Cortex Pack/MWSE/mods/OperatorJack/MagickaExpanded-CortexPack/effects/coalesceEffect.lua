@@ -54,32 +54,28 @@ local function onMobileActivated(e)
 end
 event.register(tes3.event.mobileActivated, onMobileActivated)
 
-local function Coalesce()
-    framework.effects.alteration.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.coalesce,
-        name = "Coalesce",
-        description = "When present in a spell, gives the caster control over the spell projectile during projectile flight.",
+framework.effects.alteration.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.coalesce,
+    name = "Coalesce",
+    description = "When present in a spell, gives the caster control over the spell projectile during projectile flight.",
 
-        -- Basic dials.
-        baseCost = 5.0,
+    -- Basic dials.
+    baseCost = 5.0,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        canCastTouch = true,
-        canCastTarget = true,
-        hasNoMagnitude = true,
-        hasNoDuration = true,
-        appliesOnce = true,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    canCastTouch = true,
+    canCastTarget = true,
+    hasNoMagnitude = true,
+    hasNoDuration = true,
+    appliesOnce = true,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_crt_coalesce.dds",
-        lighting = {0, 0, 0},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_crt_coalesce.dds",
+    lighting = {0, 0, 0},
 
-        -- Required callbacks.
-        onTick = function(e) e:trigger() end
-    })
-end
-
-event.register(tes3.event.magicEffectsResolved, Coalesce)
+    -- Required callbacks.
+    onTick = function(e) e:trigger() end
+})

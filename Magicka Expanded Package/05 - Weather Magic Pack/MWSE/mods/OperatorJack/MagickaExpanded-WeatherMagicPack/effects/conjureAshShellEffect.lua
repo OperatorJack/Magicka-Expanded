@@ -22,10 +22,6 @@ local paralysis = nil
 
 ---@param e tes3magicEffectTickEventData
 local function onTick(e)
-
-    framework.log:info("effect state: %s", e.effectInstance.state)
-    framework.log:info("source state: %s", e.sourceInstance.state)
-
     -- Verify effect conditions are met.
     local caster = e.sourceInstance.caster
     if (caster.cell.isInterior == true) then
@@ -56,9 +52,9 @@ local function onTick(e)
     paralysis = (paralysis or tes3.getObject("OJ_ME_ConjureAshShellParalysis")) --[[@as tes3spell]]
 
     local stencilEffects = {
-        player1st = "OJ\\ME\\wp\\AshShellStencilVfx1st.nif",
-        player3rd = "OJ\\ME\\wp\\AshShellStencilVfx3rd.nif",
-        npc = "OJ\\ME\\wp\\AshShellStencilVfx_NPC.nif"
+        player1st = "OJ\\ME\\wp\\ashshell_stencil_1st.nif",
+        player3rd = "OJ\\ME\\wp\\ashshell_stencil_3rd.nif",
+        npc = "OJ\\ME\\wp\\ashshell_stencil_npc.nif"
     }
 
     if (target) then
@@ -79,6 +75,7 @@ local function onTick(e)
                                                   "OJ_ME_AshShellVfx3rd",
                                                   stencilEffects.player3rd)
 
+                nodes.attachStencilProperty(target)
                 nodes.showNode(firstNode)
                 nodes.showNode(node)
 
@@ -102,19 +99,20 @@ local function onTick(e)
             -- Handle special circumstance VFX.
             if target == tes3.player then
                 local firstNode = nodes.getOrAttachVfx(tes3.player1stPerson,
-                                                       "OJ_V_SunDamageVfx1st",
+                                                       "OJ_ME_AshShellVfx1st",
                                                        stencilEffects.player1st)
                 local node = nodes.getOrAttachVfx(target,
-                                                  "OJ_V_SunDamageVfx3rd",
+                                                  "OJ_ME_AshShellVfx3rd",
                                                   stencilEffects.player3rd)
 
+                nodes.detachStencilProperty(target)
                 nodes.hideNode(firstNode)
                 nodes.hideNode(node)
 
             else
                 -- Applies VFX for NPC / Creature
                 local node = nodes.getOrAttachVfx(target,
-                                                  "OJ_V_SunDamageVfx_NPC",
+                                                  "OJ_ME_AshShellVfx_NPC",
                                                   stencilEffects.npc)
 
                 nodes.detachStencilProperty(target)
@@ -130,35 +128,47 @@ local function onTick(e)
     if (not e:trigger()) then return end
 end
 
-local function addEffect()
-    framework.effects.conjuration.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.conjureAshShell,
-        name = "Conjure Ash Shell",
-        description = "Commune with the spirits of nature to conjure an ash shell. Requires being outside and being in an ashstorm. Renders caster invulnerable, but unable to move.",
+local hitId = "oj_me_vfx_ashshell_hit"
 
-        -- Basic dials.
-        baseCost = 25.0,
+local hitVFX = tes3.createObject({
+    id = hitId,
+    objectType = tes3.objectType.static,
+    getIfExists = true,
+    mesh = "OJ\\ME\\wp\\ashshell_hit.nif"
+})
+--- @cast hitVFX tes3static
 
-        -- Various flags.
-        allowEnchanting = false,
-        allowSpellmaking = false,
-        hasNoMagnitude = true,
-        hasNoDuration = false,
-        isHarmful = true,
-        nonRecastable = true,
-        casterLinked = true,
-        canCastTouch = true,
-        canCastTarget = true,
-        canCastSelf = true,
+--[[
+    TODO:
+    - Add custom icon
+    - Add custom stencil VFX
+    - Add custom bolt VFX
+]]
+framework.effects.conjuration.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.conjureAshShell,
+    name = "Conjure Ash Shell",
+    description = "Commune with the spirits of nature to conjure an ash shell. Requires being outside and being in an ashstorm. Renders caster invulnerable, but unable to move.",
 
-        -- Graphics/sounds.
-        hitVFX = "OJ_ME_AshShellHitVfx",
-        hasContinuousVFX = true,
+    -- Basic dials.
+    baseCost = 25.0,
 
-        -- Required callbacks.
-        onTick = onTick
-    })
-end
+    -- Various flags.
+    allowEnchanting = false,
+    allowSpellmaking = false,
+    hasNoMagnitude = true,
+    hasNoDuration = false,
+    isHarmful = true,
+    nonRecastable = true,
+    casterLinked = true,
+    canCastTouch = true,
+    canCastTarget = true,
+    canCastSelf = true,
 
-event.register(tes3.event.magicEffectsResolved, addEffect)
+    -- Graphics/sounds.
+    hitVFX = hitVFX,
+    hasContinuousVFX = true,
+
+    -- Required callbacks.
+    onTick = onTick
+})

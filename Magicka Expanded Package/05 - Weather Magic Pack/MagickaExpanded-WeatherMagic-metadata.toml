@@ -13,16 +13,17 @@ version = "3.0.0"
 [tools.mwse]
 lua-mod = "OperatorJack.MagickaExpanded-WeatherMagic"
 load-order = 100
-wait-until-initialized = false
+wait-until-initialize = true
 
 # Dependencies are checked on `initialized` and warn the player if any are missing
 [dependencies]
   # Assets can be directories or loose folders
   assets = [
-      "Meshes\\OJ\\ME\\wp\\AshShellStencilVfx.nif",
-      "Meshes\\OJ\\ME\\wp\\AshShellStencilVfx_NPC.nif",
-      "Meshes\\OJ\\ME\\wp\\AshShellStencilVfx1st.nif",
-      "Meshes\\OJ\\ME\\wp\\AshShellStencilVfx3rd.nif",
+      "Meshes\\OJ\\ME\\wp\\ashshell_hit.nif",
+      "Meshes\\OJ\\ME\\wp\\ashshell_stencil.nif",
+      "Meshes\\OJ\\ME\\wp\\ashshell_stencil_npc.nif",
+      "Meshes\\OJ\\ME\\wp\\ashshell_stencil_1st.nif",
+      "Meshes\\OJ\\ME\\wp\\ashshell_stencil_3rd.nif",
 
       "Icons\\RFD\\B_RFD_wth_ash.dds",
       "Icons\\RFD\\B_RFD_wth_blight.dds",

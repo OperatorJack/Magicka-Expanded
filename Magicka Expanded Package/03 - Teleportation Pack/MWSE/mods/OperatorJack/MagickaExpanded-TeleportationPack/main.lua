@@ -72,14 +72,11 @@ local tomes = {
     }
 }
 
-local function addTomesToLists()
-    for _, tome in pairs(tomes) do
-        local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
-        list:insert(item, 1)
-    end
+for _, tome in pairs(tomes) do
+    local item = tes3.getObject(tome.id)
+    local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
+    list:insert(item, 1)
 end
-event.register(tes3.event.initialized, addTomesToLists)
 
 local function registerSpells()
     framework.spells.createBasicSpell({

@@ -46,10 +46,9 @@ local function onLightningCollision(e)
         local distanceLimit = 400
         local position = e.collision.point:copy()
 
-        local lightning = require(
-                              "OperatorJack.MagickaExpanded-WeatherMagicPack.utils.lightning")
         local strength = math.random(5, 15) / 10
-        lightning.createLightningStrike(position, strength, true)
+        framework.vfx.dynamic.lightning.createLightningStrike(position,
+                                                              strength, true)
 
         local randomSound = math.random(0, 4)
         local soundId = string.format("OJ_ME_Thunderclap%s", randomSound)
@@ -58,7 +57,6 @@ local function onLightningCollision(e)
         -- Add a mechanic to the thunderbolt mesh.
         local actors = framework.functions.getActorsNearTargetPosition(
                            caster.cell, position, distanceLimit)
-        local spell = tes3.getObject("OJ_ME_ThunderBoltEffect")
 
         for _, actor in pairs(actors) do
             applyDamage(actor, caster.position:distance(actor.position))
@@ -82,34 +80,35 @@ local function onLightningCollision(e)
     end
 end
 
-local function addConjureLightningEffect()
-    framework.effects.conjuration.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.conjureLightning,
-        name = "Conjure Lightning",
-        description = "Commune with the spirits of nature to conjure lightning. Requires being outside and being in a thunderstorm. Lightning will damage and stun affected targets.",
+--[[
+    TODO:
+    - Add custom icon
+    - Add custom bolt VFX
+]]
+framework.effects.conjuration.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.conjureLightning,
+    name = "Conjure Lightning",
+    description = "Commune with the spirits of nature to conjure lightning. Requires being outside and being in a thunderstorm. Lightning will damage and stun affected targets.",
 
-        -- Basic dials.
-        baseCost = 25.0,
-        speed = 2,
+    -- Basic dials.
+    baseCost = 25.0,
+    speed = 2,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        hasNoMagnitude = true,
-        hasNoDuration = true,
-        canCastTarget = true,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    hasNoMagnitude = true,
+    hasNoDuration = true,
+    canCastTarget = true,
 
-        -- Graphics/sounds.
-        hitVFX = "VFX_LightningHit",
-        areaVFX = "VFX_LightningArea",
-        boltVFX = "OJ_ME_LightningBoltVFX",
-        castVFX = "VFX_LightningCast",
-        particleTexture = "vfx_electric.dds",
+    -- Graphics/sounds.
+    hitVFX = "VFX_LightningHit",
+    areaVFX = "VFX_LightningArea",
+    boltVFX = "OJ_ME_LightningBoltVFX",
+    castVFX = "VFX_LightningCast",
+    particleTexture = "vfx_electric.dds",
 
-        -- Required callbacks.
-        onCollision = onLightningCollision
-    })
-end
-
-event.register(tes3.event.magicEffectsResolved, addConjureLightningEffect)
+    -- Required callbacks.
+    onCollision = onLightningCollision
+})

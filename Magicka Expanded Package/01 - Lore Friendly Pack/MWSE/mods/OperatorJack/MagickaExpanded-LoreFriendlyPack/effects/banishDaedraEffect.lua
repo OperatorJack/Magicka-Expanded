@@ -42,34 +42,30 @@ local function onBanishDaedraTick(e)
 end
 
 -- Written by NullCascade.
-local function addBanishDaedraEffect()
-    framework.effects.conjuration.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.banishDaedra,
-        name = "Banish Daedra",
-        description = "Banishes a daedric creature back to its originating plane. The effect's magnitude is the level of daedra that it can banish.",
+framework.effects.conjuration.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.banishDaedra,
+    name = "Banish Daedra",
+    description = "Banishes a daedric creature back to its originating plane. The effect's magnitude is the level of daedra that it can banish.",
 
-        -- Basic dials.
-        baseCost = 25.0,
+    -- Basic dials.
+    baseCost = 25.0,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        appliesOnce = true,
-        canCastTarget = true,
-        canCastTouch = true,
-        hasNoDuration = true,
-        nonRecastable = true,
-        unreflectable = true,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    appliesOnce = true,
+    canCastTarget = true,
+    canCastTouch = true,
+    hasNoDuration = true,
+    nonRecastable = true,
+    unreflectable = true,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_lf_banish.dds",
-        particleTexture = "vfx_myst_flare01.tga",
-        lighting = {0.99, 0.95, 0.67},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_lf_banish.dds",
+    particleTexture = "vfx_myst_flare01.tga",
+    lighting = {0.99, 0.95, 0.67},
 
-        -- Required callbacks.
-        onTick = onBanishDaedraTick
-    })
-end
-
-event.register(tes3.event.magicEffectsResolved, addBanishDaedraEffect)
+    -- Required callbacks.
+    onTick = onBanishDaedraTick
+})

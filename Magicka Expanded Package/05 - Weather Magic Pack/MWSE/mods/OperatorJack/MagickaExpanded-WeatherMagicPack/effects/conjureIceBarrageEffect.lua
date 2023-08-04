@@ -84,28 +84,30 @@ local function onIceBarrageCollision(e)
     end
 end
 
-local function addIceBarrageEffect()
-    framework.effects.destruction.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.iceBarrage,
-        name = "Ice Barrage",
-        description = "Cast a ice down from above. Requires being outside and being in a blizzard. Ice Barrages will damage and freeze affected targets.",
+--[[
+    TODO:
+    - Add custom icon
+    - Add custom VFX
+    - Implement mechanic logic
+]]
+framework.effects.destruction.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.iceBarrage,
+    name = "Ice Barrage",
+    description = "Cast a ice down from above. Requires being outside and being in a blizzard. Ice Barrages will damage and freeze affected targets.",
 
-        -- Basic dials.
-        baseCost = 25.0,
+    -- Basic dials.
+    baseCost = 25.0,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        hasNoMagnitude = true,
-        hasNoDuration = true,
-        canCastTarget = true,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    hasNoMagnitude = true,
+    hasNoDuration = true,
+    canCastTarget = true,
 
-        -- Graphics/sounds.
+    -- Graphics/sounds.
 
-        -- Required callbacks.
-        onCollision = onIceBarrageCollision
-    })
-end
-
-event.register(tes3.event.magicEffectsResolved, addIceBarrageEffect)
+    -- Required callbacks.
+    onCollision = onIceBarrageCollision
+})

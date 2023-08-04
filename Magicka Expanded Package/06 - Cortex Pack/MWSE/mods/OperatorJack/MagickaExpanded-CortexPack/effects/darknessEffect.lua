@@ -115,35 +115,32 @@ local function onTick(e)
     if (not e:trigger()) then return end
 end
 
-local function addDarknessEffect()
-    framework.effects.illusion.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.darkness,
-        name = "Darkness",
-        description = "Create a sphere of darkness around the target, negating any light effects within.",
+framework.effects.illusion.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.darkness,
+    name = "Darkness",
+    description = "Create a sphere of darkness around the target, negating any light effects within.",
 
-        -- Basic dials.
-        baseCost = 3.0,
+    -- Basic dials.
+    baseCost = 3.0,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        canCastTarget = true,
-        canCastTouch = true,
-        canCastSelf = true,
-        unreflectable = false,
-        usesNegativeLighting = true,
-        isHarmful = true,
-        nonRecastable = false,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    canCastTarget = true,
+    canCastTouch = true,
+    canCastSelf = true,
+    unreflectable = false,
+    usesNegativeLighting = true,
+    isHarmful = true,
+    nonRecastable = false,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_lf_darkness.dds",
-        lighting = {0, 0, 0},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_lf_darkness.dds",
+    lighting = {0, 0, 0},
 
-        -- Required callbacks.
-        onTick = onTick,
-        onCollision = onCollision
-    })
-end
+    -- Required callbacks.
+    onTick = onTick,
+    onCollision = onCollision
+})
 
-event.register(tes3.event.magicEffectsResolved, addDarknessEffect)

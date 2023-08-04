@@ -34,15 +34,12 @@ local tomes = {
     {id = "OJ_ME_TomeBoundWarhammer", spellId = spellIds.boundWarhammer}
 }
 
-local function addTomesToLists()
-    local listId = "OJ_ME_LeveledList_Common"
-    local list = tes3.getObject(listId) --[[@as tes3leveledItem]]
-    for _, tome in pairs(tomes) do
-        local item = tes3.getObject(tome.id)
-        list:insert(item, 1)
-    end
+local listId = "OJ_ME_LeveledList_Common"
+local list = tes3.getObject(listId) --[[@as tes3leveledItem]]
+for _, tome in pairs(tomes) do
+    local item = tes3.getObject(tome.id)
+    list:insert(item, 1)
 end
-event.register(tes3.event.initialized, addTomesToLists)
 
 local function registerSpells()
     framework.spells.createBasicSpell({

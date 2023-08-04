@@ -11,31 +11,29 @@ local clonePotionName = "Clone"
 local id = "A shady smuggler"
 local function onCloneSourceTick(e) e:triggerSummon(id) end
 
-local function addCloneSourceEffect()
-    framework.effects.conjuration.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.cloneSource,
-        name = "Clone Source",
-        description = "Source effect for the Clone magic effect.",
+framework.effects.conjuration.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.cloneSource,
+    name = "Clone Source",
+    description = "Source effect for the Clone magic effect.",
 
-        -- Basic dials.
-        baseCost = 0.0,
+    -- Basic dials.
+    baseCost = 0.0,
 
-        -- Various flags.
-        canCastSelf = true,
-        hasNoMagnitude = true,
-        nonRecastable = true,
-        casterLinked = true,
-        appliesOnce = true,
+    -- Various flags.
+    canCastSelf = true,
+    hasNoMagnitude = true,
+    nonRecastable = true,
+    casterLinked = true,
+    appliesOnce = true,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_crt_clone.dds",
-        lighting = {0, 0, 0},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_crt_clone.dds",
+    lighting = {0, 0, 0},
 
-        -- Required callbacks.
-        onTick = onCloneSourceTick
-    })
-end
+    -- Required callbacks.
+    onTick = onCloneSourceTick
+})
 
 local function onCloneTick(e)
     if (e.effectInstance.target.object.script == nil or
@@ -77,32 +75,28 @@ local function onCloneTick(e)
     e.effectInstance.state = tes3.spellState.retired
 end
 
-local function addCloneEffect()
-    framework.effects.conjuration.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.clone,
-        name = "Clone",
-        description = "Clones the target and makes them fight alongside you. The effect's magnitude is the level of actor that can be cloned.",
+framework.effects.conjuration.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.clone,
+    name = "Clone",
+    description = "Clones the target and makes them fight alongside you. The effect's magnitude is the level of actor that can be cloned.",
 
-        -- Basic dials.
-        baseCost = 35.0,
+    -- Basic dials.
+    baseCost = 35.0,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        canCastTarget = true,
-        canCastTouch = true,
-        isHarmful = true,
-        appliesOnce = true,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    canCastTarget = true,
+    canCastTouch = true,
+    isHarmful = true,
+    appliesOnce = true,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_crt_clone.dds",
-        lighting = {0, 0, 0},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_crt_clone.dds",
+    lighting = {0, 0, 0},
 
-        -- Required callbacks.
-        onTick = onCloneTick
-    })
-end
+    -- Required callbacks.
+    onTick = onCloneTick
+})
 
-event.register(tes3.event.magicEffectsResolved, addCloneEffect)
-event.register(tes3.event.magicEffectsResolved, addCloneSourceEffect)

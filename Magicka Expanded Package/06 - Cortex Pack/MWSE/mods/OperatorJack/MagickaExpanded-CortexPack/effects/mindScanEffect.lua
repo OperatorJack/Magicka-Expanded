@@ -2,33 +2,29 @@ local framework = require("OperatorJack.MagickaExpanded")
 
 tes3.claimSpellEffectId("mindScan", 330)
 
-local function addMindScanEffect()
-    framework.effects.mysticism.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.mindScan,
-        name = "Mind Scan",
-        description = "While active, lets the caster see the spells in other actors minds.",
+framework.effects.mysticism.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.mindScan,
+    name = "Mind Scan",
+    description = "While active, lets the caster see the spells in other actors minds.",
 
-        -- Basic dials.
-        baseCost = 30.0,
+    -- Basic dials.
+    baseCost = 30.0,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        canCastSelf = true,
-        hasNoMagnitude = true,
-        hasContinuousVFX = true,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    canCastSelf = true,
+    hasNoMagnitude = true,
+    hasContinuousVFX = true,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_crt_mindscan.dds",
-        lighting = {0, 0, 0},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_crt_mindscan.dds",
+    lighting = {0, 0, 0},
 
-        -- Required callbacks.
-        onTick = function(e) e:trigger() end
-    })
-end
-
-event.register(tes3.event.magicEffectsResolved, addMindScanEffect)
+    -- Required callbacks.
+    onTick = function(e) e:trigger() end
+})
 
 -- Register the GUI IDs for our custom tooltips feature.
 local GUI_ID = nil

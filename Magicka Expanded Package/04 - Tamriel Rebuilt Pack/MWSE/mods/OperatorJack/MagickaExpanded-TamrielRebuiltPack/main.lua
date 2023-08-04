@@ -1,5 +1,13 @@
 local framework = require("OperatorJack.MagickaExpanded")
 
+if not tes3.isModActive("Tamriel_Data.esm") then
+    mwse.log(
+        "[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
+    tes3.messageBox(
+        "[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
+    return
+end
+
 require("OperatorJack.MagickaExpanded-TamrielRebuiltPack.effects")
 
 local teleportSpellIds = {
@@ -237,30 +245,18 @@ local summonTomes = {
     }
 }
 
-local function addTomesToLists()
-    if not tes3.isModActive("Tamriel_Data.esm") then return end
-
-    for _, tome in pairs(teleportTomes) do
-        local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
-        list:insert(item, 1)
-    end
-    for _, tome in pairs(summonTomes) do
-        local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
-        list:insert(item, 1)
-    end
+for _, tome in pairs(teleportTomes) do
+    local item = tes3.getObject(tome.id)
+    local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
+    list:insert(item, 1)
 end
-event.register(tes3.event.initialized, addTomesToLists)
+for _, tome in pairs(summonTomes) do
+    local item = tes3.getObject(tome.id)
+    local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
+    list:insert(item, 1)
+end
 
 local function registerSpells()
-    if not tes3.isModActive("Tamriel_Data.esm") then
-        mwse.log(
-            "[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
-        tes3.messageBox(
-            "[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
-        return
-    end
 
     framework.spells.createBasicSpell({
         id = teleportSpellIds.akamora,

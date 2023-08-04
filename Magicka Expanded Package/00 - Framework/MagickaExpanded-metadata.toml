@@ -13,7 +13,7 @@ version = "3.0.0"
 [tools.mwse]
 lua-mod = "OperatorJack.MagickaExpanded"
 load-order = 1
-wait-until-initialized = false
+wait-until-initialize = true
 
 # Dependencies are checked on `initialized` and warn the player if any are missing
 [dependencies]
@@ -44,6 +44,9 @@ wait-until-initialized = false
       
       "Shaders\\XEshaders\\oj_me_fog_box.fx",
 
+      "Meshes\\OJ\\ME\\lightn_expl.nif",
+      "Meshes\\OJ\\ME\\lightn_strike.nif",
+      "Meshes\\OJ\\ME\\lightn_bolt.nif",
       "Sound\\OJ\\ME\\Thunderclap0.wav",
       "Sound\\OJ\\ME\\Thunderclap1.wav",
       "Sound\\OJ\\ME\\Thunderclap2.wav",
@@ -67,13 +70,7 @@ wait-until-initialized = false
       "Icons\\RFD\\RFD_tome_myst.dds",
       "Icons\\RFD\\RFD_tome_rest.dds",
 
-      "Meshes\\OJ\\ME\\lightn_expl.nif",
-      "Meshes\\OJ\\ME\\lightn_strike.nif",
-      "Meshes\\OJ\\ME\\lightn_bolt.nif",
-
-      "Meshes\\OJ\\ME\\ashshell_hit.nif",
-
-      "Meshes\\ME\\RES\\merchantCrate.nif",
+      "Meshes\\OJ\\ME\\merchantCrate.nif",
 
       "Meshes\\RFD\\RFD_grim_alt.nif",
       "Meshes\\RFD\\RFD_grim_conj.nif",

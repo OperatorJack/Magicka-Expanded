@@ -1,15 +1,18 @@
 local camera = require("OperatorJack.MagickaExpanded.utils.camera")
 local mathExt = require("OperatorJack.MagickaExpanded.utils.mathExt")
+local data = require("OperatorJack.MagickaExpanded.data")
 
+---@class MagickaExpanded.Vfx.Dynamic.Lightning
 local this = {}
 
-local VFX_EXPLODE = assert(tes3.getObject("OJ_ME_LightningExpVfx")) ---@cast VFX_EXPLODE tes3static
+local VFX_EXPLODE = tes3.getObject(data.ids.objects.static.vfxLightningExplode) ---@cast VFX_EXPLODE tes3static
 local VFX_EXPLODE_DURATION = 0.20
 
-local VFX_EXPLODE_LIGHT = assert(tes3.getObject("OJ_ME_LightningExpLight")) ---@cast VFX_EXPLODE_LIGHT tes3light
+local VFX_EXPLODE_LIGHT = tes3.getObject(
+                              data.ids.objects.light.vfxLightningLight) ---@cast VFX_EXPLODE_LIGHT tes3light
 local VFX_CHILDREN_COUNT = 4
 
-local VFX_STRIKE = assert(tes3.getObject("OJ_ME_LightningStrikeVfx")) ---@cast VFX_STRIKE tes3static
+local VFX_STRIKE = tes3.getObject(data.ids.objects.static.vfxLightningStrike) ---@cast VFX_STRIKE tes3static
 local VFX_STRIKE_DURATION = 0.15
 
 local UP = tes3vector3.new(0, 0, 1)

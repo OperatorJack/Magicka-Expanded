@@ -1,4 +1,4 @@
-local common = require("OperatorJack.MagickaExpanded.common")
+local log = require("OperatorJack.MagickaExpanded.utils.logger")
 local data = require("OperatorJack.MagickaExpanded.data")
 
 ---@class MagickaExpanded.Vfx.Nodes
@@ -60,21 +60,26 @@ end)
 event.register(tes3.event.objectInvalidated,
                function(e) stenciledActors[e.object] = nil end)
 
-event.register(tes3.event.initialized, function(e)
-    masks = {
-        player1st = tes3.loadMesh(data.paths.stencils.player1st):getProperty(0x3),
-        player = tes3.loadMesh(data.paths.stencils.player):getProperty(0x3),
-        playerMirror = tes3.loadMesh(data.paths.stencils.playerMirror):getProperty(
-            0x3),
-        npc = tes3.loadMesh(data.paths.stencils.npc):getProperty(0x3),
-        npcMirror = tes3.loadMesh(data.paths.stencils.npcMirror):getProperty(0x3),
-        creature = tes3.loadMesh(data.paths.stencils.creature):getProperty(0x3),
-        weapon = tes3.loadMesh(data.paths.stencils.weapon):getProperty(0x3)
-    }
-end)
+masks = {
+    player1st = assert(tes3.loadMesh(data.paths.stencils.player1st):getProperty(
+                           ni.propertyType.stencil)),
+    player = assert(tes3.loadMesh(data.paths.stencils.player):getProperty(
+                        ni.propertyType.stencil)),
+    playerMirror = assert(
+        tes3.loadMesh(data.paths.stencils.playerMirror):getProperty(
+            ni.propertyType.stencil)),
+    npc = assert(tes3.loadMesh(data.paths.stencils.npc):getProperty(
+                     ni.propertyType.stencil)),
+    npcMirror = assert(tes3.loadMesh(data.paths.stencils.npcMirror):getProperty(
+                           ni.propertyType.stencil)),
+    creature = assert(tes3.loadMesh(data.paths.stencils.creature):getProperty(
+                          ni.propertyType.stencil)),
+    weapon = assert(tes3.loadMesh(data.paths.stencils.weapon):getProperty(
+                        ni.propertyType.stencil))
+}
 
 local function attachStencilPropertyToReference(reference, mask)
-    reference.sceneNode:detachProperty(0x3)
+    reference.sceneNode:detachProperty(ni.propertyType.stencil)
     reference.sceneNode:attachProperty(mask)
     reference.sceneNode:update()
     reference.sceneNode:updateNodeEffects()
@@ -87,8 +92,9 @@ local function attachStencilMirrorPropertiesToReference(reference, mask)
     for name in pairs(vanillaStencilObjects) do
         local node = reference.sceneNode:getObjectByName(name)
         if node then
-            vanillaStencilProperties[name] = node:getProperty(0x3)
-            node:detachProperty(0x3)
+            vanillaStencilProperties[name] =
+                node:getProperty(ni.propertyType.stencil)
+            node:detachProperty(ni.propertyType.stencil)
             node:attachProperty(mask)
         end
     end
@@ -98,7 +104,7 @@ local function attachWeaponStencilPropertyToReference(reference, mask)
     local node = reference.sceneNode:getObjectByName("Weapon Bone")
 
     if node then
-        node:detachProperty(0x3)
+        node:detachProperty(ni.propertyType.stencil)
         node:attachProperty(mask)
     end
 end
@@ -114,16 +120,16 @@ this.detachStencilProperty = function(reference)
 
     -- Dettach character stencil.
     local sceneNode = reference.sceneNode --[[@as niNode]]
-    sceneNode:detachProperty(0x3)
+    sceneNode:detachProperty(ni.propertyType.stencil)
 
     -- Reset vanilla stencils.
     for name in pairs(vanillaStencilObjects) do
         if not vanillaStencilProperties[name] then
-            common.logger:error("Cached vanilla stencil property not found.")
+            log:error("Cached vanilla stencil property not found.")
         else
             local node = sceneNode:getObjectByName(name)
             if node then
-                node:detachProperty(0x3)
+                node:detachProperty(ni.propertyType.stencil)
                 node:attachProperty(vanillaStencilProperties[name])
             end
         end
@@ -134,7 +140,7 @@ this.detachStencilProperty = function(reference)
     sceneNode:updateProperties()
     stenciledActors[reference] = nil
 
-    common.logger:debug("Removed stencil properties from %s.", reference)
+    log:debug("Removed stencil properties from %s.", reference)
 end
 
 --[[
@@ -166,7 +172,7 @@ this.attachStencilProperty = function(reference)
 
     end
 
-    common.logger:debug("Added stencil properties to %s.", reference)
+    log:debug("Added stencil properties to %s.", reference)
 end
 
 --[[
@@ -210,7 +216,7 @@ this.getOrAttachVfx = function(reference, sceneObjectName, path)
         node:update({controllers = true})
         node:updateEffects()
 
-        common.logger:debug("Added object %s to %s.", sceneObjectName, reference)
+        log:debug("Added object %s to %s.", sceneObjectName, reference)
     end
 
     return node

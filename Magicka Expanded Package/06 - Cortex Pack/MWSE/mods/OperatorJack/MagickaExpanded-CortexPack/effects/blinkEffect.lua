@@ -29,32 +29,28 @@ local function onBlinkCollision(e)
     end
 end
 
-local function addBlinkMagicEffect()
-    blinkEffect = framework.effects.mysticism.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.blink,
-        name = "Blink",
-        description = "Teleports the caster towards the location they cast at.",
+blinkEffect = framework.effects.mysticism.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.blink,
+    name = "Blink",
+    description = "Teleports the caster towards the location they cast at.",
 
-        -- Basic dials.
-        baseCost = 100.0,
-        speed = 2.0,
+    -- Basic dials.
+    baseCost = 100.0,
+    speed = 2.0,
 
-        -- Flags
-        allowEnchanting = true,
-        appliesOnce = true,
-        canCastTarget = true,
-        hasNoDuration = true,
-        hasNoMagnitude = true,
+    -- Flags
+    allowEnchanting = true,
+    appliesOnce = true,
+    canCastTarget = true,
+    hasNoDuration = true,
+    hasNoMagnitude = true,
 
-        -- Graphics / sounds.
-        icon = "RFD\\RFD_tp_blink.dds",
-        particleTexture = "vfx_particle064.tga",
-        lighting = {206 / 255, 237 / 255, 255 / 255},
+    -- Graphics / sounds.
+    icon = "RFD\\RFD_tp_blink.dds",
+    particleTexture = "vfx_particle064.tga",
+    lighting = {206 / 255, 237 / 255, 255 / 255},
 
-        -- Callbacks
-        onCollision = onBlinkCollision
-    })
-end
-
-event.register(tes3.event.magicEffectsResolved, addBlinkMagicEffect)
+    -- Callbacks
+    onCollision = onBlinkCollision
+})

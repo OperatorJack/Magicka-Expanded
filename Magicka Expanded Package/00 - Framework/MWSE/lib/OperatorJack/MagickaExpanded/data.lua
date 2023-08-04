@@ -1,5 +1,14 @@
 ---@class MagickaExpanded.Data
 local this = {}
+this.ids = {
+    objects = {
+        static = {
+            vfxLightningStrike = "oj_me_vfx_lightn_strike",
+            vfxLightningExplode = "oj_me_vfx_lightn_expl"
+        },
+        light = {vfxLightningLight = "oj_me_vfx_lightn_light"}
+    }
+}
 this.names = {shaders = {fog = "oj_me_fog_box"}}
 this.paths = {
     -- Generic stencil property

@@ -2,33 +2,29 @@ local framework = require("OperatorJack.MagickaExpanded")
 
 tes3.claimSpellEffectId("soulScrye", 332)
 
-local function addSoulScryeEffect()
-    framework.effects.mysticism.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.soulScrye,
-        name = "Soul Scrye",
-        description = "While active, lets the caster view the skills and condition of the target.",
+framework.effects.mysticism.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.soulScrye,
+    name = "Soul Scrye",
+    description = "While active, lets the caster view the skills and condition of the target.",
 
-        -- Basic dials.
-        baseCost = 30.0,
+    -- Basic dials.
+    baseCost = 30.0,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        canCastSelf = true,
-        hasNoMagnitude = true,
-        hasContinuousVFX = true,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    canCastSelf = true,
+    hasNoMagnitude = true,
+    hasContinuousVFX = true,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_crt_soulscrye.dds",
-        lighting = {0, 0, 0},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_crt_soulscrye.dds",
+    lighting = {0, 0, 0},
 
-        -- Required callbacks.
-        onTick = function(e) e:trigger() end
-    })
-end
-
-event.register(tes3.event.magicEffectsResolved, addSoulScryeEffect)
+    -- Required callbacks.
+    onTick = function(e) e:trigger() end
+})
 
 -- Register the GUI IDs for our custom tooltips feature.
 local GUI_ID = nil

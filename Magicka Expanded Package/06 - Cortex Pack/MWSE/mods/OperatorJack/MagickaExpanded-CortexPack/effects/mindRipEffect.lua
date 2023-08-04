@@ -191,29 +191,26 @@ local function onMindRipTick(e)
     e.sourceInstance.state = tes3.spellState.retired
 end
 
-local function addMindRipEffect()
-    framework.effects.mysticism.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.mindRip,
-        name = "Mind Rip",
-        description = "Allows the caster to view the target's spells and steal one, if they are able to.",
+framework.effects.mysticism.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.mindRip,
+    name = "Mind Rip",
+    description = "Allows the caster to view the target's spells and steal one, if they are able to.",
 
-        -- Basic dials.
-        baseCost = 60.0,
+    -- Basic dials.
+    baseCost = 60.0,
 
-        -- Various flags.
-        canCastTouch = true,
-        hasNoMagnitude = true,
-        isHarmful = true,
-        appliedOnce = true,
+    -- Various flags.
+    canCastTouch = true,
+    hasNoMagnitude = true,
+    isHarmful = true,
+    appliedOnce = true,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_crt_mindrip.dds",
-        lighting = {0, 0, 0},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_crt_mindrip.dds",
+    lighting = {0, 0, 0},
 
-        -- Required callbacks.
-        onTick = onMindRipTick
-    })
-end
+    -- Required callbacks.
+    onTick = onMindRipTick
+})
 
-event.register(tes3.event.magicEffectsResolved, addMindRipEffect)

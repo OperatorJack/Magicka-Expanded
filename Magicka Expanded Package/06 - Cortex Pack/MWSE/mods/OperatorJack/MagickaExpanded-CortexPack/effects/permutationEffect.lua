@@ -28,31 +28,27 @@ local function onPermutationTick(e)
     e:triggerSummon(id)
 end
 
-local function addPermutationEffect()
-    framework.effects.conjuration.createBasicEffect({
-        -- Base information.
-        id = tes3.effect.permutation,
-        name = "Permutation",
-        description = "Summons a creature from Oblivion that is increasingly more powerful depending on the caster's conjuration and willpower.",
+framework.effects.conjuration.createBasicEffect({
+    -- Base information.
+    id = tes3.effect.permutation,
+    name = "Permutation",
+    description = "Summons a creature from Oblivion that is increasingly more powerful depending on the caster's conjuration and willpower.",
 
-        -- Basic dials.
-        baseCost = 50.0,
+    -- Basic dials.
+    baseCost = 50.0,
 
-        -- Various flags.
-        allowEnchanting = true,
-        allowSpellmaking = true,
-        canCastSelf = true,
-        hasNoMagnitude = true,
-        casterLinked = true,
-        appliesOnce = true,
+    -- Various flags.
+    allowEnchanting = true,
+    allowSpellmaking = true,
+    canCastSelf = true,
+    hasNoMagnitude = true,
+    casterLinked = true,
+    appliesOnce = true,
 
-        -- Graphics/sounds.
-        icon = "RFD\\RFD_crt_permutation.dds",
-        lighting = {0, 0, 0},
+    -- Graphics/sounds.
+    icon = "RFD\\RFD_crt_permutation.dds",
+    lighting = {0, 0, 0},
 
-        -- Required callbacks.
-        onTick = onPermutationTick
-    })
-end
-
-event.register(tes3.event.magicEffectsResolved, addPermutationEffect)
+    -- Required callbacks.
+    onTick = onPermutationTick
+})
