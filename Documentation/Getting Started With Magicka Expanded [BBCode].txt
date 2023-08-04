@@ -7,7 +7,7 @@ This article will assume that you have set up a new [i]main.lua[/i] file, as des
 The Magicka Expanded base framework, also known as package 00 in the mod files, is a MWSE library. This means that it is loaded into MWSE before any dependent mods, and it kept in memory while the application is active. 
 
 To reference the framework, you need to use the MWSE function [i]include[/i], and store the result in a local variable. Consider the code below:
-[code]local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
+[code]local framework = require("OperatorJack.MagickaExpanded")
 
 [/code]You can add this as the first line in your [i]main.lua[/i] file. This will pull the framework from MWSE and let you access it through the local variable, [i]framework[/i].
 
@@ -23,8 +23,8 @@ if (framework == nil) then
             .. " You will need to install it to use this mod."
         )
     end
-    event.register("initialized", warning)
-    event.register("loaded", warning)
+    event.register(tes3.event.initialized, warning)
+    event.register(tes3.event.loaded, warning)
     return
 end
 
@@ -116,7 +116,7 @@ local function addBanishDaedraEffect()
 end
 
 -- Now, we must actually register the functions above to be executed. We do this by tying them to the magicEffectsResolved event, which is a system event provided by MWSE.
-event.register("magicEffectsResolved", addBanishDaedraEffect)[/code]
+event.register(tes3.event.magicEffectsResolved, addBanishDaedraEffect)[/code]
 
 You can add this to the bottom of your [i]main.lua[/i] file, below the previous step's code. Please read the comments and thoroughly consider the code you see before continuing.
 

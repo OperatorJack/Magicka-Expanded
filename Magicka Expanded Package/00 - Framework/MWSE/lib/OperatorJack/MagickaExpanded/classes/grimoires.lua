@@ -1,5 +1,5 @@
 local common = require("OperatorJack.MagickaExpanded.common")
-local log = require("OperatorJack.MagickaExpanded.classes.logger")
+local log = require("OperatorJack.MagickaExpanded.utils.logger")
 
 --- Grimoires module for interacting with grimoire objects.
 ---@class MagickaExpanded.Grimoires
@@ -125,6 +125,8 @@ end
 		collection of registered grimoires, the spells mapped to that grimoire will be
 		added to the player, if the player does not already have them.
 ]]
-this.registerEvent = function() event.register("bookGetText", onBookGetText) end
+this.registerEvent = function()
+    event.register(tes3.event.bookGetText, onBookGetText)
+end
 
 return this

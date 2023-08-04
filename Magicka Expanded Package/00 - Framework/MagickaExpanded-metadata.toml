@@ -11,7 +11,7 @@ version = "3.0.0"
 
 # MWSE specific information about this mod
 [tools.mwse]
-lua-mod = "OperatorJack.magickaExpanded"
+lua-mod = "OperatorJack.MagickaExpanded"
 load-order = 1
 wait-until-initialized = false
 
@@ -19,6 +19,14 @@ wait-until-initialized = false
 [dependencies]
   # Assets can be directories or loose folders
   assets = [
+      "Meshes\\OJ\\ME\\stencils\\mask_char_mirror.nif",
+      "Meshes\\OJ\\ME\\stencils\\mask_char.nif",
+      "Meshes\\OJ\\ME\\stencils\\mask_char1st.nif",
+      "Meshes\\OJ\\ME\\stencils\\mask_creature.nif",
+      "Meshes\\OJ\\ME\\stencils\\mask_npc_mirror.nif",
+      "Meshes\\OJ\\ME\\stencils\\mask_npc.nif",
+      "Meshes\\OJ\\ME\\stencils\\mask_weapon.nif",
+
       "Icons\\RFD\\B_RFD_ms_alteration.dds",
       "Icons\\RFD\\B_RFD_ms_conjuration.dds",
       "Icons\\RFD\\B_RFD_ms_destruction.dds",
@@ -33,6 +41,53 @@ wait-until-initialized = false
       "Icons\\RFD\\RFD_ms_mysticism.dds",
       "Icons\\RFD\\RFD_ms_restoration.dds",
       "Icons\\RFD\\RFD_teleport.dds",
+      
+      "Shaders\\XEshaders\\oj_me_fog_box.fx",
+
+      "Sound\\OJ\\ME\\Thunderclap0.wav",
+      "Sound\\OJ\\ME\\Thunderclap1.wav",
+      "Sound\\OJ\\ME\\Thunderclap2.wav",
+      "Sound\\OJ\\ME\\Thunderclap3.wav",
+      "Sound\\OJ\\ME\\Thunderclap4.wav",
+
+      "BookArt\\RFD\\RFD_tome_01.dds",
+      "BookArt\\RFD\\RFD_tome_02.dds",
+
+      "Icons\\RFD\\RFD_grim_alt.dds",
+      "Icons\\RFD\\RFD_grim_conj.dds",
+      "Icons\\RFD\\RFD_grim_dest.dds",
+      "Icons\\RFD\\RFD_grim_ill.dds",
+      "Icons\\RFD\\RFD_grim_myst.dds",
+      "Icons\\RFD\\RFD_grim_rest.dds",
+
+      "Icons\\RFD\\RFD_tome_alt.dds",
+      "Icons\\RFD\\RFD_tome_conj.dds",
+      "Icons\\RFD\\RFD_tome_dest.dds",
+      "Icons\\RFD\\RFD_tome_ill.dds",
+      "Icons\\RFD\\RFD_tome_myst.dds",
+      "Icons\\RFD\\RFD_tome_rest.dds",
+
+      "Meshes\\OJ\\ME\\lightn_expl.nif",
+      "Meshes\\OJ\\ME\\lightn_strike.nif",
+      "Meshes\\OJ\\ME\\lightn_bolt.nif",
+
+      "Meshes\\OJ\\ME\\ashshell_hit.nif",
+
+      "Meshes\\ME\\RES\\merchantCrate.nif",
+
+      "Meshes\\RFD\\RFD_grim_alt.nif",
+      "Meshes\\RFD\\RFD_grim_conj.nif",
+      "Meshes\\RFD\\RFD_grim_dest.nif",
+      "Meshes\\RFD\\RFD_grim_ill.nif",
+      "Meshes\\RFD\\RFD_grim_myst.nif",
+      "Meshes\\RFD\\RFD_grim_rest.nif",
+
+      "Meshes\\RFD\\RFD_tome_alt.nif",
+      "Meshes\\RFD\\RFD_tome_conj.nif",
+      "Meshes\\RFD\\RFD_tome_dest.nif",
+      "Meshes\\RFD\\RFD_tome_ill.nif",
+      "Meshes\\RFD\\RFD_tome_myst.nif",
+      "Meshes\\RFD\\RFD_tome_rest.nif",
   ]
 
 # Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)
@@ -42,3 +97,7 @@ buildnumber = 3273
 # Check MGE XE version
 [dependencies.mge-xe]
 version = ">=0.15.0"
+
+# Check if a plugin (esp or esm) is active
+[dependencies.mods."OperatorJack.MagickaExpanded"]
+plugin = "Magicka Expanded.esp"

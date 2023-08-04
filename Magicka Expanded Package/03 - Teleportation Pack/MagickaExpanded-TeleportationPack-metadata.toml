@@ -1,0 +1,29 @@
+# Data Files/MagickaExpanded-TeleportationPack-metadata.toml
+
+# Holds basic information about the mod
+[package]
+name = "Magicka Expanded - Teleportation Pack"
+description = "The Teleportation Pack module for the Magicka Expanded Framework. Part of the Magicka Expanded BAIN package."
+homepage = "https://www.nexusmods.com/morrowind/mods/47111"
+repository = "https://github.com/OperatorJack/Magicka-Expanded"
+authors = ["OperatorJack", "RedFurryDemon"]
+version = "3.0.0"
+
+# MWSE specific information about this mod
+[tools.mwse]
+lua-mod = "OperatorJack.MagickaExpanded-TeleportationPack"
+load-order = 100
+wait-until-initialized = false
+
+# Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)
+[dependencies.mwse]
+buildnumber = 3273
+
+# Check MGE XE version
+[dependencies.mge-xe]
+version = ">=0.15.0"
+
+# mwse-module can be a folder or lua file, anywhere in /mods, /lib etc
+[dependencies.mods.MagickaExpanded]
+mwse-module = "OperatorJack.MagickaExpanded"
+version = ">=3.0.0"

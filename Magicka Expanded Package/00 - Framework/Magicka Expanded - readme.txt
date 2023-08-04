@@ -19,27 +19,24 @@ It does this by providing a relatively simple API to access MWSE functions, mana
 
 This mod consist of multiple BAIN packages:
 00 - Framework
-* The package does not introduce anything new into the game. It is a base package for other mods to build on. This does not require an ESP. If a mod says it requires Magicka Expanded, it likely only requires this package. This is the core framework that lets the spell packs and other dependent mods work.
+* The package does not introduce anything new into the game. It is a base package for other mods to build on. If a mod says it requires Magicka Expanded, it likely only requires this package. This is the core framework that lets the spell packs and other dependent mods work. Contains an .ESP which is required for managing some objects.
 
-01 - Resource Pack
-* Contains an ESP used by other spell packs. Must be installed and enabled if using any of the packages below.
-
-02 - Lore Friendly Pack
+01 - Lore Friendly Pack
 * Adds new lore friendly magic effects and spells. See package readme for more info.
 
-03 - Summoning Pack
+02 - Summoning Pack
 * Adds new summoning magic effects and spells. See package readme for more info.
 
-04 - Teleportation Pack
+03 - Teleportation Pack
 * Adds new teleportation magic effects and spells. See package readme for more info.
 
-05 - Tamriel Rebuilt Pack
+04 - Tamriel Rebuilt Pack
 * Adds new summoning and teleportation magic effects and spells for TR content. See package readme for more info.
 
-06 - Weather Magick Pack
-* Adds new magic effects to manipulate the weather.
+05 - Weather Magick Pack
+* Adds new magic effects to manipulate the weather & weather inspired spells.
 
-07 - Cortex Pack
+06 - Cortex Pack
 * Adds new magic effects inspired by Cortex's Scripted Spells mod.
 
 This mod allows the distribution of spells through spell tomes and grimoires. Spell tomes teach 1 spell per book. Spell grimoires teach 2+ spells per book. This mod uses leveled lists and booksellers for spell distribution, but Spell Packs may use any mechanism to distribute spells. Please refer to the Spell Pack you are using for instructions for finding the spells within. If using spell tomes and grimoires, they will be dynamically placed through MWSE and do not require cell edits in the Construction Set.
@@ -57,7 +54,7 @@ Graphic assets
 The meshes, textures, and book illustrations are modders' resources free to use in your mods, provided that you include a link to RFD's Nexus profile in your mod's credits. The meshes can only be used for Morrowind modding, as they are based on original MW assets; textures and illustrations were created from scratch.
 Please do not edit the .dds files (because of compression). Contact RFD for the source files instead.
 
-You may not include this mod in a compilation without RFD's permission.
+You may not include this mod in a compilation.
 
 ====Conflicts====
 Creating new magic effects requires creating entries in a MWSE table. These entries are permanent. This mod will conflict with any mod that uses the same spell effect IDs. Other authors should check the magic effect ID list before choosing an ID to prevent conflicts.
@@ -72,8 +69,8 @@ Removal:
 1) Uninstall this framework and any Spell Packs using your mod management tool.
 
 ====Credits====
-OperatorJack: scripting
-RedFurryDemon: graphics
+OperatorJack: scripting, where not mentioned below.
+RedFurryDemon: graphics including icons, some VFX (original darkness mesh), mod page graphics, and other things not mentioned below.
 
 - NullCascade, Greatness7 and Merlord - on-going help and development of MWSE.
 - Merlord - Providing the code used to distribute items to merchants without requiring ESPs or cell edits.
@@ -82,7 +79,7 @@ RedFurryDemon: graphics
 - Pixel Sagas - font based on Skyrim mage script
 - Stripes - some troubleshooting
 - C3PA - a large number of improvements to the code to use new MWSE functions and patterns. Thank you for your work!
-- Firemoth Reclaimed team: Their lightning VFX meshes, textures and MWSE code was adapted into this mod for the "Thunderbolt" magic effect.
+- Firemoth Reclaimed team: Their lightning VFX meshes, textures and MWSE code was adapted into this mod for the "Conjure Lightning" magic effect.
 - Kurp for the following:
     - Circular VFX mesh used in the Thunderbolt bolt VFX, Darkness bolt VFX.
 - OAAB for the following

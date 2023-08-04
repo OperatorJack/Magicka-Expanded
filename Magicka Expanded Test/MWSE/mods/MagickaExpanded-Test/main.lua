@@ -1,12 +1,12 @@
-local framework = require("OperatorJack.MagickaExpanded.magickaExpanded")
+local framework = require("OperatorJack.MagickaExpanded")
 if (framework == nil) then
     local function warning()
         tes3.messageBox(
             "[TEST ERROR] Magicka Expanded framework is not installed!" ..
                 " You will need to install it to use this mod.")
     end
-    event.register("initialized", warning)
-    event.register("loaded", warning)
+    event.register(tes3.event.initialized, warning)
+    event.register(tes3.event.loaded, warning)
     return
 end
 
@@ -18,4 +18,4 @@ local function addTestSpells(e)
 end
 
 -- Filter by the scan code to get Z key presses only.
-event.register("keyDown", addTestSpells, {filter = tes3.scanCode.z})
+event.register(tes3.event.keyDown, addTestSpells, {filter = tes3.scanCode.z})

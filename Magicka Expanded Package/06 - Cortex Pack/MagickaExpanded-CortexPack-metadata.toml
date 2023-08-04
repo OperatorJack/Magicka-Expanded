@@ -1,0 +1,54 @@
+# Data Files/MagickaExpanded-CortexPack-metadata.toml
+
+# Holds basic information about the mod
+[package]
+name = "Magicka Expanded - Cortex Pack"
+description = "The Cortex Pack module for the Magicka Expanded Framework. Part of the Magicka Expanded BAIN package."
+homepage = "https://www.nexusmods.com/morrowind/mods/47111"
+repository = "https://github.com/OperatorJack/Magicka-Expanded"
+authors = ["OperatorJack", "RedFurryDemon"]
+version = "3.0.0"
+
+# MWSE specific information about this mod
+[tools.mwse]
+lua-mod = "OperatorJack.MagickaExpanded-Cortex"
+load-order = 100
+wait-until-initialized = false
+
+# Dependencies are checked on `initialized` and warn the player if any are missing
+[dependencies]
+  # Assets can be directories or loose folders
+  assets = [
+      "Icons\\RFD\\B_RFD_crt_clone.dds",
+      "Icons\\RFD\\B_RFD_crt_coalesce.dds",
+      "Icons\\RFD\\B_RFD_crt_mindrip.dds",
+      "Icons\\RFD\\B_RFD_crt_mindscan.dds",
+      "Icons\\RFD\\B_RFD_crt_permutation.dds",
+      "Icons\\RFD\\B_RFD_crt_soulscrye.dds",
+      "Icons\\RFD\\B_RFD_lf_darkness.dds",
+      "Icons\\RFD\\B_RFD_tp_blink.dds",
+      
+      "Icons\\RFD\\RFD_crt_clone.dds",
+      "Icons\\RFD\\RFD_crt_coalesce.dds",
+      "Icons\\RFD\\RFD_crt_mindrip.dds",
+      "Icons\\RFD\\RFD_crt_mindscan.dds",
+      "Icons\\RFD\\RFD_crt_permutation.dds",
+      "Icons\\RFD\\RFD_crt_soulscrye.dds",
+      "Icons\\RFD\\RFD_lf_darkness.dds",
+      "Icons\\RFD\\RFD_tp_blink.dds",
+
+      "Meshes\\RFD\\RFD_Darkness.nif",
+  ]
+
+# Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)
+[dependencies.mwse]
+buildnumber = 3273
+
+# Check MGE XE version
+[dependencies.mge-xe]
+version = ">=0.15.0"
+
+# mwse-module can be a folder or lua file, anywhere in /mods, /lib etc
+[dependencies.mods.MagickaExpanded]
+mwse-module = "OperatorJack.MagickaExpanded"
+version = ">=3.0.0"

@@ -1,5 +1,5 @@
 local common = require("OperatorJack.MagickaExpanded.common")
-local log = require("OperatorJack.MagickaExpanded.classes.logger")
+local log = require("OperatorJack.MagickaExpanded.utils.logger")
 
 --- Tomes module for interacting with tome objects.
 ---@class Tomes

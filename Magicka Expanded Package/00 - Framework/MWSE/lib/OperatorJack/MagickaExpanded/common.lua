@@ -1,4 +1,4 @@
-local log = require("OperatorJack.MagickaExpanded.classes.logger")
+local log = require("OperatorJack.MagickaExpanded.utils.logger")
 
 local this = {}
 
@@ -45,11 +45,13 @@ this.addSpellToSpellsList = function(spell) table.insert(this.spells, spell) end
 this.addTestSpellsToPlayer = function()
     for i = 1, #this.spells do
         local spell = this.spells[i]
-        tes3.addSpell({
-            reference = tes3.player,
-            spell = spell,
-            updateGUI = false
-        })
+        if (spell.castType ~= tes3.spellType.disease) then
+            tes3.addSpell({
+                reference = tes3.player,
+                spell = spell,
+                updateGUI = false
+            })
+        end
     end
     tes3.updateMagicGUI({reference = tes3.player})
 end
@@ -70,7 +72,7 @@ end
 ---@param weapons string[] List of Armor Ids used by the effect. Maximum of two.
 this.addBoundWeaponToBoundWeaponsList = function(effectId, weapons)
     if (#weapons > 2) then
-        log.error("Invalid number of weapons for effect id: %s, count: %s",
+        log:error("Invalid number of weapons for effect id: %s, count: %s",
                   effectId, #weapons)
         return
     end
@@ -83,7 +85,7 @@ end
 ---@param armors string[] List of Armor Ids used by the effect. Maximum of two.
 this.addBoundArmorToBoundArmorsList = function(effectId, armors)
     if (#armors > 2) then
-        log.error("Invalid number of armors for effect id: %s, count: %s",
+        log:error("Invalid number of armors for effect id: %s, count: %s",
                   effectId, #weapons)
         return
     end

@@ -1,0 +1,65 @@
+# Data Files/MagickaExpanded-LoreFriendlyPack-metadata.toml
+
+# Holds basic information about the mod
+[package]
+name = "Magicka Expanded - Lore Friendly Pack"
+description = "The Lore Friendly Pack module for the Magicka Expanded Framework. Part of the Magicka Expanded BAIN package."
+homepage = "https://www.nexusmods.com/morrowind/mods/47111"
+repository = "https://github.com/OperatorJack/Magicka-Expanded"
+authors = ["OperatorJack", "RedFurryDemon"]
+version = "3.0.0"
+
+# MWSE specific information about this mod
+[tools.mwse]
+lua-mod = "OperatorJack.MagickaExpanded-LoreFriendlyPack"
+load-order = 100
+wait-until-initialized = false
+
+# Dependencies are checked on `initialized` and warn the player if any are missing
+[dependencies]
+  # Assets can be directories or loose folders
+  assets = [
+
+      "Icons\\RFD\\B_RFD_lf_banish.dds",
+      "Icons\\RFD\\B_RFD_lf_claymore.dds",
+      "Icons\\RFD\\B_RFD_lf_club.dds",
+      "Icons\\RFD\\B_RFD_lf_daikatana.dds",
+      "Icons\\RFD\\B_RFD_lf_greaves.dds",
+      "Icons\\RFD\\B_RFD_lf_katana.dds",
+      "Icons\\RFD\\B_RFD_lf_pauldron_L.dds",
+      "Icons\\RFD\\B_RFD_lf_pauldron_R.dds",
+      "Icons\\RFD\\B_RFD_lf_shortsword.dds",
+      "Icons\\RFD\\B_RFD_lf_staff.dds",
+      "Icons\\RFD\\B_RFD_lf_tanto.dds",
+      "Icons\\RFD\\B_RFD_lf_wakizashi.dds",
+      "Icons\\RFD\\B_RFD_lf_waraxe.dds",
+      "Icons\\RFD\\B_RFD_lf_warhammer.dds",
+
+      "Icons\\RFD\\RFD_lf_banish.dds",
+      "Icons\\RFD\\RFD_lf_claymore.dds",
+      "Icons\\RFD\\RFD_lf_club.dds",
+      "Icons\\RFD\\RFD_lf_daikatana.dds",
+      "Icons\\RFD\\RFD_lf_greaves.dds",
+      "Icons\\RFD\\RFD_lf_katana.dds",
+      "Icons\\RFD\\RFD_lf_pauldron_L.dds",
+      "Icons\\RFD\\RFD_lf_pauldron_R.dds",
+      "Icons\\RFD\\RFD_lf_shortsword.dds",
+      "Icons\\RFD\\RFD_lf_staff.dds",
+      "Icons\\RFD\\RFD_lf_tanto.dds",
+      "Icons\\RFD\\RFD_lf_wakizashi.dds",
+      "Icons\\RFD\\RFD_lf_waraxe.dds",
+      "Icons\\RFD\\RFD_lf_warhammer.dds",
+  ]
+
+# Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)
+[dependencies.mwse]
+buildnumber = 3273
+
+# Check MGE XE version
+[dependencies.mge-xe]
+version = ">=0.15.0"
+
+# mwse-module can be a folder or lua file, anywhere in /mods, /lib etc
+[dependencies.mods.MagickaExpanded]
+mwse-module = "OperatorJack.MagickaExpanded"
+version = ">=3.0.0"
