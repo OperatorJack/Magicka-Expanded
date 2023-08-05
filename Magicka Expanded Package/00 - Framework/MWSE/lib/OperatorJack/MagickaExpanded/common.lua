@@ -2,19 +2,18 @@ local log = require("OperatorJack.MagickaExpanded.utils.logger")
 
 local this = {}
 
-this.doesIconExist =
-    function(path) return tes3.getFileExists("icons\\" .. path) end
+this.doesIconExist = function(path) return tes3.getFileExists("icons\\" .. path) end
 
 this.checkParams = function(params)
     if (params.icon and this.doesIconExist(params.icon) == false) then
-        log:error("Effect disabled. Icon does not exist for effect, path: " ..
-                      params.name .. ", " .. params.icon)
+        log:error(
+            "Effect disabled. Icon does not exist for effect, path: " .. params.name .. ", " ..
+                params.icon)
         return false
     end
     if (params.icon and string.len(params.icon) > 32) then
-        log:error(
-            "Effect disabled. Icon path longer than 32 characters for effect, path: " ..
-                params.name .. ", " .. params.icon)
+        log:error("Effect disabled. Icon path longer than 32 characters for effect, path: " ..
+                      params.name .. ", " .. params.icon)
         return false
     end
     return true
@@ -46,11 +45,7 @@ this.addTestSpellsToPlayer = function()
     for i = 1, #this.spells do
         local spell = this.spells[i]
         if (spell.castType ~= tes3.spellType.disease) then
-            tes3.addSpell({
-                reference = tes3.player,
-                spell = spell,
-                updateGUI = false
-            })
+            tes3.addSpell({reference = tes3.player, spell = spell, updateGUI = false})
         end
     end
     tes3.updateMagicGUI({reference = tes3.player})
@@ -58,8 +53,7 @@ end
 
 --[[Adds the potion the the MagickaExpanded tracking list for the given effect.]]
 ---@param potion tes3alchemy 
-this.addPotionToPotionsList =
-    function(potion) table.insert(this.potions, potion) end
+this.addPotionToPotionsList = function(potion) table.insert(this.potions, potion) end
 
 --[[Adds the enchantment the the MagickaExpanded tracking list for the given effect.]]
 ---@param enchantment tes3enchantment 
@@ -72,8 +66,7 @@ end
 ---@param weapons string[] List of Armor Ids used by the effect. Maximum of two.
 this.addBoundWeaponToBoundWeaponsList = function(effectId, weapons)
     if (#weapons > 2) then
-        log:error("Invalid number of weapons for effect id: %s, count: %s",
-                  effectId, #weapons)
+        log:error("Invalid number of weapons for effect id: %s, count: %s", effectId, #weapons)
         return
     end
     this.boundWeapons[effectId] = weapons
@@ -85,8 +78,7 @@ end
 ---@param armors string[] List of Armor Ids used by the effect. Maximum of two.
 this.addBoundArmorToBoundArmorsList = function(effectId, armors)
     if (#armors > 2) then
-        log:error("Invalid number of armors for effect id: %s, count: %s",
-                  effectId, #weapons)
+        log:error("Invalid number of armors for effect id: %s, count: %s", effectId, #weapons)
         return
     end
     this.boundArmors[effectId] = armors

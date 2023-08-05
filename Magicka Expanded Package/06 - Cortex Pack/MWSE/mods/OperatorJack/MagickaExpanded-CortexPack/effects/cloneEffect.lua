@@ -39,18 +39,14 @@ local function onCloneTick(e)
     if (e.effectInstance.target.object.script == nil or
         scriptWhitelist[e.effectInstance.target.object.script]) then
         id = e.effectInstance.target.object.id
-        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e,
-                                                                            tes3.effect
-                                                                                .clone)
+        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.clone)
 
         if (effect == nil) then
-            framework.log:error(
-                "Unable to find effect in tick event. Logical error?")
+            framework.log:error("Unable to find effect in tick event. Logical error?")
             return
         end
 
-        local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(
-                              effect)
+        local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(effect)
 
         if (e.effectInstance.target.object.level <= magnitude) then
             local duration = effect.duration
@@ -68,8 +64,7 @@ local function onCloneTick(e)
                             e.effectInstance.target.baseObject.name)
         end
     else
-        tes3.messageBox("%s was unable to be cloned!",
-                        e.effectInstance.target.baseObject.name)
+        tes3.messageBox("%s was unable to be cloned!", e.effectInstance.target.baseObject.name)
     end
 
     e.effectInstance.state = tes3.spellState.retired

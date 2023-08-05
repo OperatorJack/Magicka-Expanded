@@ -36,16 +36,12 @@ this.registerTome = function(tome) table.insert(tomes, tome) end
 		when a book is opened.
 ]]
 ---@param tomes Tomes.Tome[]
-this.registerTomes = function(tomes)
-    for _, tome in ipairs(tomes) do this.registerTome(tome) end
-end
+this.registerTomes = function(tomes) for _, tome in ipairs(tomes) do this.registerTome(tome) end end
 
 ---@param bookId string
 ---@return Tomes.Tome | nil
 local function FindTome(bookId)
-    for _, tome in ipairs(tomes) do
-        if (tome.id == bookId) then return tome end
-    end
+    for _, tome in ipairs(tomes) do if (tome.id == bookId) then return tome end end
     return nil
 end
 
@@ -94,8 +90,7 @@ local function onBookGetText(e)
     if (tome == nil) then return end
 
     if (common.hasSpell(tes3.player, tome.spellId)) then
-        tes3.messageBox(
-            "You attempt to read the tome but can learn nothing more.")
+        tes3.messageBox("You attempt to read the tome but can learn nothing more.")
     else
         tryLearningSpell(tome)
     end
@@ -107,8 +102,6 @@ end
 		collection of registered tomes, the spell mapped to that tome will be
 		added to the player, if the player does not already have it.
 ]]
-this.registerEvent = function()
-    event.register(tes3.event.bookGetText, onBookGetText)
-end
+this.registerEvent = function() event.register(tes3.event.bookGetText, onBookGetText) end
 
 return this

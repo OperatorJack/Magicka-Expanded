@@ -6,10 +6,8 @@ local function isProjectileUsingCoalesceFunc(spellInstance)
     local isProjectileUsingCoalesce = false
 
     for i = 0, 6 do
-        if (spellInstance.source.effects[i] and
-            spellInstance.source.effects[i].id == tes3.effect.coalesce) then
-            isProjectileUsingCoalesce = true
-        end
+        if (spellInstance.source.effects[i] and spellInstance.source.effects[i].id ==
+            tes3.effect.coalesce) then isProjectileUsingCoalesce = true end
     end
 
     return isProjectileUsingCoalesce
@@ -21,8 +19,7 @@ local function projectileTimerCallback()
         local mobile = reference.mobile
         if (mobile) then
             if (mobile.flags ~= 108) then
-                mobile.position = mobile.position + tes3.getPlayerEyeVector() *
-                                      15
+                mobile.position = mobile.position + tes3.getPlayerEyeVector() * 15
             end
         end
     end
@@ -48,9 +45,7 @@ local function onMobileActivated(e)
     local spellInstance = mobile.spellInstance
     if (spellInstance == nil) then return end
 
-    if (isProjectileUsingCoalesceFunc(spellInstance) == true) then
-        actives[e.reference] = true
-    end
+    if (isProjectileUsingCoalesceFunc(spellInstance) == true) then actives[e.reference] = true end
 end
 event.register(tes3.event.mobileActivated, onMobileActivated)
 

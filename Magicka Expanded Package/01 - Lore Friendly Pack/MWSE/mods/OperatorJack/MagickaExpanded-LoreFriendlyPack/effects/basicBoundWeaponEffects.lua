@@ -16,9 +16,8 @@ local function getDescription(weaponName)
         "The spell effect conjures a lesser Daedra bound in the form of  amagical, wondrously light Daedric " ..
             weaponName .. ". The " .. weaponName ..
             " appear automatically equipped on the caster, displacing any currently " ..
-            " equipped weapon to inventory.  When the effect ends, the " ..
-            weaponName .. " disappears, and any previously " ..
-            " equipped weapon is automatically re-equipped."
+            " equipped weapon to inventory.  When the effect ends, the " .. weaponName ..
+            " disappears, and any previously " .. " equipped weapon is automatically re-equipped."
 end
 
 framework.effects.conjuration.createBasicBoundWeaponEffect({

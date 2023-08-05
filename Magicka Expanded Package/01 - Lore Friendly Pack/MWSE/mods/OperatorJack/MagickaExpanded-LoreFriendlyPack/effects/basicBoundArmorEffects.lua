@@ -5,22 +5,20 @@ tes3.claimSpellEffectId("boundLeftPauldron", 240)
 tes3.claimSpellEffectId("boundRightPauldron", 264)
 
 local function getPairDescription(armorName)
-    return
-        "The spell effect conjures a lesser Daedra bound in the form of a magical," ..
-            " wondrously light pair of " .. armorName .. ". The " .. armorName ..
-            " appear automatically" ..
-            " equipped on the caster, displacing any currently equipped armor to inventory.  When the effect ends, " ..
-            " the " .. armorName ..
-            " disappear, and any previously equipped armor is automatically re-equipped."
+    return "The spell effect conjures a lesser Daedra bound in the form of a magical," ..
+               " wondrously light pair of " .. armorName .. ". The " .. armorName ..
+               " appear automatically" ..
+               " equipped on the caster, displacing any currently equipped armor to inventory.  When the effect ends, " ..
+               " the " .. armorName ..
+               " disappear, and any previously equipped armor is automatically re-equipped."
 end
 local function getSingleDescription(armorName)
-    return
-        "The spell effect conjures a lesser Daedra bound in the form of a magical," ..
-            " wondrously light " .. armorName .. ". The " .. armorName ..
-            " appears automatically" ..
-            " equipped on the caster, displacing any currently equipped armor to inventory.  When the effect ends, " ..
-            " the " .. armorName ..
-            " disappears, and any previously equipped armor is automatically re-equipped."
+    return "The spell effect conjures a lesser Daedra bound in the form of a magical," ..
+               " wondrously light " .. armorName .. ". The " .. armorName ..
+               " appears automatically" ..
+               " equipped on the caster, displacing any currently equipped armor to inventory.  When the effect ends, " ..
+               " the " .. armorName ..
+               " disappears, and any previously equipped armor is automatically re-equipped."
 end
 
 framework.effects.conjuration.createBasicBoundArmorEffect({

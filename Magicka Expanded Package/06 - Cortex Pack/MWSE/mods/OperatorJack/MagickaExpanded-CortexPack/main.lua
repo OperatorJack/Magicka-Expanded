@@ -15,39 +15,14 @@ local spellIds = {
 }
 
 local tomes = {
-    {
-        id = "OJ_ME_TomeBlink",
-        spellId = spellIds.blink,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
-        id = "OJ_ME_TomeDarkness",
-        spellId = spellIds.veilOfDarkness,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
-        id = "OJ_ME_TomeClone",
-        spellId = spellIds.clone,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
-        id = "OJ_ME_TomeMindScan",
-        spellId = spellIds.mindScan,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
-        id = "OJ_ME_TomeMindRip",
-        spellId = spellIds.mindRip,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
-        id = "OJ_ME_TomeSoulScrye",
-        spellId = spellIds.soulScrye,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
-        id = "OJ_ME_TomeCoalesce",
-        spellId = spellIds.coalesce,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
-        id = "OJ_ME_TomePermutation",
-        spellId = spellIds.permutation,
-        list = "OJ_ME_LeveledList_Rare"
-    }
+    {id = "OJ_ME_TomeBlink", spellId = spellIds.blink, list = "OJ_ME_LeveledList_Rare"},
+    {id = "OJ_ME_TomeDarkness", spellId = spellIds.veilOfDarkness, list = "OJ_ME_LeveledList_Rare"},
+    {id = "OJ_ME_TomeClone", spellId = spellIds.clone, list = "OJ_ME_LeveledList_Rare"},
+    {id = "OJ_ME_TomeMindScan", spellId = spellIds.mindScan, list = "OJ_ME_LeveledList_Rare"},
+    {id = "OJ_ME_TomeMindRip", spellId = spellIds.mindRip, list = "OJ_ME_LeveledList_Rare"},
+    {id = "OJ_ME_TomeSoulScrye", spellId = spellIds.soulScrye, list = "OJ_ME_LeveledList_Rare"},
+    {id = "OJ_ME_TomeCoalesce", spellId = spellIds.coalesce, list = "OJ_ME_LeveledList_Rare"},
+    {id = "OJ_ME_TomePermutation", spellId = spellIds.permutation, list = "OJ_ME_LeveledList_Rare"}
 }
 
 for _, tome in pairs(tomes) do

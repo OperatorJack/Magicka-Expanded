@@ -12,8 +12,7 @@ tes3.claimSpellEffectId("weatherOvercast", 320)
 tes3.claimSpellEffectId("weatherRain", 321)
 
 local function getDescription(weather)
-    return "Commune with the spirits of nature to change the weather to " ..
-               weather .. "."
+    return "Commune with the spirits of nature to change the weather to " .. weather .. "."
 end
 
 framework.effects.conjuration.createBasicWeatherEffect({

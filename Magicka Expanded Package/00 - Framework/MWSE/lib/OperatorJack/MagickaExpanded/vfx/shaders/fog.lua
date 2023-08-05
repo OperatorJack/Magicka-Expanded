@@ -26,9 +26,7 @@ local activeFogVolumes = {}
 
 ---@return number|nil
 local function getNextAvailableIndex()
-    for i = 1, NUM_FOG_VOLUMES do
-        if not table.find(activeFogVolumes, i) then return i end
-    end
+    for i = 1, NUM_FOG_VOLUMES do if not table.find(activeFogVolumes, i) then return i end end
 end
 
 ---@param id string

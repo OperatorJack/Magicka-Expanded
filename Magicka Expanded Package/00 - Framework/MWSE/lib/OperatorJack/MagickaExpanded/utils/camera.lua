@@ -25,8 +25,7 @@ local function createAdjuster(name, node)
     return adjuster
 end
 local wc = assert(tes3.worldController)
-local skyAdjuster = createAdjuster("magickaExpanded:skyAdjuster",
-                                   wc.weatherController.sceneSkyRoot)
+local skyAdjuster = createAdjuster("magickaExpanded:skyAdjuster", wc.weatherController.sceneSkyRoot)
 local cameraAdjuster = createAdjuster("magickaExpanded:cameraAdjuster",
                                       wc.worldCamera.cameraData.camera)
 local shadowAdjuster = createAdjuster("magickaExpanded:shadowAdjuster",

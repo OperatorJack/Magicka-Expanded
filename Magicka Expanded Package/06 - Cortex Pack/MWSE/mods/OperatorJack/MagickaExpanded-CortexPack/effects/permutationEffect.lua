@@ -18,8 +18,7 @@ local permutationList = {
 
 local function onPermutationTick(e)
     local caster = e.sourceInstance.caster
-    local value = (caster.mobile.willpower.current * .4) +
-                      (caster.mobile.conjuration.current * .6)
+    local value = (caster.mobile.willpower.current * .4) + (caster.mobile.conjuration.current * .6)
 
     local rounded = math.round(value, -1)
     if (rounded > 100) then rounded = 100 end

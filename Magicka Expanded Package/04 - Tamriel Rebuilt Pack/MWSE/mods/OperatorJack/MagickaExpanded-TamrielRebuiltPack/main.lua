@@ -1,10 +1,8 @@
 local framework = require("OperatorJack.MagickaExpanded")
 
 if not tes3.isModActive("Tamriel_Data.esm") then
-    mwse.log(
-        "[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
-    tes3.messageBox(
-        "[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
+    mwse.log("[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
+    tes3.messageBox("[Magicka Expanded - Tamriel Rebuilt Pack: INFO] Tamriel_Data.esm not loaded")
     return
 end
 
@@ -70,11 +68,13 @@ local teleportTomes = {
         id = "OJ_ME_TomeTeleFirewatch",
         spellId = teleportSpellIds.firewatch,
         list = "OJ_ME_LeveledList_Common"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeTeleHelnim",
         spellId = teleportSpellIds.helnim,
         list = "OJ_ME_LeveledList_Common"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeTeleNecrom",
         spellId = teleportSpellIds.necrom,
         list = "OJ_ME_LeveledList_Common"
@@ -98,7 +98,8 @@ local teleportTomes = {
         id = "OJ_ME_TomeTeleGahSadrith",
         spellId = teleportSpellIds.gahSadrith,
         list = "OJ_ME_LeveledList_Common"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeTeleGorne",
         spellId = teleportSpellIds.gorne,
         list = "OJ_ME_LeveledList_Common"
@@ -106,7 +107,8 @@ local teleportTomes = {
         id = "OJ_ME_TomeTeleLlothanis",
         spellId = teleportSpellIds.llothanis,
         list = "OJ_ME_LeveledList_Common"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeTeleMarog",
         spellId = teleportSpellIds.marog,
         list = "OJ_ME_LeveledList_Common"
@@ -134,11 +136,8 @@ local teleportTomes = {
 }
 
 local summonTomes = {
+    {id = "OJ_ME_TomeSummAlfiq", spellId = summonSpellIds.alfiq, list = "OJ_ME_LeveledList_Mythic"},
     {
-        id = "OJ_ME_TomeSummAlfiq",
-        spellId = summonSpellIds.alfiq,
-        list = "OJ_ME_LeveledList_Mythic"
-    }, {
         id = "OJ_ME_TomeSummArmorCent",
         spellId = summonSpellIds.armorCenturion,
         list = "OJ_ME_LeveledList_Rare"
@@ -154,7 +153,8 @@ local summonTomes = {
         id = "OJ_ME_TomeSummDraugrLord",
         spellId = summonSpellIds.draugrLord,
         list = "OJ_ME_LeveledList_Mythic"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeSummDridrea",
         spellId = summonSpellIds.dridrea,
         list = "OJ_ME_LeveledList_Rare"
@@ -166,11 +166,9 @@ local summonTomes = {
         id = "OJ_ME_TomeSummFrostLich",
         spellId = summonSpellIds.frostLich,
         list = "OJ_ME_LeveledList_Mythic"
-    }, {
-        id = "OJ_ME_TomeSummGiant",
-        spellId = summonSpellIds.giant,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
+    },
+    {id = "OJ_ME_TomeSummGiant", spellId = summonSpellIds.giant, list = "OJ_ME_LeveledList_Rare"},
+    {
         id = "OJ_ME_TomeSummGoblinShaman",
         spellId = summonSpellIds.goblinShaman,
         list = "OJ_ME_LeveledList_Rare"
@@ -178,11 +176,9 @@ local summonTomes = {
         id = "OJ_ME_TomeSummGreaterLich",
         spellId = summonSpellIds.greaterLich,
         list = "OJ_ME_LeveledList_Mythic"
-    }, {
-        id = "OJ_ME_TomeSummLamia",
-        spellId = summonSpellIds.lamia,
-        list = "OJ_ME_LeveledList_Mythic"
-    }, {
+    },
+    {id = "OJ_ME_TomeSummLamia", spellId = summonSpellIds.lamia, list = "OJ_ME_LeveledList_Mythic"},
+    {
         id = "OJ_ME_TomeSummMammoth",
         spellId = summonSpellIds.mammoth,
         list = "OJ_ME_LeveledList_Uncommon"
@@ -202,11 +198,9 @@ local summonTomes = {
         id = "OJ_ME_TomeSummPlainStrider",
         spellId = summonSpellIds.plainStrider,
         list = "OJ_ME_LeveledList_Uncommon"
-    }, {
-        id = "OJ_ME_TomeSummRaki",
-        spellId = summonSpellIds.raki,
-        list = "OJ_ME_LeveledList_Uncommon"
-    }, {
+    },
+    {id = "OJ_ME_TomeSummRaki", spellId = summonSpellIds.raki, list = "OJ_ME_LeveledList_Uncommon"},
+    {
         id = "OJ_ME_TomeSummSabreCat",
         spellId = summonSpellIds.sabreCat,
         list = "OJ_ME_LeveledList_Uncommon"
@@ -214,7 +208,8 @@ local summonTomes = {
         id = "OJ_ME_TomeSummSiltStrider",
         spellId = summonSpellIds.siltStrider,
         list = "OJ_ME_LeveledList_Uncommon"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeSummSload",
         spellId = summonSpellIds.sload,
         list = "OJ_ME_LeveledList_Uncommon"
@@ -230,11 +225,9 @@ local summonTomes = {
         id = "OJ_ME_TomeSummWereboar",
         spellId = summonSpellIds.wereboar,
         list = "OJ_ME_LeveledList_Mythic"
-    }, {
-        id = "OJ_ME_TomeSummVelk",
-        spellId = summonSpellIds.velk,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
+    },
+    {id = "OJ_ME_TomeSummVelk", spellId = summonSpellIds.velk, list = "OJ_ME_LeveledList_Common"},
+    {
         id = "OJ_ME_TomeSummVermai",
         spellId = summonSpellIds.vermai,
         list = "OJ_ME_LeveledList_Uncommon"

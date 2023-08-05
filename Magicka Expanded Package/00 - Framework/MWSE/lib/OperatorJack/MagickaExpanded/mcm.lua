@@ -13,8 +13,7 @@ local function createGeneralCategory(template)
         callback = function()
             if (tes3.player ~= nil) then
                 common.addTestSpellsToPlayer()
-                tes3.messageBox(
-                    "[Magicka Expanded] Added all currently loaded spells to player.")
+                tes3.messageBox("[Magicka Expanded] Added all currently loaded spells to player.")
                 log:info("Added all currently loaded spells to player.")
             end
         end,
@@ -24,10 +23,8 @@ local function createGeneralCategory(template)
         buttonText = "Add all tomes and grimoires",
         callback = function()
             if (tes3.player ~= nil) then
-                local tomes = require(
-                                  "OperatorJack.MagickaExpanded.classes.tomes")
-                local grimoires = require(
-                                      "OperatorJack.MagickaExpanded.classes.grimoires")
+                local tomes = require("OperatorJack.MagickaExpanded.classes.tomes")
+                local grimoires = require("OperatorJack.MagickaExpanded.classes.grimoires")
                 tomes.addTomesToPlayer()
                 grimoires.addGrimoiresToPlayer()
                 tes3.messageBox(
@@ -55,11 +52,7 @@ local function createGeneralCategory(template)
                     current = 100
                 })
                 -- fuck me, fuck lua scripting and fuck this particular chunk of code
-                tes3.setStatistic({
-                    reference = tes3.mobilePlayer,
-                    name = "magicka",
-                    value = 5000
-                })
+                tes3.setStatistic({reference = tes3.mobilePlayer, name = "magicka", value = 5000})
                 tes3.setStatistic({
                     reference = tes3.mobilePlayer,
                     skill = tes3.skill.alteration,
@@ -90,8 +83,7 @@ local function createGeneralCategory(template)
                     skill = tes3.skill.mysticism,
                     current = 100
                 })
-                tes3.messageBox(
-                    "[Magicka Expanded] Increased player's magic attributes and skills.")
+                tes3.messageBox("[Magicka Expanded] Increased player's magic attributes and skills.")
                 log:info("Increased player's magic attributes and skills.")
             end
         end,

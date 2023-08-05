@@ -19,9 +19,8 @@ tes3.claimSpellEffectId("teleportToTelMothrivra", 307)
 tes3.claimSpellEffectId("teleportToTelMuthada", 308)
 tes3.claimSpellEffectId("teleportToTelOuada", 309)
 
-local function getDescription(location)
-    return "This effect teleports subject to " .. location .. "."
-end
+local function getDescription(location) return
+    "This effect teleports subject to " .. location .. "." end
 
 framework.effects.mysticism.createBasicTeleportationEffect({
     id = tes3.effect.teleportToAkamora,

@@ -9,19 +9,14 @@ local function onBlinkCollision(e)
         local canTeleport = not tes3.worldController.flagTeleportingDisabled
         if canTeleport then
             local caster = e.sourceInstance.caster
-            tes3.positionCell({
-                reference = caster,
-                position = e.collision.point,
-                cell = caster.cell
-            })
+            tes3.positionCell({reference = caster, position = e.collision.point, cell = caster.cell})
 
             -- Play a fancy VFX.
             e.sourceInstance:playVisualEffect({
                 reference = caster,
                 position = caster.position,
                 visual = blinkEffect.hitVisualEffect,
-                effectIndex = e.sourceInstance.source:getFirstIndexOfEffect(
-                    tes3.effect.blink)
+                effectIndex = e.sourceInstance.source:getFirstIndexOfEffect(tes3.effect.blink)
             })
         else
             tes3.messageBox("You are not able to cast that spell here.")

@@ -14,25 +14,20 @@ local function onBanishDaedraTick(e)
         return
     end
 
-    local effect = framework.functions.getEffectFromEffectOnEffectEvent(e,
-                                                                        tes3.effect
-                                                                            .banishDaedra)
+    local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.banishDaedra)
 
     if (effect == nil) then
-        framework.log:error(
-            "Unable to find effect in tick event. Logical error?")
+        framework.log:error("Unable to find effect in tick event. Logical error?")
         return
     end
 
-    local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(
-                          effect)
+    local magnitude = framework.functions.getCalculatedMagnitudeFromEffect(effect)
 
     if (e.effectInstance.target.object.level <= magnitude) then
         ---@type tes3reference
         e.effectInstance.target:delete()
 
-        tes3.messageBox("%s has been banished!",
-                        e.effectInstance.target.baseObject.name)
+        tes3.messageBox("%s has been banished!", e.effectInstance.target.baseObject.name)
     else
         tes3.messageBox("%s was too powerful to be banished!",
                         e.effectInstance.target.baseObject.name)

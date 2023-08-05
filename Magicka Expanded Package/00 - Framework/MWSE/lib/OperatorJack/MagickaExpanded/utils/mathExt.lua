@@ -20,8 +20,7 @@ end
 function this.setWorldTranslation(node, translation)
     if node.parent then
         local t = node.parent.worldTransform
-        translation = (t.rotation * t.scale):transpose() *
-                          (translation - t.translation)
+        translation = (t.rotation * t.scale):transpose() * (translation - t.translation)
     end
     node.translation = translation
 end

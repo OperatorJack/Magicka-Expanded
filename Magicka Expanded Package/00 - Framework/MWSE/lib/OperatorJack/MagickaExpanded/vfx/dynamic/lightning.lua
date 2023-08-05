@@ -8,8 +8,7 @@ local this = {}
 local VFX_EXPLODE = tes3.getObject(data.ids.objects.static.vfxLightningExplode) ---@cast VFX_EXPLODE tes3static
 local VFX_EXPLODE_DURATION = 0.20
 
-local VFX_EXPLODE_LIGHT = tes3.getObject(
-                              data.ids.objects.light.vfxLightningLight) ---@cast VFX_EXPLODE_LIGHT tes3light
+local VFX_EXPLODE_LIGHT = tes3.getObject(data.ids.objects.light.vfxLightningLight) ---@cast VFX_EXPLODE_LIGHT tes3light
 local VFX_CHILDREN_COUNT = 4
 
 local VFX_STRIKE = tes3.getObject(data.ids.objects.static.vfxLightningStrike) ---@cast VFX_STRIKE tes3static
@@ -25,8 +24,7 @@ for i = 0, 4 do
 end
 
 local randomThunderSound = mathExt.nonRepeatTableRNG(THUNDER_SOUNDS)
-local randomDistantThunderSound = mathExt.nonRepeatTableRNG(
-                                      DISTANT_THUNDER_SOUNDS)
+local randomDistantThunderSound = mathExt.nonRepeatTableRNG(DISTANT_THUNDER_SOUNDS)
 
 local function toggleThunderSounds(enabled)
     mwse.memory.writeByte({address = 0x44CC99, byte = enabled and 0x84 or 0x85}) ---@diagnostic disable-line
@@ -114,11 +112,7 @@ function this.createLightningSound(position)
             mixChannel = tes3.soundMix.master
         })
     else
-        tes3.playSound({
-            sound = randomThunderSound(),
-            reference = tes3.player,
-            volume = volume
-        })
+        tes3.playSound({sound = randomThunderSound(), reference = tes3.player, volume = volume})
     end
 end
 

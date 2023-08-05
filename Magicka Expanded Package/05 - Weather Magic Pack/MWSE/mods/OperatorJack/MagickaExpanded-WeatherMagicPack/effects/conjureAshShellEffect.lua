@@ -6,10 +6,7 @@ tes3.claimSpellEffectId("conjureAshShell", 334)
 -- Create damage event handler to block all damage sources while effected by Ash Shell.
 --- @param e damageEventData
 local function damageCallback(e)
-    if (tes3.isAffectedBy({
-        effect = tes3.effect.conjureAshShell,
-        reference = e.reference
-    }) == true) then
+    if (tes3.isAffectedBy({effect = tes3.effect.conjureAshShell, reference = e.reference}) == true) then
         framework.log:debug("Reference affected by Ash Shell. Negating damage.")
         e.damage = 0
         return false
@@ -26,29 +23,24 @@ local function onTick(e)
     local caster = e.sourceInstance.caster
     if (caster.cell.isInterior == true) then
         if (caster == tes3.player) then
-            tes3.messageBox(
-                "You fail to commune with the spirits when not in an ashstorm.")
+            tes3.messageBox("You fail to commune with the spirits when not in an ashstorm.")
         end
 
         framework.log:debug("Attempted casting failed exterior check.")
         e.effectInstance.state = tes3.spellState.retired
     end
 
-    if (tes3.worldController.weatherController.currentWeather.index ~=
-        tes3.weather.ash and
-        tes3.worldController.weatherController.currentWeather.index ~=
-        tes3.weather.blight) then
+    if (tes3.worldController.weatherController.currentWeather.index ~= tes3.weather.ash and
+        tes3.worldController.weatherController.currentWeather.index ~= tes3.weather.blight) then
         if (caster == tes3.player) then
-            tes3.messageBox(
-                "You fail to commune with the spirits when not in an ashstorm.")
+            tes3.messageBox("You fail to commune with the spirits when not in an ashstorm.")
         end
 
         framework.log:debug("Attempted casting failed weather check.")
         e.effectInstance.state = tes3.spellState.retired
     end
 
-    local target = e.effectInstance.target or e.sourceInstance.target or
-                       e.sourceInstance.caster
+    local target = e.effectInstance.target or e.sourceInstance.target or e.sourceInstance.caster
     paralysis = (paralysis or tes3.getObject("OJ_ME_ConjureAshShellParalysis")) --[[@as tes3spell]]
 
     local stencilEffects = {
@@ -68,11 +60,9 @@ local function onTick(e)
 
             -- Handle special circumstance VFX.
             if target == tes3.player then
-                local firstNode = nodes.getOrAttachVfx(tes3.player1stPerson,
-                                                       "OJ_ME_AshShellVfx1st",
+                local firstNode = nodes.getOrAttachVfx(tes3.player1stPerson, "OJ_ME_AshShellVfx1st",
                                                        stencilEffects.player1st)
-                local node = nodes.getOrAttachVfx(target,
-                                                  "OJ_ME_AshShellVfx3rd",
+                local node = nodes.getOrAttachVfx(target, "OJ_ME_AshShellVfx3rd",
                                                   stencilEffects.player3rd)
 
                 nodes.attachStencilProperty(target)
@@ -81,8 +71,7 @@ local function onTick(e)
 
             else
                 -- Applies VFX for NPC / Creature
-                local node = nodes.getOrAttachVfx(target,
-                                                  "OJ_ME_AshShellVfx_NPC",
+                local node = nodes.getOrAttachVfx(target, "OJ_ME_AshShellVfx_NPC",
                                                   stencilEffects.npc)
 
                 nodes.attachStencilProperty(target)
@@ -98,11 +87,9 @@ local function onTick(e)
 
             -- Handle special circumstance VFX.
             if target == tes3.player then
-                local firstNode = nodes.getOrAttachVfx(tes3.player1stPerson,
-                                                       "OJ_ME_AshShellVfx1st",
+                local firstNode = nodes.getOrAttachVfx(tes3.player1stPerson, "OJ_ME_AshShellVfx1st",
                                                        stencilEffects.player1st)
-                local node = nodes.getOrAttachVfx(target,
-                                                  "OJ_ME_AshShellVfx3rd",
+                local node = nodes.getOrAttachVfx(target, "OJ_ME_AshShellVfx3rd",
                                                   stencilEffects.player3rd)
 
                 nodes.detachStencilProperty(target)
@@ -111,8 +98,7 @@ local function onTick(e)
 
             else
                 -- Applies VFX for NPC / Creature
-                local node = nodes.getOrAttachVfx(target,
-                                                  "OJ_ME_AshShellVfx_NPC",
+                local node = nodes.getOrAttachVfx(target, "OJ_ME_AshShellVfx_NPC",
                                                   stencilEffects.npc)
 
                 nodes.detachStencilProperty(target)

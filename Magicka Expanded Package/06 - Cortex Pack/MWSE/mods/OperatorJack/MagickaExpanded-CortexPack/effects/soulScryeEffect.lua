@@ -124,8 +124,8 @@ local function onTooltipDrawn(e)
                 -- and target is not dead.
                 if (ref.mobile.isDead == false) then
                     -- and target is an NPC or creature.
-                    if (e.object.objectType == tes3.objectType.npc or
-                        e.object.objectType == tes3.objectType.creature) then
+                    if (e.object.objectType == tes3.objectType.npc or e.object.objectType ==
+                        tes3.objectType.creature) then
                         createSoulScryeUi(ref, e.tooltip)
                     end
                 end

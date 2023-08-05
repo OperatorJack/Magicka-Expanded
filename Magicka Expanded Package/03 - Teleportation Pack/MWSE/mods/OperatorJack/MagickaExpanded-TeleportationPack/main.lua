@@ -1,7 +1,6 @@
 local framework = require("OperatorJack.MagickaExpanded")
 
-require(
-    "OperatorJack.MagickaExpanded-TeleportationPack.effects.teleportationEffectSet")
+require("OperatorJack.MagickaExpanded-TeleportationPack.effects.teleportationEffectSet")
 
 local spellIds = {
     aldruhn = "OJ_ME_TeleportToAldRuhn",
@@ -21,51 +20,21 @@ local spellIds = {
 }
 
 local tomes = {
+    {id = "OJ_ME_TomeTeleAldRuhn", spellId = spellIds.aldruhn, list = "OJ_ME_LeveledList_Common"},
+    {id = "OJ_ME_TomeTeleBalmora", spellId = spellIds.balmora, list = "OJ_ME_LeveledList_Common"},
     {
-        id = "OJ_ME_TomeTeleAldRuhn",
-        spellId = spellIds.aldruhn,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTeleBalmora",
-        spellId = spellIds.balmora,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
         id = "OJ_ME_TomeTeleEbonheart",
         spellId = spellIds.ebonheart,
         list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTeleVivec",
-        spellId = spellIds.vivec,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTeleCaldera",
-        spellId = spellIds.caldera,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTeleGnisis",
-        spellId = spellIds.gnisis,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTeleMaarGan",
-        spellId = spellIds.maargan,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTeleMolagMar",
-        spellId = spellIds.molagmar,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTelePelagiad",
-        spellId = spellIds.pelagiad,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTeleSuran",
-        spellId = spellIds.suran,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeTeleTelMora",
-        spellId = spellIds.telmora,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
+    }, {id = "OJ_ME_TomeTeleVivec", spellId = spellIds.vivec, list = "OJ_ME_LeveledList_Common"},
+    {id = "OJ_ME_TomeTeleCaldera", spellId = spellIds.caldera, list = "OJ_ME_LeveledList_Common"},
+    {id = "OJ_ME_TomeTeleGnisis", spellId = spellIds.gnisis, list = "OJ_ME_LeveledList_Common"},
+    {id = "OJ_ME_TomeTeleMaarGan", spellId = spellIds.maargan, list = "OJ_ME_LeveledList_Common"},
+    {id = "OJ_ME_TomeTeleMolagMar", spellId = spellIds.molagmar, list = "OJ_ME_LeveledList_Common"},
+    {id = "OJ_ME_TomeTelePelagiad", spellId = spellIds.pelagiad, list = "OJ_ME_LeveledList_Common"},
+    {id = "OJ_ME_TomeTeleSuran", spellId = spellIds.suran, list = "OJ_ME_LeveledList_Common"},
+    {id = "OJ_ME_TomeTeleTelMora", spellId = spellIds.telmora, list = "OJ_ME_LeveledList_Common"},
+    {
         id = "OJ_ME_TomeTeleMournhold",
         spellId = spellIds.mournhold,
         list = "OJ_ME_LeveledList_Common"

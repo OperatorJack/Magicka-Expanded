@@ -33,9 +33,7 @@ local function generatePermutation(seed)
 
     local permutation = {0}
 
-    for i = 1, 255 do
-        table.insert(permutation, math.random(1, #permutation + 1), i)
-    end
+    for i = 1, 255 do table.insert(permutation, math.random(1, #permutation + 1), i) end
 
     local p = {}
 
@@ -81,14 +79,9 @@ function this.noise(self, x, y, z)
     BBB = self.p[BB + 1]
 
     return lerp(w, lerp(v, lerp(u, grad(AAA, x, y, z), grad(BAA, x - 1, y, z)),
-                        lerp(u, grad(ABA, x, y - 1, z),
-                             grad(BBA, x - 1, y - 1, z))),
-                lerp(v, lerp(u, grad(AAB, x, y, z - 1),
-                             grad(BAB, x - 1, y, z - 1)), lerp(u, grad(ABB, x,
-                                                                       y - 1,
-                                                                       z - 1),
-                                                               grad(BBB, x - 1,
-                                                                    y - 1, z - 1))))
+                        lerp(u, grad(ABA, x, y - 1, z), grad(BBA, x - 1, y - 1, z))),
+                lerp(v, lerp(u, grad(AAB, x, y, z - 1), grad(BAB, x - 1, y, z - 1)),
+                     lerp(u, grad(ABB, x, y - 1, z - 1), grad(BBB, x - 1, y - 1, z - 1))))
 end
 
 setmetatable(this, {

@@ -9,17 +9,14 @@ local function onIceBarrageCollision(e)
         local caster = e.sourceInstance.caster
         if (caster.cell.isInterior == true) then
             if (caster == tes3.mobilePlayer) then
-                tes3.messageBox(
-                    "The spell succeeds, but there is no effect indoors.")
+                tes3.messageBox("The spell succeeds, but there is no effect indoors.")
             end
             return
         end
 
-        if (tes3.worldController.weatherController.currentWeather.index ~=
-            tes3.weather.blizzard) then
+        if (tes3.worldController.weatherController.currentWeather.index ~= tes3.weather.blizzard) then
             if (caster == tes3.mobilePlayer) then
-                tes3.messageBox(
-                    "The spell succeeds, but there is no effect when not in a blizzard.")
+                tes3.messageBox("The spell succeeds, but there is no effect when not in a blizzard.")
             end
             return
         end
@@ -35,8 +32,8 @@ local function onIceBarrageCollision(e)
         })
 
         -- Add a mechanic to the Ice Barrage mesh.
-        local actors = framework.functions.getActorsNearTargetPosition(
-                           caster.cell, position, distanceLimit)
+        local actors = framework.functions.getActorsNearTargetPosition(caster.cell, position,
+                                                                       distanceLimit)
         local spell = tes3.getObject("OJ_ME_IceBarrageEffect") --[[@as tes3spell]]
 
         tes3.cast({target = reference, reference = reference, spell = spell})

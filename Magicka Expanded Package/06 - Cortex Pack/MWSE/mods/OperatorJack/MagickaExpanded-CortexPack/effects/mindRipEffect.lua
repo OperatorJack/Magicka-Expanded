@@ -57,9 +57,7 @@ local function showCheckPassedTooltip(e)
         effectContainer.autoHeight = true
         effectContainer.borderAllSides = 3
 
-        local image = effectContainer:createImage({
-            path = ("icons\\" .. effect.icon)
-        })
+        local image = effectContainer:createImage({path = ("icons\\" .. effect.icon)})
         image.wrapText = false
         image.borderLeft = 4
 
@@ -116,8 +114,9 @@ local function showUi(reference)
 
     local spells = {}
     for spell in tes3.iterate(reference.object.spells.iterator) do
-        if (spell.castType == tes3.spellType.power or spell.castType ==
-            tes3.spellType.spell) then table.insert(spells, spell) end
+        if (spell.castType == tes3.spellType.power or spell.castType == tes3.spellType.spell) then
+            table.insert(spells, spell)
+        end
     end
 
     if (#spells == 0) then
@@ -150,9 +149,7 @@ local function showUi(reference)
         parent:setPropertyObject("OJ_ME_MR:Spell", spell)
 
         if (spell.magickaCost / tes3.mobilePlayer.intelligence.current > 2.0) then
-            local label = parent:createLabel({
-                text = string.format("%s", spell.name)
-            })
+            local label = parent:createLabel({text = string.format("%s", spell.name)})
             label.font = 2
             label.wrapText = true
 

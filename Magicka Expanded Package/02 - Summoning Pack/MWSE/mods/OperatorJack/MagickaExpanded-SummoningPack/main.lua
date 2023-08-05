@@ -43,27 +43,22 @@ local grimoires = {
     }, {
         id = "OJ_ME_GrimoireSummCenturion",
         spellIds = {
-            spellIds.centurionArcher, spellIds.centurionSpider,
-            spellIds.centurionSteam, spellIds.centurionSphere
+            spellIds.centurionArcher, spellIds.centurionSpider, spellIds.centurionSteam,
+            spellIds.centurionSphere
         },
         list = "OJ_ME_LeveledList_Mythic"
     }
 }
 
 local tomes = {
+    {id = "OJ_ME_TomeCallWerewolf", spellId = spellIds.werewolf, list = "OJ_ME_LeveledList_Mythic"},
     {
-        id = "OJ_ME_TomeCallWerewolf",
-        spellId = spellIds.werewolf,
-        list = "OJ_ME_LeveledList_Mythic"
-    }, {
         id = "OJ_ME_TomeSummWarDurzog",
         spellId = spellIds.warDurzog,
         list = "OJ_ME_LeveledList_Common"
-    }, {
-        id = "OJ_ME_TomeSummGoblin",
-        spellId = spellIds.goblinGrunt,
-        list = "OJ_ME_LeveledList_Common"
-    }, {
+    },
+    {id = "OJ_ME_TomeSummGoblin", spellId = spellIds.goblinGrunt, list = "OJ_ME_LeveledList_Common"},
+    {
         id = "OJ_ME_TomeSummGoblinOfficer",
         spellId = spellIds.goblinOfficer,
         list = "OJ_ME_LeveledList_Rare"
@@ -75,7 +70,8 @@ local tomes = {
         id = "OJ_ME_TomeSummHulkingFbrt",
         spellId = spellIds.hulkingFabricant,
         list = "OJ_ME_LeveledList_Rare"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeSummImperfect",
         spellId = spellIds.imperfect,
         list = "OJ_ME_LeveledList_Mythic"
@@ -83,31 +79,26 @@ local tomes = {
         id = "OJ_ME_TomeSummAscdSlper",
         spellId = spellIds.ascendedSleeper,
         list = "OJ_ME_LeveledList_Rare"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeSummAshGhoul",
         spellId = spellIds.ashGhoul,
         list = "OJ_ME_LeveledList_Uncommon"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeSummAshSlave",
         spellId = spellIds.ashSlave,
         list = "OJ_ME_LeveledList_Uncommon"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeSummAshZombie",
         spellId = spellIds.ashZombie,
         list = "OJ_ME_LeveledList_Uncommon"
-    }, {
-        id = "OJ_ME_TomeSummDraugr",
-        spellId = spellIds.draugr,
-        list = "OJ_ME_LeveledList_Uncommon"
-    }, {
-        id = "OJ_ME_TomeSummLich",
-        spellId = spellIds.lich,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
-        id = "OJ_ME_TomeSummOgrim",
-        spellId = spellIds.ogrim,
-        list = "OJ_ME_LeveledList_Rare"
-    }, {
+    },
+    {id = "OJ_ME_TomeSummDraugr", spellId = spellIds.draugr, list = "OJ_ME_LeveledList_Uncommon"},
+    {id = "OJ_ME_TomeSummLich", spellId = spellIds.lich, list = "OJ_ME_LeveledList_Rare"},
+    {id = "OJ_ME_TomeSummOgrim", spellId = spellIds.ogrim, list = "OJ_ME_LeveledList_Rare"},
+    {
         id = "OJ_ME_TomeSummSpriggan",
         spellId = spellIds.spriggran,
         list = "OJ_ME_LeveledList_Uncommon"
@@ -119,7 +110,8 @@ local tomes = {
         id = "OJ_ME_TomeSummCentSpdr",
         spellId = spellIds.centurionSpider,
         list = "OJ_ME_LeveledList_Common"
-    }, {
+    },
+    {
         id = "OJ_ME_TomeSummCentStm",
         spellId = spellIds.centurionSteam,
         list = "OJ_ME_LeveledList_Rare"

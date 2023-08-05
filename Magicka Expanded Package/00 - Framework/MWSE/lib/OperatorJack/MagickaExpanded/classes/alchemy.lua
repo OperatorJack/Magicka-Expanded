@@ -41,10 +41,7 @@ local this = {}
 ---@param params MagickaExpanded.Alchemy.createBasicPotionParams
 ---@return tes3alchemy
 this.createBasicPotion = function(params)
-    local potion = tes3.createObject({
-        id = params.id,
-        objectType = tes3.objectType.alchemy
-    }) --[[@as tes3alchemy]]
+    local potion = tes3.createObject({id = params.id, objectType = tes3.objectType.alchemy}) --[[@as tes3alchemy]]
 
     potion.name = params.name
 
@@ -107,10 +104,7 @@ example = {
 ---@param params MagickaExpanded.Alchemy.createComplexPotionParams
 ---@return tes3alchemy
 this.createComplexPotion = function(params)
-    local potion = tes3.createObject({
-        id = params.id,
-        objectType = tes3.objectType.alchemy
-    }) --[[@as tes3alchemy]]
+    local potion = tes3.createObject({id = params.id, objectType = tes3.objectType.alchemy}) --[[@as tes3alchemy]]
 
     potion.name = params.name
 
@@ -119,8 +113,7 @@ this.createComplexPotion = function(params)
         local newEffect = params.effects[i]
 
         effect.id = newEffect.id
-        effect.rangeType = newEffect.rangeType or newEffect.range or
-                               tes3.effectRange.self
+        effect.rangeType = newEffect.rangeType or newEffect.range or tes3.effectRange.self
         effect.min = newEffect.min or 0
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0

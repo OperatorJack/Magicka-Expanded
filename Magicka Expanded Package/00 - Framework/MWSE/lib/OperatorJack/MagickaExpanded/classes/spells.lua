@@ -17,18 +17,13 @@ local function getEffectCost(effect)
     if (duration == 0) then duration = 1 end
 
     local area = effect.radius or 0
-    if (area == 0 and effect.rangeType == tes3.effectRange.self) then
-        area = 1
-    end
+    if (area == 0 and effect.rangeType == tes3.effectRange.self) then area = 1 end
     local baseMagickaCost = effect.object.baseMagickaCost
 
-    local effectCost = math.floor(((minMagnitude + maxMagnitude) *
-                                      (duration + 1) + area) * baseMagickaCost /
-                                      40.0)
+    local effectCost = math.floor(((minMagnitude + maxMagnitude) * (duration + 1) + area) *
+                                      baseMagickaCost / 40.0)
 
-    if (effect.rangeType == tes3.effectRange.target) then
-        effectCost = effectCost * 1.5
-    end
+    if (effect.rangeType == tes3.effectRange.target) then effectCost = effectCost * 1.5 end
 
     return effectCost
 end
@@ -40,9 +35,7 @@ this.getSpellCost = function(spell)
     local spellCost = 0
     for i = 1, spell:getActiveEffectCount() do
         local effect = spell.effects[i]
-        if (effect ~= nil) then
-            spellCost = spellCost + getEffectCost(effect)
-        end
+        if (effect ~= nil) then spellCost = spellCost + getEffectCost(effect) end
     end
 
     return spellCost
@@ -86,10 +79,7 @@ end
 ---@param params MagickaExpanded.Spells.createSimpleSpellParams
 ---@return tes3spell
 this.createBasicSpell = function(params)
-    local spell = tes3.createObject({
-        id = params.id,
-        objectType = tes3.objectType.spell
-    }) --[[@as tes3spell]]
+    local spell = tes3.createObject({id = params.id, objectType = tes3.objectType.spell}) --[[@as tes3spell]]
     tes3.setSourceless(spell)
 
     spell.name = params.name
@@ -156,10 +146,7 @@ end
 ---@param params MagickaExpanded.Spells.createComplexSpellParams
 ---@return tes3spell
 this.createComplexSpell = function(params)
-    local spell = tes3.createObject({
-        id = params.id,
-        objectType = tes3.objectType.spell
-    }) --[[@as tes3spell]]
+    local spell = tes3.createObject({id = params.id, objectType = tes3.objectType.spell}) --[[@as tes3spell]]
     tes3.setSourceless(spell)
 
     spell.name = params.name
@@ -169,8 +156,7 @@ this.createComplexSpell = function(params)
         local newEffect = params.effects[i]
 
         effect.id = newEffect.id
-        effect.rangeType = newEffect.rangeType or newEffect.range or
-                               tes3.effectRange.self
+        effect.rangeType = newEffect.rangeType or newEffect.range or tes3.effectRange.self
         effect.min = newEffect.min or 0
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0

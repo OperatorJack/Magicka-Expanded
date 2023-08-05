@@ -135,10 +135,9 @@ this.createBasicTeleportationEffect = function(params)
                                              params.positionCell.position.y,
                                              params.positionCell.position.z)
 
-            local orientation = tes3vector3.new(
-                                    math.rad(params.positionCell.orientation.x),
-                                    math.rad(params.positionCell.orientation.y),
-                                    math.rad(params.positionCell.orientation.z))
+            local orientation = tes3vector3.new(math.rad(params.positionCell.orientation.x),
+                                                math.rad(params.positionCell.orientation.y),
+                                                math.rad(params.positionCell.orientation.z))
 
             -- Teleport the caster.
             local teleportParams = {

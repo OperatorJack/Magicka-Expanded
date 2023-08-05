@@ -7,10 +7,7 @@ tes3.claimSpellEffectId("conjurePalmLightning", 432)
 ---@param damage number
 ---@param position tes3vector3|nil
 local function applyDamage(target, damage, position)
-    target.mobile:applyDamage({
-        damage = damage,
-        resistAttribute = tes3.effectAttribute.resistShock
-    })
+    target.mobile:applyDamage({damage = damage, resistAttribute = tes3.effectAttribute.resistShock})
     tes3.createVisualEffect({
         position = position or target.position,
         object = "VFX_LightningHit",
@@ -20,10 +17,8 @@ end
 
 ---@param e attackHitEventData
 local function onAttack(e)
-    if (e.targetReference and tes3.isAffectedBy({
-        reference = e.reference,
-        effect = tes3.effect.conjurePalmLightning
-    })) then
+    if (e.targetReference and
+        tes3.isAffectedBy({reference = e.reference, effect = tes3.effect.conjurePalmLightning})) then
         local magnitude = tes3.getEffectMagnitude({
             reference = e.reference,
             effect = tes3.effect.conjurePalmLightning
@@ -31,10 +26,7 @@ local function onAttack(e)
 
         applyDamage(e.targetReference, magnitude)
 
-        tes3.removeEffects({
-            reference = e.reference,
-            effect = tes3.effect.conjurePalmLightning
-        })
+        tes3.removeEffects({reference = e.reference, effect = tes3.effect.conjurePalmLightning})
     end
 end
 
@@ -47,11 +39,9 @@ local vfxFirstPerson = {}
 local function onTick(e)
     local reference = e.sourceInstance.caster
 
-    if (e.effectInstance.state == tes3.spellState.working and
-        not vfx[e.sourceInstance.serialNumber]) then
+    if (e.effectInstance.state == tes3.spellState.working and not vfx[e.sourceInstance.serialNumber]) then
         -- Attach VFX to hand.
-        local node = nodes.getOrAttachVfx(reference, "lightn_bolt",
-                                          "OJ\\ME\\lightn_bolt.nif",
+        local node = nodes.getOrAttachVfx(reference, "lightn_bolt", "OJ\\ME\\lightn_bolt.nif",
                                           "Weapon Bone")
 
         if (node) then
@@ -63,16 +53,11 @@ local function onTick(e)
         end
 
         if (reference == tes3.player) then
-            local firstPersonNode = nodes.getOrAttachVfx(tes3.player1stPerson,
-                                                         "lightn_bolt",
-                                                         "OJ\\ME\\lightn_bolt.nif",
-                                                         "Weapon Bone")
+            local firstPersonNode = nodes.getOrAttachVfx(tes3.player1stPerson, "lightn_bolt",
+                                                         "OJ\\ME\\lightn_bolt.nif", "Weapon Bone")
 
             if (firstPersonNode) then
-                firstPersonNode.scale = 1 *
-                                            (1 +
-                                                (e.effectInstance.magnitude /
-                                                    100))
+                firstPersonNode.scale = 1 * (1 + (e.effectInstance.magnitude / 100))
                 firstPersonNode.appCulled = false
                 firstPersonNode:update({controllers = true})
                 firstPersonNode:updateEffects()
@@ -81,8 +66,7 @@ local function onTick(e)
         end
 
     end
-    if (e.effectInstance.state == tes3.spellState.ending and
-        vfx[e.sourceInstance.serialNumber]) then
+    if (e.effectInstance.state == tes3.spellState.ending and vfx[e.sourceInstance.serialNumber]) then
         -- Remove VFX from hand.
         local node = vfx[e.sourceInstance.serialNumber]
         nodes.hideNode(node)

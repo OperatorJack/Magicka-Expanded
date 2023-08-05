@@ -91,9 +91,7 @@ this.createBasicBoundArmorEffect = function(params)
     local armor = {}
     if (params.armorId) then table.insert(armor, params.armorId) end
     if (params.armorId2) then table.insert(armor, params.armorId2) end
-    if (#armor > 0) then
-        common.addBoundArmorToBoundArmorsList(params.id, armor)
-    end
+    if (#armor > 0) then common.addBoundArmorToBoundArmorsList(params.id, armor) end
 
     local effect = this.createBasicEffect({
         -- Use Basic effect function.  Use default for other fields.
@@ -121,9 +119,7 @@ this.createBasicBoundArmorEffect = function(params)
         lighting = {0.99, 0.95, 0.67},
 
         -- Required callbacks.
-        onTick = function(e)
-            e:triggerBoundArmor(params.armorId, params.armorId2)
-        end
+        onTick = function(e) e:triggerBoundArmor(params.armorId, params.armorId2) end
     })
 
     return effect
@@ -275,15 +271,13 @@ this.createBasicWeatherEffect = function(params)
             local caster = e.sourceInstance.caster
             if (caster.cell.isInterior == true) then
                 if (caster == tes3.player) then
-                    tes3.messageBox(
-                        "The spell succeeds, but there is no effect indoors.")
+                    tes3.messageBox("The spell succeeds, but there is no effect indoors.")
                 end
                 e.effectInstance.state = tes3.spellState.retired
                 return
             end
 
-            if (tes3.worldController.weatherController.currentWeather.index ==
-                tes3.weather.blight) then
+            if (tes3.worldController.weatherController.currentWeather.index == tes3.weather.blight) then
                 if (caster == tes3.player) then
                     tes3.messageBox(
                         "The spell completes, but it is unable to dispel the current Blight.")
@@ -292,8 +286,7 @@ this.createBasicWeatherEffect = function(params)
                 return
             end
 
-            tes3.worldController.weatherController:switchImmediate(
-                params.weather)
+            tes3.worldController.weatherController:switchImmediate(params.weather)
             tes3.worldController.weatherController:updateVisuals()
 
             e.effectInstance.state = tes3.spellState.retired

@@ -130,8 +130,7 @@ this.createComplexEnchantment = function(params)
         local newEffect = params.effects[i]
 
         effect.id = newEffect.id
-        effect.rangeType = newEffect.rangeType or newEffect.range or
-                               tes3.effectRange.self
+        effect.rangeType = newEffect.rangeType or newEffect.range or tes3.effectRange.self
         effect.min = newEffect.min or 0
         effect.max = newEffect.max or 0
         effect.duration = newEffect.duration or 0

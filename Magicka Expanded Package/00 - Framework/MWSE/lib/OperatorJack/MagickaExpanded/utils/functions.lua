@@ -16,14 +16,12 @@ this.getActorsNearTargetPosition = function(cell, targetPosition, distanceLimit)
     -- Iterate through the references in the cell.
     for ref in cell:iterateReferences() do
         -- Check that the reference is a creature or NPC.
-        if (ref.object.objectType == tes3.objectType.npc or
-            ref.object.objectType == tes3.objectType.creature) then
+        if (ref.object.objectType == tes3.objectType.npc or ref.object.objectType ==
+            tes3.objectType.creature) then
             if (distanceLimit ~= nil) then
                 -- Check that the distance between the reference and the target point is within the distance limit. If so, save the reference.
                 local distance = targetPosition:distance(ref.position)
-                if (distance <= distanceLimit) then
-                    table.insert(actors, ref)
-                end
+                if (distance <= distanceLimit) then table.insert(actors, ref) end
             else
                 table.insert(actors, ref)
             end
@@ -42,9 +40,7 @@ end
 this.getEffectFromEffectOnEffectEvent = function(event, effectId)
     for i = 1, 8 do
         local effect = event.sourceInstance.source.effects[i]
-        if (effect ~= nil) then
-            if (effect.id == effectId) then return effect end
-        end
+        if (effect ~= nil) then if (effect.id == effectId) then return effect end end
     end
     return nil
 end
@@ -90,20 +86,14 @@ this.ternary = function(condition, T, F)
     end
 end
 
-this.getBoundWeaponEffectList = function() return
-    table.copy(common.boundWeapons) end
+this.getBoundWeaponEffectList = function() return table.copy(common.boundWeapons) end
 
-this.getBoundArmorEffectList =
-    function() return table.copy(common.boundArmors) end
+this.getBoundArmorEffectList = function() return table.copy(common.boundArmors) end
 
 this.getBoundItemEffectList = function()
     local list = {}
-    for effect, value in pairs(this.getBoundWeaponEffectList()) do
-        list[effect] = value
-    end
-    for effect, value in pairs(this.getBoundArmorEffectList()) do
-        list[effect] = value
-    end
+    for effect, value in pairs(this.getBoundWeaponEffectList()) do list[effect] = value end
+    for effect, value in pairs(this.getBoundArmorEffectList()) do list[effect] = value end
     return list
 end
 
@@ -125,12 +115,8 @@ end
 
 this.getBoundItemIdList = function()
     local list = {}
-    for _, value in ipairs(this.getBoundWeaponIdList()) do
-        table.insert(list, value)
-    end
-    for _, value in ipairs(this.getBoundArmorIdList()) do
-        table.insert(list, value)
-    end
+    for _, value in ipairs(this.getBoundWeaponIdList()) do table.insert(list, value) end
+    for _, value in ipairs(this.getBoundArmorIdList()) do table.insert(list, value) end
     return list
 end
 

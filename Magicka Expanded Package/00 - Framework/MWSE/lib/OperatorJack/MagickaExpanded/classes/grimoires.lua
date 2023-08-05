@@ -43,9 +43,7 @@ end
 ---@param bookId string
 ---@return MagickaExpanded.Grimoires.Grimoire | nil
 local function FindGrimoire(bookId)
-    for _, grimoire in ipairs(grimoires) do
-        if (grimoire.id == bookId) then return grimoire end
-    end
+    for _, grimoire in ipairs(grimoires) do if (grimoire.id == bookId) then return grimoire end end
     return nil
 end
 
@@ -77,11 +75,7 @@ local function tryLearningSpells(grimoire)
             current = learningCost * -1
         })
         for _, spellId in ipairs(grimoire.spellIds) do
-            tes3.addSpell({
-                reference = tes3.player,
-                spell = spellId,
-                updateGUI = false
-            })
+            tes3.addSpell({reference = tes3.player, spell = spellId, updateGUI = false})
         end
         tes3.updateMagicGUI({reference = tes3.player})
         tes3.messageBox(
@@ -107,15 +101,12 @@ local function onBookGetText(e)
 
     local newSpell = false
     for _, spellId in ipairs(grimoire.spellIds) do
-        if (common.hasSpell(tes3.player, spellId) == false) then
-            newSpell = true
-        end
+        if (common.hasSpell(tes3.player, spellId) == false) then newSpell = true end
     end
     if (newSpell) then
         tryLearningSpells(grimoire)
     else
-        tes3.messageBox(
-            "You attempt to read the grimoire but can learn nothing more.")
+        tes3.messageBox("You attempt to read the grimoire but can learn nothing more.")
     end
 end
 
@@ -125,8 +116,6 @@ end
 		collection of registered grimoires, the spells mapped to that grimoire will be
 		added to the player, if the player does not already have them.
 ]]
-this.registerEvent = function()
-    event.register(tes3.event.bookGetText, onBookGetText)
-end
+this.registerEvent = function() event.register(tes3.event.bookGetText, onBookGetText) end
 
 return this

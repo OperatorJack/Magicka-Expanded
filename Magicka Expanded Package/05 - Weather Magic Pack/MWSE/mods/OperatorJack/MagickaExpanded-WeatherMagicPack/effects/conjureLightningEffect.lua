@@ -6,8 +6,7 @@ tes3.claimSpellEffectId("conjureLightning", 323)
 ---@param distance number
 ---@param position tes3vector3|nil
 local function applyDamage(target, distance, position)
-    local damage = math.max(math.max(math.random(10, 80) - (distance / 4), 0),
-                            50)
+    local damage = math.max(math.max(math.random(10, 80) - (distance / 4), 0), 50)
     target.mobile:applyDamage({
         damage = math.random(10, 40),
         resistAttribute = tes3.effectAttribute.resistShock
@@ -28,17 +27,14 @@ local function onLightningCollision(e)
         local caster = e.sourceInstance.caster
         if (caster.cell.isInterior == true) then
             if (caster == tes3.player) then
-                tes3.messageBox(
-                    "You fail to commune with the spirits when not in a thunderstorm.")
+                tes3.messageBox("You fail to commune with the spirits when not in a thunderstorm.")
             end
             return
         end
 
-        if (tes3.worldController.weatherController.currentWeather.index ~=
-            tes3.weather.thunder) then
+        if (tes3.worldController.weatherController.currentWeather.index ~= tes3.weather.thunder) then
             if (caster == tes3.player) then
-                tes3.messageBox(
-                    "You fail to commune with the spirits when not in a thunderstorm.")
+                tes3.messageBox("You fail to commune with the spirits when not in a thunderstorm.")
             end
             return
         end
@@ -47,16 +43,15 @@ local function onLightningCollision(e)
         local position = e.collision.point:copy()
 
         local strength = math.random(5, 15) / 10
-        framework.vfx.dynamic.lightning.createLightningStrike(position,
-                                                              strength, true)
+        framework.vfx.dynamic.lightning.createLightningStrike(position, strength, true)
 
         local randomSound = math.random(0, 4)
         local soundId = string.format("OJ_ME_Thunderclap%s", randomSound)
         tes3.playSound({reference = tes3.player, sound = soundId})
 
         -- Add a mechanic to the thunderbolt mesh.
-        local actors = framework.functions.getActorsNearTargetPosition(
-                           caster.cell, position, distanceLimit)
+        local actors = framework.functions.getActorsNearTargetPosition(caster.cell, position,
+                                                                       distanceLimit)
 
         for _, actor in pairs(actors) do
             applyDamage(actor, caster.position:distance(actor.position))
@@ -70,9 +65,7 @@ local function onLightningCollision(e)
                     victim = actor
                 })
 
-                if (result == true) then
-                    effects[e.sourceInstance.id] = true
-                end
+                if (result == true) then effects[e.sourceInstance.id] = true end
             end
 
         end

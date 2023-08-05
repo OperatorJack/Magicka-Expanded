@@ -11,21 +11,18 @@ local function onCollision(e)
     if e.collision then
         if (vfxs[e.sourceInstance.serialNumber]) then return end
 
-        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e,
-                                                                            tes3.effect
-                                                                                .darkness)
+        local effect = framework.functions.getEffectFromEffectOnEffectEvent(e, tes3.effect.darkness)
 
         if (effect == nil) then
-            framework.log:error(
-                "Unable to find effect in tick event. Logical error?")
+            framework.log:error("Unable to find effect in tick event. Logical error?")
             return
         end
 
         local fogId = "OJ_ME_Darkness" .. e.sourceInstance.serialNumber
         local caster = e.sourceInstance.caster
         local effectDuration = effect.duration
-        local distance = framework.functions.getCalculatedMagnitudeFromEffect(
-                             effect) * DISTANCE_MULT
+        local distance = framework.functions.getCalculatedMagnitudeFromEffect(effect) *
+                             DISTANCE_MULT
         local mistPosition = e.collision.point:copy()
 
         ---@type fogParams
@@ -36,22 +33,20 @@ local function onCollision(e)
             density = 100
         }
 
-        vfxs[e.sourceInstance.serialNumber] =
-            framework.vfx.shaders.fog.createOrUpdateFog(fogId, fogParams)
+        vfxs[e.sourceInstance.serialNumber] = framework.vfx.shaders.fog.createOrUpdateFog(fogId,
+                                                                                          fogParams)
 
         -- Add a mechanic to the darkness mesh.
         timer.start({
             duration = 1,
             callback = function()
-                local actors = framework.functions.getActorsNearTargetPosition(
-                                   caster.cell, mistPosition, distance)
+                local actors = framework.functions.getActorsNearTargetPosition(caster.cell,
+                                                                               mistPosition,
+                                                                               distance)
 
                 -- For any actors near the darkness, remove the light effect if it exists.
                 for _, actor in pairs(actors) do
-                    tes3.removeEffects({
-                        reference = actor,
-                        effect = tes3.effect.light
-                    })
+                    tes3.removeEffects({reference = actor, effect = tes3.effect.light})
 
                     --[[
                     local result = tes3.triggerCrime({
@@ -80,8 +75,7 @@ end
 ---@param e tes3magicEffectTickEventData
 local function onTick(e)
 
-    local target = e.effectInstance.target or e.sourceInstance.target or
-                       e.sourceInstance.caster
+    local target = e.effectInstance.target or e.sourceInstance.target or e.sourceInstance.caster
 
     if (target) then
         local fogId = "OJ_ME_Darkness" .. e.sourceInstance.serialNumber
@@ -99,8 +93,8 @@ local function onTick(e)
         -- Check if the effect is just starting, or if we're reloading a save game and no longer tracking VFX.
         if (e.effectInstance.state == tes3.spellState.working) then
 
-            vfxs[e.sourceInstance.serialNumber] =
-                framework.vfx.shaders.fog.createOrUpdateFog(fogId, fogParams)
+            vfxs[e.sourceInstance.serialNumber] = framework.vfx.shaders.fog.createOrUpdateFog(fogId,
+                                                                                              fogParams)
         end
 
         if (e.effectInstance.state == tes3.spellState.ending) then
