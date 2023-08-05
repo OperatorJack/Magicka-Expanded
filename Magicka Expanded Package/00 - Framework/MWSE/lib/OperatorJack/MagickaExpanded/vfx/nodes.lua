@@ -182,15 +182,17 @@ end
 ---@param reference tes3reference The reference to upsert the VFX onto.
 ---@param sceneObjectName string The name of the node to search for or attach. This value should match the name of the root node in the VFX mesh.
 ---@param path string The path of the VFX mesh to attach to the reference. The mesh must have a unique name in the root node.
+---@param attachmentSceneObjectName? string The name of the node to attach the Vfx to, if desired. Otherwise, attached to the sceneNode of the reference.
 ---@returned NiNode
-this.getOrAttachVfx = function(reference, sceneObjectName, path)
+this.getOrAttachVfx = function(reference, sceneObjectName, path,
+                               attachmentSceneObjectName)
     local node, sceneNode
     sceneNode = reference.sceneNode --[[@as niNode]]
     node = sceneNode:getObjectByName(sceneObjectName) --[[@as niNode]]
 
     if (not node) then
         if not vfx[sceneObjectName] then
-            vfx[sceneObjectName] = tes3.loadMesh(path)
+            vfx[sceneObjectName] = assert(tes3.loadMesh(path))
         end
         node = vfx[sceneObjectName]:clone() --[[@as niNode]]
 
@@ -212,7 +214,20 @@ this.getOrAttachVfx = function(reference, sceneObjectName, path)
             end
         end
 
-        sceneNode:attachChild(node, true)
+        if (attachmentSceneObjectName) then
+            local target = sceneNode:getObjectByName(attachmentSceneObjectName) --[[@as niNode]]
+            if (not target) then
+                log:error(
+                    "Unable to find attachment scene node object %s to %s.",
+                    attachmentSceneObjectName, reference)
+                return
+            end
+            target:attachChild(node)
+            target:update({controllers = true})
+            target:updateEffects()
+        else
+            sceneNode:attachChild(node, true)
+        end
         node:update({controllers = true})
         node:updateEffects()
 

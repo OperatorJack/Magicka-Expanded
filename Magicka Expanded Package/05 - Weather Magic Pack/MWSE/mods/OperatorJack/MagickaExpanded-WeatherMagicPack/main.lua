@@ -14,6 +14,8 @@ local weatherSpellIds = {
     weatherOvercast = "OJ_ME_WeatherOvercast",
     weatherRain = "OJ_ME_WeatherRain",
 
+    conjurePalmLightning = "OJ_ME_ConjurePalmLightning",
+
     conjureLightning = "OJ_ME_ConjureLightning",
     conjureIceBarrage = "OJ_ME_ConjureIceBarrage",
     conjureAshShell = "OJ_ME_ConjureAshShell",
@@ -104,6 +106,16 @@ local function registerSpells()
         name = "Conjure Lightning",
         effect = tes3.effect.conjureLightning,
         rangeType = tes3.effectRange.target
+    })
+
+    framework.spells.createBasicSpell({
+        id = weatherSpellIds.conjurePalmLightning,
+        name = "Conjure Palm Lightning",
+        effect = tes3.effect.conjurePalmLightning,
+        rangeType = tes3.effectRange.self,
+        duration = 15,
+        min = 10,
+        max = 50
     })
 
     framework.spells.createBasicSpell({
