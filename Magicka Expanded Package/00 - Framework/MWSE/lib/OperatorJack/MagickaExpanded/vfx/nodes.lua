@@ -57,30 +57,20 @@ event.register(tes3.event.unequipped, function(e)
 end)
 
 -- When invalidated, scene node will be recreated. Remove from tracking.
-event.register(tes3.event.objectInvalidated,
-               function(e) stenciledActors[e.object] = nil end)
+event.register(tes3.event.objectInvalidated, function(e) stenciledActors[e.object] = nil end)
 
 masks = {
-    player1st = assert(tes3.loadMesh(data.paths.stencils.player1st):getProperty(
-                           ni.propertyType.stencil)),
-    player = assert(tes3.loadMesh(data.paths.stencils.player):getProperty(
-                        ni.propertyType.stencil)),
-    playerMirror = assert(
-        tes3.loadMesh(data.paths.stencils.playerMirror):getProperty(
-            ni.propertyType.stencil)),
-    npc = assert(tes3.loadMesh(data.paths.stencils.npc):getProperty(
-                     ni.propertyType.stencil)),
-    npcMirror = assert(tes3.loadMesh(data.paths.stencils.npcMirror):getProperty(
-                           ni.propertyType.stencil)),
-    creature = assert(tes3.loadMesh(data.paths.stencils.creature):getProperty(
-                          ni.propertyType.stencil)),
-    weapon = assert(tes3.loadMesh(data.paths.stencils.weapon):getProperty(
-                        ni.propertyType.stencil))
+    player1st = assert(tes3.loadMesh(data.paths.stencils.player1st).stencilProperty),
+    player = assert(tes3.loadMesh(data.paths.stencils.player).stencilProperty),
+    playerMirror = assert(tes3.loadMesh(data.paths.stencils.playerMirror).stencilProperty),
+    npc = assert(tes3.loadMesh(data.paths.stencils.npc).stencilProperty),
+    npcMirror = assert(tes3.loadMesh(data.paths.stencils.npcMirror).stencilProperty),
+    creature = assert(tes3.loadMesh(data.paths.stencils.creature).stencilProperty),
+    weapon = assert(tes3.loadMesh(data.paths.stencils.weapon).stencilProperty)
 }
 
 local function attachStencilPropertyToReference(reference, mask)
-    reference.sceneNode:detachProperty(ni.propertyType.stencil)
-    reference.sceneNode:attachProperty(mask)
+    reference.sceneNode.stencilProperty = mask
     reference.sceneNode:update()
     reference.sceneNode:updateNodeEffects()
     reference.sceneNode:updateProperties()
@@ -92,10 +82,8 @@ local function attachStencilMirrorPropertiesToReference(reference, mask)
     for name in pairs(vanillaStencilObjects) do
         local node = reference.sceneNode:getObjectByName(name)
         if node then
-            vanillaStencilProperties[name] =
-                node:getProperty(ni.propertyType.stencil)
-            node:detachProperty(ni.propertyType.stencil)
-            node:attachProperty(mask)
+            vanillaStencilProperties[name] = node.stencilProperty
+            node.stencilProperty = mask
         end
     end
 end
@@ -103,10 +91,7 @@ end
 local function attachWeaponStencilPropertyToReference(reference, mask)
     local node = reference.sceneNode:getObjectByName("Weapon Bone")
 
-    if node then
-        node:detachProperty(ni.propertyType.stencil)
-        node:attachProperty(mask)
-    end
+    if node then node.stencilProperty = mask end
 end
 
 --[[
@@ -120,7 +105,7 @@ this.detachStencilProperty = function(reference)
 
     -- Dettach character stencil.
     local sceneNode = reference.sceneNode --[[@as niNode]]
-    sceneNode:detachProperty(ni.propertyType.stencil)
+    sceneNode.stencilProperty = nil
 
     -- Reset vanilla stencils.
     for name in pairs(vanillaStencilObjects) do
@@ -129,7 +114,7 @@ this.detachStencilProperty = function(reference)
         else
             local node = sceneNode:getObjectByName(name)
             if node then
-                node:detachProperty(ni.propertyType.stencil)
+                node.stencilProperty = nil
                 node:attachProperty(vanillaStencilProperties[name])
             end
         end
@@ -180,21 +165,23 @@ end
     This function will also morph the VFX mesh to account for the game enginee modifying NPC meshes due to height and weight, so that the VFX is not visibily altered.
 ]]
 ---@param reference tes3reference The reference to upsert the VFX onto.
----@param sceneObjectName string The name of the node to search for or attach. This value should match the name of the root node in the VFX mesh.
+---@param vfxObjectName string The name of the node to search for or attach. This value should match the name of the root node in the VFX mesh.
 ---@param path string The path of the VFX mesh to attach to the reference. The mesh must have a unique name in the root node.
----@param attachmentSceneObjectName? string The name of the node to attach the Vfx to, if desired. Otherwise, attached to the sceneNode of the reference.
+---@param parentObjectName? string The name of the parent node to attach the Vfx to, if desired. Otherwise, attached to the sceneNode of the reference.
 ---@returned NiNode
-this.getOrAttachVfx = function(reference, sceneObjectName, path,
-                               attachmentSceneObjectName)
-    local node, sceneNode
-    sceneNode = reference.sceneNode --[[@as niNode]]
-    node = sceneNode:getObjectByName(sceneObjectName) --[[@as niNode]]
+this.getOrAttachVfx = function(reference, vfxObjectName, path, parentObjectName)
+    local node, parent
+    if (parentObjectName) then
+        parent = reference.sceneNode:getObjectByName(parentObjectName) --[[@as niNode]]
+    else
+        parent = reference.sceneNode --[[@as niNode]]
+    end
+
+    node = parent:getObjectByName(vfxObjectName) --[[@as niNode]]
 
     if (not node) then
-        if not vfx[sceneObjectName] then
-            vfx[sceneObjectName] = assert(tes3.loadMesh(path))
-        end
-        node = vfx[sceneObjectName]:clone() --[[@as niNode]]
+        if not vfx[vfxObjectName] then vfx[vfxObjectName] = assert(tes3.loadMesh(path)) end
+        node = vfx[vfxObjectName]:clone() --[[@as niNode]]
 
         if (reference.object.race) then
             if (reference.object.race.weight and reference.object.race.height) then
@@ -214,24 +201,11 @@ this.getOrAttachVfx = function(reference, sceneObjectName, path,
             end
         end
 
-        if (attachmentSceneObjectName) then
-            local target = sceneNode:getObjectByName(attachmentSceneObjectName) --[[@as niNode]]
-            if (not target) then
-                log:error(
-                    "Unable to find attachment scene node object %s to %s.",
-                    attachmentSceneObjectName, reference)
-                return
-            end
-            target:attachChild(node)
-            target:update({controllers = true})
-            target:updateEffects()
-        else
-            sceneNode:attachChild(node, true)
-        end
+        parent:attachChild(node, true)
         node:update({controllers = true})
         node:updateEffects()
 
-        log:debug("Added object %s to %s.", sceneObjectName, reference)
+        log:debug("Added object %s to %s.", vfxObjectName, reference)
     end
 
     return node
@@ -241,16 +215,12 @@ end
     Uses appculling to show the given NiNode, node.
 ]]
 ---@param node niNode The node to show.
-this.showNode = function(node)
-    if (node.appCulled == true) then node.appCulled = false end
-end
+this.showNode = function(node) if (node.appCulled == true) then node.appCulled = false end end
 
 --[[
     Uses appculling to hide the given NiNode, node.
 ]]
 ---@param node niNode The node to hide.
-this.hideNode = function(node)
-    if (node.appCulled == false) then node.appCulled = true end
-end
+this.hideNode = function(node) if (node.appCulled == false) then node.appCulled = true end end
 
 return this
