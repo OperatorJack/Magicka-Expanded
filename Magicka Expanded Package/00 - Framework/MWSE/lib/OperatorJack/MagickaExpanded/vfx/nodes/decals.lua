@@ -23,22 +23,14 @@ this.preloadDecal = function(path) decalTextures[path] = niSourceTexture.createF
     Iterates the decals on the target texturing property which are applied by the framework.
 ]]
 ---@param texturingProperty niTexturingProperty
----@param path string|nil Optional path. Will only return decal textures with from this texture path.
+---@param path string Will only return decal textures with from this texture path.
 this.iterDecals = function(texturingProperty, path)
     return coroutine.wrap(function()
         for i, map in ipairs(texturingProperty.maps) do
             local texture = map and map.texture
             local fileName = texture and texture.fileName
 
-            log:debug("Found map '%s'.", fileName)
-
-            -- If path is not provided, return all.
-            if decalTextures[fileName] and not path then coroutine.yield(i, map) end
-
-            -- If path is provided, only return matching textures.
-            if decalTextures[fileName] and path and fileName == path then
-                coroutine.yield(i, map)
-            end
+            if decalTextures[fileName] and fileName == path then coroutine.yield(i, map) end
         end
     end)
 end
@@ -47,7 +39,7 @@ end
     Checks if any loaded decal is present in the texturing property.
 ]]
 ---@param texturingProperty niTexturingProperty
----@param path string|nil Optional path. Will only return decal textures with from this texture path.
+---@param path string Will only return decal textures with from this texture path.
 ---@return boolean
 this.hasDecal = function(texturingProperty, path)
     return this.iterDecals(texturingProperty, path)() ~= nil
@@ -85,15 +77,14 @@ end
     Removes the given decal texture from the sceneNode.
 ]]
 ---@param sceneNode niNode The node to search the decal texture for and remove.
----@param path string|nil The path to the decal texture. If not provided, removes all decal textures.
+---@param path string The path to the decal texture. 
 this.removeDecal = function(sceneNode, path)
     for node in table.traverse {sceneNode} do
         node = node --[[@as niNode]]
 
-        log:debug("Traversing node '%s'", path, node.name)
         local texturingProperty = node.texturingProperty
         if texturingProperty then
-            for i in this.iterDecals(texturingProperty) do
+            for i in this.iterDecals(texturingProperty, path) do
                 texturingProperty:removeDecalMap(i)
                 log:debug("Removed decal '%s' to '%s'.", path, node.name)
             end

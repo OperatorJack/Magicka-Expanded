@@ -108,45 +108,44 @@ local function onTick(e)
 
     if (target) then
         -- Check if the effect is just starting, or if we're reloading a save game and no longer tracking VFX.
-        if (e.effectInstance.state == tes3.spellState.working and
-            not vfxs[e.sourceInstance.serialNumber]) then
+        if (e.effectInstance.state == tes3.spellState.working) then
             -- Disable controls via paralysis disease.
             if (target.object.spells:contains(paralysis) == false) then
                 tes3.addSpell({reference = target, spell = paralysis})
-                framework.log:debug("Added paralysis from target.")
+                framework.log:debug("Added paralysis to target.")
             end
-        end
-        if (e.effectInstance.state == tes3.spellState.working and
-            not vfxs[e.sourceInstance.serialNumber]) then
-            -- Handle special circumstance VFX.
-            decals.logDecalTextures()
-            if target.object.organic then
-                decals.attachDecal(target.sceneNode, ASHSHELL_DECAL_PATH)
-            else
-                target:updateEquipment()
-                if target == tes3.player then
-                    tes3.mobilePlayer.firstPersonReference:updateEquipment()
+
+            if (not vfxs[e.sourceInstance.serialNumber]) then
+                -- Handle special circumstance VFX.
+                if target.object.organic then
+                    decals.attachDecal(target.sceneNode, ASHSHELL_DECAL_PATH)
+                else
+                    target:updateEquipment()
+                    if target == tes3.player then
+                        tes3.mobilePlayer.firstPersonReference:updateEquipment()
+                    end
                 end
+                framework.log:debug("Added decal to target.")
+                vfxs[e.sourceInstance.serialNumber] = true
+
             end
-            framework.log:debug("Added decal to target.")
-            vfxs[e.sourceInstance.serialNumber] = true
         end
 
-        if (e.effectInstance.state == tes3.spellState.ending and vfxs[e.sourceInstance.serialNumber]) then
-            decals.logDecalTextures()
-            decals.removeDecal(target.sceneNode, ASHSHELL_DECAL_PATH)
-            if target == tes3.player then
-                decals.removeDecal(tes3.mobilePlayer.firstPersonReference.sceneNode,
-                                   ASHSHELL_DECAL_PATH)
-            end
-            framework.log:debug("Removed decal from target.")
-            vfxs[e.sourceInstance.serialNumber] = nil
-        end
         if (e.effectInstance.state == tes3.spellState.ending) then
+            if (vfxs[e.sourceInstance.serialNumber]) then
+                decals.removeDecal(target.sceneNode, ASHSHELL_DECAL_PATH)
+                if target == tes3.player then
+                    decals.removeDecal(tes3.mobilePlayer.firstPersonReference.sceneNode,
+                                       ASHSHELL_DECAL_PATH)
+                end
+                framework.log:debug("Removed decal from target.")
+                vfxs[e.sourceInstance.serialNumber] = nil
+
+            end
+
             -- Enable player controls. 
             tes3.removeSpell({reference = target, spell = paralysis})
             framework.log:debug("Removed paralysis from target.")
-
         end
     else
         framework.log:error("Invalid target! Target not found.")
@@ -156,10 +155,10 @@ local function onTick(e)
     if (not e:trigger()) then return end
 end
 
-local hitId = "oj_me_vfx_ashshell_hit"
+local HIT_ID = "oj_me_vfx_ashshell_hit"
 
 local hitVFX = tes3.createObject({
-    id = hitId,
+    id = HIT_ID,
     objectType = tes3.objectType.static,
     getIfExists = true,
     mesh = "OJ\\ME\\wp\\ashshell_hit.nif"

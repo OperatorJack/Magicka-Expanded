@@ -3,6 +3,7 @@ local this = {}
 this.ids = {
     objects = {
         static = {
+            vfxEmpty = "oj_me_vfx_empty",
             vfxLightningStrike = "oj_me_vfx_lightn_strike",
             vfxLightningExplode = "oj_me_vfx_lightn_expl"
         },
