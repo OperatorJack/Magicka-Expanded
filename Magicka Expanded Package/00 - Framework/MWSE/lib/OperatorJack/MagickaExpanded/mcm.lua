@@ -1,9 +1,21 @@
 -- Check Magicka Expanded framework.
 local common = require("OperatorJack.MagickaExpanded.common")
 local log = require("OperatorJack.MagickaExpanded.utils.logger")
+local config = require("OperatorJack.MagickaExpanded.config")
 
 local function createGeneralCategory(template)
     local page = template:createPage{label = "General Settings"}
+    page:createDropdown{
+        label = "Logging Level",
+        description = "Set the log level.",
+        options = {
+            {label = "TRACE", value = "TRACE"}, {label = "DEBUG", value = "DEBUG"},
+            {label = "INFO", value = "INFO"}, {label = "WARN", value = "WARN"},
+            {label = "ERROR", value = "ERROR"}, {label = "NONE", value = "NONE"}
+        },
+        variable = mwse.mcm.createTableVariable {id = "logLevel", table = config},
+        callback = function(self) log:setLogLevel(self.variable.value) end
+    }
 
     page:createInfo{
         text = "These functions add all spells and spellbooks used with Magicka Expanded framework.\nUse for testing and spell preview."
@@ -92,7 +104,7 @@ local function createGeneralCategory(template)
 end
 
 local template = mwse.mcm.createTemplate("Magicka Expanded")
--- template:saveOnClose("Magicka Expanded", config) :: Currently no config, just debug functions.
+template:saveOnClose("Magicka Expanded", config)
 
 createGeneralCategory(template)
 

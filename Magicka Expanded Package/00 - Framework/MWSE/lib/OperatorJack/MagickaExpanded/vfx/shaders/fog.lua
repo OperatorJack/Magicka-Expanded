@@ -1,5 +1,6 @@
 local data = require("OperatorJack.MagickaExpanded.data")
 
+---@class MagickaExpanded.Vfx.Shaders.Fog
 local this = {}
 
 ---@type mgeShaderHandle|nil

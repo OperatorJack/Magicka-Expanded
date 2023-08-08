@@ -1,7 +1,68 @@
 local framework = require("OperatorJack.MagickaExpanded")
-local nodes = framework.vfx.nodes
+local decals = framework.vfx.nodes.decals
 
 tes3.claimSpellEffectId("conjureAshShell", 334)
+
+local ASHSHELL_DECAL_PATH = "Data Files\\Textures\\OJ\\ME\\ashshell_decal.dds"
+
+decals.preloadDecal(ASHSHELL_DECAL_PATH)
+
+--
+-- Decal Management Events
+--
+
+local bodyPartBlacklist = {
+    [tes3.activeBodyPart.groin] = true,
+    [tes3.activeBodyPart.leftPauldron] = true,
+    [tes3.activeBodyPart.rightPauldron] = true,
+    [tes3.activeBodyPart.shield] = true,
+    [tes3.activeBodyPart.weapon] = true
+}
+
+event.register(tes3.event.loaded, function(e)
+    tes3.player:updateEquipment()
+    tes3.mobilePlayer.firstPersonReference:updateEquipment()
+end)
+
+---@param e bodyPartAssignedEventData
+event.register(tes3.event.bodyPartAssigned, function(e)
+    -- ignore covered slots
+    if e.object ~= nil then return end
+
+    -- ignore blacklisted slots
+    if bodyPartBlacklist[e.index] then return end
+
+    -- the bodypart scene node is available on the next frame
+    -- make a safe handle in case it gets deleted before then
+    local ref = tes3.makeSafeObjectHandle(e.reference)
+    local bodyPartIndex = e.index
+    local bodyPart = e.bodyPart
+
+    timer.frame.delayOneFrame(function()
+        if not ref or not ref:valid() or not (ref.bodyPartManager and bodyPartIndex and bodyPart) then
+            return
+        end
+
+        local reference = ref:getObject()
+        local sceneNode = reference.bodyPartManager:getActiveBodyPart(tes3.activeBodyPartLayer.base,
+                                                                      bodyPartIndex).node
+        if sceneNode and reference.mobile and
+            tes3.isAffectedBy({reference = reference, effect = tes3.effect.conjureAshShell}) then
+            framework.log:debug("'%s' was assigned to bodypart '%s' at index %s.", reference,
+                                bodyPart, bodyPartIndex)
+            decals.attachDecal(sceneNode, ASHSHELL_DECAL_PATH)
+        end
+    end)
+end)
+
+---@param e referenceActivatedEventData
+event.register(tes3.event.referenceActivated, function(e)
+    if e.reference.object.organic and e.reference.mobile and
+        tes3.isAffectedBy({reference = e.reference, effect = tes3.effect.conjureAshShell}) then
+        framework.log:debug("'%s' was loaded and is already affected.", e.reference)
+        decals.attachDecal(e.reference.sceneNode, ASHSHELL_DECAL_PATH)
+    end
+end)
 
 -- Create damage event handler to block all damage sources while effected by Ash Shell.
 --- @param e damageEventData
@@ -16,6 +77,8 @@ event.register(tes3.event.damage, damageCallback, {priority = 1000})
 
 ---@type tes3spell|nil
 local paralysis = nil
+
+local vfxs = {}
 
 ---@param e tes3magicEffectTickEventData
 local function onTick(e)
@@ -43,68 +106,47 @@ local function onTick(e)
     local target = e.effectInstance.target or e.sourceInstance.target or e.sourceInstance.caster
     paralysis = (paralysis or tes3.getObject("OJ_ME_ConjureAshShellParalysis")) --[[@as tes3spell]]
 
-    local stencilEffects = {
-        player1st = "OJ\\ME\\wp\\ashshell_stencil_1st.nif",
-        player3rd = "OJ\\ME\\wp\\ashshell_stencil_3rd.nif",
-        npc = "OJ\\ME\\wp\\ashshell_stencil_npc.nif"
-    }
-
     if (target) then
         -- Check if the effect is just starting, or if we're reloading a save game and no longer tracking VFX.
-        if (e.effectInstance.state == tes3.spellState.working) then -- and not vfxs[e.sourceInstance.serialNumber]) then
+        if (e.effectInstance.state == tes3.spellState.working and
+            not vfxs[e.sourceInstance.serialNumber]) then
             -- Disable controls via paralysis disease.
             if (target.object.spells:contains(paralysis) == false) then
                 tes3.addSpell({reference = target, spell = paralysis})
                 framework.log:debug("Added paralysis from target.")
             end
-
+        end
+        if (e.effectInstance.state == tes3.spellState.working and
+            not vfxs[e.sourceInstance.serialNumber]) then
             -- Handle special circumstance VFX.
-            if target == tes3.player then
-                local firstNode = nodes.getOrAttachVfx(tes3.player1stPerson, "OJ_ME_AshShellVfx1st",
-                                                       stencilEffects.player1st)
-                local node = nodes.getOrAttachVfx(target, "OJ_ME_AshShellVfx3rd",
-                                                  stencilEffects.player3rd)
-
-                nodes.attachStencilProperty(target)
-                nodes.showNode(firstNode)
-                nodes.showNode(node)
-
+            decals.logDecalTextures()
+            if target.object.organic then
+                decals.attachDecal(target.sceneNode, ASHSHELL_DECAL_PATH)
             else
-                -- Applies VFX for NPC / Creature
-                local node = nodes.getOrAttachVfx(target, "OJ_ME_AshShellVfx_NPC",
-                                                  stencilEffects.npc)
-
-                nodes.attachStencilProperty(target)
-                nodes.showNode(node)
-
+                target:updateEquipment()
+                if target == tes3.player then
+                    tes3.mobilePlayer.firstPersonReference:updateEquipment()
+                end
             end
+            framework.log:debug("Added decal to target.")
+            vfxs[e.sourceInstance.serialNumber] = true
         end
 
+        if (e.effectInstance.state == tes3.spellState.ending and vfxs[e.sourceInstance.serialNumber]) then
+            decals.logDecalTextures()
+            decals.removeDecal(target.sceneNode, ASHSHELL_DECAL_PATH)
+            if target == tes3.player then
+                decals.removeDecal(tes3.mobilePlayer.firstPersonReference.sceneNode,
+                                   ASHSHELL_DECAL_PATH)
+            end
+            framework.log:debug("Removed decal from target.")
+            vfxs[e.sourceInstance.serialNumber] = nil
+        end
         if (e.effectInstance.state == tes3.spellState.ending) then
             -- Enable player controls. 
             tes3.removeSpell({reference = target, spell = paralysis})
             framework.log:debug("Removed paralysis from target.")
 
-            -- Handle special circumstance VFX.
-            if target == tes3.player then
-                local firstNode = nodes.getOrAttachVfx(tes3.player1stPerson, "OJ_ME_AshShellVfx1st",
-                                                       stencilEffects.player1st)
-                local node = nodes.getOrAttachVfx(target, "OJ_ME_AshShellVfx3rd",
-                                                  stencilEffects.player3rd)
-
-                nodes.detachStencilProperty(target)
-                nodes.hideNode(firstNode)
-                nodes.hideNode(node)
-
-            else
-                -- Applies VFX for NPC / Creature
-                local node = nodes.getOrAttachVfx(target, "OJ_ME_AshShellVfx_NPC",
-                                                  stencilEffects.npc)
-
-                nodes.detachStencilProperty(target)
-                nodes.hideNode(node)
-
-            end
         end
     else
         framework.log:error("Invalid target! Target not found.")
