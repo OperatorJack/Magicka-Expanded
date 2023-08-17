@@ -37,8 +37,8 @@ wait-until-initialize = true
       "Icons\\RFD\\RFD_lf_darkness.dds",
       "Icons\\RFD\\RFD_tp_blink.dds",
 
-      "Meshes\\OJ\\ME\\cp\\vfx_darkness_bolt.dds",
-      "Meshes\\OJ\\ME\\cp\\vfx_darkness_cast.dds",
+      "Meshes\\OJ\\ME\\cp\\vfx_darkness_bolt.nif",
+      "Meshes\\OJ\\ME\\cp\\vfx_darkness_cast.nif",
       "Textures\\OJ\\ME\\cp\\particle_black.dds"
   ]
 
