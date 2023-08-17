@@ -6,8 +6,15 @@ local this = {}
 
 local vfx = {}
 
+---@type MagickaExpanded.Vfx.Nodes.Decals
 this.decals = require("OperatorJack.MagickaExpanded.vfx.nodes.decals")
-this.stencils = require("OperatorJack.MagickaExpanded.vfx.nodes.stencils")
+
+---@type MagickaExpanded.Vfx.Nodes.Stencils?
+this.stencils = nil
+
+event.register(tes3.event.initialized, function()
+    this.stencils = require("OperatorJack.MagickaExpanded.vfx.nodes.stencils")
+end, {priority = 10000})
 
 --[[
     Applies the given VFX mesh to a reference and returns the VFX node on the reference. If the reference already has the VFX applied, the existing VFX is loaded from the reference sceneNode. 

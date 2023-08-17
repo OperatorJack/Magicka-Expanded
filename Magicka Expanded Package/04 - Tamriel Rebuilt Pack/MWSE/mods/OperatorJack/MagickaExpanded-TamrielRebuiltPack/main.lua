@@ -6,8 +6,6 @@ if not tes3.isModActive("Tamriel_Data.esm") then
     return
 end
 
-require("OperatorJack.MagickaExpanded-TamrielRebuiltPack.effects")
-
 local teleportSpellIds = {
     akamora = "OJ_ME_TeleportToAkamora",
     firewatch = "OJ_ME_TeleportToFirewatch",
@@ -238,16 +236,20 @@ local summonTomes = {
     }
 }
 
-for _, tome in pairs(teleportTomes) do
-    local item = tes3.getObject(tome.id)
-    local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
-    list:insert(item, 1)
-end
-for _, tome in pairs(summonTomes) do
-    local item = tes3.getObject(tome.id)
-    local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
-    list:insert(item, 1)
-end
+event.register(tes3.event.initialized, function()
+    require("OperatorJack.MagickaExpanded-TamrielRebuiltPack.effects")
+
+    for _, tome in pairs(teleportTomes) do
+        local item = tes3.getObject(tome.id)
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
+        list:insert(item, 1)
+    end
+    for _, tome in pairs(summonTomes) do
+        local item = tes3.getObject(tome.id)
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
+        list:insert(item, 1)
+    end
+end)
 
 local function registerSpells()
 

@@ -1,6 +1,9 @@
 local log = require("OperatorJack.MagickaExpanded.utils.logger")
 local data = require("OperatorJack.MagickaExpanded.data")
 
+--[[
+    This module should only be loaded AFTER the game has been initialized.
+]]
 ---@class MagickaExpanded.Vfx.Nodes.Stencils
 local this = {}
 

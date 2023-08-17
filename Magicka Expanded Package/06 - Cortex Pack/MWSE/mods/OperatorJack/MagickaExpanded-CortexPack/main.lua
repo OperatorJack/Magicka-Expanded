@@ -1,7 +1,5 @@
 local framework = require("OperatorJack.MagickaExpanded")
 
-require("OperatorJack.MagickaExpanded-CortexPack.effects")
-
 local spellIds = {
     blink = "OJ_ME_BlinkSpell",
     clone = "OJ_ME_Clone",
@@ -25,11 +23,15 @@ local tomes = {
     {id = "OJ_ME_TomePermutation", spellId = spellIds.permutation, list = "OJ_ME_LeveledList_Rare"}
 }
 
-for _, tome in pairs(tomes) do
-    local item = tes3.getObject(tome.id)
-    local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
-    list:insert(item, 1)
-end
+event.register(tes3.event.initialized, function()
+    require("OperatorJack.MagickaExpanded-CortexPack.effects")
+
+    for _, tome in pairs(tomes) do
+        local item = tes3.getObject(tome.id)
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
+        list:insert(item, 1)
+    end
+end)
 
 local function registerSpells()
     framework.spells.createBasicSpell({

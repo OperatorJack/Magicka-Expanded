@@ -2,6 +2,9 @@ local camera = require("OperatorJack.MagickaExpanded.utils.camera")
 local mathExt = require("OperatorJack.MagickaExpanded.utils.mathExt")
 local data = require("OperatorJack.MagickaExpanded.data")
 
+--[[
+    This module should only be loaded AFTER the game has been initialized.
+]]
 ---@class MagickaExpanded.Vfx.Dynamic.Lightning
 local this = {}
 

@@ -1,7 +1,5 @@
 local framework = require("OperatorJack.MagickaExpanded")
 
-require("OperatorJack.MagickaExpanded-LoreFriendlyPack.effects")
-
 local spellIds = {
     banishDaedra = "OJ_ME_BanishDaedraSpell",
     boundGreaves = "OJ_ME_BoundGreavesSpell",
@@ -34,12 +32,16 @@ local tomes = {
     {id = "OJ_ME_TomeBoundWarhammer", spellId = spellIds.boundWarhammer}
 }
 
-local listId = "OJ_ME_LeveledList_Common"
-local list = tes3.getObject(listId) --[[@as tes3leveledItem]]
-for _, tome in pairs(tomes) do
-    local item = tes3.getObject(tome.id)
-    list:insert(item, 1)
-end
+event.register(tes3.event.initialized, function()
+    require("OperatorJack.MagickaExpanded-LoreFriendlyPack.effects")
+
+    local listId = "OJ_ME_LeveledList_Common"
+    local list = tes3.getObject(listId) --[[@as tes3leveledItem]]
+    for _, tome in pairs(tomes) do
+        local item = tes3.getObject(tome.id)
+        list:insert(item, 1)
+    end
+end)
 
 local function registerSpells()
     framework.spells.createBasicSpell({

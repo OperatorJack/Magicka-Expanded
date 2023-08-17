@@ -1,7 +1,5 @@
 local framework = require("OperatorJack.MagickaExpanded")
 
-require("OperatorJack.MagickaExpanded-WeatherMagicPack.effects")
-
 local weatherSpellIds = {
     weatherBlizzard = "OJ_ME_WeatherBlizzard",
     weatherSnow = "OJ_ME_WeatherSnow",
@@ -68,13 +66,17 @@ local weatherTomes = {
     }
 }
 
-for _, tome in pairs(weatherTomes) do
-    if (tome.list) then
-        local item = tes3.getObject(tome.id)
-        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
-        list:insert(item, 1)
+event.register(tes3.event.initialized, function()
+    require("OperatorJack.MagickaExpanded-WeatherMagicPack.effects")
+
+    for _, tome in pairs(weatherTomes) do
+        if (tome.list) then
+            local item = tes3.getObject(tome.id)
+            local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
+            list:insert(item, 1)
+        end
     end
-end
+end)
 
 local function registerSpells()
     local spell = framework.spells.createBasicSpell({
@@ -189,22 +191,10 @@ local function onLoaded()
     local doOnce = tes3.getGlobal(globalDoOnceId)
 
     if (doOnce == 0) then
-        tes3.addItem({
-            reference = "dagoth endus",
-            item = "OJ_ME_TomeWeatherBlight",
-            count = 1
-        })
+        tes3.addItem({reference = "dagoth endus", item = "OJ_ME_TomeWeatherBlight", count = 1})
 
-        tes3.addItem({
-            reference = "berapli ashumallit",
-            item = "OJ_ME_TomeWeatherAsh",
-            count = 1
-        })
-        tes3.addItem({
-            reference = "pilu shilansour",
-            item = "OJ_ME_TomeWeatherAsh",
-            count = 1
-        })
+        tes3.addItem({reference = "berapli ashumallit", item = "OJ_ME_TomeWeatherAsh", count = 1})
+        tes3.addItem({reference = "pilu shilansour", item = "OJ_ME_TomeWeatherAsh", count = 1})
 
         tes3.addSpell({
             actor = "fevyn ralen",
@@ -212,16 +202,8 @@ local function onLoaded()
             spell = weatherSpellIds.weatherOvercast
         })
 
-        tes3.addItem({
-            reference = "lloros sarano",
-            item = "OJ_ME_TomeWeatherRain",
-            count = 1
-        })
-        tes3.addItem({
-            reference = "salen ravel",
-            item = "OJ_ME_TomeWeatherRain",
-            count = 1
-        })
+        tes3.addItem({reference = "lloros sarano", item = "OJ_ME_TomeWeatherRain", count = 1})
+        tes3.addItem({reference = "salen ravel", item = "OJ_ME_TomeWeatherRain", count = 1})
 
         tes3.setGlobal(globalDoOnceId, 1)
     end

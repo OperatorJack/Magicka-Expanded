@@ -6,7 +6,7 @@ local this = {}
 ---@type mgeShaderHandle|nil
 local shader
 
-local NUM_FOG_VOLUMES = 2
+local NUM_FOG_VOLUMES = 50
 
 local fogVolumes = {
     fogCenters = {0, 0, 0, 0, 0, 0},

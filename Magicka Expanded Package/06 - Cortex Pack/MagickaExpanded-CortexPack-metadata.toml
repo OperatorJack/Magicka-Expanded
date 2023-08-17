@@ -37,7 +37,9 @@ wait-until-initialize = true
       "Icons\\RFD\\RFD_lf_darkness.dds",
       "Icons\\RFD\\RFD_tp_blink.dds",
 
-      "Meshes\\RFD\\RFD_Darkness.nif",
+      "Meshes\\OJ\\ME\\cp\\vfx_darkness_bolt.dds",
+      "Meshes\\OJ\\ME\\cp\\vfx_darkness_cast.dds",
+      "Textures\\OJ\\ME\\cp\\particle_black.dds"
   ]
 
 # Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)

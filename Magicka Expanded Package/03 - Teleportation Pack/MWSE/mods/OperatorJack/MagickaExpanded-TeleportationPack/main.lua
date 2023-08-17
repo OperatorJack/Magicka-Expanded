@@ -1,7 +1,5 @@
 local framework = require("OperatorJack.MagickaExpanded")
 
-require("OperatorJack.MagickaExpanded-TeleportationPack.effects.teleportationEffectSet")
-
 local spellIds = {
     aldruhn = "OJ_ME_TeleportToAldRuhn",
     balmora = "OJ_ME_TeleportToBalmora",
@@ -41,11 +39,15 @@ local tomes = {
     }
 }
 
-for _, tome in pairs(tomes) do
-    local item = tes3.getObject(tome.id)
-    local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
-    list:insert(item, 1)
-end
+event.register(tes3.event.initialized, function()
+    require("OperatorJack.MagickaExpanded-TeleportationPack.effects.teleportationEffectSet")
+
+    for _, tome in pairs(tomes) do
+        local item = tes3.getObject(tome.id)
+        local list = tes3.getObject(tome.list) --[[@as tes3leveledItem]]
+        list:insert(item, 1)
+    end
+end)
 
 local function registerSpells()
     framework.spells.createBasicSpell({

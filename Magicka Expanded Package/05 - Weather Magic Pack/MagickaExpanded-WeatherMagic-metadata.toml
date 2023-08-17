@@ -20,10 +20,6 @@ wait-until-initialize = true
   # Assets can be directories or loose folders
   assets = [
       "Meshes\\OJ\\ME\\wp\\ashshell_hit.nif",
-      "Meshes\\OJ\\ME\\wp\\ashshell_stencil.nif",
-      "Meshes\\OJ\\ME\\wp\\ashshell_stencil_npc.nif",
-      "Meshes\\OJ\\ME\\wp\\ashshell_stencil_1st.nif",
-      "Meshes\\OJ\\ME\\wp\\ashshell_stencil_3rd.nif",
 
       "Icons\\RFD\\B_RFD_wth_ash.dds",
       "Icons\\RFD\\B_RFD_wth_blight.dds",

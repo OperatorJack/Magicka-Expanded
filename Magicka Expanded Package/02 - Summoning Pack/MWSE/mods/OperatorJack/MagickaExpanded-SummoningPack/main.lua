@@ -1,7 +1,5 @@
 local framework = require("OperatorJack.MagickaExpanded")
 
-require("OperatorJack.MagickaExpanded-SummoningPack.effects.basicSummonEffects")
-
 local spellIds = {
     warDurzog = "OJ_ME_SummWarDurzogSpell",
     goblinGrunt = "OJ_ME_SummGoblinGruntSpell",
@@ -118,7 +116,9 @@ local tomes = {
     }
 }
 
-local function addTomesToLists()
+event.register(tes3.event.initialized, function()
+    require("OperatorJack.MagickaExpanded-SummoningPack.effects.basicSummonEffects")
+
     for _, tome in pairs(tomes) do
         local item = tes3.getObject(tome.id)
 
@@ -131,8 +131,7 @@ local function addTomesToLists()
         local list = tes3.getObject(grimoire.list) --[[@as tes3leveledItem]]
         list:insert(item, 1)
     end
-end
-event.register(tes3.event.initialized, addTomesToLists)
+end)
 
 local function registerSpells()
     framework.spells.createBasicSpell({
