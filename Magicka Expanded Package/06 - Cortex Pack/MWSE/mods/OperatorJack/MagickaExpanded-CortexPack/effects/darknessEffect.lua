@@ -47,7 +47,7 @@ local function fadeInFog(params)
 
             density[serial] = density[serial] + 1
 
-            framework.log:info(
+            framework.log:debug(
                 "Fading in darkness fog! Serial %s, Density: %s, Position %s. Timer Iterations: %s",
                 serial, density[serial], fogParams.center, e.timer.iterations)
 
@@ -80,7 +80,7 @@ local function fadeOutFog(params)
 
             framework.vfx.shaders.fog.createOrUpdateFog(fogId, fogParams)
 
-            framework.log:info(
+            framework.log:debug(
                 "Fading out darkness fog! Serial %s, Density: %s, Position %s. Timer Iterations: %s",
                 serial, density[serial], fogParams.center, e.timer.iterations)
         end
@@ -92,7 +92,7 @@ local function fadeOutFog(params)
             framework.vfx.shaders.fog.deleteFog(fogId)
             vfxs[serial] = nil
             density[serial] = nil
-            framework.log:info("Deleted darkness fog! Serial %s, ", serial, density[serial])
+            framework.log:debug("Deleted darkness fog! Serial %s, ", serial, density[serial])
         end
     })
 
@@ -119,7 +119,7 @@ local function onCollision(e)
         local mistPosition = e.collision.point:copy()
 
         if (not density[serial]) then
-            framework.log:info("Initializing darkness fog placement.")
+            framework.log:debug("Initializing darkness fog placement.")
             density[serial] = 0
             fadeInFog({
                 fogId = fogId,
@@ -249,7 +249,7 @@ local function onTick(e)
 
                     framework.vfx.shaders.fog.createOrUpdateFog(fogId, fogParams)
 
-                    framework.log:info(
+                    framework.log:debug(
                         "Fading out darkness fog! Serial %s, Density: %s, Position %s. Timer Iterations: %s",
                         serial, tickDensities[serial], fogParams.center, e.timer.iterations)
                 end
@@ -261,8 +261,8 @@ local function onTick(e)
                     framework.vfx.shaders.fog.deleteFog(fogId)
                     vfxs[serial] = nil
                     tickDensities[serial] = nil
-                    framework.log:info("Deleted darkness fog! Serial %s, ", serial,
-                                       tickDensities[serial])
+                    framework.log:debug("Deleted darkness fog! Serial %s, ", serial,
+                                        tickDensities[serial])
                 end
             })
         end
