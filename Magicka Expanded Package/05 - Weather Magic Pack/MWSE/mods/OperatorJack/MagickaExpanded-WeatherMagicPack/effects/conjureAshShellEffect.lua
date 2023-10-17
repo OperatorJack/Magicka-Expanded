@@ -156,19 +156,38 @@ local function onTick(e)
 end
 
 local HIT_ID = "oj_me_vfx_ashshell_hit"
+local BOLT_ID = "oj_me_vfx_ashshell_bolt"
+local CAST_ID = "oj_me_vfx_ashshell_cast"
+
+local VFX_HIT_PATH = "OJ\\ME\\wp\\ashshell_hit.nif"
+local VFX_BOLT_PATH = "OJ\\ME\\wp\\ashshell_hit.nif"
+local VFX_CAST_PATH = "OJ\\ME\\wp\\ashshell_cast.nif"
 
 local hitVFX = tes3.createObject({
     id = HIT_ID,
     objectType = tes3.objectType.static,
-    getIfExists = true,
-    mesh = "OJ\\ME\\wp\\ashshell_hit.nif"
+    mesh = VFX_HIT_PATH
 })
 --- @cast hitVFX tes3static
+
+local boltVfx = tes3.createObject({
+    id = BOLT_ID,
+    objectType = tes3.objectType.weapon,
+    mesh = VFX_BOLT_PATH,
+    type = tes3.weaponType.arrow
+})
+---@cast boltVfx tes3weapon
+
+local castVfx = tes3.createObject({
+    id = CAST_ID,
+    objectType = tes3.objectType.static,
+    mesh = VFX_CAST_PATH
+})
+---@cast castVfx tes3static
 
 --[[
     TODO:
     - Add custom icon
-    - Add custom stencil VFX
     - Add custom bolt VFX
 ]]
 framework.effects.conjuration.createBasicEffect({
@@ -194,6 +213,8 @@ framework.effects.conjuration.createBasicEffect({
 
     -- Graphics/sounds.
     hitVFX = hitVFX,
+    castVFX = castVfx,
+    areaVFX = framework.data.ids.objects.static.vfxEmpty,
     hasContinuousVFX = true,
 
     -- Required callbacks.
