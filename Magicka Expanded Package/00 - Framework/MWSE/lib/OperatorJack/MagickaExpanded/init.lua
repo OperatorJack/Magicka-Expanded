@@ -26,6 +26,8 @@ this.tomes = require("OperatorJack.MagickaExpanded.classes.tomes")
 
 this.grimoires = require("OperatorJack.MagickaExpanded.classes.grimoires")
 
+this.distribution = require("OperatorJack.MagickaExpanded.classes.distribution")
+
 this.functions = require("OperatorJack.MagickaExpanded.utils.functions")
 
 this.vfx = require("OperatorJack.MagickaExpanded.vfx")
@@ -47,6 +49,7 @@ event.register(tes3.event.loaded, onLoaded)
 local function onInit()
     this.tomes.registerEvent()
     this.grimoires.registerEvent()
+    this.distribution.registerEvent();
     log:info("Magicka Expanded Framework Initialized")
 end
 event.register(tes3.event.initialized, onInit)

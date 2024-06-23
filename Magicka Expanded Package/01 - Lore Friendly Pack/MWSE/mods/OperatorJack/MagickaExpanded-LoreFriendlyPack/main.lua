@@ -47,6 +47,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.banishDaedra,
         name = "Banish Daedra",
+        distribute = true,
         effect = tes3.effect.banishDaedra,
         rangeType = tes3.effectRange.touch,
         min = 30,
@@ -55,6 +56,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundGreaves,
         name = "Bound Greaves",
+        distribute = true,
         effect = tes3.effect.boundGreaves,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -62,6 +64,7 @@ local function registerSpells()
     framework.spells.createComplexSpell({
         id = spellIds.boundPauldrons,
         name = "Bound Pauldrons",
+        distribute = true,
         effects = {
             [1] = {
                 id = tes3.effect.boundLeftPauldron,
@@ -78,6 +81,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundClaymore,
         name = "Bound Claymore",
+        distribute = true,
         effect = tes3.effect.boundClaymore,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -85,6 +89,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundClub,
         name = "Bound Club",
+        distribute = true,
         effect = tes3.effect.boundClub,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -92,6 +97,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundDaiKatana,
         name = "Bound Dai-Katana",
+        distribute = true,
         effect = tes3.effect.boundDaiKatana,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -99,6 +105,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundKatana,
         name = "Bound Katana",
+        distribute = true,
         effect = tes3.effect.boundKatana,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -106,6 +113,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundShortSword,
         name = "Bound Shortsword",
+        distribute = true,
         effect = tes3.effect.boundShortSword,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -113,6 +121,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundStaff,
         name = "Bound Staff",
+        distribute = true,
         effect = tes3.effect.boundStaff,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -120,6 +129,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundTanto,
         name = "Bound Tanto",
+        distribute = true,
         effect = tes3.effect.boundTanto,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -127,6 +137,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundWakizashi,
         name = "Bound Wakizashi",
+        distribute = true,
         effect = tes3.effect.boundWakizashi,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -134,6 +145,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundWarAxe,
         name = "Bound War Axe",
+        distribute = true,
         effect = tes3.effect.boundWarAxe,
         rangeType = tes3.effectRange.self,
         duration = 30
@@ -141,6 +153,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.boundWarhammer,
         name = "Bound Warhammer",
+        distribute = true,
         effect = tes3.effect.boundWarhammer,
         rangeType = tes3.effectRange.self,
         duration = 30

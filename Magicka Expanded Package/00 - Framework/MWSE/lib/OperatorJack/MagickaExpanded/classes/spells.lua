@@ -53,6 +53,7 @@ end
 ---@field skill tes3.skill?
 ---@field attribute tes3.attribute?
 ---@field magickaCost number?
+---@field distribute boolean? Distribute spell to vendors and NPCs in-game.
 
 --[[
     Creates or updates a spell based on the given @params,
@@ -98,6 +99,8 @@ this.createBasicSpell = function(params)
 
     common.addSpellToSpellsList(spell)
 
+    if (params.distribute) then common.addSpellToDistributionList(spell) end
+
     return spell
 end
 
@@ -106,6 +109,7 @@ end
 ---@field name string
 ---@field magickaCost number?
 ---@field effects MagickaExpanded.Effects.Effect[]
+---@field distribute boolean? Distribute spell to vendors and NPCs in-game.
 
 --[[
     Creates or updates a spell based on the given @params,
@@ -168,6 +172,8 @@ this.createComplexSpell = function(params)
     spell.magickaCost = params.magickaCost or this.getSpellCost(spell)
 
     common.addSpellToSpellsList(spell)
+
+    if (params.distribute) then common.addSpellToDistributionList(spell) end
 
     return spell
 end

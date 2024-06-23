@@ -37,75 +37,93 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.blink,
         name = "Blink",
+        distribute = true,
         effect = tes3.effect.blink,
-        rangeType = tes3.effectRange.target
+        rangeType = tes3.effectRange.target,
+        magickaCost = 35
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.darkShadow,
         name = "Dark Shadow",
+        distribute = true,
         effect = tes3.effect.darkness,
         rangeType = tes3.effectRange.self,
         min = 20,
         max = 20,
-        duration = 10
+        duration = 10,
+        magickaCost = 62
     })
     framework.spells.createBasicSpell({
         id = spellIds.veilOfDarkness,
         name = "Veil of Darkness",
+        distribute = true,
         effect = tes3.effect.darkness,
         rangeType = tes3.effectRange.target,
         min = 50,
         max = 100,
-        duration = 10
+        duration = 10,
+        magickaCost = 112
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.clone,
         name = "Clone",
+        distribute = true,
         effect = tes3.effect.clone,
         rangeType = tes3.effectRange.target,
         duration = 10,
         min = 10,
-        max = 30
+        max = 30,
+        magickaCost = 210
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.mindScan,
         name = "Vondakir's Insight",
+        distribute = true,
         effect = tes3.effect.mindScan,
         rangeType = tes3.effectRange.self,
-        duration = 10
+        duration = 10,
+        magickaCost = 22
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.mindRip,
         name = "Vondakir's Intrusion",
+        distribute = true,
         effect = tes3.effect.mindRip,
-        rangeType = tes3.effectRange.touch
+        rangeType = tes3.effectRange.touch,
+        magickaCost = 185
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.soulScrye,
         name = "Vondakir's Scrutiny",
+        distribute = true,
         effect = tes3.effect.soulScrye,
         rangeType = tes3.effectRange.self,
-        duration = 10
+        duration = 10,
+        magickaCost = 25
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.coalesce,
         name = "Coalesce",
+        distribute = true,
         effect = tes3.effect.coalesce,
-        rangeType = tes3.effectRange.target
+        rangeType = tes3.effectRange.target,
+        magickaCost = 5
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.permutation,
         name = "Permutation",
+        distribute = true,
         effect = tes3.effect.permutation,
         rangeType = tes3.effectRange.self,
-        duration = 30
+        duration = 30,
+        magickaCost = 86
     })
 
     framework.tomes.registerTomes(tomes)

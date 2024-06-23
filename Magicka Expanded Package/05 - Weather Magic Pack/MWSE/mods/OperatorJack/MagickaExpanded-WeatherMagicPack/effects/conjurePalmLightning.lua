@@ -92,7 +92,7 @@ framework.effects.conjuration.createBasicEffect({
     -- Base information.
     id = tes3.effect.conjurePalmLightning,
     name = "Conjure Palm Lightning",
-    description = "Commune with the spirits of nature to conjure a ball of lightning in your hand. Your next attack will disacharge the lightning, causing shock damage.",
+    description = "Commune with the spirits of nature to conjure a ball of lightning in your hand.",
 
     -- Basic dials.
     baseCost = 5.0,
@@ -105,11 +105,15 @@ framework.effects.conjuration.createBasicEffect({
     canCastTarget = false,
     canCastTouch = false,
     canCastSelf = true,
+    casterLinked = true,
+    appliesOnce = true,
+    isHarmful = true,
+    nonRecastable = true,
 
     -- Graphics/sounds.
-    hitVFX = "oj_me_vfx_empty",
-    areaVFX = "oj_me_vfx_empty",
-    boltVFX = "oj_me_vfx_empty",
+    hitVFX = framework.data.ids.objects.static.vfxEmpty,
+    areaVFX = framework.data.ids.objects.static.vfxEmpty,
+    boltVFX = framework.data.ids.objects.static.vfxEmpty,
     castVFX = "VFX_LightningCast",
     particleTexture = "vfx_electric.dds",
 

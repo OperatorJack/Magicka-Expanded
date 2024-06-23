@@ -53,75 +53,99 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.mournhold,
         name = "Teleport to Mournhold",
+        distribute = true,
         effect = tes3.effect.teleportToMournhold,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
 
     framework.spells.createBasicSpell({
         id = spellIds.aldruhn,
         name = "Teleport to Ald-Ruhn",
+        distribute = true,
         effect = tes3.effect.teleportToAldRuhn,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.balmora,
         name = "Teleport to Balmora",
+        distribute = true,
         effect = tes3.effect.teleportToBalmora,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.ebonheart,
         name = "Teleport to Ebonheart",
+        distribute = true,
         effect = tes3.effect.teleportToEbonheart,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.vivec,
         name = "Teleport to Vivec",
+        distribute = true,
         effect = tes3.effect.teleportToVivec,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.caldera,
         name = "Teleport to Caldera",
+        distribute = true,
         effect = tes3.effect.teleportToCaldera,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.gnisis,
         name = "Teleport to Gnisis",
+        distribute = true,
         effect = tes3.effect.teleportToGnisis,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.maargan,
         name = "Teleport to Maar Gan",
+        distribute = true,
         effect = tes3.effect.teleportToMaarGan,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.molagmar,
         name = "Teleport to Molag Mar",
+        distribute = true,
         effect = tes3.effect.teleportToMolagMar,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.pelagiad,
         name = "Teleport to Pelagiad",
+        distribute = true,
         effect = tes3.effect.teleportToPelagiad,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.suran,
         name = "Teleport to Suran",
+        distribute = true,
         effect = tes3.effect.teleportToSuran,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
     framework.spells.createBasicSpell({
         id = spellIds.telmora,
         name = "Teleport to Tel Mora",
+        distribute = true,
         effect = tes3.effect.teleportToTelMora,
-        rangeType = tes3.effectRange.self
+        rangeType = tes3.effectRange.self,
+        magickaCost = 50
     })
 
     framework.tomes.registerTomes(tomes)

@@ -13,7 +13,7 @@ version = "3.0.0"
 [tools.mwse]
 lua-mod = "OperatorJack.MagickaExpanded-SummoningPack"
 load-order = 100
-wait-until-initialize = true
+wait-until-initialize = false
 
 # Dependencies are checked on `initialized` and warn the player if any are missing
 [dependencies]

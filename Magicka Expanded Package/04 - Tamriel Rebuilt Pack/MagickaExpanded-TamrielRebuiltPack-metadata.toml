@@ -11,9 +11,9 @@ version = "3.0.0"
 
 # MWSE specific information about this mod
 [tools.mwse]
-lua-mod = "OperatorJack.MagickaExpanded-TamrielRebuilt"
+lua-mod = "OperatorJack.MagickaExpanded-TamrielRebuiltPack"
 load-order = 100
-wait-until-initialize = true
+wait-until-initialize = false
 
 # Dependencies are checked on `initialized` and warn the player if any are missing
 [dependencies]

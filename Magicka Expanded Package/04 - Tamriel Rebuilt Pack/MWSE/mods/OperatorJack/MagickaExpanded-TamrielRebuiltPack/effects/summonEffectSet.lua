@@ -22,7 +22,8 @@ tes3.claimSpellEffectId("summonSiltStrider", 285)
 tes3.claimSpellEffectId("summonSload", 286)
 tes3.claimSpellEffectId("summonSwampTroll", 287)
 tes3.claimSpellEffectId("summonWelkyndSpirit", 288)
-tes3.claimSpellEffectId("callWereboar", 289)
+-- Wereboars are no good! 
+-- tes3.claimSpellEffectId("callWereboar", 289)
 tes3.claimSpellEffectId("summonVelk", 290)
 tes3.claimSpellEffectId("summonVermai", 291)
 tes3.claimSpellEffectId("summonTrebataur", 292)
@@ -218,14 +219,7 @@ framework.effects.conjuration.createBasicSummoningEffect({
     creatureId = "T_Ayl_Cre_WelkSpr_01",
     icon = "RFD\\RFD_tr_welkynd.dds"
 })
-framework.effects.conjuration.createBasicSummoningEffect({
-    id = tes3.effect.callWereboar,
-    name = "Call Wereboar",
-    description = getCallDescription("Wereboar"),
-    baseCost = 60,
-    creatureId = "T_Glb_Cre_Wereboar_01",
-    icon = "RFD\\RFD_tr_wboar.dds"
-})
+
 framework.effects.conjuration.createBasicSummoningEffect({
     id = tes3.effect.summonVelk,
     name = "Summon Velk",

@@ -22,6 +22,9 @@ end
 ---@type tes3spell[]
 this.spells = {}
 
+---@type tes3spell[]
+this.distribution = {}
+
 ---@type tes3alchemy[]
 this.potions = {}
 
@@ -40,6 +43,10 @@ this.boundArmors = {}
 --[[Adds the spell the the MagickaExpanded tracking list for the given effect.]]
 ---@param spell tes3spell
 this.addSpellToSpellsList = function(spell) table.insert(this.spells, spell) end
+
+--[[Adds the spell the the MagickaExpanded spell distribution list for the spell. Spells in this list are automatically distributed to NPCs at random.]]
+---@param spell tes3spell
+this.addSpellToDistributionList = function(spell) table.insert(this.distribution, spell) end
 
 this.addTestSpellsToPlayer = function()
     for i = 1, #this.spells do

@@ -13,7 +13,7 @@ version = "3.0.0"
 [tools.mwse]
 lua-mod = "OperatorJack.MagickaExpanded-TeleportationPack"
 load-order = 100
-wait-until-initialize = true
+wait-until-initialize = false
 
 # Check MWSE version using build number (the number that comes after "v2.1.0" in MWSE.log)
 [dependencies.mwse]
