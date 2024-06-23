@@ -7,7 +7,7 @@ By: OperatorJack & RedFurryDemon
 - Morrowind
 - Tribunal
 - Bloodmoon
-- MGE XE 0.10.1
+- MGE XE 0.15
 - MWSE 2.1+
 
 This mod requires the most recently nightly build of MWSE. Please be sure to run the mwse-update.exe before playing this mod.
@@ -40,6 +40,8 @@ This mod consist of multiple BAIN packages:
 * Adds new magic effects inspired by Cortex's Scripted Spells mod.
 
 This mod allows the distribution of spells through spell tomes and grimoires. Spell tomes teach 1 spell per book. Spell grimoires teach 2+ spells per book. This mod uses leveled lists and booksellers for spell distribution, but Spell Packs may use any mechanism to distribute spells. Please refer to the Spell Pack you are using for instructions for finding the spells within. If using spell tomes and grimoires, they will be dynamically placed through MWSE and do not require cell edits in the Construction Set.
+
+Additionally, spells may be distributed automatically to spell vendors in the game. The default chance of a spell being added to a spell vendor is 3%.
 
 There is an MCM that contains buttons to help you test the framework. You can use these buttons to add all loaded spells to the player, as well as tomes and grimoires. You can also set your stats instantly. Please note there may be a slight delay when adding spells / items through the MCM, if you are using a lot of ME dependent mods.
 
@@ -82,5 +84,4 @@ RedFurryDemon: graphics including icons, some VFX (original darkness mesh), mod 
 - Firemoth Reclaimed team: Their lightning VFX meshes, textures and MWSE code was adapted into this mod for the "Conjure Lightning" magic effect.
 - Kurp for the following:
     - Circular VFX mesh used in the Thunderbolt bolt VFX, Darkness bolt VFX.
-- OAAB for the following
     - Lightning Bolt VFX Texture, which is used in the Thunderbolt Bolt VFX mesh.
