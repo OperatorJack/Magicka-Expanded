@@ -25,8 +25,6 @@ local function onAttack(e)
         })
 
         applyDamage(e.targetReference, magnitude)
-
-        tes3.removeEffects({reference = e.reference, effect = tes3.effect.conjurePalmLightning})
     end
 end
 
