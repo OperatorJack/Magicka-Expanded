@@ -9,7 +9,9 @@ local spellIds = {
     mindRip = "OJ_ME_MindRip",
     soulScrye = "OJ_ME_SoulScrye",
     coalesce = "OJ_ME_Coalesce",
-    permutation = "OJ_ME_Permutation"
+    permutation = "OJ_ME_Permutation",
+
+    conjurePalmLightning = "OJ_ME_ConjurePalmLightning"
 }
 
 local tomes = {
@@ -41,6 +43,17 @@ local function registerSpells()
         effect = tes3.effect.blink,
         rangeType = tes3.effectRange.target,
         magickaCost = 35
+    })
+
+    framework.spells.createBasicSpell({
+        id = spellIds.conjurePalmLightning,
+        name = "Conjure Palm Lightning",
+        distribute = true,
+        effect = tes3.effect.conjurePalmLightning,
+        rangeType = tes3.effectRange.self,
+        duration = 15,
+        min = 10,
+        max = 50
     })
 
     framework.spells.createBasicSpell({

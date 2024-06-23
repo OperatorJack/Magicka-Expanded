@@ -6,5 +6,6 @@ require("OperatorJack.MagickaExpanded-CortexPack.effects.coalesceEffect")
 require("OperatorJack.MagickaExpanded-CortexPack.effects.permutationEffect")
 require("OperatorJack.MagickaExpanded-CortexPack.effects.darknessEffect")
 require("OperatorJack.MagickaExpanded-CortexPack.effects.blinkEffect")
+require("OperatorJack.MagickaExpanded-CortexPack.effects.conjurePalmLightning")
 
 return {}
