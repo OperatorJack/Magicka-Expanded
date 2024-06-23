@@ -45,7 +45,7 @@ local function onTick(e)
                                           "Weapon Bone")
 
         if (node) then
-            node.scale = 1 * (1 + (e.effectInstance.magnitude / 100))
+            node.scale = 0.7 + (e.effectInstance.magnitude / 100)
             node.appCulled = false
             node:update({controllers = true})
             node:updateEffects()
@@ -57,7 +57,7 @@ local function onTick(e)
                                                          "OJ\\ME\\lightn_bolt.nif", "Weapon Bone")
 
             if (firstPersonNode) then
-                firstPersonNode.scale = 1 * (1 + (e.effectInstance.magnitude / 100))
+                firstPersonNode.scale = 0.7 + (e.effectInstance.magnitude / 100)
                 firstPersonNode.appCulled = false
                 firstPersonNode:update({controllers = true})
                 firstPersonNode:updateEffects()

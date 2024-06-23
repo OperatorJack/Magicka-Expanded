@@ -9,16 +9,12 @@ repository = "https://github.com/OperatorJack/Magicka-Expanded"
 authors = ["OperatorJack", "RedFurryDemon"]
 version = "3.0.0"
 
-# MWSE specific information about this mod
-[tools.mwse]
-lua-mod = "OperatorJack.MagickaExpanded"
-load-order = 1
-wait-until-initialize = false
-
 # Dependencies are checked on `initialized` and warn the player if any are missing
 [dependencies]
   # Assets can be directories or loose folders
   assets = [
+      "MWSE\\lib\\OperatorJack\\MagickaExpanded",
+
       "Meshes\\OJ\\ME\\stencils\\mask_char_mirror.nif",
       "Meshes\\OJ\\ME\\stencils\\mask_char.nif",
       "Meshes\\OJ\\ME\\stencils\\mask_char1st.nif",
