@@ -64,7 +64,7 @@ Creating new magic effects requires creating entries in a MWSE table. These entr
 ====Installation & Removal====
 Installation:
 1) Use a mod management tool to install this mod using the provided BAIN installer. Or just install it manually, if that's your thing.
-2) Enable the .esp file for Resource pack if using any of the spell packs.
+2) Enable the Magicka Expanded.esp file.
 
 Removal:
 1) Delete any spells added by this mod from the player. This can be done by clicking the spell in the spell menu and pressing [Delete] on the keyboard.
