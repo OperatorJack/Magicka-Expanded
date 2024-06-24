@@ -7,7 +7,6 @@ local this = {}
 ---@class MagickaExpanded.Enchantments.createBasicEnchantmentParams
 ---@field id string Enchantment ID
 ---@field effect tes3.effect Effect ID
----@field name string Enchantment Name
 ---@field rangeType tes3.effectRange Effect Range
 ---@field min number?
 ---@field max number?
