@@ -1,7 +1,7 @@
 local framework = require("OperatorJack.MagickaExpanded")
 local tick = require("OperatorJack.MagickaExpanded.utils.onTickHandlers")
 
-tes3.claimSpellEffectId("conjurePalmLightning", 432)
+tes3.claimSpellEffectId("conjurePalmFlame", 533)
 
 --[[
     TODO:
@@ -10,9 +10,9 @@ tes3.claimSpellEffectId("conjurePalmLightning", 432)
 ]]
 framework.effects.conjuration.createBasicEffect({
     -- Base information.
-    id = tes3.effect.conjurePalmLightning,
-    name = "Conjure Palm Lightning",
-    description = "Commune with the spirits of nature to conjure a ball of lightning in your hand.",
+    id = tes3.effect.conjurePalmFlame,
+    name = "Conjure Palm Flame",
+    description = "Commune with the spirits of nature to conjure a ball of flames in your hand.",
 
     -- Basic dials.
     baseCost = 5.0,
@@ -34,18 +34,18 @@ framework.effects.conjuration.createBasicEffect({
     hitVFX = framework.data.ids.objects.static.vfxEmpty,
     areaVFX = framework.data.ids.objects.static.vfxEmpty,
     boltVFX = framework.data.ids.objects.static.vfxEmpty,
-    castVFX = "VFX_LightningCast",
-    particleTexture = "vfx_electric.dds",
+    castVFX = "VFX_DestructCast",
+    particleTexture = "vfx_firealpha00A.tga",
 
     -- Required callbacks.
     onTick = function(e)
         tick.onPalmEffectTick({
-            effect = tes3.effect.conjurePalmLightning,
-            resistAttribute = tes3.effectAttribute.resistShock,
+            effect = tes3.effect.conjurePalmFlame,
+            resistAttribute = tes3.effectAttribute.resistFire,
             tickEventData = e,
-            vfxRootNodeName = "oj_me_palm_shock",
-            vfxPath = "OJ\\ME\\cp\\vfx_palm_shock.nif",
-            vfxHitObjectId = "VFX_LightningHit"
+            vfxRootNodeName = "oj_me_palm_flame",
+            vfxPath = "OJ\\ME\\cp\\vfx_palm_flame.nif",
+            vfxHitObjectId = "VFX_DestructHit"
         })
     end
 })

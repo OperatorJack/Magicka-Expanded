@@ -11,7 +11,9 @@ local spellIds = {
     coalesce = "OJ_ME_Coalesce",
     permutation = "OJ_ME_Permutation",
 
-    conjurePalmLightning = "OJ_ME_ConjurePalmLightning"
+    conjurePalmLightning = "OJ_ME_ConjurePalmLightning",
+    conjurePalmFrost = "OJ_ME_ConjurePalmFrost",
+    conjurePalmFlame = "OJ_ME_ConjurePalmFlame"
 }
 
 local tomes = {
@@ -50,6 +52,28 @@ local function registerSpells()
         name = "Conjure Palm Lightning",
         distribute = true,
         effect = tes3.effect.conjurePalmLightning,
+        rangeType = tes3.effectRange.self,
+        duration = 15,
+        min = 10,
+        max = 50
+    })
+
+    framework.spells.createBasicSpell({
+        id = spellIds.conjurePalmFlame,
+        name = "Conjure Palm Flame",
+        distribute = true,
+        effect = tes3.effect.conjurePalmFlame,
+        rangeType = tes3.effectRange.self,
+        duration = 15,
+        min = 10,
+        max = 50
+    })
+
+    framework.spells.createBasicSpell({
+        id = spellIds.conjurePalmFrost,
+        name = "Conjure Palm Frost",
+        distribute = true,
+        effect = tes3.effect.conjurePalmFrost,
         rangeType = tes3.effectRange.self,
         duration = 15,
         min = 10,
