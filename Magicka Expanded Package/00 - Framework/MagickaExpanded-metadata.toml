@@ -7,7 +7,7 @@ description = "A lua-based framework for creating new, fully functional magic ef
 homepage = "https://www.nexusmods.com/morrowind/mods/47111"
 repository = "https://github.com/OperatorJack/Magicka-Expanded"
 authors = ["OperatorJack", "RedFurryDemon"]
-version = "3.0.2"
+version = "3.0.3"
 
 # Dependencies are checked on `initialized` and warn the player if any are missing
 [dependencies]
