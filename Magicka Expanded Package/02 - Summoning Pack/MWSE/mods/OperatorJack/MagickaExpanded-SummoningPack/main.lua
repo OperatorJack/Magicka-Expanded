@@ -18,8 +18,7 @@ local spellIds = {
     centurionSteam = "OJ_ME_SummCenturionSteamSpell",
     centurionArcher = "OJ_ME_SummCenturionArcherSpell",
     centurionSpider = "OJ_ME_SummCenturionSpiderSpell",
-    centurionSphere = "OJ_ME_SummCenturionSphereSpell",
-    werewolf = "OJ_ME_CallWerewolfSpell"
+    centurionSphere = "OJ_ME_SummCenturionSphereSpell"
 }
 
 local grimoires = {
@@ -49,7 +48,6 @@ local grimoires = {
 }
 
 local tomes = {
-    {id = "OJ_ME_TomeCallWerewolf", spellId = spellIds.werewolf, list = "OJ_ME_LeveledList_Mythic"},
     {
         id = "OJ_ME_TomeSummWarDurzog",
         spellId = spellIds.warDurzog,
@@ -134,14 +132,6 @@ event.register(tes3.event.initialized, function()
 end)
 
 local function registerSpells()
-    framework.spells.createBasicSpell({
-        id = spellIds.werewolf,
-        name = "Call Werewolf",
-        distribute = true,
-        effect = tes3.effect.callWerewolf,
-        rangeType = tes3.effectRange.self,
-        duration = 30
-    })
     framework.spells.createBasicSpell({
         id = spellIds.warDurzog,
         name = "Summon War Durzog",

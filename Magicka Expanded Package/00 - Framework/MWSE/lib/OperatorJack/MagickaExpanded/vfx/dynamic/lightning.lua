@@ -1,4 +1,4 @@
-local camera = require("OperatorJack.MagickaExpanded.utils.camera")
+-- local camera = require("OperatorJack.MagickaExpanded.utils.camera")
 local mathExt = require("OperatorJack.MagickaExpanded.utils.mathExt")
 local data = require("OperatorJack.MagickaExpanded.data")
 
@@ -6,6 +6,7 @@ local data = require("OperatorJack.MagickaExpanded.data")
     This module should only be loaded AFTER the game has been initialized.
 ]]
 ---@class MagickaExpanded.Vfx.Dynamic.Lightning
+
 local this = {}
 
 local VFX_EXPLODE = tes3.getObject(data.ids.objects.static.vfxLightningExplode) ---@cast VFX_EXPLODE tes3static
@@ -200,7 +201,7 @@ function this.createLightningStrike(position, strength, explode)
                 this.createLightningExplosion(position)
                 this.createLightningLight(position)
                 this.createLightningFlash()
-                camera.startCameraShake(duration, strength or 1.0)
+                -- camera.startCameraShake(duration, strength or 1.0)
             end
         })
     end

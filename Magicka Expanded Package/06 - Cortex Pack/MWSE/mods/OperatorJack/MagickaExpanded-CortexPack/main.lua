@@ -27,6 +27,20 @@ local tomes = {
     {id = "OJ_ME_TomePermutation", spellId = spellIds.permutation, list = "OJ_ME_LeveledList_Rare"}
 }
 
+---@type MagickaExpanded.Distribution.DistributionModel[]
+local distributions = {
+    {
+        spell = spellIds.conjurePalmFlame,
+        source = "magicka-expanded-cortex-pack",
+        filterRaceId = "dark elf"
+    },
+    {
+        spell = spellIds.conjurePalmFrost,
+        source = "magicka-expanded-cortex-pack",
+        filterRaceId = "nord"
+    }
+}
+
 event.register(tes3.event.initialized, function()
     require("OperatorJack.MagickaExpanded-CortexPack.effects")
 
@@ -61,7 +75,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.conjurePalmFlame,
         name = "Conjure Palm Flame",
-        distribute = true,
+        -- distribute = true,
         effect = tes3.effect.conjurePalmFlame,
         rangeType = tes3.effectRange.self,
         duration = 15,
@@ -72,7 +86,7 @@ local function registerSpells()
     framework.spells.createBasicSpell({
         id = spellIds.conjurePalmFrost,
         name = "Conjure Palm Frost",
-        distribute = true,
+        -- distribute = true,
         effect = tes3.effect.conjurePalmFrost,
         rangeType = tes3.effectRange.self,
         duration = 15,
@@ -164,6 +178,7 @@ local function registerSpells()
     })
 
     framework.tomes.registerTomes(tomes)
+    -- framework.distribution.registerDistributions(distributions)
 end
 
 event.register("MagickaExpanded:Register", registerSpells)
